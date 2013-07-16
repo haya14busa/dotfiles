@@ -1,0 +1,18 @@
+set kanji-code utf-8
+# set convert-meta off
+# set meta-flag on
+# set output-meta off
+# set input-meta onset enable-keypad on
+
+
+# Enable 8bit input
+set meta-flag on
+set input-meta on
+
+# Turns off 8th bit stripping
+set convert-meta off
+
+# Keep the 8th bit for display
+set output-meta on
+
+set enable-keypad on
