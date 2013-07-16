@@ -170,33 +170,18 @@ case ${OSTYPE} in
         ;;
 esac
  
-# vim:set ft=zsh:
-
-# vim to Macvim
-# case "`uname`" in
-# 
-#     Darwin) # OSがMacならば
-#         if [ -d /Applications/MacVim.app ]; then # MacVimが存在するならば
-# 			alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
-# 			alias mvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim '
-#         fi
-#         ;;
-# 
-#     *) ;; # OSがMac以外ならば何もしない
-# esac
-
 alias mvim="mvim --remote-tab-silent"
 alias note="mvim $HOME/notes/`date +%Y-%m-%d`.md"
 alias say="say >& /dev/null"
 alias SayKotoeri2="SayKotoeri2 >& /dev/null"
 alias SayKotoeri="SayKotoeri >& /dev/null"
 
-# path to pandoc
-# PATH=${HOME}/.cabal/bin:$PATH
+path to pandoc
+PATH=${HOME}/.cabal/bin:$PATH
 
-# export PATH=$HOME/Android/adt-bundle-mac-x86_64-20130522/sdk:$PATH
-# export PATH=$HOME/Android/adt-bundle-mac-x86_64-20130522/sdk/tools:$PATH
-# export PATH=$HOME/Android/adt-bundle-mac-x86_64-20130522/sdk/platform-tools:$PATH
+export PATH=$HOME/Android/adt-bundle-mac-x86_64-20130522/sdk:$PATH
+export PATH=$HOME/Android/adt-bundle-mac-x86_64-20130522/sdk/tools:$PATH
+export PATH=$HOME/Android/adt-bundle-mac-x86_64-20130522/sdk/platform-tools:$PATH
 
 setopt correct
 
