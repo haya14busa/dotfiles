@@ -4,6 +4,7 @@ import readline
 import rlcompleter
 import atexit
 import os
+from see import see
 # tab complete
 readline.parse_and_bind('tab: complete')
 # history file
