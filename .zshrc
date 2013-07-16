@@ -172,3 +172,4 @@ esac
  
 setopt correct
 
+export PYTHONSTARTUP=~/.pythonstartup
