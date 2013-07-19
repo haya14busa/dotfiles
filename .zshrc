@@ -193,3 +193,6 @@ export PATH=/Applications/NXWine.app/Contents/Resources/bin:$PATH
 
 export PYTHONSTARTUP=~/.pythonstartup
 
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
