@@ -201,4 +201,9 @@ nnoremap to :<C-u>edit<Space>
 nnoremap tt :<C-u>tabnew<Space>
 nnoremap <silent> td :<C-u>tabclose<CR>
 
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
 

@@ -176,7 +176,7 @@ alias say="say >& /dev/null"
 alias SayKotoeri2="SayKotoeri2 >& /dev/null"
 alias SayKotoeri="SayKotoeri >& /dev/null"
 
-path to pandoc
+# path to pandoc
 PATH=${HOME}/.cabal/bin:$PATH
 
 export PATH=$HOME/Android/adt-bundle-mac-x86_64-20130522/sdk:$PATH
@@ -188,6 +188,8 @@ setopt correct
 # for wine
 export XMODIFIERS=@im=uim
 export GTK_IM_MODULE=uim
+export PATH=/Applications/NXWine.app/Contents/Resources/bin:$PATH
+
 
 export PYTHONSTARTUP=~/.pythonstartup
 
