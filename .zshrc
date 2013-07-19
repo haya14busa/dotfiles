@@ -170,6 +170,4 @@ case ${OSTYPE} in
         ;;
 esac
  
-setopt correct
-
 export PYTHONSTARTUP=~/.pythonstartup
