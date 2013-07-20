@@ -191,7 +191,10 @@ export GTK_IM_MODULE=uim
 export PATH=/Applications/NXWine.app/Contents/Resources/bin:$PATH
 
 
+# for Python #
 export PYTHONSTARTUP=~/.pythonstartup
+alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
+#############
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
