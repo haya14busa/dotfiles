@@ -199,3 +199,6 @@ alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xarg
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
