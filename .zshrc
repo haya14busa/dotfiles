@@ -199,3 +199,15 @@ alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xarg
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+
+## ドットインストールで学習する ######## 
+# help:lessonコマンドで学習したいレッスンを選び､クリップボードにコピーします｡Vimを閉じると､選択したレッスンがダウンロードされます｡
+# 開始したいレッスンを表示する
+alias lesson-ls='cd ~/Movies/dt/ && vim lesson.txt'
+
+# 開始したいレッスンをダウンロードする
+alias lesson-dl='~/Movies/dt/lesson-dl'
+
+# レッスンを選択し､ダウンロード､再生する
+alias lesson='lesson-ls && pbpaste | xargs ./lesson-dl'
+########################################
