@@ -126,8 +126,9 @@ bindkey '^R' history-incremental-pattern-search-backward
 ########################################
 # エイリアス
  
-alias la='ls -a'
-alias ll='ls -l'
+alias ls='ls -v'
+alias la='ls -a -v'
+alias ll='ls -l -v'
  
 alias rm='rm -i'
 alias cp='cp -i'
@@ -163,7 +164,7 @@ case ${OSTYPE} in
     darwin*)
         #Mac用の設定
         export CLICOLOR=1
-        alias ls='ls -G -F'
+        alias ls='ls -G -F -v'
         ;;
     linux*)
         #Linux用の設定
