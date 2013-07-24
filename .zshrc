@@ -126,8 +126,9 @@ bindkey '^R' history-incremental-pattern-search-backward
 ########################################
 # エイリアス
  
-alias la='ls -a'
-alias ll='ls -l'
+alias ls='ls -v'
+alias la='ls -a -v'
+alias ll='ls -l -v'
  
 alias rm='rm -i'
 alias cp='cp -i'
@@ -163,7 +164,7 @@ case ${OSTYPE} in
     darwin*)
         #Mac用の設定
         export CLICOLOR=1
-        alias ls='ls -G -F'
+        alias ls='ls -G -F -v'
         ;;
     linux*)
         #Linux用の設定
@@ -202,3 +203,16 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+
+## ドットインストールで学習する ######## 
+# help:lessonコマンドで学習したいレッスンを選び､クリップボードにコピーします｡Vimを閉じると､選択したレッスンがダウンロードされます｡
+# 開始したいレッスンを表示する
+alias lesson-ls='cd ~/Movies/dt/ && vim lesson.txt'
+
+# 開始したいレッスンをダウンロードする
+alias lesson-dl='~/Movies/dt/lesson-dl'
+
+# レッスンを選択し､ダウンロード､再生する
+alias lesson='lesson-ls && pbpaste | xargs ./lesson-dl'
+########################################
