@@ -172,6 +172,7 @@ case ${OSTYPE} in
 esac
  
 alias mvim="mvim --remote-tab-silent"
+alias VimFiler="vim +VimFiler"
 alias note="mvim $HOME/notes/`date +%Y-%m-%d`.md"
 alias say="say >& /dev/null"
 alias SayKotoeri2="SayKotoeri2 >& /dev/null"
