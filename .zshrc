@@ -171,6 +171,7 @@ case ${OSTYPE} in
 esac
  
 alias tmux="tmux -u"
+alias VimFiler="vim +VimFiler"
 
 # for Python #
 export PYTHONSTARTUP=~/.pythonstartup
