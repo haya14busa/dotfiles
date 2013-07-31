@@ -217,3 +217,4 @@ alias lesson-dl='~/Movies/dt/lesson-dl'
 # レッスンを選択し､ダウンロード､再生する
 alias lesson='lesson-ls && pbpaste | xargs ./lesson-dl'
 ########################################
+
