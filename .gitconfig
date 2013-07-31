@@ -1,0 +1,30 @@
+[user]
+	name = haya14busa
+	email = hayabusa1419@gmail.com
+[color]
+	ui = true
+[core]
+	editor = /usr/local/bin/vim
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	sh = show
+	so = remote show origin
+	ci = commit
+	ft = fetch
+	ad = add
+	cam = commit -a --amend
+	log-graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
+	log-all = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
+	# diff関連
+	dm = diff master           # masterとのdiff
+	dw = diff --color-words    # 単語単位でいろつけてdiff
+	dc = diff --cached         # addされているものとのdiff
+	ds = diff --staged         # 同上(1.6.1移行)
+	d1 = diff HEAD~            # HEADから1つ前とdiff
+	d2 = diff HEAD~~           # HEADから2つ前とdiff
+	d3 = diff HEAD~~~          # HEADから3つ前とdiff
+	d4 = diff HEAD~~~~         # HEADから4つ前とdiff
+	d5 = diff HEAD~~~~~        # HEADから5つ前とdiff
+	d10 = diff HEAD~~~~~~~~~~  # HEADから10前とdiff
