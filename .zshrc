@@ -169,6 +169,8 @@ case ${OSTYPE} in
         #Linux用の設定
         ;;
 esac
+ 
+alias tmux="tmux -u"
 
 # for Python #
 export PYTHONSTARTUP=~/.pythonstartup
