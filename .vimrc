@@ -46,7 +46,8 @@ NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'thinca/vim-template'
-"------------------------------------
+NeoBundle 'vim-scripts/Align'
+"---end of NeoBundle-----------------
 
 filetype plugin indent on
 
@@ -281,3 +282,13 @@ autocmd MyAutoCmd User plugin-template-loaded
     \   if search('<+CURSOR+>')
     \ |   silent! execute 'normal! "_da>'
     \ | endif
+
+
+
+"------------------------------------
+" vim-scripts/Align
+"------------------------------------
+:let g:Align_xstrlen = 3
+
+
+
