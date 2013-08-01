@@ -43,6 +43,8 @@ NeoBundle 'vim-scripts/phpfolding.vim'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
 "------------------------------------
 
 filetype plugin indent on
