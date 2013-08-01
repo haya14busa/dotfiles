@@ -1,6 +1,9 @@
 set nocompatible
 filetype plugin indent off
 
+"------------------------------------
+" NeoBundle
+"------------------------------------
 if has('vim_starting')
 	set runtimepath+=~/.vim/.bundle/neobundle.vim/
 endif
@@ -18,7 +21,6 @@ NeoBundle 'git://github.com/tpope/vim-repeat.git'
 NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/ujihisa/vimshell-ssh.git'
 NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
-" NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 NeoBundle 'git://github.com/kana/vim-smartchr.git'
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
 NeoBundle 'git://github.com/mattn/gist-vim.git'
@@ -41,15 +43,20 @@ NeoBundle 'vim-scripts/phpfolding.vim'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'kana/vim-fakeclip'
-
+"------------------------------------
 
 filetype plugin indent on
 
+"------------------------------------
 " release autogroup in MyAutoCmd
+"------------------------------------
 augroup MyAutoCmd
   autocmd!
 augroup END
 
+"------------------------------------
+" Options
+"------------------------------------
 set encoding=utf-8
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
@@ -67,13 +74,14 @@ set hlsearch
 set hidden
 set history=100
 set incsearch
-set laststatus=2
-set matchtime=2
+set infercase
+set laststatus=3
+set matchtime=3
 set nobackup
 set noerrorbells
-set noexpandtab
-set noignorecase
-set nosmartcase
+set expandtab
+set ignorecase
+set smartcase
 set noswapfile
 set novisualbell
 set nowritebackup
@@ -108,19 +116,53 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 
 colorscheme delek
+
 set fillchars=vert:\|
 hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
 hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 
+"------------------------------------
+" Useful Keymap
+"------------------------------------
 inoremap <silent> jj <ESC>
 inoremap <silent> <C-a> <ESC>
-" inoremap <silent> <C-j> <esc>
 
+cmap w!! w !sudo tee > /dev/null %
+
+vnoremap v $h
+
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+
+autocmd InsertLeave * set nopaste
+
+"inoremap {} {}<LEFT>
+"inoremap [] []<LEFT>
+"inoremap () ()<LEFT>
+"inoremap "" ""<LEFT>
+"inoremap '' ''<LEFT>
+"inoremap <> <><LEFT>
+
+
+"------------------------------------
+" Save Cursor Position
+"------------------------------------
+autocmd BufWinLeave ?* silent mkview
+autocmd BufWinEnter ?* silent loadview
+
+"------------------------------------
+" Count Up
+"------------------------------------
 nnoremap <silent> co :ContinuousNumber <C-a><CR>
 vnoremap <silent> co :ContinuousNumber <C-a><CR>
 command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
 nmap ,y :YRShow<CR>
 
+"------------------------------------
+" Fold
+"------------------------------------
 set foldmethod=syntax
 set foldlevel=100
 set foldtext=FoldCCtext()
@@ -141,34 +183,25 @@ noremap [space]i zMzv
 noremap [space]r zR
 noremap [space]f zf
 noremap [space]g :echo FoldCCnavi()<CR>
-						  
-autocmd BufWinLeave ?* silent mkview
-autocmd BufWinEnter ?* silent loadview
 
-"inoremap {} {}<LEFT>
-"inoremap [] []<LEFT>
-"inoremap () ()<LEFT>
-"inoremap "" ""<LEFT>
-"inoremap '' ''<LEFT>
-"inoremap <> <><LEFT>
-
+"------------------------------------
+" Stylus
+"------------------------------------
 autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u /usr/local/lib/node_modules/nib/ >/dev/null
 
 autocmd BufRead,BufNewFile *.styl set filetype=sass
 
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
-
-" let g:EasyMotion_leader_key = '<Leader>'
+"------------------------------------
+" Easy motion
+"------------------------------------
 let g:EasyMotion_leader_key = 'f'
-" let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'
 
-autocmd InsertLeave * set nopaste
-
+"------------------------------------
+" VimFiler
+"------------------------------------
 let g:vimfiler_as_default_explorer=1
 let g:vimfiler_safe_mode_by_default=0
-
-
 
 "------------------------------------
 " sass
@@ -186,12 +219,6 @@ endfunction
 
 au! BufWritePost *.scss call Sass_convert() 
 
-
-cmap w!! w !sudo tee > /dev/null %
-
-autocmd FileType python setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
-
-
 "------------------------------------
 " Tab
 "------------------------------------
@@ -208,4 +235,5 @@ for n in range(1, 9)
   execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
+"------------------------------------
 
