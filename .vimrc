@@ -383,3 +383,11 @@ function! s:hooks.on_source(bundle)
   " let g:neosnippet#snippets_directory=s:bundle_root . '/vim-snippets/snippets'
 endfunction
 
+"------------------------------------
+" sjl/gundo
+"------------------------------------
+NeoBundleLazy "sjl/gundo.vim", {
+      \ "autoload": {
+      \   "commands": ['GundoToggle'],
+      \}}
+nnoremap <Leader>g :GundoToggle<CR>
