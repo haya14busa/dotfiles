@@ -47,6 +47,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'thinca/vim-template'
 NeoBundle 'vim-scripts/Align'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 "---end of NeoBundle-----------------
 
 filetype plugin indent on
@@ -289,6 +290,46 @@ autocmd MyAutoCmd User plugin-template-loaded
 " vim-scripts/Align
 "------------------------------------
 :let g:Align_xstrlen = 3
+
+"------------------------------------
+" nathanaelkane/vim-indent-guides
+"------------------------------------
+let s:hooks = neobundle#get_hooks("vim-indent-guides")
+function! s:hooks.on_source(bundle)
+  let g:indent_guides_guide_size = 1
+  IndentGuidesEnable
+endfunction
+
+"------------------------------------
+" Shougo/neocomplete
+"------------------------------------
+if has('lua') && v:version >= 703 && has('patch885')
+    NeoBundleLazy "Shougo/neocomplete.vim", {
+        \ "autoload": {
+        \   "insert": 1,
+        \ }}
+    let g:neocomplete#enable_at_startup = 1
+    let s:hooks = neobundle#get_hooks("neocomplete.vim")
+    function! s:hooks.on_source(bundle)
+        let g:acp_enableAtStartup = 0
+        let g:neocomplet#enable_smart_case = 1
+        " NeoCompleteを有効化
+        " NeoCompleteEnable
+    endfunction
+else
+    NeoBundleLazy "Shougo/neocomplcache.vim", {
+        \ "autoload": {
+        \   "insert": 1,
+        \ }}
+    let g:neocomplcache_enable_at_startup = 1
+    let s:hooks = neobundle#get_hooks("neocomplcache.vim")
+    function! s:hooks.on_source(bundle)
+        let g:acp_enableAtStartup = 0
+        let g:neocomplcache_enable_smart_case = 1
+        " NeoComplCacheを有効化
+        " NeoComplCacheEnable 
+    endfunction
+endif
 
 
 
