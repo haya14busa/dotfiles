@@ -45,7 +45,10 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
-"------------------------------------
+NeoBundle 'thinca/vim-template'
+NeoBundle 'vim-scripts/Align'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+"---end of NeoBundle-----------------
 
 filetype plugin indent on
 
@@ -194,7 +197,7 @@ autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u /usr/local/l
 autocmd BufRead,BufNewFile *.styl set filetype=sass
 
 "------------------------------------
-" Easy motion
+" Lokaltog/vim-easymotion
 "------------------------------------
 let g:EasyMotion_leader_key = 'f'
 let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'
@@ -239,7 +242,7 @@ endfor
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
 
 "------------------------------------
-" gitv
+" gregsexton/gitv
 "------------------------------------
 autocmd FileType gitv call s:my_gitv_settings()
 function! s:my_gitv_settings()
@@ -267,3 +270,127 @@ function! s:toggle_git_folding()
 endfunction
 
 
+"------------------------------------
+" thinca/vim-template
+"------------------------------------
+autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
+function! s:template_keywords()
+    silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
+    silent! %s/<+FILENAME+>/\=expand('%:r')/g
+endfunction
+
+autocmd MyAutoCmd User plugin-template-loaded
+    \   if search('<+CURSOR+>')
+    \ |   silent! execute 'normal! "_da>'
+    \ | endif
+
+
+
+"------------------------------------
+" vim-scripts/Align
+"------------------------------------
+:let g:Align_xstrlen = 3
+
+"------------------------------------
+" nathanaelkane/vim-indent-guides
+"------------------------------------
+let s:hooks = neobundle#get_hooks("vim-indent-guides")
+function! s:hooks.on_source(bundle)
+  let g:indent_guides_guide_size = 1
+  let g:indent_guides_auto_colors = 0
+  hi IndentGuidesOdd  ctermbg=black
+  hi IndentGuidesEven ctermbg=black
+  IndentGuidesEnable
+endfunction
+
+"------------------------------------
+" Shougo/neocomplete
+"------------------------------------
+if has('lua') && v:version >= 703 && has('patch885')
+    NeoBundleLazy "Shougo/neocomplete.vim", {
+        \ "autoload": {
+        \   "insert": 1,
+        \ }}
+    let g:neocomplete#enable_at_startup = 1
+    let s:hooks = neobundle#get_hooks("neocomplete.vim")
+    function! s:hooks.on_source(bundle)
+        let g:acp_enableAtStartup = 0
+        let g:neocomplet#enable_smart_case = 1
+    endfunction
+else
+    NeoBundleLazy "Shougo/neocomplcache.vim", {
+        \ "autoload": {
+        \   "insert": 1,
+        \ }}
+    let g:neocomplcache_enable_at_startup = 1
+    let s:hooks = neobundle#get_hooks("neocomplcache.vim")
+    function! s:hooks.on_source(bundle)
+        let g:acp_enableAtStartup = 0
+        let g:neocomplcache_enable_smart_case = 1
+    endfunction
+endif
+
+
+"------------------------------------
+" jedi-vim
+"------------------------------------
+NeoBundleLazy "davidhalter/jedi-vim", {
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"],
+      \ },
+      \ "build": {
+      \   "mac": "pip install jedi",
+      \   "unix": "pip install jedi",
+      \ }}
+let s:hooks = neobundle#get_hooks("jedi-vim")
+function! s:hooks.on_source(bundle)
+  " jediにvimの設定を任せると'completeopt+=preview'するので
+  " 自動設定機能をOFFにし手動で設定を行う
+  let g:jedi#auto_vim_configuration = 0
+  " 補完の最初の項目が選択された状態だと使いにくいためオフにする
+  let g:jedi#popup_select_first = 0
+  " quickrunと被るため大文字に変更
+  let g:jedi#rename_command = '<Leader>R'
+  " gundoと被るため大文字に変更
+  let g:jedi#goto_command = '<Leader>G'
+endfunction
+
+"------------------------------------
+" Shougo/neosnippet
+"------------------------------------
+NeoBundleLazy "Shougo/neosnippet.vim", {
+      \ "depends": ["honza/vim-snippets"],
+      \ "autoload": {
+      \   "insert": 1,
+      \ }}
+let s:hooks = neobundle#get_hooks("neosnippet.vim")
+function! s:hooks.on_source(bundle)
+  " Plugin key-mappings.
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
+  " SuperTab like snippets behavior.
+  imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: pumvisible() ? "\<C-n>" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: "\<TAB>"
+  " For snippet_complete marker.
+  if has('conceal')
+    set conceallevel=2 concealcursor=i
+  endif
+  " Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
+  " Tell Neosnippet about the other snippets
+  " let g:neosnippet#snippets_directory=s:bundle_root . '/vim-snippets/snippets'
+endfunction
+
+"------------------------------------
+" sjl/gundo
+"------------------------------------
+NeoBundleLazy "sjl/gundo.vim", {
+      \ "autoload": {
+      \   "commands": ['GundoToggle'],
+      \}}
+nnoremap <Leader>g :GundoToggle<CR>
