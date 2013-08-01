@@ -40,6 +40,8 @@ NeoBundle 'matchit.zip'
 NeoBundle 'vim-scripts/phpfolding.vim'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'kana/vim-fakeclip'
+
 
 filetype plugin indent on
 
