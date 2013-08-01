@@ -45,6 +45,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
+NeoBundle 'thinca/vim-template'
 "------------------------------------
 
 filetype plugin indent on
@@ -194,7 +195,7 @@ autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u /usr/local/l
 autocmd BufRead,BufNewFile *.styl set filetype=sass
 
 "------------------------------------
-" Easy motion
+" Lokaltog/vim-easymotion
 "------------------------------------
 let g:EasyMotion_leader_key = 'f'
 let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'
@@ -239,7 +240,7 @@ endfor
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
 
 "------------------------------------
-" gitv
+" gregsexton/gitv
 "------------------------------------
 autocmd FileType gitv call s:my_gitv_settings()
 function! s:my_gitv_settings()
@@ -267,3 +268,16 @@ function! s:toggle_git_folding()
 endfunction
 
 
+"------------------------------------
+" thinca/vim-template
+"------------------------------------
+autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
+function! s:template_keywords()
+    silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
+    silent! %s/<+FILENAME+>/\=expand('%:r')/g
+endfunction
+
+autocmd MyAutoCmd User plugin-template-loaded
+    \   if search('<+CURSOR+>')
+    \ |   silent! execute 'normal! "_da>'
+    \ | endif
