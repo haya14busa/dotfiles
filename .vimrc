@@ -297,6 +297,9 @@ autocmd MyAutoCmd User plugin-template-loaded
 let s:hooks = neobundle#get_hooks("vim-indent-guides")
 function! s:hooks.on_source(bundle)
   let g:indent_guides_guide_size = 1
+  let g:indent_guides_auto_colors = 0
+  hi IndentGuidesOdd  ctermbg=black
+  hi IndentGuidesEven ctermbg=black
   IndentGuidesEnable
 endfunction
 
