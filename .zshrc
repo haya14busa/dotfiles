@@ -180,3 +180,6 @@ alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xarg
 
 
 setopt correct
+
+### Path for iPad ###
+export PATH=/usr/local/bin:$PATH
