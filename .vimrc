@@ -120,7 +120,7 @@ inoremap <C-l> <Right>
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 
-colorscheme delek
+colorscheme molokai
 
 set fillchars=vert:\|
 hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
