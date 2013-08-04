@@ -9,47 +9,44 @@ if has('vim_starting')
 endif
 call neobundle#rc(expand('~/.vim/.bundle/'))
 
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/Shougo/vimproc.git'
-NeoBundle 'git://github.com/Shougo/unite.vim.git'
-NeoBundle 'git://github.com/Shougo/vimfiler.git'
-NeoBundle 'git://github.com/Shougo/vimshell.git'
-NeoBundle 'git://github.com/Sixeight/unite-grep.git'
-NeoBundle 'git://github.com/tpope/vim-surround.git'
-NeoBundle 'git://github.com/tpope/vim-repeat.git'
-NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
-NeoBundle 'git://github.com/ujihisa/vimshell-ssh.git'
-NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
-NeoBundle 'git://github.com/kana/vim-smartchr.git'
-NeoBundle 'git://github.com/mattn/zencoding-vim.git'
-NeoBundle 'git://github.com/mattn/gist-vim.git'
-NeoBundle 'git://github.com/mattn/webapi-vim.git'
-NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
-NeoBundle 'git://github.com/othree/eregex.vim.git'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Sixeight/unite-grep'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'ujihisa/vimshell-ssh'
+NeoBundle 'kana/vim-smartchr'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'othree/eregex.vim'
 NeoBundle 'git://gist.github.com/411828.git', {'directory': 'endtagcomment'}
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'LeafCage/foldCC'
-NeoBundle 'vim-scripts/CSS-one-line--multi-line-folding'
 NeoBundle 'YankRing.vim'
-NeoBundle 'python_fold'
 NeoBundle 'css3'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'vim-scripts/loremipsum'
 NeoBundle 'matchit.zip'
-NeoBundle 'vim-scripts/phpfolding.vim'
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tomasr/molokai'
 NeoBundle 'kana/vim-fakeclip'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'thinca/vim-template'
-NeoBundle 'vim-scripts/Align'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 "---end of NeoBundle-----------------
 
+
 filetype plugin indent on
+
+"------------------------------------
+" ColorScheme
+"------------------------------------
+NeoBundle 'tomasr/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
+colorscheme molokai
 
 "------------------------------------
 " release autogroup in MyAutoCmd
@@ -105,11 +102,7 @@ set wildmenu
 set wrap
 set wrapscan
 
-colorscheme molokai
 
-set fillchars=vert:\|
-hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
-hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 
 "------------------------------------
 " Useful Keymap
@@ -168,9 +161,29 @@ nmap ,y :YRShow<CR>
 "------------------------------------
 " Fold
 "------------------------------------
+NeoBundle 'LeafCage/foldCC'
+set foldenable
+set foldtext=foldCC#foldtext()
 set foldmethod=syntax
 set foldlevel=100
-set foldtext=FoldCCtext()
+
+set fillchars=vert:\|
+hi Folded gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
+hi FoldColumn gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
+
+NeoBundleLazy "python_fold", {
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"],
+      \ }}
+NeoBundleLazy "vim-scripts/CSS-one-line--multi-line-folding", {
+      \ "autoload": {
+      \   "filetypes": ["css"],
+      \ }}
+NeoBundleLazy "vim-scripts/phpfolding.vim", {
+      \ "autoload": {
+      \   "filetypes": ["php"],
+      \ }}
+
 
 noremap [space] <nop>
 nmap <Space> [space]
@@ -188,6 +201,28 @@ noremap [space]i zMzv
 noremap [space]r zR
 noremap [space]f zf
 noremap [space]g :echo FoldCCnavi()<CR>
+
+nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
+
+nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
+function! s:smart_foldcloser() "{{{
+  if foldlevel('.') == 0
+    norm! zM
+    return
+  endif
+
+  let foldc_lnum = foldclosed('.')
+  norm! zc
+  if foldc_lnum == -1
+    return
+  endif
+
+  if foldclosed('.') != foldc_lnum
+    return
+  endif
+  norm! zM
+endfunction
+"}}}
 
 "------------------------------------
 " Stylus
@@ -244,9 +279,10 @@ endfor
 "------------------------------------
 " gregsexton/gitv
 "------------------------------------
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
 autocmd FileType gitv call s:my_gitv_settings()
 function! s:my_gitv_settings()
-  " ここに設定を書く
   setlocal iskeyword+=/,-,.
   nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR> 
   
@@ -273,6 +309,7 @@ endfunction
 "------------------------------------
 " thinca/vim-template
 "------------------------------------
+NeoBundle 'thinca/vim-template'
 autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
 function! s:template_keywords()
     silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
@@ -289,18 +326,20 @@ autocmd MyAutoCmd User plugin-template-loaded
 "------------------------------------
 " vim-scripts/Align
 "------------------------------------
+NeoBundle 'vim-scripts/Align'
 :let g:Align_xstrlen = 3
 
 "------------------------------------
 " nathanaelkane/vim-indent-guides
 "------------------------------------
+NeoBundle 'nathanaelkane/vim-indent-guides'
 let s:hooks = neobundle#get_hooks("vim-indent-guides")
 function! s:hooks.on_source(bundle)
   let g:indent_guides_guide_size = 1
   let g:indent_guides_auto_colors = 0
-  let g:indent_guides_color_change_percent = 0
-  hi IndentGuidesOdd  ctermbg=darkgrey
-  hi IndentGuidesEven ctermbg=lightgrey
+  let g:indent_guides_color_change_percent = 80
+  " hi IndentGuidesOdd  ctermbg=darkgrey
+  " hi IndentGuidesEven ctermbg=darkgrey
   IndentGuidesEnable
 endfunction
             "indent
@@ -396,3 +435,5 @@ NeoBundleLazy "sjl/gundo.vim", {
       \   "commands": ['GundoToggle'],
       \}}
 nnoremap <Leader>g :GundoToggle<CR>
+
+
