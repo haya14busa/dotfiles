@@ -153,8 +153,8 @@ autocmd InsertLeave * set nopaste
 "------------------------------------
 " Save Cursor Position
 "------------------------------------
-autocmd BufWinLeave ?* silent mkview
-autocmd BufWinEnter ?* silent loadview
+autocmd BufWinLeave *.* silent mkview!
+autocmd BufWinEnter *.* silent loadview
 
 "------------------------------------
 " Count Up
