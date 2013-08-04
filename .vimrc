@@ -104,6 +104,19 @@ set whichwrap=b,s,[,],<,>
 set wildmenu
 set wrap
 set wrapscan
+
+colorscheme molokai
+
+set fillchars=vert:\|
+hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
+hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
+
+"------------------------------------
+" Useful Keymap
+"------------------------------------
+inoremap <silent> jj <ESC>
+inoremap <silent> <C-c> <ESC>
+
 nmap n nzz
 nmap N Nzz
 nnoremap ZZ <Nop>
@@ -118,18 +131,6 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
-
-colorscheme molokai
-
-set fillchars=vert:\|
-hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
-hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
-
-"------------------------------------
-" Useful Keymap
-"------------------------------------
-inoremap <silent> jj <ESC>
-inoremap <silent> <C-a> <ESC>
 
 cmap w!! w !sudo tee > /dev/null %
 
@@ -297,10 +298,12 @@ let s:hooks = neobundle#get_hooks("vim-indent-guides")
 function! s:hooks.on_source(bundle)
   let g:indent_guides_guide_size = 1
   let g:indent_guides_auto_colors = 0
-  hi IndentGuidesOdd  ctermbg=black
-  hi IndentGuidesEven ctermbg=black
+  let g:indent_guides_color_change_percent = 0
+  hi IndentGuidesOdd  ctermbg=darkgrey
+  hi IndentGuidesEven ctermbg=lightgrey
   IndentGuidesEnable
 endfunction
+            "indent
 
 "------------------------------------
 " Shougo/neocomplete
