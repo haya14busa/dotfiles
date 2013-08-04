@@ -5,11 +5,10 @@ filetype plugin indent off
 " NeoBundle
 "------------------------------------
 if has('vim_starting')
-	set runtimepath+=~/.vim/.bundle/neobundle.vim/
+    set runtimepath+=~/.vim/.bundle/neobundle.vim/
 endif
 call neobundle#rc(expand('~/.vim/.bundle/'))
 
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
