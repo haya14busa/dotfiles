@@ -41,12 +41,6 @@ NeoBundle 'kana/vim-fakeclip'
 
 filetype plugin indent on
 
-"------------------------------------
-" ColorScheme
-"------------------------------------
-NeoBundle 'tomasr/molokai'
-NeoBundle 'altercation/vim-colors-solarized'
-colorscheme molokai
 
 "------------------------------------
 " release autogroup in MyAutoCmd
@@ -102,6 +96,12 @@ set wildmenu
 set wrap
 set wrapscan
 
+"------------------------------------
+" ColorScheme
+"------------------------------------
+NeoBundle 'tomasr/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
+colorscheme molokai
 
 
 "------------------------------------
@@ -143,9 +143,24 @@ autocmd InsertLeave * set nopaste
 "inoremap '' ''<LEFT>
 "inoremap <> <><LEFT>
 
+"------------------------------------
+" virtualedit
+"------------------------------------
+set virtualedit=all
+
+scriptencoding utf-8
 
 "------------------------------------
-" Save Cursor Position
+" End-of-Line Whitespace
+"------------------------------------
+augroup HighlightTrailingSpaces
+  autocmd!
+  autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+  autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
+augroup END
+
+"------------------------------------
+" Save Cursor Position and Fold
 "------------------------------------
 autocmd BufWinLeave *.* silent mkview!
 autocmd BufWinEnter *.* silent loadview
