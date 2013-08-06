@@ -39,6 +39,14 @@ NeoBundle 'matchit.zip'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'pentie/VimRepress'
+
+"------------------------------------
+" ColorScheme
+"------------------------------------"{{{
+NeoBundle 'tomasr/molokai'
+NeoBundle 'altercation/vim-colors-solarized'
+colorscheme molokai"}}}
+
 "---end of NeoBundle-----------------"}}}
 
 filetype plugin indent on
@@ -97,12 +105,14 @@ set wildmenu
 set wrap
 set wrapscan"}}}
 
+
 "------------------------------------
-" ColorScheme
+" Open & Reload .vimrc
 "------------------------------------"{{{
-NeoBundle 'tomasr/molokai'
-NeoBundle 'altercation/vim-colors-solarized'
-colorscheme molokai"}}}
+set modeline
+command! EVimrc  e $MYVIMRC
+command! RVimrc  source $MYVIMRC | set foldmethod=marker
+"}}}
 
 "------------------------------------
 " Useful Keymap
@@ -224,7 +234,7 @@ nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
 
 " smart_foldcloser"{{{
 nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
-function! s:smart_foldcloser() 
+function! s:smart_foldcloser()
   if foldlevel('.') == 0
     norm! zM
     return
@@ -474,4 +484,5 @@ NeoBundleLazy "sjl/gundo.vim", {
       \}}
 nnoremap <Leader>g :GundoToggle<CR>"}}}
 
+"------------------------------------
 "vim: foldmethod=marker
