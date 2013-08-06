@@ -36,7 +36,7 @@ NeoBundle 'vim-scripts/loremipsum'
 NeoBundle 'matchit.zip'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kana/vim-fakeclip'
-NeoBundle 'vim-scripts/VimRepress'
+NeoBundle 'pentie/VimRepress'
 "---end of NeoBundle-----------------
 
 
