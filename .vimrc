@@ -3,7 +3,7 @@ filetype plugin indent off
 
 "------------------------------------
 " NeoBundle
-"------------------------------------
+"------------------------------------"{{{
 if has('vim_starting')
     set runtimepath+=~/.vim/.bundle/neobundle.vim/
 endif
@@ -39,21 +39,20 @@ NeoBundle 'matchit.zip'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'pentie/VimRepress'
-"---end of NeoBundle-----------------
+"---end of NeoBundle-----------------"}}}
 
 filetype plugin indent on
 
-
 "------------------------------------
 " release autogroup in MyAutoCmd
-"------------------------------------
+"------------------------------------"{{{
 augroup MyAutoCmd
   autocmd!
-augroup END
+augroup END"}}}
 
 "------------------------------------
 " Options
-"------------------------------------
+"------------------------------------"{{{
 set encoding=utf-8
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
@@ -96,18 +95,18 @@ set title
 set whichwrap=b,s,[,],<,>
 set wildmenu
 set wrap
-set wrapscan
+set wrapscan"}}}
+
 "------------------------------------
 " ColorScheme
-"------------------------------------
+"------------------------------------"{{{
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
-colorscheme molokai
-
+colorscheme molokai"}}}
 
 "------------------------------------
 " Useful Keymap
-"------------------------------------
+"------------------------------------"{{{
 inoremap <silent> jj <ESC>
 inoremap <silent> <C-c> <ESC>
 
@@ -145,49 +144,53 @@ autocmd InsertLeave * set nopaste
 "inoremap <> <><LEFT>
 
 nnoremap <C-e> jzz
-nnoremap <C-y> kzz
+nnoremap <C-y> kzz"}}}
 
 "------------------------------------
-set virtualedit=all
-
-scriptencoding utf-8
+" Virtual Edit
+"------------------------------------"{{{
+set virtualedit=all"}}}
 
 "------------------------------------
 " End-of-Line Whitespace
-"------------------------------------
+"------------------------------------"{{{
 augroup HighlightTrailingSpaces
   autocmd!
   autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
-augroup END
+augroup END"}}}
 
 "------------------------------------
 " Save Cursor Position and Fold
-"------------------------------------
+"------------------------------------"{{{
 autocmd BufWinLeave *.* silent mkview!
-autocmd BufWinEnter *.* silent loadview
+autocmd BufWinEnter *.* silent loadview"}}}
 
 "------------------------------------
 " Count Up
-"------------------------------------
+"------------------------------------"{{{
 nnoremap <silent> co :ContinuousNumber <C-a><CR>
 vnoremap <silent> co :ContinuousNumber <C-a><CR>
 command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
-nmap ,y :YRShow<CR>
+nmap ,y :YRShow<CR>"}}}
 
 "------------------------------------
 " Fold
-"------------------------------------
+"------------------------------------"{{{
+" NeoBundle Leafcage/foldCC"{{{
 NeoBundle 'LeafCage/foldCC'
 set foldenable
 set foldtext=foldCC#foldtext()
 set foldmethod=syntax
-set foldlevel=100
+set foldlevel=100"}}}
 
+" Color setting for Fold"{{{
 set fillchars=vert:\|
 hi Folded gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
 hi FoldColumn gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
+"}}}
 
+" NeoBundle for expr"{{{
 NeoBundleLazy "python_fold", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"],
@@ -200,8 +203,9 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
       \ "autoload": {
       \   "filetypes": ["php"],
       \ }}
+"}}}
 
-
+" Change Keymap for Fold"{{{
 noremap [space] <nop>
 nmap <Space> [space]
 
@@ -218,11 +222,14 @@ noremap [space]i zMzv
 noremap [space]r zR
 noremap [space]f zf
 noremap [space]g :echo FoldCCnavi()<CR>
+noremap [space]d zd
 
 nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
+"}}}
 
+" smart_foldcloser"{{{
 nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
-function! s:smart_foldcloser() "{{{
+function! s:smart_foldcloser() 
   if foldlevel('.') == 0
     norm! zM
     return
@@ -241,28 +248,47 @@ function! s:smart_foldcloser() "{{{
 endfunction
 "}}}
 
+" put foldmarker"{{{
+nnoremap  z[     :<C-u>call <SID>put_foldmarker(0)<CR>
+nnoremap  z]     :<C-u>call <SID>put_foldmarker(1)<CR>
+function! s:put_foldmarker(foldclose_p)
+  let crrstr = getline('.')
+  let padding = crrstr=='' ? '' : crrstr=~'\s$' ? '' : ' '
+  let [cms_start, cms_end] = ['', '']
+  let outside_a_comment_p = synIDattr(synID(line('.'), col('$')-1, 1), 'name') !~? 'comment'
+  if outside_a_comment_p
+    let cms_start = matchstr(&cms,'\V\s\*\zs\.\+\ze%s')
+    let cms_end = matchstr(&cms,'\V%s\zs\.\+')
+  endif
+  let fmr = split(&fmr, ',')[a:foldclose_p]. (v:count ? v:count : '')
+  exe 'norm! A'. padding. cms_start. fmr. cms_end
+endfunction
+"}}}
+
+"}}}
+
 "------------------------------------
 " Stylus
-"------------------------------------
+"------------------------------------"{{{
 autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u /usr/local/lib/node_modules/nib/ >/dev/null
 
-autocmd BufRead,BufNewFile *.styl set filetype=sass
+autocmd BufRead,BufNewFile *.styl set filetype=sass"}}}
 
 "------------------------------------
 " Lokaltog/vim-easymotion
-"------------------------------------
+"------------------------------------"{{{
 let g:EasyMotion_leader_key = 'f'
-let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'
+let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"}}}
 
 "------------------------------------
 " VimFiler
-"------------------------------------
+"------------------------------------"{{{
 let g:vimfiler_as_default_explorer=1
-let g:vimfiler_safe_mode_by_default=0
+let g:vimfiler_safe_mode_by_default=0"}}}
 
 "------------------------------------
 " sass
-"------------------------------------
+"------------------------------------"{{{
 function! Sass_convert()
     let scss = expand('%:p')
     let css  = substitute(scss, 'scss$', 'css', '')
@@ -274,11 +300,11 @@ function! Sass_convert()
     endif
 endfunction
 
-au! BufWritePost *.scss call Sass_convert() 
+au! BufWritePost *.scss call Sass_convert() "}}}
 
 "------------------------------------
 " Tab
-"------------------------------------
+"------------------------------------"{{{
 nnoremap t; t
 nnoremap t <Nop>
 nnoremap tl gt
@@ -291,18 +317,18 @@ nnoremap <silent> td :<C-u>tabclose<CR>
 for n in range(1, 9)
   execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
-" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
+" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ"}}}
 
 "------------------------------------
 " gregsexton/gitv
-"------------------------------------
+"------------------------------------"{{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 autocmd FileType gitv call s:my_gitv_settings()
 function! s:my_gitv_settings()
   setlocal iskeyword+=/,-,.
-  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR> 
-  
+  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
+
   nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
   nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
   nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
@@ -321,11 +347,11 @@ function! s:toggle_git_folding()
     setlocal foldenable!
   endif
 endfunction
-
+"}}}
 
 "------------------------------------
 " thinca/vim-template
-"------------------------------------
+"------------------------------------"{{{
 NeoBundle 'thinca/vim-template'
 autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
 function! s:template_keywords()
@@ -336,19 +362,17 @@ endfunction
 autocmd MyAutoCmd User plugin-template-loaded
     \   if search('<+CURSOR+>')
     \ |   silent! execute 'normal! "_da>'
-    \ | endif
-
-
+    \ | endif"}}}
 
 "------------------------------------
 " vim-scripts/Align
-"------------------------------------
+"------------------------------------"{{{
 NeoBundle 'vim-scripts/Align'
-:let g:Align_xstrlen = 3
+:let g:Align_xstrlen = 3"}}}
 
 "------------------------------------
 " nathanaelkane/vim-indent-guides
-"------------------------------------
+"------------------------------------"{{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let s:hooks = neobundle#get_hooks("vim-indent-guides")
 function! s:hooks.on_source(bundle)
@@ -359,11 +383,11 @@ function! s:hooks.on_source(bundle)
   " hi IndentGuidesEven ctermbg=darkgrey
   IndentGuidesEnable
 endfunction
-            "indent
+"}}}
 
 "------------------------------------
 " Shougo/neocomplete
-"------------------------------------
+"------------------------------------"{{{
 if has('lua') && v:version >= 703 && has('patch885')
     NeoBundleLazy "Shougo/neocomplete.vim", {
         \ "autoload": {
@@ -387,11 +411,11 @@ else
         let g:neocomplcache_enable_smart_case = 1
     endfunction
 endif
-
+"}}}
 
 "------------------------------------
 " jedi-vim
-"------------------------------------
+"------------------------------------"{{{
 NeoBundleLazy "davidhalter/jedi-vim", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"],
@@ -412,10 +436,11 @@ function! s:hooks.on_source(bundle)
   " gundoと被るため大文字に変更
   let g:jedi#goto_command = '<Leader>G'
 endfunction
+"}}}
 
 "------------------------------------
 " Shougo/neosnippet
-"------------------------------------
+"------------------------------------"{{{
 NeoBundleLazy "Shougo/neosnippet.vim", {
       \ "depends": ["honza/vim-snippets"],
       \ "autoload": {
@@ -443,14 +468,15 @@ function! s:hooks.on_source(bundle)
   " Tell Neosnippet about the other snippets
   " let g:neosnippet#snippets_directory=s:bundle_root . '/vim-snippets/snippets'
 endfunction
+"}}}
 
 "------------------------------------
 " sjl/gundo
-"------------------------------------
+"------------------------------------"{{{
 NeoBundleLazy "sjl/gundo.vim", {
       \ "autoload": {
       \   "commands": ['GundoToggle'],
       \}}
-nnoremap <Leader>g :GundoToggle<CR>
+nnoremap <Leader>g :GundoToggle<CR>"}}}
 
-
+"vim: foldmethod=marker
