@@ -9,7 +9,9 @@ if has('vim_starting')
 endif
 call neobundle#rc(expand('~/.vim/.bundle/'))
 
-NeoBundle 'Shougo/neobundle.vim'
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
@@ -36,7 +38,7 @@ NeoBundle 'vim-scripts/loremipsum'
 NeoBundle 'matchit.zip'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kana/vim-fakeclip'
-NeoBundle 'pentie/VimRepress'
+NeoBundle 'vim-scripts/VimRepress'
 "---end of NeoBundle-----------------
 
 
