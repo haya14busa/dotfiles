@@ -92,7 +92,7 @@ set softtabstop=4
 set tabstop=4
 set textwidth=0
 set title
-set whichwrap=b,s,[,],<,>
+set whichwrap=b,s,h,l,[,],<,>
 set wildmenu
 set wrap
 set wrapscan"}}}
@@ -147,11 +147,6 @@ nnoremap <C-e> jzz
 nnoremap <C-y> kzz"}}}
 
 "------------------------------------
-" Virtual Edit
-"------------------------------------"{{{
-set virtualedit=all"}}}
-
-"------------------------------------
 " End-of-Line Whitespace
 "------------------------------------"{{{
 augroup HighlightTrailingSpaces
@@ -177,11 +172,11 @@ nmap ,y :YRShow<CR>"}}}
 "------------------------------------
 " Fold
 "------------------------------------"{{{
-" NeoBundle Leafcage/foldCC"{{{
+" NeoBundle Leafcage/foldCC and Settings"{{{
 NeoBundle 'LeafCage/foldCC'
 set foldenable
 set foldtext=foldCC#foldtext()
-set foldmethod=syntax
+set foldmethod=expr
 set foldlevel=100"}}}
 
 " Color setting for Fold"{{{
