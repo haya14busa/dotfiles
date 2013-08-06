@@ -97,7 +97,6 @@ set whichwrap=b,s,[,],<,>
 set wildmenu
 set wrap
 set wrapscan
-
 "------------------------------------
 " ColorScheme
 "------------------------------------
@@ -145,8 +144,9 @@ autocmd InsertLeave * set nopaste
 "inoremap '' ''<LEFT>
 "inoremap <> <><LEFT>
 
-"------------------------------------
-" virtualedit
+nnoremap <C-e> jzz
+nnoremap <C-y> kzz
+
 "------------------------------------
 set virtualedit=all
 
