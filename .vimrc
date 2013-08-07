@@ -105,13 +105,18 @@ set wildmenu
 set wrap
 set wrapscan"}}}
 
-
 "------------------------------------
-" Open & Reload .vimrc
+" Open & AutoReload .vimrc
 "------------------------------------"{{{
 set modeline
 command! EVimrc  e $MYVIMRC
-command! RVimrc  source $MYVIMRC | set foldmethod=marker
+
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
+
 "}}}
 
 "------------------------------------
@@ -275,16 +280,23 @@ endfunction
 "------------------------------------
 " Stylus
 "------------------------------------"{{{
-autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u /usr/local/lib/node_modules/nib/ >/dev/null
+"autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u /usr/local/lib/node_modules/nib/ >/dev/null
+autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
 
-autocmd BufRead,BufNewFile *.styl set filetype=sass"}}}
+autocmd BufRead,BufNewFile *.styl set filetype=sass
+"}}}
+
 
 "------------------------------------
 " Lokaltog/vim-easymotion
 "------------------------------------"{{{
 let g:EasyMotion_leader_key = 'f'
-let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"}}}
+let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"
 
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
+"}}}
 "------------------------------------
 " VimFiler
 "------------------------------------"{{{
