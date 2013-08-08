@@ -294,6 +294,12 @@ nnoremap th gT
 nnoremap to :<C-u>edit<Space>
 nnoremap tt :<C-u>tabnew<Space>
 nnoremap <silent> td :<C-u>tabclose<CR>
+
+nnoremap <silent> t] :buffer<CR>
+nnoremap <silent> tn :bnext<CR>
+nnoremap <silent> tp :bprevious<CR>
+nnoremap <silent> tD :<C-u>bdelete<CR>
+nnoremap <silent> tl :<C-u>buffers<CR>
 "}}}
 " Tab jump
 for n in range(1, 9)"{{{
