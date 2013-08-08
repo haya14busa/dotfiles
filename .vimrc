@@ -14,14 +14,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
+      \     'cygwin'  : 'make -f make_cygwin.mak',
+      \     'mac'     : 'make -f make_mac.mak',
+      \     'unix'    : 'make -f make_unix.mak',
       \    },
       \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
+NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
@@ -29,6 +30,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'mattn/emmet-vim'
+
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'Lokaltog/vim-easymotion'
@@ -113,6 +115,7 @@ set modeline
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 
+
 augroup source-vimrc
   autocmd!
   autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
@@ -189,20 +192,21 @@ command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <co
 nmap ,y :YRShow<CR>"}}}
 " Fold
 "------------------------------------"{{{
-" NeoBundle Leafcage/foldCC and Settings"{{{
+" NeoBundle Leafcage/foldCC and Settings
+"{{{
 NeoBundle 'LeafCage/foldCC'
 set foldenable
 set foldtext=foldCC#foldtext()
 set foldmethod=expr
 set foldlevel=100"}}}
-
-" Color setting for Fold"{{{
+" Color setting for Fold
+"{{{
 set fillchars=vert:\|
 hi Folded gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
 hi FoldColumn gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 "}}}
-
-" NeoBundle for expr"{{{
+" NeoBundle for expr
+"{{{
 NeoBundleLazy "python_fold", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"],
@@ -216,8 +220,8 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
       \   "filetypes": ["php"],
       \ }}
 "}}}
-
-" Change Keymap for Fold"{{{
+" Change Keymap for Fold
+"{{{
 noremap [space] <nop>
 nmap <Space> [space]
 
@@ -238,8 +242,8 @@ noremap [space]d zd
 
 nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
 "}}}
-
-" smart_foldcloser"{{{
+" smart_foldcloser
+"{{{
 nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
 function! s:smart_foldcloser()
   if foldlevel('.') == 0
@@ -259,8 +263,8 @@ function! s:smart_foldcloser()
   norm! zM
 endfunction
 "}}}
-
-" put foldmarker"{{{
+" put foldmarker
+"{{{
 nnoremap  z[     :<C-u>call <SID>put_foldmarker(0)<CR>
 nnoremap  z]     :<C-u>call <SID>put_foldmarker(1)<CR>
 function! s:put_foldmarker(foldclose_p)
@@ -400,64 +404,6 @@ hi link EasyMotionShade  Comment
 "------------------------------------"{{{
 let g:vimfiler_as_default_explorer=1
 let g:vimfiler_safe_mode_by_default=0"}}}
-" gregsexton/gitv
-"------------------------------------"{{{
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'gregsexton/gitv'
-autocmd FileType gitv call s:my_gitv_settings()
-function! s:my_gitv_settings()
-  setlocal iskeyword+=/,-,.
-  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
-
-  nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
-  nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
-  nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR>
-
-  nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
-endfunction
-
-function! s:gitv_get_current_hash()
-  return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
-endfunction
-
-autocmd FileType git setlocal nofoldenable foldlevel=0
-function! s:toggle_git_folding()
-  if &filetype ==# 'git'
-    setlocal foldenable!
-  endif
-endfunction
-"}}}
-" thinca/vim-template
-"------------------------------------"{{{
-NeoBundle 'thinca/vim-template'
-autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
-function! s:template_keywords()
-    silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
-    silent! %s/<+FILENAME+>/\=expand('%:r')/g
-endfunction
-
-autocmd MyAutoCmd User plugin-template-loaded
-    \   if search('<+CURSOR+>')
-    \ |   silent! execute 'normal! "_da>'
-    \ | endif"}}}
-" vim-scripts/Align
-"------------------------------------"{{{
-NeoBundle 'vim-scripts/Align'
-:let g:Align_xstrlen = 3"}}}
-" nathanaelkane/vim-indent-guides
-"------------------------------------"{{{
-NeoBundle 'nathanaelkane/vim-indent-guides'
-let s:hooks = neobundle#get_hooks("vim-indent-guides")
-function! s:hooks.on_source(bundle)
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_auto_colors = 0
-  let g:indent_guides_color_change_percent = 80
-  " hi IndentGuidesOdd  ctermbg=darkgrey
-  " hi IndentGuidesEven ctermbg=darkgrey
-  IndentGuidesEnable
-endfunction
-"}}}
 " Shougo/neocomplete
 "------------------------------------"{{{
 if has('lua') && v:version >= 703 && has('patch885')
@@ -512,6 +458,73 @@ function! s:hooks.on_source(bundle)
   let g:neosnippet#enable_snipmate_compatibility = 1
   " Tell Neosnippet about the other snippets
   " let g:neosnippet#snippets_directory=s:bundle_root . '/vim-snippets/snippets'
+endfunction
+"}}}
+" thinca/vim-quickrun
+"------------------------------------""{{{
+let g:quickrun_config = {
+\   "_" : {
+\       "runner" : "vimproc",
+\       "runner/vimproc/updatetime" : 60
+\   },
+\}
+"}}}
+" thinca/vim-template
+"------------------------------------"{{{
+NeoBundle 'thinca/vim-template'
+autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
+function! s:template_keywords()
+    silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
+    silent! %s/<+FILENAME+>/\=expand('%:r')/g
+endfunction
+
+autocmd MyAutoCmd User plugin-template-loaded
+    \   if search('<+CURSOR+>')
+    \ |   silent! execute 'normal! "_da>'
+    \ | endif"}}}
+" gregsexton/gitv
+"------------------------------------"{{{
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
+autocmd FileType gitv call s:my_gitv_settings()
+function! s:my_gitv_settings()
+  setlocal iskeyword+=/,-,.
+  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
+
+  nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
+  nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
+  nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR>
+
+  nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
+endfunction
+
+function! s:gitv_get_current_hash()
+  return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
+endfunction
+
+autocmd FileType git setlocal nofoldenable foldlevel=0
+function! s:toggle_git_folding()
+  if &filetype ==# 'git'
+    setlocal foldenable!
+  endif
+endfunction
+"}}}
+" vim-scripts/Align
+"------------------------------------"{{{
+NeoBundle 'vim-scripts/Align'
+:let g:Align_xstrlen = 3"}}}
+" nathanaelkane/vim-indent-guides
+"------------------------------------"{{{
+NeoBundle 'nathanaelkane/vim-indent-guides'
+let s:hooks = neobundle#get_hooks("vim-indent-guides")
+function! s:hooks.on_source(bundle)
+  let g:indent_guides_guide_size = 1
+  let g:indent_guides_auto_colors = 0
+  let g:indent_guides_color_change_percent = 80
+  " hi IndentGuidesOdd  ctermbg=darkgrey
+  " hi IndentGuidesEven ctermbg=darkgrey
+  IndentGuidesEnable
 endfunction
 "}}}
 " jedi-vim
