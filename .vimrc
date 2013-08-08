@@ -1,8 +1,7 @@
 set nocompatible
 filetype plugin indent off
 
-"------------------------------------
-" NeoBundle
+" NeoBundle "
 "------------------------------------"{{{
 if has('vim_starting')
     set runtimepath+=~/.vim/.bundle/neobundle.vim/
@@ -47,26 +46,21 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'pentie/VimRepress'
 
-"------------------------------------
 " ColorScheme
 "------------------------------------"{{{
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
 colorscheme molokai"}}}
-
-"---end of NeoBundle-----------------"}}}
+"}}}
 
 filetype plugin indent on
 
-"------------------------------------
 " release autogroup in MyAutoCmd
 "------------------------------------"{{{
 augroup MyAutoCmd
   autocmd!
 augroup END"}}}
-
-"------------------------------------
-" Options
+" Basic Options
 "------------------------------------"{{{
 set encoding=utf-8
 set fileformats=unix,dos,mac
@@ -111,9 +105,8 @@ set virtualedit=block
 set whichwrap=b,s,h,l,[,],<,>
 set wildmenu
 set wrap
-set wrapscan"}}}
-
-"------------------------------------
+set wrapscan
+"}}}
 " Open & AutoReload .vimrc
 "------------------------------------"{{{
 set modeline
@@ -127,8 +120,6 @@ augroup source-vimrc
 augroup END
 
 "}}}
-
-"------------------------------------
 " Useful Keymap
 "------------------------------------"{{{
 inoremap <silent> jj <ESC>
@@ -171,18 +162,16 @@ augroup END
 "inoremap <> <><LEFT>
 
 nnoremap <C-e> jzz
-nnoremap <C-y> kzz"}}}
-
-"------------------------------------
-" End-of-Line Whitespace
+nnoremap <C-y> kzz
+"}}}
+" Highlight End-of-Line Whitespace
 "------------------------------------"{{{
 augroup HighlightTrailingSpaces
   autocmd!
   autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
-augroup END"}}}
-
-"------------------------------------
+augroup END
+"}}}
 " Save Cursor Position and Fold
 "------------------------------------"{{{
 augroup SaveInfo
@@ -192,16 +181,12 @@ augroup SaveInfo
 augroup END
 
 "}}}
-
-"------------------------------------
 " Count Up
 "------------------------------------"{{{
 nnoremap <silent> co :ContinuousNumber <C-a><CR>
 vnoremap <silent> co :ContinuousNumber <C-a><CR>
 command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
 nmap ,y :YRShow<CR>"}}}
-
-"------------------------------------
 " Fold
 "------------------------------------"{{{
 " NeoBundle Leafcage/foldCC and Settings"{{{
@@ -293,8 +278,93 @@ endfunction
 "}}}
 
 "}}}
+" Tab
+"------------------------------------"{{{
+" Mapping
+nnoremap t; t"{{{
+nnoremap t <Nop>
+nnoremap tl gt
+nnoremap th gT
+nnoremap to :<C-u>edit<Space>
+nnoremap tt :<C-u>tabnew<Space>
+nnoremap <silent> td :<C-u>tabclose<CR>
+"}}}
+" Tab jump
+for n in range(1, 9)"{{{
+  execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor"}}}
+" MoveToNewTab
+nnoremap <silent> tm :<C-u>call MoveToNewTab()<CR>"{{{
 
-"------------------------------------
+function! MoveToNewTab()
+    tab split
+    tabprevious
+
+    if winnr('$') > 1
+        close
+    elseif bufnr('$') > 1
+        buffer #
+    endif
+
+    tabnext
+endfunction"}}}
+" Tab Help
+"{{{
+command! -nargs=? Ht  tab help <args>
+command! -nargs=? Hv  vertical belowright help <args>
+"}}}
+" TabLine
+set tabline=%!MakeTabLine()"{{{
+
+function! MakeTabLine()
+    let s = ''
+
+    for n in range(1, tabpagenr('$'))
+        if n == tabpagenr()
+            let s .= '%#TabLineSel#'
+        else
+            let s .= '%#TabLine#'
+        endif
+
+        let s .= '%' . n . 'T'
+
+        let s .= ' %{MakeTabLabel(' . n . ')} '
+
+        let s .= '%#TabLineFill#%T'
+        let s .= '|'
+    endfor
+
+    let s .= '%#TabLineFill#%T'
+    let s .= '%=%#TabLine#'
+    let s .= '%{fnamemodify(getcwd(), ":~:h")}%<'
+    return s
+endfunction
+
+function! MakeTabLabel(n)
+    let bufnrs = tabpagebuflist(a:n)
+    let bufnr = bufnrs[tabpagewinnr(a:n) - 1]
+
+    let bufname = bufname(bufnr)
+    if bufname == ''
+        let bufname = '[No Name]'
+    else
+        let bufname = fnamemodify(bufname, ":t")
+    endif
+
+    let no = len(bufnrs)
+    if no == 1
+        let no = ''
+    endif
+
+    let mod = len(filter(bufnrs, 'getbufvar(v:val, "&modified")')) ? '+' : ''
+    let sp = (no . mod) == '' ? '' : ' '
+
+    let s = no . mod . sp . bufname
+    return s
+endfunction"}}}
+
+
+"}}}
 " Stylus
 "------------------------------------"{{{
 augroup ForStylus
@@ -303,25 +373,7 @@ augroup ForStylus
   autocmd BufRead,BufNewFile *.styl set filetype=sass
 augroup END
 "}}}
-
-"------------------------------------
-" Lokaltog/vim-easymotion
-"------------------------------------"{{{
-let g:EasyMotion_leader_key = 'f'
-let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"
-
-hi link EasyMotionTarget ErrorMsg
-hi link EasyMotionShade  Comment
-
-"}}}
-"------------------------------------
-" VimFiler
-"------------------------------------"{{{
-let g:vimfiler_as_default_explorer=1
-let g:vimfiler_safe_mode_by_default=0"}}}
-
-"------------------------------------
-" sass
+" Sass
 "------------------------------------"{{{
 function! Sass_convert()
     let scss = expand('%:p')
@@ -335,30 +387,19 @@ function! Sass_convert()
 endfunction
 
 au! BufWritePost *.scss call Sass_convert() "}}}
-
-"------------------------------------
-" Tab
+" Lokaltog/vim-easymotion
 "------------------------------------"{{{
-nnoremap t; t
-nnoremap t <Nop>
-nnoremap tl gt
-nnoremap th gT
-nnoremap to :<C-u>edit<Space>
-nnoremap tt :<C-u>tabnew<Space>
-nnoremap <silent> td :<C-u>tabclose<CR>
+let g:EasyMotion_leader_key = 'f'
+let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"
 
-" Tab jump
-for n in range(1, 9)
-  execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
-endfor
-
-" Tab Help
-command! -nargs=? Ht  tab help <args>
-command! -nargs=? Hv  vertical belowright help <args>
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
 
 "}}}
-
-"------------------------------------
+" Shougo/VimFiler
+"------------------------------------"{{{
+let g:vimfiler_as_default_explorer=1
+let g:vimfiler_safe_mode_by_default=0"}}}
 " gregsexton/gitv
 "------------------------------------"{{{
 NeoBundle 'tpope/vim-fugitive'
@@ -387,8 +428,6 @@ function! s:toggle_git_folding()
   endif
 endfunction
 "}}}
-
-"------------------------------------
 " thinca/vim-template
 "------------------------------------"{{{
 NeoBundle 'thinca/vim-template'
@@ -402,14 +441,10 @@ autocmd MyAutoCmd User plugin-template-loaded
     \   if search('<+CURSOR+>')
     \ |   silent! execute 'normal! "_da>'
     \ | endif"}}}
-
-"------------------------------------
 " vim-scripts/Align
 "------------------------------------"{{{
 NeoBundle 'vim-scripts/Align'
 :let g:Align_xstrlen = 3"}}}
-
-"------------------------------------
 " nathanaelkane/vim-indent-guides
 "------------------------------------"{{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -423,8 +458,6 @@ function! s:hooks.on_source(bundle)
   IndentGuidesEnable
 endfunction
 "}}}
-
-"------------------------------------
 " Shougo/neocomplete
 "------------------------------------"{{{
 if has('lua') && v:version >= 703 && has('patch885')
@@ -451,33 +484,6 @@ else
     endfunction
 endif
 "}}}
-
-"------------------------------------
-" jedi-vim
-"------------------------------------"{{{
-NeoBundleLazy "davidhalter/jedi-vim", {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"],
-      \ },
-      \ "build": {
-      \   "mac": "pip install jedi",
-      \   "unix": "pip install jedi",
-      \ }}
-let s:hooks = neobundle#get_hooks("jedi-vim")
-function! s:hooks.on_source(bundle)
-  " jediにvimの設定を任せると'completeopt+=preview'するので
-  " 自動設定機能をOFFにし手動で設定を行う
-  let g:jedi#auto_vim_configuration = 0
-  " 補完の最初の項目が選択された状態だと使いにくいためオフにする
-  let g:jedi#popup_select_first = 0
-  " quickrunと被るため大文字に変更
-  let g:jedi#rename_command = '<Leader>R'
-  " gundoと被るため大文字に変更
-  let g:jedi#goto_command = '<Leader>G'
-endfunction
-"}}}
-
-"------------------------------------
 " Shougo/neosnippet
 "------------------------------------"{{{
 NeoBundleLazy "Shougo/neosnippet.vim", {
@@ -508,8 +514,29 @@ function! s:hooks.on_source(bundle)
   " let g:neosnippet#snippets_directory=s:bundle_root . '/vim-snippets/snippets'
 endfunction
 "}}}
-
-"------------------------------------
+" jedi-vim
+"------------------------------------"{{{
+NeoBundleLazy "davidhalter/jedi-vim", {
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"],
+      \ },
+      \ "build": {
+      \   "mac": "pip install jedi",
+      \   "unix": "pip install jedi",
+      \ }}
+let s:hooks = neobundle#get_hooks("jedi-vim")
+function! s:hooks.on_source(bundle)
+  " jediにvimの設定を任せると'completeopt+=preview'するので
+  " 自動設定機能をOFFにし手動で設定を行う
+  let g:jedi#auto_vim_configuration = 0
+  " 補完の最初の項目が選択された状態だと使いにくいためオフにする
+  let g:jedi#popup_select_first = 0
+  " quickrunと被るため大文字に変更
+  let g:jedi#rename_command = '<Leader>R'
+  " gundoと被るため大文字に変更
+  let g:jedi#goto_command = '<Leader>G'
+endfunction
+"}}}
 " sjl/gundo
 "------------------------------------"{{{
 NeoBundleLazy "sjl/gundo.vim", {
