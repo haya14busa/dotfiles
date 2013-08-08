@@ -48,6 +48,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'pentie/VimRepress'
 NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'tell-k/vim-browsereload-mac'
 
 " ColorScheme
 "------------------------------------"{{{
@@ -573,7 +574,10 @@ nmap <Leader>o <Plug>(openbrowser-smart-search)
 " Otherwise, search selected word.
 vmap <Leader>o <Plug>(openbrowser-smart-search)
 "}}}
-
-
+" tell-k/vim-browsereload-mac
+"------------------------------------"{{{
+"change this variables
+let g:returnApp = "iTerm"
+"}}}
 "------------------------------------
 "vim: foldmethod=marker
