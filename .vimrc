@@ -12,7 +12,14 @@ call neobundle#rc(expand('~/.vim/.bundle/'))
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
@@ -100,6 +107,7 @@ set softtabstop=4
 set tabstop=4
 set textwidth=0
 set title
+set virtualedit=block
 set whichwrap=b,s,h,l,[,],<,>
 set wildmenu
 set wrap
@@ -109,7 +117,8 @@ set wrapscan"}}}
 " Open & AutoReload .vimrc
 "------------------------------------"{{{
 set modeline
-command! EVimrc  e $MYVIMRC
+command! EVimrc e $MYVIMRC
+command! ETabVimrc tabnew $MYVIMRC
 
 augroup source-vimrc
   autocmd!
@@ -149,7 +158,10 @@ vnoremap <Tab> %
 
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
-autocmd InsertLeave * set nopaste
+augroup SetNoPaste
+  autocmd!
+  autocmd InsertLeave * set nopaste
+augroup END
 
 "inoremap {} {}<LEFT>
 "inoremap [] []<LEFT>
@@ -173,8 +185,13 @@ augroup END"}}}
 "------------------------------------
 " Save Cursor Position and Fold
 "------------------------------------"{{{
-autocmd BufWinLeave *.* silent mkview!
-autocmd BufWinEnter *.* silent loadview"}}}
+augroup SaveInfo
+  autocmd!
+  autocmd BufWinLeave *.* silent mkview!
+  autocmd BufWinEnter *.* silent loadview
+augroup END
+
+"}}}
 
 "------------------------------------
 " Count Up
@@ -280,12 +297,12 @@ endfunction
 "------------------------------------
 " Stylus
 "------------------------------------"{{{
-"autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u /usr/local/lib/node_modules/nib/ >/dev/null
-autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
-
-autocmd BufRead,BufNewFile *.styl set filetype=sass
+augroup ForStylus
+  autocmd!
+  autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
+  autocmd BufRead,BufNewFile *.styl set filetype=sass
+augroup END
 "}}}
-
 
 "------------------------------------
 " Lokaltog/vim-easymotion
@@ -334,7 +351,11 @@ nnoremap <silent> td :<C-u>tabclose<CR>
 for n in range(1, 9)
   execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
-" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ"}}}
+
+" Tab Help -nargs=? -> 0 or 1
+command! -nargs=? Ht  tab help <args>
+
+"}}}
 
 "------------------------------------
 " gregsexton/gitv
