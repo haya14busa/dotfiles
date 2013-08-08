@@ -47,6 +47,7 @@ NeoBundle 'matchit.zip'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'pentie/VimRepress'
+NeoBundle 'tyru/open-browser.vim'
 
 " ColorScheme
 "------------------------------------"{{{
@@ -468,6 +469,12 @@ let g:quickrun_config = {
 \       "runner/vimproc/updatetime" : 60
 \   },
 \}
+let g:quickrun_config.markdown = {
+\ 'type': 'markdown/pandoc',
+\ 'cmdopt': '-s',
+\ 'outputter': 'browser'
+\ }
+
 "}}}
 " thinca/vim-template
 "------------------------------------"{{{
@@ -557,6 +564,16 @@ NeoBundleLazy "sjl/gundo.vim", {
       \   "commands": ['GundoToggle'],
       \}}
 nnoremap <Leader>g :GundoToggle<CR>"}}}
+" tyru/open-browser
+"------------------------------------"{{{
+" If it looks like URI, open an URI under cursor.
+" Otherwise, search a word under cursor.
+nmap <Leader>o <Plug>(openbrowser-smart-search)
+" If it looks like URI, open selected URI.
+" Otherwise, search selected word.
+vmap <Leader>o <Plug>(openbrowser-smart-search)
+"}}}
+
 
 "------------------------------------
 "vim: foldmethod=marker
