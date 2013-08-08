@@ -352,8 +352,9 @@ for n in range(1, 9)
   execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 
-" Tab Help -nargs=? -> 0 or 1
+" Tab Help
 command! -nargs=? Ht  tab help <args>
+command! -nargs=? Hv  vertical belowright help <args>
 
 "}}}
 
