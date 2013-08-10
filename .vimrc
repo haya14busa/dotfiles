@@ -10,14 +10,12 @@ endif
 call neobundle#rc(expand('~/.vim/.bundle/'))
 
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
 NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Sixeight/unite-grep.git'
 NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'git://github.com/tpope/vim-repeat.git'
 NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
-NeoBundle 'git://github.com/ujihisa/vimshell-ssh.git'
 NeoBundle 'git://github.com/altercation/vim-colors-solarized.git'
 NeoBundle 'git://github.com/kana/vim-smartchr.git'
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
@@ -271,4 +269,17 @@ autocmd MyAutoCmd User plugin-template-loaded
 " vim-scripts/Align
 "------------------------------------
 :let g:Align_xstrlen = 3
+
+
+"------------------------------------
+" psersitstent_undo
+"------------------------------------
+if has('persistent_undo')
+  set undodir=./.vimundo,~/.vimundo
+  " augroup vimrc-undofile
+  "   autocmd!
+  "   autocmd BufReadPre ~/* setlocal undofile
+  " augroup END
+  set undofile
+endif
 
