@@ -50,6 +50,7 @@ NeoBundle 'pentie/VimRepress'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tell-k/vim-browsereload-mac'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'tsukkee/lingr-vim'
 
 " ColorScheme
 "------------------------------------"{{{
@@ -400,7 +401,6 @@ augroup END
 function! Sass_convert()
     let scss = expand('%:p')
     let css  = substitute(scss, 'scss$', 'css', '')
-    "let cmd  = printf('sass --compass -I /usr/local/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass %s %s', scss, css)
     let cmd  = printf('sass --compass -I /usr/local/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass %s %s', scss, css)
     let res  = system(cmd)
     if res != ''
