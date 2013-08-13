@@ -49,6 +49,7 @@ NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'pentie/VimRepress'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tell-k/vim-browsereload-mac'
+NeoBundle 'kchmck/vim-coffee-script'
 
 " ColorScheme
 "------------------------------------"{{{
