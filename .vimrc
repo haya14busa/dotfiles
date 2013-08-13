@@ -51,6 +51,7 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tell-k/vim-browsereload-mac'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tsukkee/lingr-vim'
+NeoBundle 'thinca/vim-scouter'
 
 " ColorScheme
 "------------------------------------"{{{
