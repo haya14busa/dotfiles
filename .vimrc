@@ -300,7 +300,7 @@ nnoremap <silent> t] :buffer<CR>
 nnoremap <silent> tn :bnext<CR>
 nnoremap <silent> tp :bprevious<CR>
 nnoremap <silent> tD :<C-u>bdelete<CR>
-nnoremap <silent> tl :<C-u>buffers<CR>
+nnoremap <silent> tL :<C-u>buffers<CR>
 "}}}
 " Tab jump
 for n in range(1, 9)"{{{
@@ -384,6 +384,15 @@ augroup ForStylus
   autocmd!
   autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
   autocmd BufRead,BufNewFile *.styl set filetype=sass
+augroup END
+"}}}
+" CoffeeScript
+"------------------------------------"{{{
+augroup ForCoffeeScript
+  autocmd!
+  autocmd BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+  autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
+  autocmd BufWritePost,FileWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
 augroup END
 "}}}
 " Sass
