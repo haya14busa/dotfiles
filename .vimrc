@@ -53,6 +53,7 @@ NeoBundle 'tell-k/vim-browsereload-mac'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-scouter'
+NeoBundle 'mattn/unite-advent_calendar'
 
 " ColorScheme
 "------------------------------------"{{{
@@ -601,5 +602,7 @@ vmap <Leader>o <Plug>(openbrowser-smart-search)
 "change this variables
 let g:returnApp = "iTerm"
 "}}}
+
+
 "------------------------------------
 "vim: foldmethod=marker
