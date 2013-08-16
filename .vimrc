@@ -412,7 +412,7 @@ endfunction
 au! BufWritePost *.scss call Sass_convert() "}}}
 " Lokaltog/vim-easymotion
 "------------------------------------"{{{
-let g:EasyMotion_leader_key = 'f'
+let g:EasyMotion_leader_key = ';'
 let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"
 
 hi link EasyMotionTarget ErrorMsg
