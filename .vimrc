@@ -33,7 +33,8 @@ NeoBundle 'mattn/emmet-vim'
 
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
-NeoBundle 'Lokaltog/vim-easymotion'
+"NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'supasorn/vim-easymotion'
 NeoBundle 'othree/eregex.vim'
 NeoBundle 'git://gist.github.com/411828.git', {'directory': 'endtagcomment'}
 NeoBundle 'pangloss/vim-javascript'
@@ -410,13 +411,17 @@ function! Sass_convert()
 endfunction
 
 au! BufWritePost *.scss call Sass_convert() "}}}
-" Lokaltog/vim-easymotion
+" vim-easymotion
 "------------------------------------"{{{
 let g:EasyMotion_leader_key = ';'
 let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
+
+" forked easymotion extention
+let g:EasyMotion_special_select_line = 0
+let g:EasyMotion_special_select_phrase = 1
 
 "}}}
 " Shougo/VimFiler
@@ -425,7 +430,7 @@ let g:vimfiler_as_default_explorer=1
 let g:vimfiler_safe_mode_by_default=0"}}}
 " Shougo/neocomplete
 "------------------------------------"{{{
-if has('lua') && v:version >= 703 && has('patch885')
+if has('lua') && v:version >= 703
     NeoBundleLazy "Shougo/neocomplete.vim", {
         \ "autoload": {
         \   "insert": 1,
