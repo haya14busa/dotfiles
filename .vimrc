@@ -39,7 +39,6 @@ NeoBundle 'othree/eregex.vim'
 NeoBundle 'git://gist.github.com/411828.git', {'directory': 'endtagcomment'}
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'YankRing.vim'
-NeoBundle 'css3'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'tpope/vim-haml'
