@@ -53,6 +53,8 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-scouter'
 NeoBundle 'mattn/unite-advent_calendar'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'bling/vim-bufferline'
 
 " ColorScheme
 "------------------------------------"{{{
@@ -602,7 +604,38 @@ vmap <Leader>o <Plug>(openbrowser-smart-search)
 "change this variables
 let g:returnApp = "iTerm"
 "}}}
-
+" vim-airline
+"------------------------------------"{{{
+set laststatus=2
+let g:airline_left_sep='>'
+let g:airline_right_sep='<'
+"enable modified detection
+let g:airline_detect_modified=1
+"enable paste detection
+let g:airline_detect_paste=1
+"enable iminsert detection
+let g:airline_detect_iminsert=1
+"airline mode map{{{
+let g:airline_mode_map = {
+  \ '__' : '-',
+  \ 'n'  : 'N',
+  \ 'i'  : 'I',
+  \ 'R'  : 'R',
+  \ 'c'  : 'C',
+  \ 'v'  : 'V',
+  \ 'V'  : 'V',
+  \ '' : 'V',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \ '' : 'S',
+  \ }
+"}}}
+"enable/disable fugitive/lawrencium integration
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#readonly#enabled = 0
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+"}}}
 
 "------------------------------------
 "vim: foldmethod=marker
