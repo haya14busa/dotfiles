@@ -414,7 +414,8 @@ au! BufWritePost *.scss call Sass_convert() "}}}
 " vim-easymotion
 "------------------------------------"{{{
 let g:EasyMotion_leader_key = ';'
-let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"
+"let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"
+let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvb;f'
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
