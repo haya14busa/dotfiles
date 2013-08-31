@@ -16,8 +16,10 @@ if has('gui_macvim')
   "set nowrapscan       " 検索をファイルの先頭へループしない
 
   " フォント設定
-  set guifontwide=Osaka:h18
-  set guifont=Osaka-Mono:h20
+  "set guifontwide=Osaka:h20
+  "set guifont=Osaka-Mono:h22
+  set guifontwide=Ricty-Regular:h20
+  set guifont=Ricty-Regular:h22
 
 
 endif
