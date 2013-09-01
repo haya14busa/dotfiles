@@ -61,6 +61,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-visualstar'
 
 "}}}
+filetype plugin indent on
 " ColorScheme
 "------------------------------------"{{{
 NeoBundle 'tomasr/molokai'
@@ -68,7 +69,6 @@ NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'altercation/vim-colors-solarized'
 colorscheme molokai
 "}}}
-filetype plugin indent on
 " Basic Options
 "------------------------------------"{{{
 set encoding=utf-8
@@ -152,7 +152,7 @@ augroup END"}}}
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 
-augroup source-vimrc
+augroup reload-vimrc
   autocmd!
   autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
@@ -753,22 +753,34 @@ let g:returnApp = "iTerm"
 " lightline.vim
 "------------------------------------"{{{
 let g:lightline = {
-        \ 'colorscheme': 'wombat',
-        \ 'mode_map': {'c': 'NORMAL'},
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-        \ },
-        \ 'component_function': {
-        \   'modified': 'MyModified',
-        \   'readonly': 'MyReadonly',
-        \   'fugitive': 'MyFugitive',
-        \   'filename': 'MyFilename',
-        \   'fileformat': 'MyFileformat',
-        \   'filetype': 'MyFiletype',
-        \   'fileencoding': 'MyFileencoding',
-        \   'mode': 'MyMode'
-        \ }
-        \ }
+    \ 'colorscheme': 'wombat',
+    \ 'mode_map': {
+    \   'n' : 'N',
+    \   'i' : 'I',
+    \   'R' : 'R',
+    \   'v' : 'V',
+    \   'V' : 'V-L',
+    \   'c' : 'COMMAND',
+    \   "\<C-v>": 'V-B',
+    \   's' : 'SELECT',
+    \   'S' : 'S-L',
+    \   "\<C-s>": 'S-B',
+    \   '?': '      '
+    \ },
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+    \ },
+    \ 'component_function': {
+    \   'modified': 'MyModified',
+    \   'readonly': 'MyReadonly',
+    \   'fugitive': 'MyFugitive',
+    \   'filename': 'MyFilename',
+    \   'fileformat': 'MyFileformat',
+    \   'filetype': 'MyFiletype',
+    \   'fileencoding': 'MyFileencoding',
+    \   'mode': 'MyMode'
+    \ }
+    \ }
 
 function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
