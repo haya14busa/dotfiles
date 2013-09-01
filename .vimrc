@@ -63,9 +63,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
 colorscheme molokai"}}}
 "}}}
-
 filetype plugin indent on
-
 " Basic Options
 "------------------------------------"{{{
 set encoding=utf-8
@@ -224,7 +222,7 @@ augroup SaveInfo
 augroup END
 
 "}}}
-" Count Up
+" Count Up Function
 "------------------------------------"{{{
 nnoremap <silent> co :ContinuousNumber <C-a><CR>
 vnoremap <silent> co :ContinuousNumber <C-a><CR>
@@ -419,6 +417,77 @@ function! MakeTabLabel(n)
     return s
 endfunction"}}}
 "}}}
+" Create Directory Automatically
+"------------------------------------"{{{
+augroup vimrc-auto-mkdir
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  function! s:auto_mkdir(dir, force)  " {{{
+    if !isdirectory(a:dir) && (a:force ||
+    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction  " }}}
+augroup END
+"}}}
+" Add Endtagcomment
+"------------------------------------"{{{
+" Description"{{{
+" Before
+" <div id="hoge" class="fuga">
+" ...
+" </div>
+"
+" After
+" <div id="hoge" class="fuga">
+" ...
+" <!-- /div#hoge.fuga --></div>
+"}}}
+function! Endtagcomment()"{{{
+    let reg_save = @@
+
+    try
+        silent normal vaty
+    catch
+        execute "normal \<Esc>"
+        echohl ErrorMsg
+        echo 'no match html tags'
+        echohl None
+        return
+    endtry
+
+    let html = @@
+
+    let start_tag = matchstr(html, '\v(\<.{-}\>)')
+    let tag_name  = matchstr(start_tag, '\v([a-zA-Z]+)')
+
+    let id = ''
+    let id_match = matchlist(start_tag, '\vid\=["'']([^"'']+)["'']')
+    if exists('id_match[1]')
+        let id = '#' . id_match[1]
+    endif
+
+    let class = ''
+    let class_match = matchlist(start_tag, '\vclass\=["'']([^"'']+)["'']')
+    if exists('class_match[1]')
+        let class = '.' . join(split(class_match[1], '\v\s+'), '.')
+    endif
+
+    execute "normal `>va<\<Esc>`<"
+
+    let comment = g:endtagcommentFormat
+    let comment = substitute(comment, '{%tag_name}', tag_name, 'g')
+    let comment = substitute(comment, '{%id}', id, 'g')
+    let comment = substitute(comment, '{%class}', class, 'g')
+    let @@ = comment
+
+    normal ""P
+
+    let @@ = reg_save
+endfunction"}}}
+let g:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
+nnoremap ,t :<C-u>call Endtagcomment()<CR>
+"}}}
 " Stylus
 "------------------------------------"{{{
 augroup ForStylus
@@ -450,6 +519,8 @@ function! Sass_convert()
 endfunction
 
 au! BufWritePost *.scss call Sass_convert() "}}}
+" Plugin Settings
+"------------------------------------"{{{
 " vim-easymotion
 "------------------------------------"{{{
 let g:EasyMotion_leader_key = ';'
@@ -673,76 +744,7 @@ let g:unite_force_overwrite_statusline=0
 let g:vimfiler_force_overwrite_statusline=1
 let g:vimshell_force_overwrite_statusline=1
 "}}}
-" Create Directory Automatically
-"------------------------------------"{{{
-augroup vimrc-auto-mkdir
-  autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
-  function! s:auto_mkdir(dir, force)  " {{{
-    if !isdirectory(a:dir) && (a:force ||
-    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-    endif
-  endfunction  " }}}
-augroup END
 "}}}
 
-" Add Endtagcomment
-"------------------------------------"{{{
-" Description"{{{
-" Before
-" <div id="hoge" class="fuga">
-" ...
-" </div>
-"
-" After
-" <div id="hoge" class="fuga">
-" ...
-" <!-- /div#hoge.fuga --></div>
-"}}}
-function! Endtagcomment()"{{{
-    let reg_save = @@
-
-    try
-        silent normal vaty
-    catch
-        execute "normal \<Esc>"
-        echohl ErrorMsg
-        echo 'no match html tags'
-        echohl None
-        return
-    endtry
-
-    let html = @@
-
-    let start_tag = matchstr(html, '\v(\<.{-}\>)')
-    let tag_name  = matchstr(start_tag, '\v([a-zA-Z]+)')
-
-    let id = ''
-    let id_match = matchlist(start_tag, '\vid\=["'']([^"'']+)["'']')
-    if exists('id_match[1]')
-        let id = '#' . id_match[1]
-    endif
-
-    let class = ''
-    let class_match = matchlist(start_tag, '\vclass\=["'']([^"'']+)["'']')
-    if exists('class_match[1]')
-        let class = '.' . join(split(class_match[1], '\v\s+'), '.')
-    endif
-
-    execute "normal `>va<\<Esc>`<"
-
-    let comment = g:endtagcommentFormat
-    let comment = substitute(comment, '{%tag_name}', tag_name, 'g')
-    let comment = substitute(comment, '{%id}', id, 'g')
-    let comment = substitute(comment, '{%class}', class, 'g')
-    let @@ = comment
-
-    normal ""P
-
-    let @@ = reg_save
-endfunction"}}}
-let g:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
-nnoremap ,t :<C-u>call Endtagcomment()<CR>
 "------------------------------------
 "vim: foldmethod=marker
