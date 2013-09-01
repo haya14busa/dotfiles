@@ -21,7 +21,9 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimshell', {
+      \ "depends": ["Shougo/vimproc"]
+      \ }
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'tpope/vim-surround'
@@ -57,11 +59,12 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'bling/vim-bufferline'
 NeoBundle 'thinca/vim-visualstar'
 
+"}}}
 " ColorScheme
 "------------------------------------"{{{
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
-colorscheme molokai"}}}
+colorscheme molokai
 "}}}
 filetype plugin indent on
 " Basic Options
@@ -240,8 +243,8 @@ set foldlevel=100"}}}
 " Color setting for Fold
 "------------------------------------"{{{
 set fillchars=vert:\|
-hi Folded gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
-hi FoldColumn gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
+"hi Folded gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
+"hi FoldColumn gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 "}}}
 " NeoBundle for expr
 "------------------------------------"{{{
@@ -529,6 +532,8 @@ let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvb;f'
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
+hi link EasyMotionTarget2First MoreMsg
+hi link EasyMotionTarget2Second MoreMsg
 
 " forked easymotion extention
 let g:EasyMotion_special_select_line = 0
