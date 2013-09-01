@@ -82,6 +82,7 @@ set autoread
 set backspace=indent,eol,start
 set clipboard=unnamed
 set clipboard+=autoselect
+set cursorline
 set cmdheight=1
 set display=lastline
 set grepprg=internal
