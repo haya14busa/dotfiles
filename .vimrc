@@ -56,7 +56,7 @@ NeoBundle 'thinca/vim-scouter'
 NeoBundle 'mattn/unite-advent_calendar'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-visualstar'
-
+NeoBundle 'thinca/vim-ref'
 "}}}
 filetype plugin indent on
 " ColorScheme
@@ -190,11 +190,7 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nmap ,y :YRShow<CR>
 
 " for Window
-nnoremap s <nop>
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sh <C-w>h
-nnoremap sl <C-w>l
+nnoremap s <C-w>
 
 nnoremap <S-Right> :vertical resize +2<CR>
 nnoremap <S-Left> :vertical resize -2<CR>
