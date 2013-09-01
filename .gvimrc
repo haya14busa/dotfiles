@@ -8,9 +8,11 @@ if has('gui_macvim')
   set number           " 行番号表示
   set nobackup         " バックアップなし
   set visualbell t_vb= " ビープ音なし
+  set cursorline
 
-  colorscheme molokai   " カラースキーマ
-  set columns=100      " 横幅
+  "colorscheme molokai   " カラースキーマ
+  "set columns=100      " 横幅
+  set columns=80      " 横幅
   set lines=35         " 行数
 
   "set nowrapscan       " 検索をファイルの先頭へループしない

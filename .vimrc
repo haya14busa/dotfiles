@@ -22,7 +22,7 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell', {
-      \ "depends": ["Shougo/vimproc"]
+      \ "depends": ["Shougo/vimproc"],
       \ }
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Sixeight/unite-grep'
@@ -55,14 +55,16 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-scouter'
 NeoBundle 'mattn/unite-advent_calendar'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'bling/vim-bufferline'
+NeoBundle 'itchyny/lightline.vim'
+"NeoBundle 'bling/vim-airline'
+"NeoBundle 'bling/vim-bufferline'
 NeoBundle 'thinca/vim-visualstar'
 
 "}}}
 " ColorScheme
 "------------------------------------"{{{
 NeoBundle 'tomasr/molokai'
+NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'altercation/vim-colors-solarized'
 colorscheme molokai
 "}}}
@@ -123,7 +125,7 @@ set hlsearch
 " Line Settings
 "------------------------------------"{{{
 set number
-set cursorline
+"set cursorline
 "}}}
 " Backup Settings
 "------------------------------------"{{{
@@ -149,7 +151,6 @@ augroup END"}}}
 "------------------------------------"{{{
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
-
 
 augroup source-vimrc
   autocmd!
@@ -719,37 +720,105 @@ let g:returnApp = "iTerm"
 "}}}
 " vim-airline
 "------------------------------------"{{{
-let g:airline_left_sep='>'
-let g:airline_right_sep='<'
-"enable modified detection
-let g:airline_detect_modified=1
-"enable paste detection
-let g:airline_detect_paste=1
-"enable iminsert detection
-let g:airline_detect_iminsert=1
-"airline mode map{{{
-let g:airline_mode_map = {
-  \ '__' : '-',
-  \ 'n'  : 'N',
-  \ 'i'  : 'I',
-  \ 'R'  : 'R',
-  \ 'c'  : 'C',
-  \ 'v'  : 'V',
-  \ 'V'  : 'V',
-  \ '' : 'V',
-  \ 's'  : 'S',
-  \ 'S'  : 'S',
-  \ '' : 'S',
-  \ }
+"let g:airline_left_sep='>'
+"let g:airline_right_sep='<'
+""enable modified detection
+"let g:airline_detect_modified=1
+""enable paste detection
+"let g:airline_detect_paste=1
+""enable iminsert detection
+"let g:airline_detect_iminsert=1
+""airline mode map{{{
+"let g:airline_mode_map = {
+"  \ '__' : '-',
+"  \ 'n'  : 'N',
+"  \ 'i'  : 'I',
+"  \ 'R'  : 'R',
+"  \ 'c'  : 'C',
+"  \ 'v'  : 'V',
+"  \ 'V'  : 'V',
+"  \ '' : 'V',
+"  \ 's'  : 'S',
+"  \ 'S'  : 'S',
+"  \ '' : 'S',
+"  \ }
+""}}}
+""enable/disable fugitive/lawrencium integration
+"let g:airline#extensions#branch#enabled=1
+"let g:airline#extensions#readonly#enabled=0
+"let g:unite_force_overwrite_statusline=0
+"let g:vimfiler_force_overwrite_statusline=1
+"let g:vimshell_force_overwrite_statusline=1
 "}}}
-"enable/disable fugitive/lawrencium integration
-let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#readonly#enabled=0
+" lightline.vim
+"------------------------------------"{{{
+let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'MyModified',
+        \   'readonly': 'MyReadonly',
+        \   'fugitive': 'MyFugitive',
+        \   'filename': 'MyFilename',
+        \   'fileformat': 'MyFileformat',
+        \   'filetype': 'MyFiletype',
+        \   'fileencoding': 'MyFileencoding',
+        \   'mode': 'MyMode'
+        \ }
+        \ }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+      return fugitive#head()
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth('.') > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth('.') > 60 ? lightline#mode() : ''
+endfunction
+
 let g:unite_force_overwrite_statusline=0
-let g:vimfiler_force_overwrite_statusline=1
-let g:vimshell_force_overwrite_statusline=1
+let g:vimfiler_force_overwrite_statusline=0
+let g:vimshell_force_overwrite_statusline=0
 "}}}
-"}}}
+
+"/plugin }}}
 
 "------------------------------------
 "vim: foldmethod=marker
