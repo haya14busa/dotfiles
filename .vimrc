@@ -160,6 +160,7 @@ augroup END
 " Useful Keymap
 "------------------------------------"{{{
 inoremap <silent> jj <ESC>
+inoremap <silent> kk <ESC>
 inoremap <silent> <C-c> <ESC>
 
 nmap n nzz
@@ -422,8 +423,9 @@ endfunction"}}}
 "------------------------------------"{{{
 augroup ForStylus
   autocmd!
+  autocmd BufRead,BufNewFile,BufReadPre *.styl set filetype=sass
+  autocmd FileType sass     setlocal sw=2 sts=2 ts=2 et
   autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
-  autocmd BufRead,BufNewFile *.styl set filetype=sass
 augroup END
 "}}}
 " CoffeeScript
@@ -665,10 +667,11 @@ let g:airline_mode_map = {
   \ }
 "}}}
 "enable/disable fugitive/lawrencium integration
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#readonly#enabled = 0
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#readonly#enabled=0
+let g:unite_force_overwrite_statusline=0
+let g:vimfiler_force_overwrite_statusline=1
+let g:vimshell_force_overwrite_statusline=1
 "}}}
 
 "------------------------------------
