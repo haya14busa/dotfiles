@@ -55,8 +55,6 @@ NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-scouter'
 NeoBundle 'mattn/unite-advent_calendar'
 NeoBundle 'itchyny/lightline.vim'
-"NeoBundle 'bling/vim-airline'
-"NeoBundle 'bling/vim-bufferline'
 NeoBundle 'thinca/vim-visualstar'
 
 "}}}
