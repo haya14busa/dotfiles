@@ -77,39 +77,31 @@ set fileformats=unix,dos,mac
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 syntax on
 set ambiwidth=double
-set autoindent
 set autoread
 set backspace=indent,eol,start
 set clipboard=unnamed
 set clipboard+=autoselect
-set cursorline
 set cmdheight=1
 set display=lastline
 set grepprg=internal
-set hlsearch
 set hidden
 set history=100
-set incsearch
 set infercase
-set laststatus=3
+set laststatus=2
 set matchtime=3
+set modeline
 set nobackup
 set noerrorbells
-set expandtab
-set ignorecase
-set smartcase
+
+
 set noswapfile
 set novisualbell
 set nowritebackup
 set nrformats-=octal
-set number
 set ruler
-set shiftwidth=4
 set shortmess+=I
 set showcmd
 set showmatch
-set softtabstop=4
-set tabstop=4
 set textwidth=0
 set title
 set virtualedit=block
@@ -117,10 +109,31 @@ set whichwrap=b,s,h,l,[,],<,>
 set wildmenu
 set wrap
 set wrapscan
+
+" Tab Settings
+"------------------------------------"{{{
+set autoindent
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+"}}}
+" Search Settings
+"------------------------------------"{{{
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+"}}}
+" Line Settings
+"------------------------------------"{{{
+set number
+set cursorline
+"}}}
+
 "}}}
 " Open & AutoReload .vimrc
 "------------------------------------"{{{
-set modeline
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 
@@ -173,8 +186,8 @@ augroup END
 "inoremap '' ''<LEFT>
 "inoremap <> <><LEFT>
 
-nnoremap <C-e> jzz
-nnoremap <C-y> kzz
+"nnoremap <C-e> jzz
+"nnoremap <C-y> kzz
 "}}}
 " Highlight End-of-Line Whitespace
 "------------------------------------"{{{
@@ -607,7 +620,6 @@ let g:returnApp = "iTerm"
 "}}}
 " vim-airline
 "------------------------------------"{{{
-set laststatus=2
 let g:airline_left_sep='>'
 let g:airline_right_sep='<'
 "enable modified detection
