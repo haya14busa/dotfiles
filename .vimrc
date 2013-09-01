@@ -55,6 +55,7 @@ NeoBundle 'thinca/vim-scouter'
 NeoBundle 'mattn/unite-advent_calendar'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'bling/vim-bufferline'
+NeoBundle 'thinca/vim-visualstar'
 
 " ColorScheme
 "------------------------------------"{{{
@@ -183,6 +184,7 @@ vnoremap v $h
 nnoremap <Tab> %
 vnoremap <Tab> %
 
+" Unhighlight by <Esc>*2
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 augroup SetNoPaste
@@ -191,7 +193,8 @@ augroup SetNoPaste
 augroup END
 
 " Search select words in visualmode
-vnoremap * "zy:let @/ = @z<CR>n
+" vnoremap * "zy:let @/ = @z<CR>n
+" -> thinca/vim-visualstar
 
 "inoremap {} {}<LEFT>
 "inoremap [] []<LEFT>
