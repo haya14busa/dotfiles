@@ -65,11 +65,6 @@ colorscheme molokai"}}}
 
 filetype plugin indent on
 
-" release autogroup in MyAutoCmd
-"------------------------------------"{{{
-augroup MyAutoCmd
-  autocmd!
-augroup END"}}}
 " Basic Options
 "------------------------------------"{{{
 set encoding=utf-8
@@ -90,13 +85,11 @@ set infercase
 set laststatus=2
 set matchtime=3
 set modeline
-set nobackup
 set noerrorbells
 
 
-set noswapfile
+
 set novisualbell
-set nowritebackup
 set nrformats-=octal
 set ruler
 set shortmess+=I
@@ -130,8 +123,26 @@ set hlsearch
 set number
 set cursorline
 "}}}
+" Backup Settings
+"------------------------------------"{{{
+set nobackup
+set nowritebackup
+set backupdir-=.
+"}}}
+
+" Swap Settings
+"------------------------------------"{{{
+set swapfile
+set directory-=.
+"}}}
+
 
 "}}}
+" release autogroup in MyAutoCmd
+"------------------------------------"{{{
+augroup MyAutoCmd
+  autocmd!
+augroup END"}}}
 " Open & AutoReload .vimrc
 "------------------------------------"{{{
 command! EVimrc e $MYVIMRC
@@ -179,6 +190,9 @@ augroup SetNoPaste
   autocmd InsertLeave * set nopaste
 augroup END
 
+" Search select words in visualmode
+vnoremap * "zy:let @/ = @z<CR>n
+
 "inoremap {} {}<LEFT>
 "inoremap [] []<LEFT>
 "inoremap () ()<LEFT>
@@ -215,20 +229,20 @@ nmap ,y :YRShow<CR>"}}}
 " Fold
 "------------------------------------"{{{
 " NeoBundle Leafcage/foldCC and Settings
-"{{{
+"------------------------------------"{{{
 NeoBundle 'LeafCage/foldCC'
 set foldenable
 set foldtext=foldCC#foldtext()
 set foldmethod=expr
 set foldlevel=100"}}}
 " Color setting for Fold
-"{{{
+"------------------------------------"{{{
 set fillchars=vert:\|
 hi Folded gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
 hi FoldColumn gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 "}}}
 " NeoBundle for expr
-"{{{
+"------------------------------------"{{{
 NeoBundleLazy "python_fold", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"],
@@ -243,7 +257,7 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
       \ }}
 "}}}
 " Change Keymap for Fold
-"{{{
+"------------------------------------"{{{
 noremap [space] <nop>
 nmap <Space> [space]
 
@@ -265,7 +279,7 @@ noremap [space]d zd
 nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
 "}}}
 " smart_foldcloser
-"{{{
+"------------------------------------"{{{
 nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
 function! s:smart_foldcloser()
   if foldlevel('.') == 0
@@ -286,7 +300,8 @@ function! s:smart_foldcloser()
 endfunction
 "}}}
 " put foldmarker
-"{{{
+"------------------------------------"{{{
+nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
 nnoremap  z[     :<C-u>call <SID>put_foldmarker(0)<CR>
 nnoremap  z]     :<C-u>call <SID>put_foldmarker(1)<CR>
 function! s:put_foldmarker(foldclose_p)
@@ -302,12 +317,12 @@ function! s:put_foldmarker(foldclose_p)
   exe 'norm! A'. padding. cms_start. fmr. cms_end
 endfunction
 "}}}
-
 "}}}
 " Tab
 "------------------------------------"{{{
 " Mapping
-nnoremap t; t"{{{
+"------------------------------------"{{{
+nnoremap t; t
 nnoremap t <Nop>
 nnoremap tl gt
 nnoremap th gT
@@ -322,11 +337,14 @@ nnoremap <silent> tD :<C-u>bdelete<CR>
 nnoremap <silent> tL :<C-u>buffers<CR>
 "}}}
 " Tab jump
-for n in range(1, 9)"{{{
+"------------------------------------"{{{
+for n in range(1, 9)
   execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
-endfor"}}}
+endfor
+"}}}
 " MoveToNewTab
-nnoremap <silent> tm :<C-u>call MoveToNewTab()<CR>"{{{
+"------------------------------------"{{{
+nnoremap <silent> tm :<C-u>call MoveToNewTab()<CR>
 
 function! MoveToNewTab()
     tab split
@@ -339,14 +357,16 @@ function! MoveToNewTab()
     endif
 
     tabnext
-endfunction"}}}
+endfunction
+"}}}
 " Tab Help
-"{{{
+"------------------------------------"{{{
 command! -nargs=? Ht  tab help <args>
 command! -nargs=? Hv  vertical belowright help <args>
 "}}}
 " TabLine
-set tabline=%!MakeTabLine()"{{{
+"------------------------------------"{{{
+set tabline=%!MakeTabLine()
 
 function! MakeTabLine()
     let s = ''
@@ -394,8 +414,6 @@ function! MakeTabLabel(n)
     let s = no . mod . sp . bufname
     return s
 endfunction"}}}
-
-
 "}}}
 " Stylus
 "------------------------------------"{{{
