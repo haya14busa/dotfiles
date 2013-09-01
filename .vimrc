@@ -10,7 +10,6 @@ call neobundle#rc(expand('~/.vim/.bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
-
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
@@ -190,6 +189,20 @@ vnoremap <Tab> %
 " Unhighlight by <Esc>*2
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
+nmap ,y :YRShow<CR>
+
+" for Window
+nnoremap s <nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sh <C-w>h
+nnoremap sl <C-w>l
+
+nnoremap <S-Right> :vertical resize +2<CR>
+nnoremap <S-Left> :vertical resize -2<CR>
+nnoremap <S-Up> :resize +1<CR>
+nnoremap <S-Down> :resize -1<CR>
+
 augroup SetNoPaste
   autocmd!
   autocmd InsertLeave * set nopaste
@@ -231,7 +244,7 @@ augroup END
 nnoremap <silent> co :ContinuousNumber <C-a><CR>
 vnoremap <silent> co :ContinuousNumber <C-a><CR>
 command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
-nmap ,y :YRShow<CR>"}}}
+"}}}
 " Fold
 "------------------------------------"{{{
 " NeoBundle Leafcage/foldCC and Settings
