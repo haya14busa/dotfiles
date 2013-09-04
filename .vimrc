@@ -57,6 +57,9 @@ NeoBundle 'mattn/unite-advent_calendar'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'thinca/vim-ref'
+NeoBundle 'mojako/ref-sources.vim'
+NeoBundle 'mustardamus/jqapi'
+NeoBundle 'tokuhirom/jsref'
 "}}}
 filetype plugin indent on
 " ColorScheme
@@ -185,17 +188,17 @@ nnoremap <Tab> %
 vnoremap <Tab> %
 
 " Unhighlight by <Esc>*2
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
-nmap ,y :YRShow<CR>
+nmap ,y :<C-u>YRShow<CR>
 
 " for Window
 nnoremap s <C-w>
 
-nnoremap <S-Right> :vertical resize +2<CR>
-nnoremap <S-Left> :vertical resize -2<CR>
-nnoremap <S-Up> :resize +1<CR>
-nnoremap <S-Down> :resize -1<CR>
+nnoremap <S-Right> :<C-u>vertical resize +2<CR>
+nnoremap <S-Left> :<C-u>vertical resize -2<CR>
+nnoremap <S-Up> :<C-u>resize +1<CR>
+nnoremap <S-Down> :<C-u>resize -1<CR>
 
 augroup SetNoPaste
   autocmd!
@@ -286,7 +289,7 @@ noremap [space]m zM
 noremap [space]i zMzv
 noremap [space]r zR
 noremap [space]f zf
-noremap [space]g :echo FoldCCnavi()<CR>
+noremap [space]g :<C-u>echo FoldCCnavi()<CR>
 noremap [space]d zd
 
 nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
@@ -343,9 +346,9 @@ nnoremap to :<C-u>edit<Space>
 nnoremap tt :<C-u>tabnew<Space>
 nnoremap <silent> td :<C-u>tabclose<CR>
 
-nnoremap <silent> t] :buffer<CR>
-nnoremap <silent> tn :bnext<CR>
-nnoremap <silent> tp :bprevious<CR>
+nnoremap <silent> t] :<C-u>buffer<CR>
+nnoremap <silent> tn :<C-u>bnext<CR>
+nnoremap <silent> tp :<C-u>bprevious<CR>
 nnoremap <silent> tD :<C-u>bdelete<CR>
 nnoremap <silent> tL :<C-u>buffers<CR>
 "}}}
@@ -835,6 +838,29 @@ endfunction
 let g:unite_force_overwrite_statusline=0
 let g:vimfiler_force_overwrite_statusline=0
 let g:vimshell_force_overwrite_statusline=0
+"}}}
+
+" vim-ref
+"------------------------------------"{{{
+let g:ref_jquery_doc_path = $HOME . '/.vim/.bundle/jqapi'
+let g:ref_javascript_doc_path = $HOME . '/.vim/.bundle/jsref/htdocs'
+let g:ref_wikipedia_lang = ['ja', 'en']
+let g:ref_use_cache = 1
+let g:ref_source_webdict_sites = {
+\   'je': {
+\     'url': 'http://eow.alc.co.jp/search?q=%s&ref=sa',
+\   },
+\   'ej': {
+\     'url': 'http://eow.alc.co.jp/search?q=%s&ref=sa',
+\   },
+\   'etm': {
+\     'url': 'http://home.alc.co.jp/db/owa/etm_sch?stg=1&instr=%s',
+\   },
+\   'wiki': {
+\     'url': 'http://ja.wikipedia.org/wiki/%s',
+\   },
+\ }
+let g:ref_alc_encoding = 'shift-jis'
 "}}}
 
 "/plugin }}}
