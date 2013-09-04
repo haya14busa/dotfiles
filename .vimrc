@@ -218,6 +218,16 @@ augroup END
 "nnoremap <C-e> jzz
 "nnoremap <C-y> kzz
 "}}}
+" Show invisibles
+"------------------------------------"{{{
+" Shortcut to rapidly toggle `set list`
+nnoremap <Leader>l :<C-u>set list!<CR>
+" Use the same symbols as TextMate for tabstops and EOLs
+"set listchars=tab:▸\ ,eol:¬
+"Invisible character colors
+hi NonText guifg=#4a4a59
+hi SpecialKey guifg=#4a4a59
+"}}}
 " Highlight End-of-Line Whitespace
 "------------------------------------"{{{
 augroup HighlightTrailingSpaces
@@ -712,7 +722,7 @@ NeoBundleLazy "sjl/gundo.vim", {
       \ "autoload": {
       \   "commands": ['GundoToggle'],
       \}}
-nnoremap <Leader>g :GundoToggle<CR>"}}}
+nnoremap <Leader>g :<C-u>GundoToggle<CR>"}}}
 " tyru/open-browser
 "------------------------------------"{{{
 " If it looks like URI, open an URI under cursor.
