@@ -4,7 +4,7 @@ filetype plugin indent off
 " NeoBundle "
 "------------------------------------"{{{
 if has('vim_starting')
-    set runtimepath+=~/.vim/.bundle/neobundle.vim/
+    set runtimepath& runtimepath+=~/.vim/.bundle/neobundle.vim/
 endif
 call neobundle#rc(expand('~/.vim/.bundle/'))
 
@@ -77,8 +77,7 @@ syntax on
 set ambiwidth=double
 set autoread
 set backspace=indent,eol,start
-set clipboard=unnamed
-set clipboard+=autoselect
+set clipboard& clipboard+=unnamed,autoselect
 set cmdheight=1
 set display=lastline
 set grepprg=internal
@@ -89,12 +88,10 @@ set laststatus=2
 set matchtime=3
 set modeline
 set noerrorbells
-
-
-
 set novisualbell
 set nrformats-=octal
 set ruler
+set shortmess&
 set shortmess+=I
 set showcmd
 set showmatch
@@ -128,6 +125,7 @@ set number
 "}}}
 " Backup Settings
 "------------------------------------"{{{
+" Don't create backup
 set nobackup
 set nowritebackup
 set backupdir-=.
@@ -157,7 +155,6 @@ augroup reload-vimrc
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
 
-"}}}
 " Useful Keymap
 "------------------------------------"{{{
 inoremap <silent> jj <ESC>
@@ -189,7 +186,7 @@ vnoremap <Tab> %
 " Unhighlight by <Esc>*2
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
-nmap ,y :<C-u>YRShow<CR>
+nnoremap ,y :<C-u>YRShow<CR>
 
 " for Window
 nnoremap s <C-w>
@@ -199,10 +196,7 @@ nnoremap <S-Left> :<C-u>vertical resize -2<CR>
 nnoremap <S-Up> :<C-u>resize +1<CR>
 nnoremap <S-Down> :<C-u>resize -1<CR>
 
-augroup SetNoPaste
-  autocmd!
-  autocmd InsertLeave * set nopaste
-augroup END
+autocmd MyAutoCmd InsertLeave * set nopaste
 
 " Search select words in visualmode
 " vnoremap * "zy:let @/ = @z<CR>n
@@ -223,7 +217,7 @@ augroup END
 " Shortcut to rapidly toggle `set list`
 nnoremap <Leader>l :<C-u>set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
-"set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬
 "Invisible character colors
 hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
@@ -388,6 +382,7 @@ endfunction
 "------------------------------------"{{{
 command! -nargs=? Ht  tab help <args>
 command! -nargs=? Hv  vertical belowright help <args>
+nnoremap <Space><Space> :<C-u>tab help<Space>
 "}}}
 " TabLine
 "------------------------------------"{{{
@@ -541,7 +536,7 @@ function! Sass_convert()
     endif
 endfunction
 
-au! BufWritePost *.scss call Sass_convert() "}}}
+autocmd MyAutoCmd BufWritePost *.scss call Sass_convert() "}}}
 " Plugin Settings
 "------------------------------------"{{{
 " vim-easymotion
@@ -652,8 +647,9 @@ autocmd MyAutoCmd User plugin-template-loaded
 "------------------------------------"{{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
-autocmd FileType gitv call s:my_gitv_settings()
+autocmd MyAutoCmd FileType gitv call s:my_gitv_settings()
 function! s:my_gitv_settings()
+  setlocal iskeyword&
   setlocal iskeyword+=/,-,.
   nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
 
@@ -669,7 +665,7 @@ function! s:gitv_get_current_hash()
   return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
 endfunction
 
-autocmd FileType git setlocal nofoldenable foldlevel=0
+autocmd MyAutoCmd FileType git setlocal nofoldenable foldlevel=0
 function! s:toggle_git_folding()
   if &filetype ==# 'git'
     setlocal foldenable!
