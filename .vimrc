@@ -36,7 +36,6 @@ NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 "NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'supasorn/vim-easymotion'
-NeoBundle 'othree/eregex.vim'
 NeoBundle 'git://gist.github.com/411828.git', {'directory': 'endtagcomment'}
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'YankRing.vim'
