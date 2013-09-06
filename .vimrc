@@ -709,7 +709,7 @@ function! s:hooks.on_source(bundle)
   " quickrunと被るため大文字に変更
   let g:jedi#rename_command = '<Leader>R'
   " gundoと被るため大文字に変更
-  let g:jedi#goto_command = '<Leader>G'
+  let g:jedi#goto_assignments_command = '<Leader>G'
 endfunction
 "}}}
 " sjl/gundo
