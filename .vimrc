@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/08 03:19:31 .
+" Last Change:2013/09/08 03:28:55 .
 
 " NeoBundle {{{====================
 
@@ -1042,16 +1042,16 @@ endif "}}}
 if s:bundle_tap('vim-easymotion') "{{{
     let g:EasyMotion_leader_key = ';'
     let g:EasyMotion_keys='hjklasdyuiopqwergtnmzxcvb;f'
-    " Keymaps"{{{
-    "----------------------------------------
-    " [easymotion]s : Find Key
-    " [easymotion]j : Line Downward
-    " [easymotion]k : Line Upward
-    " [easymotion]n : Search
-    " [easymotion]N : Search backward
-    " [easymotion]w : Beginning of word
-    " [easymotion]e : End of word
-    " [easymotion]ge: End of word backward
+    " Keymaps                                "{{{
+    "----------------------------------------"
+    " [easymotion]s : Find Key               "
+    " [easymotion]j : Line Downward          "
+    " [easymotion]k : Line Upward            "
+    " [easymotion]n : Search                 "
+    " [easymotion]N : Search backward        "
+    " [easymotion]w : Beginning of word      "
+    " [easymotion]e : End of word            "
+    " [easymotion]ge: End of word backward   "
     "----------------------------------------"}}}
 
     " Highlight"{{{
