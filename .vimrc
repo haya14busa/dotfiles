@@ -1003,6 +1003,18 @@ augroup vim-anzu
 augroup END
 "}}}
 
+" Unite
+"------------------------------------"{{{
+" Buffer
+nnoremap <C-u><C-b> :<C-u>Unite buffer<CR>
+" File List
+nnoremap <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" Recent File
+nnoremap <C-u><C-r> :<C-u>Unite file_mru<CR>
+" Register List
+nnoremap <C-u><C-y> :<C-u>Unite -buffer-name=register register<CR>
+
+"}}}
 "/plugin }}}
 "------------------------------------
 "vim: foldmethod=marker
