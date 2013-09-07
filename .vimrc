@@ -1,8 +1,8 @@
 set nocompatible
 filetype plugin indent off
 
-" NeoBundle "
-"------------------------------------"{{{
+" NeoBundle
+"-NeoBundle--------------------------"{{{
 if has('vim_starting')
     set runtimepath& runtimepath+=~/.vim/.bundle/neobundle.vim/
 endif
@@ -20,18 +20,20 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tsukkee/unite-help'
-"NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'mattn/unite-advent_calendar'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'osyo-manga/unite-fold'
 
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell', {
       \ "depends": ["Shougo/vimproc"],
       \ }
+NeoBundle 'ujihisa/vimshell-ssh'
+
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'mattn/emmet-vim'
 
@@ -65,7 +67,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'osyo-manga/vim-anzu'
 
 " Neobundle Text Object
-"------------------------------------"{{{
+"-Neobundle Text Object--------------"{{{
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-entire'
 NeoBundle 'kana/vim-textobj-fold'
@@ -83,14 +85,14 @@ NeoBundle 'h1mesuke/textobj-wiw'
 "}}}
 filetype plugin indent on
 " ColorScheme
-"------------------------------------"{{{
+"-ColorScheme------------------------"{{{
 NeoBundle 'tomasr/molokai'
 NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'altercation/vim-colors-solarized'
 colorscheme molokai
 "}}}
 " Basic Options
-"------------------------------------"{{{
+"-Basic Options----------------------"{{{
 set encoding=utf-8
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
@@ -125,7 +127,7 @@ set wrap
 set wrapscan
 
 " Tab Settings
-"------------------------------------"{{{
+"-Tab Settings-----------------------"{{{
 set autoindent
 set expandtab
 set softtabstop=4
@@ -133,7 +135,7 @@ set shiftwidth=4
 set tabstop=4
 "}}}
 " Search Settings
-"------------------------------------"{{{
+"-Search Settings--------------------"{{{
 set incsearch
 set ignorecase
 set smartcase
@@ -150,33 +152,30 @@ set hlsearch
 
 "}}}
 " Line Settings
-"------------------------------------"{{{
+"-Line Settings----------------------"{{{
 set number
 "set cursorline
 "}}}
 " Backup Settings
-"------------------------------------"{{{
+"-Backup Settings--------------------"{{{
 " Don't create backup
 set nobackup
 set nowritebackup
 set backupdir-=.
 "}}}
-
 " Swap Settings
-"------------------------------------"{{{
+"-Swap Settings----------------------"{{{
 set swapfile
 set directory-=.
 "}}}
-
-
 "}}}
 " release autogroup in MyAutoCmd
-"------------------------------------"{{{
+"-release autogroup in MyAutoCmd-----"{{{
 augroup MyAutoCmd
   autocmd!
 augroup END"}}}
 " Open & AutoReload .vimrc
-"------------------------------------"{{{
+"-Open & AutoReload .vimrc-----------"{{{
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 
@@ -187,9 +186,9 @@ augroup reload-vimrc
 augroup END
 "}}}
 " Useful Keymap
-"------------------------------------"{{{
+"-Useful Keymap----------------------"{{{
 " Escape keymaps
-"------------------------------------"{{{
+"-Escape keymaps---------------------"{{{
 inoremap <silent> jj <ESC>
 inoremap <silent> kk <ESC>
 vnoremap <silent> <C-j> <ESC>
@@ -200,7 +199,7 @@ nnoremap ZZ <Nop>
 nnoremap <CR> o<ESC>
 
 " Motion
-"------------------------------------"{{{
+"-Motion-----------------------------"{{{
 nnoremap h <Left>
 nnoremap j gj
 nnoremap k gk
@@ -222,7 +221,7 @@ cnoremap <C-e> <End>
 "}}}
 
 " Command line History
-"------------------------------------"{{{
+"-Command line History---------------"{{{
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 "}}}
@@ -232,7 +231,7 @@ cnoremap <C-n> <Down>
 cmap w!! w !sudo tee > /dev/null %
 
 " From the cursor to the end of line
-"------------------------------------"{{{
+"-From the cursor to the end of line-"{{{
 " Select from cursor position to end of line
 vnoremap v $h
 " Yank from cursor position to end of line
@@ -240,7 +239,7 @@ nnoremap Y y$
 "}}}
 
 " for Matchit
-"------------------------------------"{{{
+"-for Matchit------------------------"{{{
 "nnoremap <Tab> %
 "vnoremap <Tab> %
 map <Tab> %
@@ -249,7 +248,7 @@ map <Tab> %
 nnoremap ,y :<C-u>YRShow<CR>
 
 " Window
-"------------------------------------"{{{
+"-Window-----------------------------"{{{
 "nnoremap s <C-w>
 "
 "nnoremap <S-Right> :<C-u>vertical resize +2<CR>
@@ -270,7 +269,7 @@ autocmd MyAutoCmd InsertLeave * set nopaste
 "inoremap <> <><LEFT>
 
 " Scroll
-"------------------------------------"{{{
+"-Scroll-----------------------------"{{{
 nnoremap <C-e> <C-e>j
 nnoremap <C-y> <C-y>k
 nnoremap <C-f> <C-f>zz
@@ -279,7 +278,7 @@ nnoremap <C-b> <C-b>zz
 
 "}}}
 " Show invisibles
-"------------------------------------"{{{
+"-Show invisibles--------------------"{{{
 " Shortcut to rapidly toggle `set list`
 nnoremap <Leader>l :<C-u>set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
@@ -289,7 +288,7 @@ hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 "}}}
 " TextObject
-"------------------------------------"{{{
+"-TextObject-------------------------"{{{
 " thinca/vim-textobj-between
 omap if <Plug>(textobj-between-i)
 omap af <Plug>(textobj-between-a)
@@ -301,7 +300,7 @@ omap ab <Plug>(textobj-multiblock-a)
 vmap ib <Plug>(textobj-multiblock-i)
 vmap ab <Plug>(textobj-multiblock-a)
 " Number Text Object
-"------------------------------------"{{{
+"-Number Text Object-----------------"{{{
 onoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
 xnoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
 onoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
@@ -327,7 +326,7 @@ endfunction
 "}}}
 "}}}
 " Highlight End-of-Line Whitespace
-"------------------------------------"{{{
+"-Highlight End-of-Line Whitespace---"{{{
 augroup HighlightTrailingSpaces
   autocmd!
   autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
@@ -335,7 +334,7 @@ augroup HighlightTrailingSpaces
 augroup END
 "}}}
 " Save Cursor Position and Fold
-"------------------------------------"{{{
+"-Save Cursor Position and Fold------"{{{
 augroup SaveInfo
   autocmd!
   autocmd BufWinLeave *.* silent mkview!
@@ -344,28 +343,28 @@ augroup END
 
 "}}}
 " Count Up Function
-"------------------------------------"{{{
+"-Count Up Function------------------"{{{
 nnoremap <silent> co :ContinuousNumber <C-a><CR>
 vnoremap <silent> co :ContinuousNumber <C-a><CR>
 command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
 "}}}
 " Fold
-"------------------------------------"{{{
-" NeoBundle Leafcage/foldCC and Settings
-"------------------------------------"{{{
+"-Fold-------------------------------"{{{
+" Leafcage/foldCC Settings
+"-Leafcage/foldCC Settings-----------"{{{
 NeoBundle 'LeafCage/foldCC'
 set foldenable
 set foldtext=foldCC#foldtext()
 set foldmethod=expr
 set foldlevel=100"}}}
 " Color setting for Fold
-"------------------------------------"{{{
+"-Color setting for Fold-------------"{{{
 set fillchars=vert:\|
 "hi Folded gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
 "hi FoldColumn gui=bold term=standout ctermbg=darkgrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 "}}}
 " NeoBundle for expr
-"------------------------------------"{{{
+"-NeoBundle for expr-----------------"{{{
 NeoBundleLazy "python_fold", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"],
@@ -380,7 +379,7 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
       \ }}
 "}}}
 " Change Keymap for Fold
-"------------------------------------"{{{
+"-Change Keymap for Fold-------------"{{{
 noremap [space] <nop>
 nmap <Space> [space]
 
@@ -402,7 +401,7 @@ noremap [space]d zd
 nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
 "}}}
 " smart_foldcloser
-"------------------------------------"{{{
+"-smart_foldcloser-------------------"{{{
 nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
 function! s:smart_foldcloser()
   if foldlevel('.') == 0
@@ -423,7 +422,7 @@ function! s:smart_foldcloser()
 endfunction
 "}}}
 " put foldmarker
-"------------------------------------"{{{
+"-put foldmarker---------------------"{{{
 nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
 nnoremap  z[     :<C-u>call <SID>put_foldmarker(0)<CR>
 nnoremap  z]     :<C-u>call <SID>put_foldmarker(1)<CR>
@@ -442,9 +441,9 @@ endfunction
 "}}}
 "}}}
 " Tab
-"------------------------------------"{{{
+"-Tab--------------------------------"{{{
 " Mapping
-"------------------------------------"{{{
+"-Mapping----------------------------"{{{
 nnoremap t; t
 nnoremap t <Nop>
 nnoremap tl gt
@@ -460,13 +459,13 @@ nnoremap <silent> tD :<C-u>bdelete<CR>
 nnoremap <silent> tL :<C-u>buffers<CR>
 "}}}
 " Tab jump
-"------------------------------------"{{{
+"-Tab jump---------------------------"{{{
 for n in range(1, 9)
   execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "}}}
 " MoveToNewTab
-"------------------------------------"{{{
+"-MoveToNewTab-----------------------"{{{
 nnoremap <silent> tm :<C-u>call MoveToNewTab()<CR>
 
 function! MoveToNewTab()
@@ -483,14 +482,14 @@ function! MoveToNewTab()
 endfunction
 "}}}
 " Tab Help
-"------------------------------------"{{{
+"-Tab Help---------------------------"{{{
 command! -nargs=? Ht  tab help <args>
 command! -nargs=? Hv  vertical belowright help <args>
 nnoremap <Space><Space> :<C-u>tab help<Space>
 nnoremap <Space>v :<C-u>vertical belowright help<Space>
 "}}}
 " TabLine
-"------------------------------------"{{{
+"-TabLine----------------------------"{{{
 set tabline=%!MakeTabLine()
 
 function! MakeTabLine()
@@ -541,7 +540,7 @@ function! MakeTabLabel(n)
 endfunction"}}}
 "}}}
 " Create Directory Automatically
-"------------------------------------"{{{
+"-Create Directory Automatically-----"{{{
 augroup vimrc-auto-mkdir
   autocmd!
   autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
@@ -555,7 +554,7 @@ augroup END
 nnoremap <Leader>s :<C-u>syntax on<CR>
 "}}}
 " Add Endtagcomment
-"------------------------------------"{{{
+"-Add Endtagcomment------------------"{{{
 " Description"{{{
 " Before
 " <div id="hoge" class="fuga">
@@ -613,7 +612,7 @@ let g:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
 nnoremap ,t :<C-u>call Endtagcomment()<CR>
 "}}}
 " Stylus
-"------------------------------------"{{{
+"-Stylus-----------------------------"{{{
 augroup ForStylus
   autocmd!
   autocmd BufRead,BufNewFile,BufReadPre *.styl set filetype=sass
@@ -622,7 +621,7 @@ augroup ForStylus
 augroup END
 "}}}
 " CoffeeScript
-"------------------------------------"{{{
+"-CoffeeScript-----------------------"{{{
 augroup ForCoffeeScript
   autocmd!
   autocmd BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
@@ -631,7 +630,7 @@ augroup ForCoffeeScript
 augroup END
 "}}}
 " Sass
-"------------------------------------"{{{
+"-Sass-------------------------------"{{{
 function! Sass_convert()
     let scss = expand('%:p')
     let css  = substitute(scss, 'scss$', 'css', '')
@@ -644,9 +643,9 @@ endfunction
 
 autocmd MyAutoCmd BufWritePost *.scss call Sass_convert() "}}}
 " Plugin Settings
-"------------------------------------"{{{
+"-Plugin Settings--------------------"{{{
 " vim-easymotion
-"------------------------------------"{{{
+"-vim-easymotion---------------------"{{{
 let g:EasyMotion_leader_key = ';'
 let g:EasyMotion_keys='hjklasdyuiopqwergtnmzxcvb;f'
 "----------------------------------------
@@ -682,11 +681,11 @@ let g:EasyMotion_mapping_gE = '_gE'
 
 "}}}
 " Shougo/VimFiler
-"------------------------------------"{{{
+"-Shougo/VimFiler--------------------"{{{
 let g:vimfiler_as_default_explorer=1
 let g:vimfiler_safe_mode_by_default=0"}}}
 " Shougo/neocomplete
-"------------------------------------"{{{
+"-Shougo/neocomplete-----------------"{{{
 if has('lua') && v:version >= 703
     NeoBundleLazy "Shougo/neocomplete.vim", {
         \ "autoload": {
@@ -712,7 +711,7 @@ else
 endif
 "}}}
 " Shougo/neosnippet
-"------------------------------------"{{{
+"-Shougo/neosnippet------------------"{{{
 NeoBundleLazy "Shougo/neosnippet.vim", {
       \ "depends": ["honza/vim-snippets"],
       \ "autoload": {
@@ -742,7 +741,7 @@ function! s:hooks.on_source(bundle)
 endfunction
 "}}}
 " thinca/vim-quickrun
-"------------------------------------""{{{
+"-thinca/vim-quickrun----------------""{{{
 let g:quickrun_config = {
 \   "_" : {
 \       "runner" : "vimproc",
@@ -757,7 +756,7 @@ let g:quickrun_config.markdown = {
 
 "}}}
 " thinca/vim-template
-"------------------------------------"{{{
+"-thinca/vim-template----------------"{{{
 NeoBundle 'thinca/vim-template'
 autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
 function! s:template_keywords()
@@ -770,7 +769,7 @@ autocmd MyAutoCmd User plugin-template-loaded
     \ |   silent! execute 'normal! "_da>'
     \ | endif"}}}
 " gregsexton/gitv
-"------------------------------------"{{{
+"-gregsexton/gitv--------------------"{{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 autocmd MyAutoCmd FileType gitv call s:my_gitv_settings()
@@ -799,11 +798,11 @@ function! s:toggle_git_folding()
 endfunction
 "}}}
 " vim-scripts/Align
-"------------------------------------"{{{
+"-vim-scripts/Align------------------"{{{
 NeoBundle 'vim-scripts/Align'
 :let g:Align_xstrlen = 3"}}}
 " nathanaelkane/vim-indent-guides
-"------------------------------------"{{{
+"-nathanaelkane/vim-indent-guides----"{{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let s:hooks = neobundle#get_hooks("vim-indent-guides")
 function! s:hooks.on_source(bundle)
@@ -816,7 +815,7 @@ function! s:hooks.on_source(bundle)
 endfunction
 "}}}
 " jedi-vim
-"------------------------------------"{{{
+"-jedi-vim---------------------------"{{{
 NeoBundleLazy "davidhalter/jedi-vim", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"],
@@ -840,14 +839,14 @@ function! s:hooks.on_source(bundle)
 endfunction
 "}}}
 " sjl/gundo
-"------------------------------------"{{{
+"-sjl/gundo--------------------------"{{{
 NeoBundleLazy "sjl/gundo.vim", {
       \ "autoload": {
       \   "commands": ['GundoToggle'],
       \}}
 nnoremap <Leader>g :<C-u>GundoToggle<CR>"}}}
 " tyru/open-browser
-"------------------------------------"{{{
+"-tyru/open-browser------------------"{{{
 " If it looks like URI, open an URI under cursor.
 " Otherwise, search a word under cursor.
 nmap <Leader>o <Plug>(openbrowser-smart-search)
@@ -856,12 +855,12 @@ nmap <Leader>o <Plug>(openbrowser-smart-search)
 vmap <Leader>o <Plug>(openbrowser-smart-search)
 "}}}
 " tell-k/vim-browsereload-mac
-"------------------------------------"{{{
+"-tell-k/vim-browsereload-mac--------"{{{
 "change this variables
 let g:returnApp = "iTerm"
 "}}}
 " lightline.vim
-"------------------------------------"{{{
+"-lightline.vim----------------------"{{{
 let g:lightline = {
     \ 'colorscheme': 'wombat',
     \ 'mode_map': {
@@ -952,7 +951,7 @@ let g:vimfiler_force_overwrite_statusline=0
 let g:vimshell_force_overwrite_statusline=0
 "}}}
 " vim-ref
-"------------------------------------"{{{
+"-vim-ref----------------------------"{{{
 let g:ref_jquery_doc_path = $HOME . '/.vim/.bundle/jqapi'
 let g:ref_javascript_doc_path = $HOME . '/.vim/.bundle/jsref/htdocs'
 let g:ref_wikipedia_lang = ['ja', 'en']
@@ -974,7 +973,7 @@ let g:ref_source_webdict_sites = {
 let g:ref_alc_encoding = 'shift-jis'
 "}}}
 " osyo-manga/vim-anzu
-"------------------------------------"{{{
+"-osyo-manga/vim-anzu----------------"{{{
 "nmap n <Plug>(anzu-n-with-echo)zz
 "nmap N <Plug>(anzu-N-with-echo)zz
 nmap n zz<Plug>(anzu-n)
@@ -993,7 +992,7 @@ augroup vim-anzu
 augroup END
 "}}}
 " Unite
-"------------------------------------"{{{
+"-Unite------------------------------"{{{
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 nmap ; [unite]
@@ -1018,7 +1017,18 @@ nnoremap <silent> [unite]ma :<C-u>Unite mapping<CR>
 " Show Message
 nnoremap <silent> [unite]me :<C-u>Unite output:message<CR>
 " Jump (mnemonic : <C-o> jump to Older cursor position)
-nnoremap <silent> [unite]o :<C-u>Unite change jump<CR>
+nnoremap <silent> [unite]<C-o> :<C-u>Unite change jump<CR>
+
+" Unite Plugin Settings
+"-Unite Plugin Settings--------------"{{{
+" Execute help.
+nnoremap [unite]h  :<C-u>Unite -start-insert help<CR>
+" Execute help by cursor keyword.
+nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord help<CR>
+" Outeline
+nnoremap <silent> [unite]o :<C-u>Unite outline -start-insert -resume<CR>
+" Fold
+nnoremap <silent> [unite]<Space> :<C-u>Unite fold<CR>
 
 "}}}
 "/plugin }}}
