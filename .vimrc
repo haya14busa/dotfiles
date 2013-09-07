@@ -169,41 +169,77 @@ augroup END
 "}}}
 " Useful Keymap
 "------------------------------------"{{{
+" Escape keymaps
+"------------------------------------"{{{
 inoremap <silent> jj <ESC>
 inoremap <silent> kk <ESC>
+vnoremap <silent> <C-j> <ESC>
 inoremap <silent> <C-c> <ESC>
+"}}}
 
 nnoremap ZZ <Nop>
 nnoremap <CR> o<ESC>
+
+" Motion
+"------------------------------------"{{{
 nnoremap h <Left>
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 nnoremap l <Right>
+
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+"}}}
 
+" Command line History
+"------------------------------------"{{{
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+"}}}
+
+
+" Sudo write
 cmap w!! w !sudo tee > /dev/null %
 
+" From the cursor to the end of line
+"------------------------------------"{{{
+" Select from cursor position to end of line
 vnoremap v $h
+" Yank from cursor position to end of line
+nnoremap Y y$
+"}}}
 
-nnoremap <Tab> %
-vnoremap <Tab> %
-
+" for Matchit
+"------------------------------------"{{{
+"nnoremap <Tab> %
+"vnoremap <Tab> %
+map <Tab> %
+"}}}
 
 nnoremap ,y :<C-u>YRShow<CR>
 
-" for Window
-nnoremap s <C-w>
+" Window
+"------------------------------------"{{{
+"nnoremap s <C-w>
+"
+"nnoremap <S-Right> :<C-u>vertical resize +2<CR>
+"nnoremap <S-Left> :<C-u>vertical resize -2<CR>
+"nnoremap <S-Up> :<C-u>resize +1<CR>
+"nnoremap <S-Down> :<C-u>resize -1<CR>
+"}}}
 
-nnoremap <S-Right> :<C-u>vertical resize +2<CR>
-nnoremap <S-Left> :<C-u>vertical resize -2<CR>
-nnoremap <S-Up> :<C-u>resize +1<CR>
-nnoremap <S-Down> :<C-u>resize -1<CR>
-
+" set nopaste when Insertleave
 autocmd MyAutoCmd InsertLeave * set nopaste
 
 
@@ -214,8 +250,14 @@ autocmd MyAutoCmd InsertLeave * set nopaste
 "inoremap '' ''<LEFT>
 "inoremap <> <><LEFT>
 
-"nnoremap <C-e> jzz
-"nnoremap <C-y> kzz
+" Scroll
+"------------------------------------"{{{
+nnoremap <C-e> <C-e>j
+nnoremap <C-y> <C-y>k
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
+"}}}
+
 "}}}
 " Show invisibles
 "------------------------------------"{{{
@@ -226,6 +268,31 @@ set listchars=tab:▸\ ,eol:¬
 "Invisible character colors
 hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
+"}}}
+" Number Text Object
+"------------------------------------"{{{
+onoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
+xnoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
+onoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
+onoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
+ 
+function! s:NumberTextObject(whole)
+    normal! v
+ 
+    while getline('.')[col('.')] =~# '\v[0-9]'
+        normal! l
+    endwhile
+ 
+    if a:whole
+        normal! o
+ 
+        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+            normal! h
+        endwhile
+    endif
+endfunction
 "}}}
 " Highlight End-of-Line Whitespace
 "------------------------------------"{{{
@@ -388,6 +455,7 @@ endfunction
 command! -nargs=? Ht  tab help <args>
 command! -nargs=? Hv  vertical belowright help <args>
 nnoremap <Space><Space> :<C-u>tab help<Space>
+nnoremap <Space>v :<C-u>vertical belowright help<Space>
 "}}}
 " TabLine
 "------------------------------------"{{{
@@ -452,6 +520,7 @@ augroup vimrc-auto-mkdir
     endif
   endfunction  " }}}
 augroup END
+nnoremap <Leader>s :<C-u>syntax on<CR>
 "}}}
 " Add Endtagcomment
 "------------------------------------"{{{
@@ -547,7 +616,6 @@ autocmd MyAutoCmd BufWritePost *.scss call Sass_convert() "}}}
 " vim-easymotion
 "------------------------------------"{{{
 let g:EasyMotion_leader_key = ';'
-"let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvbHJKLYUIOPNMASDFG1234567890;:f'"
 let g:EasyMotion_keys='hjklasdyuiopqwergtnmzxcvb;f'
 
 hi link EasyMotionTarget ErrorMsg
@@ -557,7 +625,7 @@ hi link EasyMotionTarget2Second MoreMsg
 
 " forked easymotion extention
 let g:EasyMotion_special_select_line = 0
-let g:EasyMotion_special_select_phrase = 1
+let g:EasyMotion_special_select_phrase = 0
 
 "}}}
 " Shougo/VimFiler
@@ -791,12 +859,12 @@ let g:lightline = {
     \ 'active': {
     \   'left': [
     \       [ 'mode', 'paste' ],
-    \       [ 'fugitive','absolutepath', 'filename', 'anzu'],
+    \       [ 'fugitive','filename', 'anzu'],
     \   ],
     \   'right': [
     \       [ 'lineinfo', 'syntastic' ],
     \       [ 'percent' ],
-    \       [ 'fileformat', 'fileencoding', 'filetype'],
+    \       [ 'absolutepath', 'fileencoding', 'filetype'],
     \   ]
     \ },
     \ 'component_function': {
@@ -887,13 +955,15 @@ let g:ref_alc_encoding = 'shift-jis'
 "}}}
 " osyo-manga/vim-anzu
 "------------------------------------"{{{
-nmap n <Plug>(anzu-n-with-echo)zz
-nmap N <Plug>(anzu-N-with-echo)zz
+"nmap n <Plug>(anzu-n-with-echo)zz
+"nmap N <Plug>(anzu-N-with-echo)zz
+nmap n zz<Plug>(anzu-n)
+nmap N zz<Plug>(anzu-N)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 
 " clear status
-"nnoremap <Esc><Esc> <Plug>(anzu-clear-search-status)
+"nnoremap <Esc><Esc> :call anzu#clear_search_status()<CR>
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
 augroup vim-anzu
