@@ -1,5 +1,8 @@
 " haya14busa's vimrc
-" Last Change:: 2013/09/07 23:22:22 .
+" Author: haya14busa
+" URL: http://haya14busa.com 
+" Source: https://github.com/haya14busa/dotfiles/
+" Last Change:     2013/09/08 00:09:22 .
 set nocompatible
 filetype plugin indent off
 
@@ -70,36 +73,38 @@ if s:bundle_tap('unite.vim') "{{{
   xmap ; [unite]
 
   " Source
-  nnoremap <silent> [unite]; :<C-u>Unite source -start-insert<CR>
+  nnoremap <silent> [unite]; :<C-u>Unite source -silent -start-insert<CR>
   " Buffer
   "nnoremap [unite]b :<C-u>Unite buffer<CR>
-  nnoremap <silent> [unite]b :<C-u>Unite buffer file_mru bookmark<CR>
+  nnoremap <silent> [unite]b :<C-u>Unite -silent buffer file_mru bookmark<CR>
   " File List
-  nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+  nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -silent -buffer-name=files file<CR>
   " Recent File
-  "nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+  "nnoremap <silent> [unite]m :<C-u>Unite -silent file_mru<CR>
   " Register List
-  nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+  nnoremap <silent> [unite]r :<C-u>Unite -silent -buffer-name=register register<CR>
   " Yank History
   let g:unite_source_history_yank_enable = 1
-  nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
+  nnoremap <silent> [unite]y :<C-u>Unite -silent history/yank<CR>
   " Show Mapping List
-  nnoremap <silent> [unite]ma :<C-u>Unite mapping<CR>
+  nnoremap <silent> [unite]ma :<C-u>Unite -silent mapping<CR>
   " Show Message
-  nnoremap <silent> [unite]me :<C-u>Unite output:message<CR>
+  nnoremap <silent> [unite]me :<C-u>Unite -silent output:message<CR>
   " Jump (mnemonic : <C-o> jump to Older cursor position)
-  nnoremap <silent> [unite]<C-o> :<C-u>Unite change jump<CR>
+  nnoremap <silent> [unite]<C-o> :<C-u>Unite -silent change jump<CR>
+  " Grep
+  nnoremap <silent> [unite]g :<C-u>Unite -silent -no-quit grep<CR>
 
   " Unite Plugin Settings
   "-Unite Plugin Settings--------------"{{{
   " Execute help.
-  nnoremap [unite]h  :<C-u>Unite -start-insert -buffer-name=help help<CR>
+  nnoremap [unite]h  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
   " Execute help by cursor keyword.
-  nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord help<CR>
+  nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord -silent help<CR>
   " Outeline
-  nnoremap <silent> [unite]o :<C-u>Unite outline -start-insert -resume<CR>
+  nnoremap <silent> [unite]o :<C-u>Unite -silent outline -start-insert -resume<CR>
   " Fold
-  nnoremap <silent> [unite]<Space> :<C-u>Unite fold<CR>
+  nnoremap <silent> [unite]<Space> :<C-u>Unite -silent fold<CR>
 
   "}}}
   "}}}
@@ -207,7 +212,7 @@ colorscheme molokai
 set encoding=utf-8
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
-syntax on
+syntax enable
 set ambiwidth=double
 set autoread
 set backspace=indent,eol,start
@@ -232,7 +237,6 @@ set textwidth=0
 set title
 set virtualedit=block
 set whichwrap=b,s,h,l,[,],<,>
-set wildmenu
 set wrap
 set wrapscan
 
@@ -284,6 +288,34 @@ set backupdir-=.
 set swapfile
 set directory-=.
 "}}}
+" Wildmenu
+"-Wildmenu---------------------------"{{{
+
+set wildmenu                        " Command line autocompletion
+set wildmode=list:longest,full      " Shows all the options
+
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=*.jar                            " Java archives
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.stats                          " Pylint stats
+
+" }}}
+" Spelling {{{
+" turn on the spell checking and set the English language
+nmap <Leader>se :set spell spelllang=en<CR>
+" turn off the spell checking
+nmap <Leader>so :set nospell <CR>
+" jump to the next bad spell word
+nmap <Leader>sn ]s
+" suggest words
+nmap <Leader>sp z=
+" jump to the next bad spell word and suggests a correct one
+nmap <Leader>sc ]sz=
+" add word to the dictionary
+nmap <Leader>sa zg
+" }}}
 "}}}
 " release autogroup in MyAutoCmd
 "-release autogroup in MyAutoCmd-----"{{{
@@ -301,10 +333,10 @@ augroup reload-vimrc
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
 "}}}
-" Useful Keymap
-"-Useful Keymap----------------------"{{{
-" Escape keymaps
-"-Escape keymaps---------------------"{{{
+" Useful Key maps
+"-Useful Key maps--------------------"{{{
+" Escape Key maps
+"-Escape Key maps---------------------"{{{
 inoremap <silent> jj <ESC>
 inoremap <silent> kk <ESC>
 vnoremap <silent> <C-j> <ESC>
@@ -338,7 +370,7 @@ cnoremap <C-e> <End>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 "}}}
-" Sudo write
+" Save as root
 cmap w!! w !sudo tee > /dev/null %
 " From the cursor to the end of line
 "-From the cursor to the end of line-"{{{
@@ -383,6 +415,10 @@ nnoremap <C-b> <C-b>zz
 
 " Vertical Paste
 vnoremap <C-p> I<C-r>"<ESC><ESC>
+
+" get the total of lines, words, chars and bytes (and for the current position)
+" get info
+nnoremap gi g<C-G>
 
 "}}}
 " Show invisibles
@@ -659,7 +695,9 @@ augroup vimrc-auto-mkdir
     endif
   endfunction  " }}}
 augroup END
-nnoremap <Leader>s :<C-u>syntax on<CR>
+" Reload syntax after source $MYVIMRC
+nnoremap <Leader>S :<C-u>syntax on<CR>
+nnoremap <Leader>ss :<C-u>syntax on<CR>
 "}}}
 " Add Endtagcomment
 "-Add Endtagcomment------------------"{{{
@@ -1101,8 +1139,8 @@ augroup END
 "}}}
 " autodate.vim
 "-autodate.vim-----------------------"{{{
-let autodate_format = ': %Y/%m/%d %H:%M:%S '
+let autodate_format = ' %Y/%m/%d %H:%M:%S '
 "}}}
-"/plugin }}}
+"/plugins }}}
 "------------------------------------
 "vim: foldmethod=marker
