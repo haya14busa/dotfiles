@@ -1,5 +1,5 @@
 " haya14busa's vimrc
-" Last Change:: 2013/09/07 22:57:10 .
+" Last Change:: 2013/09/07 23:22:22 .
 set nocompatible
 filetype plugin indent off
 
@@ -126,20 +126,17 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell', {"depends": ["Shougo/vimproc"]}
 
 
-NeoBundleLazy 'ujihisa/vimshell-ssh'
-if s:bundle_tap('vimshell-ssh') "{{{
-  call s:bundle_config({
-        \   'autoload' : {
-        \     'filetypes' : 'vimshell',
-        \   }
-        \ })
-  call s:bundle_untap()
-endif "}}}
+NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'thinca/vim-quickrun'
+" to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
+" extend repetitions by the 'dot' key
 NeoBundle 'tpope/vim-repeat'
+" toggle comments
+NeoBundle 'tpope/vim-commentary'
 NeoBundle 'kana/vim-smartchr'
-NeoBundle 'mattn/emmet-vim'
+NeoBundleLazy 'mattn/emmet-vim', {'autoload':
+            \ {'filetypes': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']}}
 
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
@@ -183,17 +180,17 @@ NeoBundle 'autodate.vim'
 " Neobundle Text Object
 "-Neobundle Text Object--------------"{{{
 NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-entire'
-NeoBundle 'kana/vim-textobj-fold'
-NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'kana/vim-textobj-line'
-NeoBundle 'kana/vim-textobj-syntax'
-NeoBundle 'kana/vim-textobj-django-template'
-NeoBundle 'thinca/vim-textobj-between'
-NeoBundle 'mattn/vim-textobj-url'
-NeoBundle 'osyo-manga/vim-textobj-multiblock'
-NeoBundle 'lucapette/vim-textobj-underscore'
-NeoBundle 'h1mesuke/textobj-wiw'
+NeoBundle 'kana/vim-textobj-entire'           " ae, ie
+NeoBundle 'kana/vim-textobj-fold'             " az, iz
+NeoBundle 'kana/vim-textobj-indent'           " ai, ii
+NeoBundle 'kana/vim-textobj-line'             " al, il
+NeoBundle 'kana/vim-textobj-syntax'           " ay, iy
+NeoBundle 'kana/vim-textobj-django-template'  " adb, idb
+NeoBundle 'thinca/vim-textobj-between'        " af{char}, if{char}
+NeoBundle 'mattn/vim-textobj-url'             " au, ai
+NeoBundle 'osyo-manga/vim-textobj-multiblock' " ab, ib
+NeoBundle 'lucapette/vim-textobj-underscore'  " a_, i_
+NeoBundle 'h1mesuke/textobj-wiw'              " a,w a,e
 "}}}
 
 "}}}
@@ -219,7 +216,6 @@ set cmdheight=1
 set display=lastline
 set grepprg=internal
 set hidden
-set history=100
 set infercase
 set laststatus=2
 set matchtime=3
@@ -247,6 +243,12 @@ set expandtab
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
+"}}}
+" Undo
+"-Undo-------------------------------"{{{
+set history=1000
+set undofile
+set undoreload=1000
 "}}}
 " Search Settings
 "-Search Settings--------------------"{{{
