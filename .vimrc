@@ -24,7 +24,7 @@ NeoBundle 'Shougo/vimshell', {
       \ "depends": ["Shougo/vimproc"],
       \ }
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'Sixeight/unite-grep'
+"NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'ujihisa/unite-colorscheme'
@@ -38,7 +38,7 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'supasorn/vim-easymotion'
 NeoBundle 'git://gist.github.com/411828.git', {'directory': 'endtagcomment'}
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'YankRing.vim'
+"NeoBundle 'YankRing.vim'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'tpope/vim-haml'
@@ -61,6 +61,23 @@ NeoBundle 'mustardamus/jqapi'
 NeoBundle 'tokuhirom/jsref'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'osyo-manga/vim-anzu'
+
+" Neobundle Text Object
+"------------------------------------"{{{
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-entire'
+NeoBundle 'kana/vim-textobj-fold'
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-line'
+NeoBundle 'kana/vim-textobj-syntax'
+NeoBundle 'kana/vim-textobj-django-template'
+NeoBundle 'thinca/vim-textobj-between'
+NeoBundle 'mattn/vim-textobj-url'
+NeoBundle 'osyo-manga/vim-textobj-multiblock'
+NeoBundle 'lucapette/vim-textobj-underscore'
+NeoBundle 'h1mesuke/textobj-wiw'
+"}}}
+
 "}}}
 filetype plugin indent on
 " ColorScheme
@@ -269,6 +286,18 @@ set listchars=tab:▸\ ,eol:¬
 hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 "}}}
+" TextObject
+"------------------------------------"{{{
+" thinca/vim-textobj-between
+omap if <Plug>(textobj-between-i)
+omap af <Plug>(textobj-between-a)
+vmap if <Plug>(textobj-between-i)
+vmap af <Plug>(textobj-between-a)
+" osyo-manga/vim-textobj-multiblock
+omap ib <Plug>(textobj-multiblock-i)
+omap ab <Plug>(textobj-multiblock-a)
+vmap ib <Plug>(textobj-multiblock-i)
+vmap ab <Plug>(textobj-multiblock-a)
 " Number Text Object
 "------------------------------------"{{{
 onoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
@@ -277,22 +306,23 @@ onoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
 xnoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
 onoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
 xnoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
- 
+
 function! s:NumberTextObject(whole)
     normal! v
- 
+
     while getline('.')[col('.')] =~# '\v[0-9]'
         normal! l
     endwhile
- 
+
     if a:whole
         normal! o
- 
+
         while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
             normal! h
         endwhile
     endif
 endfunction
+"}}}
 "}}}
 " Highlight End-of-Line Whitespace
 "------------------------------------"{{{
@@ -864,7 +894,7 @@ let g:lightline = {
     \   'right': [
     \       [ 'lineinfo', 'syntastic' ],
     \       [ 'percent' ],
-    \       [ 'absolutepath', 'fileencoding', 'filetype'],
+    \       [ 'absolutepath', 'filetype'],
     \   ]
     \ },
     \ 'component_function': {
