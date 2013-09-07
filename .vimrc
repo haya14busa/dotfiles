@@ -66,6 +66,7 @@ NeoBundle 'mustardamus/jqapi'
 NeoBundle 'tokuhirom/jsref'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'osyo-manga/vim-anzu'
+NeoBundle 'rhysd/clever-f.vim'
 
 " Neobundle Text Object
 "-Neobundle Text Object--------------"{{{
@@ -1034,5 +1035,6 @@ nnoremap <silent> [unite]<Space> :<C-u>Unite fold<CR>
 
 "}}}
 "/plugin }}}
+"}}}
 "------------------------------------
 "vim: foldmethod=marker
