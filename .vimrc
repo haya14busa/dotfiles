@@ -1,5 +1,5 @@
 " haya14busa's vimrc
-" Last Change:: 2013/09/07 21:53:15 .
+" Last Change:: 2013/09/07 21:58:42 .
 set nocompatible
 filetype plugin indent off
 
@@ -199,10 +199,8 @@ inoremap <silent> kk <ESC>
 vnoremap <silent> <C-j> <ESC>
 inoremap <silent> <C-c> <ESC>
 "}}}
-
 nnoremap ZZ <Nop>
 nnoremap <CR> o<ESC>
-
 " Motion
 "-Motion-----------------------------"{{{
 nnoremap h <Left>
@@ -224,17 +222,13 @@ cnoremap <C-l> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 "}}}
-
 " Command line History
 "-Command line History---------------"{{{
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 "}}}
-
-
 " Sudo write
 cmap w!! w !sudo tee > /dev/null %
-
 " From the cursor to the end of line
 "-From the cursor to the end of line-"{{{
 " Select from cursor position to end of line
@@ -242,7 +236,6 @@ vnoremap v $h
 " Yank from cursor position to end of line
 nnoremap Y y$
 "}}}
-
 " for Matchit
 "-for Matchit------------------------"{{{
 " <Tab> === <C-i>
@@ -250,9 +243,6 @@ nnoremap Y y$
 "vnoremap <Tab> %
 "map <Tab> %
 "}}}
-
-nnoremap ,y :<C-u>YRShow<CR>
-
 " Window
 "-Window-----------------------------"{{{
 "nnoremap s <C-w>
@@ -262,10 +252,8 @@ nnoremap ,y :<C-u>YRShow<CR>
 "nnoremap <S-Up> :<C-u>resize +1<CR>
 "nnoremap <S-Down> :<C-u>resize -1<CR>
 "}}}
-
 " set nopaste when Insertleave
 autocmd MyAutoCmd InsertLeave * set nopaste
-
 
 "inoremap {} {}<LEFT>
 "inoremap [] []<LEFT>
@@ -281,6 +269,9 @@ nnoremap <C-y> <C-y>k
 nnoremap <C-f> <C-f>zz
 nnoremap <C-b> <C-b>zz
 "}}}
+
+" Vertical Paste
+vnoremap <C-p> I<C-r>"<ESC><ESC>
 
 "}}}
 " Show invisibles
