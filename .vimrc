@@ -59,6 +59,8 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'mustardamus/jqapi'
 NeoBundle 'tokuhirom/jsref'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'osyo-manga/vim-anzu'
 "}}}
 filetype plugin indent on
 " ColorScheme
@@ -117,6 +119,16 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
+" Unhighlight by <Esc>*2
+"nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+"nnoremap n nzz
+"nnoremap N Nzz
+" -> osyo-manga/vim-anzu
+
+" Search select words in visualmode
+" vnoremap * "zy:let @/ = @z<CR>n
+" -> thinca/vim-visualstar
+
 "}}}
 " Line Settings
 "------------------------------------"{{{
@@ -154,15 +166,13 @@ augroup reload-vimrc
   autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
-
+"}}}
 " Useful Keymap
 "------------------------------------"{{{
 inoremap <silent> jj <ESC>
 inoremap <silent> kk <ESC>
 inoremap <silent> <C-c> <ESC>
 
-nmap n nzz
-nmap N Nzz
 nnoremap ZZ <Nop>
 nnoremap <CR> o<ESC>
 nnoremap h <Left>
@@ -183,8 +193,6 @@ vnoremap v $h
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-" Unhighlight by <Esc>*2
-nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
 nnoremap ,y :<C-u>YRShow<CR>
 
@@ -198,9 +206,6 @@ nnoremap <S-Down> :<C-u>resize -1<CR>
 
 autocmd MyAutoCmd InsertLeave * set nopaste
 
-" Search select words in visualmode
-" vnoremap * "zy:let @/ = @z<CR>n
-" -> thinca/vim-visualstar
 
 "inoremap {} {}<LEFT>
 "inoremap [] []<LEFT>
@@ -784,7 +789,15 @@ let g:lightline = {
     \   '?': '      '
     \ },
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+    \   'left': [
+    \       [ 'mode', 'paste' ],
+    \       [ 'fugitive','absolutepath', 'filename', 'anzu'],
+    \   ],
+    \   'right': [
+    \       [ 'lineinfo', 'syntastic' ],
+    \       [ 'percent' ],
+    \       [ 'fileformat', 'fileencoding', 'filetype'],
+    \   ]
     \ },
     \ 'component_function': {
     \   'modified': 'MyModified',
@@ -794,8 +807,12 @@ let g:lightline = {
     \   'fileformat': 'MyFileformat',
     \   'filetype': 'MyFiletype',
     \   'fileencoding': 'MyFileencoding',
-    \   'mode': 'MyMode'
-    \ }
+    \   'mode': 'MyMode',
+    \   'syntastic': 'SyntasticStatuslineFlag',
+    \   'anzu': 'anzu#search_status',
+    \ },
+    \ 'separator': { 'left': '⮀', 'right': '⮂' },
+    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
     \ }
 
 function! MyModified()
@@ -868,8 +885,24 @@ let g:ref_source_webdict_sites = {
 \ }
 let g:ref_alc_encoding = 'shift-jis'
 "}}}
+" osyo-manga/vim-anzu
+"------------------------------------"{{{
+nmap n <Plug>(anzu-n-with-echo)zz
+nmap N <Plug>(anzu-N-with-echo)zz
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+" clear status
+"nnoremap <Esc><Esc> <Plug>(anzu-clear-search-status)
+nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+
+augroup vim-anzu
+" Clear hit count when nokeyinput, move window, or move tab
+    autocmd!
+    autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
+augroup END
+"}}}
 
 "/plugin }}}
-
 "------------------------------------
 "vim: foldmethod=marker
