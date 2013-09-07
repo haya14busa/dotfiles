@@ -182,7 +182,7 @@ command! ETabVimrc tabnew $MYVIMRC
 
 augroup reload-vimrc
   autocmd!
-  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *vimrc source $MYVIMRC | setlocal foldmethod=marker
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
 "}}}
@@ -241,9 +241,10 @@ nnoremap Y y$
 
 " for Matchit
 "-for Matchit------------------------"{{{
+" <Tab> === <C-i>
 "nnoremap <Tab> %
 "vnoremap <Tab> %
-map <Tab> %
+"map <Tab> %
 "}}}
 
 nnoremap ,y :<C-u>YRShow<CR>
@@ -616,7 +617,7 @@ nnoremap ,t :<C-u>call Endtagcomment()<CR>
 "-Stylus-----------------------------"{{{
 augroup ForStylus
   autocmd!
-  autocmd BufRead,BufNewFile,BufReadPre *.styl set filetype=sass
+  autocmd BufRead,BufNewFile,BufReadPre *.styl setlocal filetype=sass
   autocmd FileType sass     setlocal sw=2 sts=2 ts=2 et
   autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
 augroup END
@@ -625,7 +626,7 @@ augroup END
 "-CoffeeScript-----------------------"{{{
 augroup ForCoffeeScript
   autocmd!
-  autocmd BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+  autocmd BufRead,BufNewFile,BufReadPre *.coffee   setlocal filetype=coffee
   autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
   autocmd BufWritePost,FileWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
 augroup END
