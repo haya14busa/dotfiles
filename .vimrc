@@ -1,5 +1,5 @@
 " haya14busa's vimrc
-" Last Change:: 2013/09/07 21:58:42 .
+" Last Change:: 2013/09/07 22:57:10 .
 set nocompatible
 filetype plugin indent off
 
@@ -12,6 +12,22 @@ call neobundle#rc(expand('~/.vim/.bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
+
+" NeoBundle Function"{{{
+function! s:bundle_tap(bundle) " {{{
+  let s:tapped_bundle = neobundle#get(a:bundle)
+  return neobundle#is_installed(a:bundle)
+endfunction " }}}
+function! s:bundle_config(config) " {{{
+  if exists("s:tapped_bundle") && s:tapped_bundle != {}
+    call neobundle#config(s:tapped_bundle.name, a:config)
+  endif
+endfunction " }}}
+function! s:bundle_untap() " {{{
+  let s:tapped_bundle = {}
+endfunction " }}}
+"}}}
+
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
@@ -20,7 +36,85 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix'    : 'make -f make_unix.mak',
       \    },
       \ }
-NeoBundle 'Shougo/unite.vim'
+NeoBundleLazy 'Shougo/unite.vim', {"depends": ["Shougo/vimproc"]}
+if s:bundle_tap('unite.vim') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       {
+        \         'name' : 'Unite',
+        \         'complete' : 'customlist,unite#complete_source'
+        \       },
+        \       'UniteWithCursorWord',
+        \       'UniteWithInput'
+        \     ]
+        \   }
+        \ })
+
+  function! s:tapped_bundle.hooks.on_source(bundle)
+    let g:unite_kind_jump_list_after_jump_scroll=0
+    let g:unite_enable_start_insert = 0
+    let g:unite_source_rec_min_cache_files = 1000
+    let g:unite_source_rec_max_cache_files = 5000
+    let g:unite_source_file_mru_long_limit = 6000
+    let g:unite_source_file_mru_limit = 300
+    let g:unite_source_directory_mru_long_limit = 6000
+    let g:unite_prompt = '❯ '
+  endfunction
+
+  " Unite
+  "-Unite------------------------------"{{{
+  nnoremap [unite] <Nop>
+  xnoremap [unite] <Nop>
+  nmap ; [unite]
+  xmap ; [unite]
+
+  " Source
+  nnoremap <silent> [unite]; :<C-u>Unite source -start-insert<CR>
+  " Buffer
+  "nnoremap [unite]b :<C-u>Unite buffer<CR>
+  nnoremap <silent> [unite]b :<C-u>Unite buffer file_mru bookmark<CR>
+  " File List
+  nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+  " Recent File
+  "nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+  " Register List
+  nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+  " Yank History
+  let g:unite_source_history_yank_enable = 1
+  nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
+  " Show Mapping List
+  nnoremap <silent> [unite]ma :<C-u>Unite mapping<CR>
+  " Show Message
+  nnoremap <silent> [unite]me :<C-u>Unite output:message<CR>
+  " Jump (mnemonic : <C-o> jump to Older cursor position)
+  nnoremap <silent> [unite]<C-o> :<C-u>Unite change jump<CR>
+
+  " Unite Plugin Settings
+  "-Unite Plugin Settings--------------"{{{
+  " Execute help.
+  nnoremap [unite]h  :<C-u>Unite -start-insert -buffer-name=help help<CR>
+  " Execute help by cursor keyword.
+  nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord help<CR>
+  " Outeline
+  nnoremap <silent> [unite]o :<C-u>Unite outline -start-insert -resume<CR>
+  " Fold
+  nnoremap <silent> [unite]<Space> :<C-u>Unite fold<CR>
+
+  "}}}
+  "}}}
+
+  call s:bundle_untap()
+endif "}}}
+NeoBundleLazy 'Shougo/unite-ssh'
+if s:bundle_tap('unite-ssh') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'filetypes' : 'vimshell',
+        \   }
+        \ })
+  call s:bundle_untap()
+endif "}}}
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'mattn/unite-advent_calendar'
@@ -29,11 +123,18 @@ NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'kmnk/vim-unite-giti'
 
 NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimshell', {
-      \ "depends": ["Shougo/vimproc"],
-      \ }
-NeoBundle 'ujihisa/vimshell-ssh'
+NeoBundle 'Shougo/vimshell', {"depends": ["Shougo/vimproc"]}
 
+
+NeoBundleLazy 'ujihisa/vimshell-ssh'
+if s:bundle_tap('vimshell-ssh') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'filetypes' : 'vimshell',
+        \   }
+        \ })
+  call s:bundle_untap()
+endif "}}}
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
@@ -59,7 +160,15 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tell-k/vim-browsereload-mac'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tsukkee/lingr-vim'
-NeoBundle 'thinca/vim-scouter'
+NeoBundleLazy 'thinca/vim-scouter'
+if s:bundle_tap('vim-scouter') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'commands' : 'Scouter',
+        \   }
+        \ })
+  call s:bundle_untap()
+endif "}}}
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'thinca/vim-ref'
@@ -988,51 +1097,10 @@ augroup vim-anzu
     autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
 augroup END
 "}}}
-" Unite
-"-Unite------------------------------"{{{
-nnoremap [unite] <Nop>
-xnoremap [unite] <Nop>
-nmap ; [unite]
-xmap ; [unite]
-
-" Source
-nnoremap <silent> [unite]; :<C-u>Unite source -start-insert<CR>
-" Buffer
-"nnoremap [unite]b :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]b :<C-u>Unite buffer file_mru bookmark<CR>
-" File List
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-" Recent File
-"nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
-" Register List
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-" Yank History
-let g:unite_source_history_yank_enable = 1
-nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
-" Show Mapping List
-nnoremap <silent> [unite]ma :<C-u>Unite mapping<CR>
-" Show Message
-nnoremap <silent> [unite]me :<C-u>Unite output:message<CR>
-" Jump (mnemonic : <C-o> jump to Older cursor position)
-nnoremap <silent> [unite]<C-o> :<C-u>Unite change jump<CR>
-
-" Unite Plugin Settings
-"-Unite Plugin Settings--------------"{{{
-" Execute help.
-nnoremap [unite]h  :<C-u>Unite -start-insert help<CR>
-" Execute help by cursor keyword.
-nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord help<CR>
-" Outeline
-nnoremap <silent> [unite]o :<C-u>Unite outline -start-insert -resume<CR>
-" Fold
-nnoremap <silent> [unite]<Space> :<C-u>Unite fold<CR>
-
-"}}}
 " autodate.vim
-"------------------------------------"{{{
+"-autodate.vim-----------------------"{{{
 let autodate_format = ': %Y/%m/%d %H:%M:%S '
 "}}}
 "/plugin }}}
-"}}}
 "------------------------------------
 "vim: foldmethod=marker
