@@ -1000,7 +1000,7 @@ nmap ; [unite]
 xmap ; [unite]
 
 " Source
-nnoremap <silent> [unite]; :<C-u>Unite source<CR>
+nnoremap <silent> [unite]; :<C-u>Unite source -start-insert<CR>
 " Buffer
 "nnoremap [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]b :<C-u>Unite buffer file_mru bookmark<CR>
