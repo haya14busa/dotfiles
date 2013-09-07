@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/08 03:11:49 .
+" Last Change:2013/09/08 03:19:31 .
 
 " NeoBundle {{{====================
 
@@ -220,12 +220,6 @@ set shiftwidth=4
 set tabstop=4
 "}}}
 
-" Undo Basic {{{
-set history=1000
-set undofile
-set undoreload=1000
-"}}}
-
 " Search Basic Settings {{{
 set incsearch
 set ignorecase
@@ -250,11 +244,21 @@ set swapfile
 set directory-=.
 "}}}
 
+" Undo Basic {{{
+if v:version >= 703
+  " Set undofile.
+  set undofile
+  set undoreload=1000
+  let &undodir=&directory
+endif
+"}}}
+
 " Wildmenu {{{
 
 set wildmenu                        " Command line autocompletion
 set wildmode=list:longest,full      " Shows all the options
 
+set wildignore&
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
 set wildignore+=*.luac                           " Lua byte code
@@ -1132,15 +1136,15 @@ let g:Align_xstrlen = 3
 "}}}
 
 " nathanaelkane/vim-indent-guides {{{
-let s:hooks = neobundle#get_hooks("vim-indent-guides")
-function! s:hooks.on_source(bundle)
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_auto_colors = 0
-  let g:indent_guides_color_change_percent = 80
-  hi IndentGuidesOdd  ctermbg=darkgrey
-  hi IndentGuidesEven ctermbg=darkgrey
-  IndentGuidesEnable
-endfunction
+"let s:hooks = neobundle#get_hooks("vim-indent-guides")
+"function! s:hooks.on_source(bundle)
+"  let g:indent_guides_guide_size = 1
+"  let g:indent_guides_auto_colors = 0
+"  let g:indent_guides_color_change_percent = 80
+"  hi IndentGuidesOdd  ctermbg=darkgrey
+"  hi IndentGuidesEven ctermbg=darkgrey
+"  IndentGuidesEnable
+"endfunction
 "}}}
 
 " jedi-vim {{{
