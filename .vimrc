@@ -1,3 +1,5 @@
+" haya14busa's vimrc
+" Last Change:: 2013/09/07 21:53:15 .
 set nocompatible
 filetype plugin indent off
 
@@ -67,6 +69,7 @@ NeoBundle 'tokuhirom/jsref'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'autodate.vim'
 
 " Neobundle Text Object
 "-Neobundle Text Object--------------"{{{
@@ -1033,6 +1036,10 @@ nnoremap <silent> [unite]o :<C-u>Unite outline -start-insert -resume<CR>
 " Fold
 nnoremap <silent> [unite]<Space> :<C-u>Unite fold<CR>
 
+"}}}
+" autodate.vim
+"------------------------------------"{{{
+let autodate_format = ': %Y/%m/%d %H:%M:%S '
 "}}}
 "/plugin }}}
 "}}}
