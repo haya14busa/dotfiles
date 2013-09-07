@@ -19,15 +19,18 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tsukkee/unite-help'
+"NeoBundle 'Sixeight/unite-grep'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'mattn/unite-advent_calendar'
+
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell', {
       \ "depends": ["Shougo/vimproc"],
       \ }
 NeoBundle 'thinca/vim-quickrun'
-"NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'mattn/emmet-vim'
@@ -52,7 +55,6 @@ NeoBundle 'tell-k/vim-browsereload-mac'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-scouter'
-NeoBundle 'mattn/unite-advent_calendar'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'thinca/vim-ref'
@@ -647,6 +649,16 @@ autocmd MyAutoCmd BufWritePost *.scss call Sass_convert() "}}}
 "------------------------------------"{{{
 let g:EasyMotion_leader_key = ';'
 let g:EasyMotion_keys='hjklasdyuiopqwergtnmzxcvb;f'
+"----------------------------------------
+" [easymotion]s : Find Key
+" [easymotion]j : Line Downward
+" [easymotion]k : Line Upward
+" [easymotion]n : Search
+" [easymotion]N : Search backward
+" [easymotion]w : Beginning of word
+" [easymotion]e : End of word
+" [easymotion]ge: End of word backward
+"----------------------------------------
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
@@ -656,6 +668,17 @@ hi link EasyMotionTarget2Second MoreMsg
 " forked easymotion extention
 let g:EasyMotion_special_select_line = 0
 let g:EasyMotion_special_select_phrase = 0
+
+" Disable for Unite Mapping
+let g:EasyMotion_mapping_f = '_f'
+let g:EasyMotion_mapping_F = '_F'
+let g:EasyMotion_mapping_t = '_t'
+let g:EasyMotion_mapping_T = '_T'
+let g:EasyMotion_mapping_W = '_W'
+let g:EasyMotion_mapping_b = '_b'
+let g:EasyMotion_mapping_B = '_B'
+let g:EasyMotion_mapping_E = '_E'
+let g:EasyMotion_mapping_gE = '_gE'
 
 "}}}
 " Shougo/VimFiler
@@ -837,38 +860,6 @@ vmap <Leader>o <Plug>(openbrowser-smart-search)
 "change this variables
 let g:returnApp = "iTerm"
 "}}}
-" vim-airline
-"------------------------------------"{{{
-"let g:airline_left_sep='>'
-"let g:airline_right_sep='<'
-""enable modified detection
-"let g:airline_detect_modified=1
-""enable paste detection
-"let g:airline_detect_paste=1
-""enable iminsert detection
-"let g:airline_detect_iminsert=1
-""airline mode map{{{
-"let g:airline_mode_map = {
-"  \ '__' : '-',
-"  \ 'n'  : 'N',
-"  \ 'i'  : 'I',
-"  \ 'R'  : 'R',
-"  \ 'c'  : 'C',
-"  \ 'v'  : 'V',
-"  \ 'V'  : 'V',
-"  \ '' : 'V',
-"  \ 's'  : 'S',
-"  \ 'S'  : 'S',
-"  \ '' : 'S',
-"  \ }
-""}}}
-""enable/disable fugitive/lawrencium integration
-"let g:airline#extensions#branch#enabled=1
-"let g:airline#extensions#readonly#enabled=0
-"let g:unite_force_overwrite_statusline=0
-"let g:vimfiler_force_overwrite_statusline=1
-"let g:vimshell_force_overwrite_statusline=1
-"}}}
 " lightline.vim
 "------------------------------------"{{{
 let g:lightline = {
@@ -960,7 +951,6 @@ let g:unite_force_overwrite_statusline=0
 let g:vimfiler_force_overwrite_statusline=0
 let g:vimshell_force_overwrite_statusline=0
 "}}}
-
 " vim-ref
 "------------------------------------"{{{
 let g:ref_jquery_doc_path = $HOME . '/.vim/.bundle/jqapi'
@@ -1002,17 +992,33 @@ augroup vim-anzu
     autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
 augroup END
 "}}}
-
 " Unite
 "------------------------------------"{{{
+nnoremap [unite] <Nop>
+xnoremap [unite] <Nop>
+nmap ; [unite]
+xmap ; [unite]
+
+" Source
+nnoremap <silent> [unite]; :<C-u>Unite source<CR>
 " Buffer
-nnoremap <C-u><C-b> :<C-u>Unite buffer<CR>
+"nnoremap [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]b :<C-u>Unite buffer file_mru bookmark<CR>
 " File List
-nnoremap <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " Recent File
-nnoremap <C-u><C-r> :<C-u>Unite file_mru<CR>
+"nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
 " Register List
-nnoremap <C-u><C-y> :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+" Yank History
+let g:unite_source_history_yank_enable = 1
+nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
+" Show Mapping List
+nnoremap <silent> [unite]ma :<C-u>Unite mapping<CR>
+" Show Message
+nnoremap <silent> [unite]me :<C-u>Unite output:message<CR>
+" Jump (mnemonic : <C-o> jump to Older cursor position)
+nnoremap <silent> [unite]o :<C-u>Unite change jump<CR>
 
 "}}}
 "/plugin }}}
