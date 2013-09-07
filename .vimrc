@@ -24,6 +24,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'mattn/unite-advent_calendar'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'osyo-manga/unite-fold'
+NeoBundle 'kmnk/vim-unite-giti'
 
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell', {
