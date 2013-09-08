@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/08 14:10:41 .
+" Last Change:2013/09/08 14:42:03 .
 
 " NeoBundle {{{====================
 
@@ -34,7 +34,7 @@ endfunction " }}}
 
 NeoBundle 'Shougo/vimproc'
 
-NeoBundleLazy 'Shougo/unite.vim', {"depends": ["Shougo/vimproc"]}
+NeoBundleLazy 'Shougo/unite.vim'
 " NeoBundle Unite plugins {{{
 NeoBundleLazy 'Shougo/unite-ssh'
 NeoBundle 'tsukkee/unite-help'
@@ -47,7 +47,7 @@ NeoBundle 'kmnk/vim-unite-giti'
 
 NeoBundle 'Shougo/vimfiler'
 
-NeoBundle 'Shougo/vimshell', {"depends": ["Shougo/vimproc"]}
+NeoBundle 'Shougo/vimshell'
 NeoBundle 'ujihisa/vimshell-ssh'
 
 NeoBundleLazy 'Shougo/neosnippet.vim'
@@ -741,6 +741,7 @@ endif "}}}
 if s:bundle_tap('unite.vim') "{{{
   " Config"{{{
   call s:bundle_config({
+        \   'depends': ['Shougo/vimproc'],
         \   'autoload' : {
         \     'commands' : [
         \       {
@@ -846,6 +847,30 @@ if s:bundle_tap('vimfiler') "{{{
   call s:bundle_untap()
 endif "}}}
 "}}}
+
+" Shougo/vimshell {{{
+if s:bundle_tap('vimshell') "{{{
+  call s:bundle_config({
+        \   'depends': ['Shougo/vimproc'],
+        \   'autoload' : {
+        \     'commands' : [
+        \       'VimShell',
+        \       'VimShellTab',
+        \       'VimShellBufferDir',
+        \     ]
+        \   }
+        \ })
+  "let g:vimshell_prompt_expr = 'getcwd()." > "'
+  "let g:vimshell_prompt_pattern = '^\f\+ > '
+
+  " Use current directory as vimshell prompt.
+  let g:vimshell_prompt_expr =
+            \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
+  let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
 
 " Shougo/neosnippet.vim"{{{
 if s:bundle_tap('neosnippet.vim') "{{{
