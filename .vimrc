@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/08 14:42:03 .
+" Last Change:2013/09/08 15:06:11 .
 
 " NeoBundle {{{====================
 
@@ -325,6 +325,18 @@ inoremap <C-y> <C-r>"
 cnoremap <C-y> <C-r>"
 "}}}
 
+" Window {{{
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap <S-Right> :<C-u>vertical resize +2<CR>
+nnoremap <S-Left> :<C-u>vertical resize -2<CR>
+nnoremap <S-Up> :<C-u>resize +1<CR>
+nnoremap <S-Down> :<C-u>resize -1<CR>
+"}}}
+
 " Command line History {{{
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -339,15 +351,6 @@ cmap w!! w !sudo tee > /dev/null %
 vnoremap v $h
 " Yank from cursor position to end of line
 nnoremap Y y$
-"}}}
-
-" Window {{{
-"nnoremap s <C-w>
-"
-"nnoremap <S-Right> :<C-u>vertical resize +2<CR>
-"nnoremap <S-Left> :<C-u>vertical resize -2<CR>
-"nnoremap <S-Up> :<C-u>resize +1<CR>
-"nnoremap <S-Down> :<C-u>resize -1<CR>
 "}}}
 
 " Scroll {{{
