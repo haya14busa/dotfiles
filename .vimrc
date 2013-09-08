@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/08 03:28:55 .
+" Last Change:2013/09/08 14:10:41 .
 
 " NeoBundle {{{====================
 
@@ -17,7 +17,7 @@ call neobundle#rc(expand('~/.vim/.bundle/'))
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" NeoBundle Function"{{{
+" NeoBundle Function {{{
 function! s:bundle_tap(bundle) " {{{
   let s:tapped_bundle = neobundle#get(a:bundle)
   return neobundle#is_installed(a:bundle)
@@ -35,7 +35,7 @@ endfunction " }}}
 NeoBundle 'Shougo/vimproc'
 
 NeoBundleLazy 'Shougo/unite.vim', {"depends": ["Shougo/vimproc"]}
-" NeoBundle Unite plugins"{{{
+" NeoBundle Unite plugins {{{
 NeoBundleLazy 'Shougo/unite-ssh'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'ujihisa/unite-colorscheme'
@@ -65,19 +65,19 @@ NeoBundleLazy 'thinca/vim-scouter'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'thinca/vim-template'
 
-NeoBundle 'thinca/vim-ref'
+" thinca/vim-ref {{{
+NeoBundleLazy 'thinca/vim-ref'
 NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'tokuhirom/jsref'
 NeoBundle 'mustardamus/jqapi'
+"}}}
 
-" extend repetitions by the 'dot' key
 NeoBundle 'tpope/vim-repeat'
-" toggle comments
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-markdown'
 
-" NeoBundle Git"{{{
+" NeoBundle Git {{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 "}}}
@@ -86,42 +86,11 @@ NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-fakeclip'
 
 NeoBundleLazy 'mattn/emmet-vim'
-NeoBundle 'mattn/gist-vim'
+NeoBundleLazy 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 
 "NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'supasorn/vim-easymotion'
-
-
-NeoBundle 'matchit.zip'
-
-" NeoBundle Web
-NeoBundle 'vim-scripts/loremipsum'
-NeoBundle 'pentie/VimRepress'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'tell-k/vim-browsereload-mac'
-
-NeoBundle 'tsukkee/lingr-vim'
-
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'osyo-manga/vim-anzu'
-NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'autodate.vim'
-NeoBundle 'LeafCage/foldCC'
-NeoBundle 'vim-scripts/Align'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundleLazy "davidhalter/jedi-vim", {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"],
-      \ },
-      \ "build": {
-      \   "mac": "pip install jedi",
-      \   "unix": "pip install jedi",
-      \ }}
-NeoBundleLazy "sjl/gundo.vim", {
-      \ "autoload": {
-      \   "commands": ['GundoToggle'],
-      \}}
 
 " Neobundle Text Object {{{
 NeoBundle 'kana/vim-textobj-user'
@@ -141,7 +110,30 @@ NeoBundle 'h1mesuke/textobj-wiw'              " a,w a,e
 NeoBundle 'tpope/vim-surround'
 "}}}
 
-" Neobundle Syntax"{{{
+
+" Extend Basic Vim Commands
+NeoBundle 'matchit.zip'
+NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'osyo-manga/vim-anzu'
+NeoBundle 'LeafCage/foldCC'
+
+NeoBundle 'vim-scripts/Align'
+NeoBundleLazy 'nathanaelkane/vim-indent-guides'
+NeoBundleLazy "davidhalter/jedi-vim"
+NeoBundleLazy "sjl/gundo.vim"
+
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'autodate.vim'
+
+" NeoBundle Web
+NeoBundleLazy 'tyru/open-browser.vim'
+NeoBundle 'vim-scripts/loremipsum'
+
+" Others
+NeoBundle 'pentie/VimRepress' "WordPress
+NeoBundle 'tsukkee/lingr-vim' "Lingr
+
+" Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'wavded/vim-stylus'
@@ -172,7 +164,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 filetype plugin indent on
 " END Neobundle}}}
 
-" Vim Setup "{{{====================
+" Vim Setup  {{{====================
 
 " Basic Options {{{
 set encoding=utf-8
@@ -303,7 +295,7 @@ vnoremap <silent> <C-j> <ESC>
 inoremap <silent> <C-c> <ESC>
 "}}}
 
-" Breakline with Enter"{{{
+" Breakline with Enter {{{
 nnoremap <CR> o<ESC>
 "}}}
 
@@ -315,19 +307,22 @@ vnoremap j gj
 vnoremap k gk
 nnoremap l <Right>
 
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
+"inoremap <C-j> <Down>
 "inoremap <C-k> <Up>
-
-inoremap <C-l> <Right>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
-
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+"}}}
+
+"Paste in insert  and Ex mode"{{{
+inoremap <C-y> <C-r>"
+cnoremap <C-y> <C-r>"
 "}}}
 
 " Command line History {{{
@@ -508,31 +503,33 @@ set fillchars=vert:\|
 
 "}}}
 
-
 " Change Keymap for Fold {{{
-noremap [space] <nop>
-nmap <Space> [space]
+noremap [fold] <nop>
+nmap <Space> [fold]
 
-noremap [space]j zj
-noremap [space]k zk
-noremap [space]n ]z
-noremap [space]p [z
-noremap [space]h zc
-noremap [space]l zo
-noremap [space]L zO
-noremap [space]a za
-noremap [space]m zM
-noremap [space]i zMzv
-noremap [space]r zR
-noremap [space]f zf
-noremap [space]g :<C-u>echo FoldCCnavi()<CR>
-noremap [space]d zd
+noremap [fold]j zj
+noremap [fold]k zk
+noremap [fold]n ]z
+noremap [fold]p [z
+"noremap [fold]h zc
+noremap <silent>[fold]h :<C-u>call <SID>smart_foldcloser()<CR>
+noremap [fold]l zo
+noremap [fold]L zO
+noremap [fold]a za
+noremap [fold]m zM
+noremap [fold]i zMzvzz
+noremap [fold]r zR
+noremap [fold]f zf
+noremap [fold]g :<C-u>echo FoldCCnavi()<CR>
+noremap [fold]d zd
 
 nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
+
+nnoremap  [fold][     :<C-u>call <SID>put_foldmarker(0)<CR>
+nnoremap  [fold]]     :<C-u>call <SID>put_foldmarker(1)<CR>
 "}}}
 
 " smart_foldcloser {{{
-nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
 function! s:smart_foldcloser()
   if foldlevel('.') == 0
     norm! zM
@@ -553,8 +550,6 @@ endfunction
 "}}}
 
 " put foldmarker {{{
-nnoremap  z[     :<C-u>call <SID>put_foldmarker(0)<CR>
-nnoremap  z]     :<C-u>call <SID>put_foldmarker(1)<CR>
 function! s:put_foldmarker(foldclose_p)
   let crrstr = getline('.')
   let padding = crrstr=='' ? '' : crrstr=~'\s$' ? '' : ' '
@@ -575,7 +570,9 @@ endfunction
 
 " Tab KeyMaps {{{
 nnoremap t; t
-nnoremap t <Nop>
+nmap t <nop>
+"nnoremap [tab] <nop>
+"nnoremap t [tab]
 nnoremap tl gt
 nnoremap th gT
 nnoremap to :<C-u>edit<Space>
@@ -964,6 +961,11 @@ endif "}}}
 
 " thinca/vim-ref {{{
 if s:bundle_tap('vim-ref') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'commands' : 'Ref',
+        \   }
+        \ })
   let g:ref_jquery_doc_path = $HOME . '/.vim/.bundle/jqapi'
   let g:ref_javascript_doc_path = $HOME . '/.vim/.bundle/jsref/htdocs'
   let g:ref_wikipedia_lang = ['ja', 'en']
@@ -1032,6 +1034,18 @@ if s:bundle_tap('emmet-vim') "{{{
         \       'xml',
         \       'xls',
         \       'markdown'
+        \     ]},
+        \ })
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+" mattn/gist-vim"{{{
+if s:bundle_tap('gist-vim') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       'Gist',
         \     ]},
         \ })
   call s:bundle_untap()
@@ -1132,171 +1146,218 @@ endfunction
 "}}}
 
 " vim-scripts/Align {{{
-let g:Align_xstrlen = 3
+if s:bundle_tap('Align') "{{{
+  let g:Align_xstrlen = 3
+  nnoremap <Leader>acl :<C-u>AlignCtrl l<CR>
+  nnoremap <Leader>acr :<C-u>AlignCtrl r<CR>
+  nnoremap <Leader>acc :<C-u>AlignCtrl c<CR>
+  call s:bundle_untap()
+endif "}}}
 "}}}
 
+" osyo-manga/vim-anzu {{{
+if s:bundle_tap('vim-anzu') "{{{
+  nmap n zz<Plug>(anzu-n)
+  nmap N zz<Plug>(anzu-N)
+  nmap * <Plug>(anzu-star-with-echo)
+  nmap # <Plug>(anzu-sharp-with-echo)
+  " clear status
+  "nnoremap <Esc><Esc> :call anzu#clear_search_status()<CR>
+  nnoremap <silent><Esc><Esc> :<C-u>nohlsearch<CR>
+
+  augroup VimAnzu
+  " Clear hit count when nokeyinput, move window, or move tab
+      autocmd!
+      autocmd CursorHold,CursorHoldI,WinLeave,TabLeave
+        \   * call anzu#clear_search_status()
+  augroup END
+  call s:bundle_untap()
+"}}}
+endif "}}}
+
 " nathanaelkane/vim-indent-guides {{{
-"let s:hooks = neobundle#get_hooks("vim-indent-guides")
-"function! s:hooks.on_source(bundle)
-"  let g:indent_guides_guide_size = 1
-"  let g:indent_guides_auto_colors = 0
-"  let g:indent_guides_color_change_percent = 80
-"  hi IndentGuidesOdd  ctermbg=darkgrey
-"  hi IndentGuidesEven ctermbg=darkgrey
-"  IndentGuidesEnable
-"endfunction
+if s:bundle_tap('vim-indent-guides') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       'IndentGuidesToggle',
+        \     ]},
+        \ })
+  let g:indent_guides_enable_on_vim_startup = 0
+  let g:indent_guides_guide_size = 1
+  let g:indent_guides_auto_colors = 1
+  let g:indent_guides_color_change_percent = 20
+  let g:indent_guides_default_mapping = 0
+  augroup VimIndentGuides
+      autocmd!
+      autocmd VimEnter,Colorscheme *
+        \   :hi IndentGuidesOdd  ctermbg=darkgrey
+      autocmd VimEnter,Colorscheme *
+        \   :hi IndentGuidesEven ctermbg=grey
+  augroup END
+  nnoremap <Leader>i :<C-u>IndentGuidesToggle<CR>
+  call s:bundle_untap()
+endif "}}}
 "}}}
 
 " jedi-vim {{{
-let s:hooks = neobundle#get_hooks("jedi-vim")
-function! s:hooks.on_source(bundle)
-  " jediにvimの設定を任せると'completeopt+=preview'するので
-  " 自動設定機能をOFFにし手動で設定を行う
+if s:bundle_tap('jedi-vim') "{{{
+  call s:bundle_config({
+        \ "autoload": {
+        \   "filetypes": ["python", "python3", "djangohtml"],
+        \ },
+        \ "build": {
+        \   "mac": "pip install jedi",
+        \   "unix": "pip install jedi",
+        \ }})
+  " Disable automatically set completeopt+=preview
   let g:jedi#auto_vim_configuration = 0
-  " 補完の最初の項目が選択された状態だと使いにくいためオフにする
+  " Disable automatically select the first entry that pops up
   let g:jedi#popup_select_first = 0
+  " Disable automatically starts completion upon typing a period
   let g:jedi#popup_on_dot = 0
-  " quickrunと被るため大文字に変更
+  " For quickrun
   let g:jedi#rename_command = '<Leader>R'
-  " gundoと被るため大文字に変更
+  " For gundo
   let g:jedi#goto_assignments_command = '<Leader>G'
-endfunction
+  call s:bundle_untap()
+endif "}}}
 "}}}
 
-" sjl/gundo {{{
-nnoremap <Leader>g :<C-u>GundoToggle<CR>"}}}
+" sjl/gundo.vim" {{{
+if s:bundle_tap('gundo.vim') "{{{
+  call s:bundle_config({
+        \ "autoload": {
+        \   "commands": ['GundoToggle'],
+        \}})
+  nnoremap <Leader>g :<C-u>GundoToggle<CR>
+  call s:bundle_untap()
+endif "}}}
+"}}}
 
 " tyru/open-browser {{{
-" If it looks like URI, open an URI under cursor.
-" Otherwise, search a word under cursor.
-nmap <Leader>o <Plug>(openbrowser-smart-search)
-" If it looks like URI, open selected URI.
-" Otherwise, search selected word.
-vmap <Leader>o <Plug>(openbrowser-smart-search)
-"}}}
-
-" tell-k/vim-browsereload-mac {{{
-"change this variables
-let g:returnApp = "iTerm"
+if s:bundle_tap('open-browser.vim') "{{{
+  call s:bundle_config({
+        \ 'autoload' : {
+        \   'mappings' : '<Plug>(openbrowser-smart-search)',
+        \   'commands' : [
+        \     'OpenBrowserSmartSearch',
+        \     'OpenBrowser',
+        \   ]},
+        \ })
+  " If it looks like URI, open an URI under cursor.
+  " Otherwise, search a word under cursor.
+  nmap <Leader>o <Plug>(openbrowser-smart-search)
+  " If it looks like URI, open selected URI.
+  " Otherwise, search selected word.
+  vmap <Leader>o <Plug>(openbrowser-smart-search)
+  call s:bundle_untap()
+endif "}}}
 "}}}
 
 " lightline.vim {{{
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'mode_map': {
-    \   'n' : 'N',
-    \   'i' : 'I',
-    \   'R' : 'R',
-    \   'v' : 'V',
-    \   'V' : 'V-L',
-    \   'c' : 'COMMAND',
-    \   "\<C-v>": 'V-B',
-    \   's' : 'SELECT',
-    \   'S' : 'S-L',
-    \   "\<C-s>": 'S-B',
-    \   '?': '      '
-    \ },
-    \ 'active': {
-    \   'left': [
-    \       [ 'mode', 'paste' ],
-    \       [ 'fugitive','filename', 'anzu'],
-    \   ],
-    \   'right': [
-    \       [ 'lineinfo', 'syntastic' ],
-    \       [ 'percent' ],
-    \       [ 'absolutepath', 'filetype'],
-    \   ]
-    \ },
-    \ 'component_function': {
-    \   'modified': 'MyModified',
-    \   'readonly': 'MyReadonly',
-    \   'fugitive': 'MyFugitive',
-    \   'filename': 'MyFilename',
-    \   'fileformat': 'MyFileformat',
-    \   'filetype': 'MyFiletype',
-    \   'fileencoding': 'MyFileencoding',
-    \   'mode': 'MyMode',
-    \   'syntastic': 'SyntasticStatuslineFlag',
-    \   'anzu': 'anzu#search_status',
-    \ },
-    \ 'separator': { 'left': '⮀', 'right': '⮂' },
-    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-    \ }
+if s:bundle_tap('lightline.vim') "{{{
+  let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'mode_map': {
+      \   'n' : 'N',
+      \   'i' : 'I',
+      \   'R' : 'R',
+      \   'v' : 'V',
+      \   'V' : 'V-L',
+      \   'c' : 'COMMAND',
+      \   "\<C-v>": 'V-B',
+      \   's' : 'SELECT',
+      \   'S' : 'S-L',
+      \   "\<C-s>": 'S-B',
+      \   '?': '      '
+      \ },
+      \ 'active': {
+      \   'left': [
+      \       [ 'mode', 'paste' ],
+      \       [ 'fugitive','filename', 'anzu'],
+      \   ],
+      \   'right': [
+      \       [ 'lineinfo', 'syntastic' ],
+      \       [ 'percent' ],
+      \       [ 'absolutepath', 'filetype'],
+      \   ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'anzu': 'anzu#search_status',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
 
-function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
+  function! MyModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  endfunction
 
-function! MyReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
-endfunction
+  function! MyReadonly()
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+  endfunction
 
-function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
-endfunction
+  function! MyFilename()
+    return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+          \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+          \  &ft == 'unite' ? unite#get_status_string() :
+          \  &ft == 'vimshell' ? vimshell#get_status_string() :
+          \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+          \ ('' != MyModified() ? ' ' . MyModified() : '')
+  endfunction
 
-function! MyFugitive()
-  try
-    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-      return fugitive#head()
-    endif
-  catch
-  endtry
-  return ''
-endfunction
+  function! MyFugitive()
+    try
+      if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+        return fugitive#head()
+      endif
+    catch
+    endtry
+    return ''
+  endfunction
 
-function! MyFileformat()
-  return winwidth('.') > 70 ? &fileformat : ''
-endfunction
+  function! MyFileformat()
+    return winwidth('.') > 70 ? &fileformat : ''
+  endfunction
 
-function! MyFiletype()
-  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
+  function! MyFiletype()
+    return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+  endfunction
 
-function! MyFileencoding()
-  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
+  function! MyFileencoding()
+    return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+  endfunction
 
-function! MyMode()
-  return winwidth('.') > 60 ? lightline#mode() : ''
-endfunction
+  function! MyMode()
+    return winwidth('.') > 60 ? lightline#mode() : ''
+  endfunction
 
-let g:unite_force_overwrite_statusline=0
-let g:vimfiler_force_overwrite_statusline=0
-let g:vimshell_force_overwrite_statusline=0
-"}}}
+  let g:unite_force_overwrite_statusline=0
+  let g:vimfiler_force_overwrite_statusline=0
+  let g:vimshell_force_overwrite_statusline=0
 
-
-" osyo-manga/vim-anzu {{{
-"nmap n <Plug>(anzu-n-with-echo)zz
-"nmap N <Plug>(anzu-N-with-echo)zz
-nmap n zz<Plug>(anzu-n)
-nmap N zz<Plug>(anzu-N)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-
-" clear status
-"nnoremap <Esc><Esc> :call anzu#clear_search_status()<CR>
-nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
-
-augroup VimAnzu
-" Clear hit count when nokeyinput, move window, or move tab
-    autocmd!
-    autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
-augroup END
+  call s:bundle_untap()
+endif "}}}
 "}}}
 
 " autodate.vim {{{
-let autodate_format = '%Y/%m/%d %H:%M:%S '
+if s:bundle_tap('autodate.vim') "{{{
+  let autodate_format = '%Y/%m/%d %H:%M:%S '
+  call s:bundle_untap()
+endif "}}}
 "}}}
 
 " End plugins }}}
-
 
 "------------------------------------
 "vim: foldmethod=marker
