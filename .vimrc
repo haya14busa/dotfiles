@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/08 15:06:11 .
+" Last Change:2013/09/12 22:27:08 .
 
 " NeoBundle {{{====================
 
@@ -1084,6 +1084,7 @@ endif "}}}
 if s:bundle_tap('vim-easymotion') "{{{
     let g:EasyMotion_leader_key = ';'
     let g:EasyMotion_keys='hjklasdyuiopqwergtnmzxcvb;f'
+    nmap s ;s
     " Keymaps                                "{{{
     "----------------------------------------"
     " [easymotion]s : Find Key               "
@@ -1183,7 +1184,7 @@ if s:bundle_tap('Align') "{{{
 endif "}}}
 "}}}
 
-" osyo-manga/vim-anzu {{{
+" osyo-manga/vim-anzu search{{{
 if s:bundle_tap('vim-anzu') "{{{
   nmap n zz<Plug>(anzu-n)
   nmap N zz<Plug>(anzu-N)
@@ -1191,7 +1192,8 @@ if s:bundle_tap('vim-anzu') "{{{
   nmap # <Plug>(anzu-sharp-with-echo)
   " clear status
   "nnoremap <Esc><Esc> :call anzu#clear_search_status()<CR>
-  nnoremap <silent><Esc><Esc> :<C-u>nohlsearch<CR>
+  "nnoremap <silent><Esc><Esc> :<C-u>nohlsearch<CR>
+  nnoremap <silent><C-l> :<C-u>nohlsearch<CR><C-l>
 
   augroup VimAnzu
   " Clear hit count when nokeyinput, move window, or move tab
