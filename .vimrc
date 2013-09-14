@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/12 22:33:38 .
+" Last Change:2013/09/14 21:39:38 .
 
 " NeoBundle {{{====================
 
@@ -383,7 +383,7 @@ vnoremap <C-p> I<C-r>"<ESC><ESC>
 
 " Get info"{{{
 " get the total of lines, words, chars and bytes (and for the current position)
-nnoremap gi g<C-G>
+nnoremap <Leader>gi g<C-G>
 "}}}
 
 "}}}
