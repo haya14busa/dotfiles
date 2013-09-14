@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/14 21:39:38 .
+" Last Change:2013/09/14 23:24:23 .
 
 " NeoBundle {{{====================
 
@@ -1391,4 +1391,4 @@ endif "}}}
 " End plugins }}}
 
 "------------------------------------
-"vim: foldmethod=marker
+" vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
