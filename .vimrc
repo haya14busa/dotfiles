@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/22 00:59:55 .
+" Last Change:2013/09/22 01:40:53 .
 
 " NeoBundle {{{====================
 
@@ -33,7 +33,6 @@ endfunction " }}}
 "}}}
 
 NeoBundle 'Shougo/vimproc'
-
 NeoBundleLazy 'Shougo/unite.vim'
 " NeoBundle Unite plugins {{{
 NeoBundleLazy 'Shougo/unite-ssh'
@@ -45,14 +44,10 @@ NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'thinca/vim-unite-history'
 "}}}
-
 NeoBundle 'Shougo/vimfiler'
-
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'ujihisa/vimshell-ssh'
-
 NeoBundleLazy 'Shougo/neosnippet.vim'
-
 " Shougo/neocomplete {{{
 if has('lua') && v:version >= 703
     NeoBundleLazy 'Shougo/neocomplete.vim'
@@ -60,39 +55,31 @@ else
     NeoBundleLazy 'Shougo/neocomplcache.vim'
 endif
 "}}}
-
 NeoBundle 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-scouter'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'thinca/vim-template'
-
 " thinca/vim-ref {{{
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'tokuhirom/jsref'
 NeoBundle 'mustardamus/jqapi'
 "}}}
-
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-markdown'
-
 " NeoBundle Git {{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 "}}}
-
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-fakeclip'
-
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
-
 "NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'supasorn/vim-easymotion'
-
 " Neobundle Text Object {{{
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-entire'           " ae, ie
@@ -111,18 +98,15 @@ NeoBundle 'h1mesuke/textobj-wiw'              " a,w a,e
 NeoBundle 'tpope/vim-surround'
 "}}}
 
-
 " Extend Basic Vim Commands
 NeoBundle 'matchit.zip'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'LeafCage/foldCC'
-
 NeoBundle 'vim-scripts/Align'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides'
 NeoBundleLazy "davidhalter/jedi-vim"
 NeoBundleLazy "sjl/gundo.vim"
-
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'autodate.vim'
 
@@ -615,7 +599,7 @@ endfunction
 " Tab Help {{{
 command! -nargs=? Ht  tab help <args>
 command! -nargs=? Hv  vertical belowright help <args>
-nnoremap <Space><Space> :<C-u>tab help<Space>
+nnoremap <Space>t :<C-u>tab help<Space>
 nnoremap <Space>v :<C-u>vertical belowright help<Space>
 "}}}
 
@@ -719,6 +703,7 @@ augroup SassAutocmd
     autocmd BufWritePost *.scss call Sass_convert()
 augroup END
 "}}}
+
 
 "}}}
 
@@ -1392,3 +1377,4 @@ endif "}}}
 
 "------------------------------------
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
+
