@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/14 23:24:23 .
+" Last Change:2013/09/22 00:59:55 .
 
 " NeoBundle {{{====================
 
@@ -43,6 +43,7 @@ NeoBundle 'mattn/unite-advent_calendar'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'thinca/vim-unite-history'
 "}}}
 
 NeoBundle 'Shougo/vimfiler'
@@ -282,7 +283,6 @@ augroup Reloadvimrc
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
 " Reload syntax after source $MYVIMRC
-nnoremap <Leader>S :<C-u>syntax on<CR>
 nnoremap <Leader>ss :<C-u>syntax on<CR>
 "}}}
 
