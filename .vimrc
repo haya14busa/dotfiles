@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/22 01:40:53 .
+" Last Change:2013/10/01 23:08:14 .
 
 " NeoBundle {{{====================
 
@@ -114,10 +114,6 @@ NeoBundle 'autodate.vim'
 NeoBundleLazy 'tyru/open-browser.vim'
 NeoBundle 'vim-scripts/loremipsum'
 
-" Others
-NeoBundle 'pentie/VimRepress' "WordPress
-NeoBundle 'tsukkee/lingr-vim' "Lingr
-
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'pangloss/vim-javascript'
@@ -138,12 +134,19 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
       \   "filetypes": ["php"],
       \ }}
 "}}}
+
 "}}}
 
 " ColorScheme {{{
 NeoBundle 'tomasr/molokai'
 NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'altercation/vim-colors-solarized'
+"}}}
+
+" Others"{{{
+NeoBundle 'pentie/VimRepress' "WordPress
+NeoBundle 'tsukkee/lingr-vim' "Lingr
+NeoBundle 'mattn/learn-vimscript'
 "}}}
 
 filetype plugin indent on
@@ -281,6 +284,7 @@ inoremap <silent> <C-c> <ESC>
 
 " Breakline with Enter {{{
 nnoremap <CR> o<ESC>
+inoremap <CR> <C-g>u<CR>
 "}}}
 
 " Motion {{{
@@ -304,7 +308,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 "}}}
 
-"Paste in insert  and Ex mode"{{{
+" Paste in insert  and Ex mode"{{{
 inoremap <C-y> <C-r>"
 cnoremap <C-y> <C-r>"
 "}}}
