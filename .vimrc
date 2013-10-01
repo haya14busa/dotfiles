@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/09/14 21:39:38 .
+" Last Change:2013/10/01 21:15:19 .
 
 " NeoBundle {{{====================
 
@@ -297,6 +297,7 @@ inoremap <silent> <C-c> <ESC>
 
 " Breakline with Enter {{{
 nnoremap <CR> o<ESC>
+inoremap <CR> <C-g>u<CR>
 "}}}
 
 " Motion {{{
@@ -320,7 +321,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 "}}}
 
-"Paste in insert  and Ex mode"{{{
+" Paste in insert  and Ex mode"{{{
 inoremap <C-y> <C-r>"
 cnoremap <C-y> <C-r>"
 "}}}
