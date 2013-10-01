@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/01 21:15:19 .
+" Last Change:2013/10/01 21:39:30 .
 
 " NeoBundle {{{====================
 
@@ -129,10 +129,6 @@ NeoBundle 'autodate.vim'
 NeoBundleLazy 'tyru/open-browser.vim'
 NeoBundle 'vim-scripts/loremipsum'
 
-" Others
-NeoBundle 'pentie/VimRepress' "WordPress
-NeoBundle 'tsukkee/lingr-vim' "Lingr
-
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'pangloss/vim-javascript'
@@ -153,12 +149,19 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
       \   "filetypes": ["php"],
       \ }}
 "}}}
+
 "}}}
 
 " ColorScheme {{{
 NeoBundle 'tomasr/molokai'
 NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'altercation/vim-colors-solarized'
+"}}}
+
+" Others"{{{
+NeoBundle 'pentie/VimRepress' "WordPress
+NeoBundle 'tsukkee/lingr-vim' "Lingr
+NeoBundle 'mattn/learn-vimscript'
 "}}}
 
 filetype plugin indent on
