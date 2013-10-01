@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/01 21:39:30 .
+" Last Change:2013/10/01 23:10:34 .
 
 " NeoBundle {{{====================
 
@@ -300,6 +300,7 @@ inoremap <silent> <C-c> <ESC>
 
 " Breakline with Enter {{{
 nnoremap <CR> o<ESC>
+" for Undo Revision
 inoremap <CR> <C-g>u<CR>
 "}}}
 
