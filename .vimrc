@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/01 23:23:21 .
+" Last Change:2013/10/02 22:55:01 .
 
 " NeoBundle {{{====================
 
@@ -79,7 +79,7 @@ NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 "NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'supasorn/vim-easymotion'
+NeoBundle 'haya14busa/vim-easymotion'
 " Neobundle Text Object {{{
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-entire'           " ae, ie
@@ -1092,8 +1092,8 @@ if s:bundle_tap('vim-easymotion') "{{{
     " Highlight"{{{
     hi link EasyMotionTarget ErrorMsg
     hi link EasyMotionShade  Comment
-    hi link EasyMotionTarget2First MoreMsg
-    hi link EasyMotionTarget2Second MoreMsg
+    hi link EasyMotionTarget2First Wildmenu
+    hi link EasyMotionTarget2Second Folded
     "}}}
 
     " forked easymotion extention"{{{
