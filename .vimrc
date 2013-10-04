@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/04 21:44:23 .
+" Last Change:2013/10/05 01:14:42 .
 
 " NeoBundle {{{====================
 
@@ -1094,15 +1094,20 @@ if s:bundle_tap('vim-easymotion') "{{{
     let g:EasyMotion_special_select_line = 1
     let g:EasyMotion_special_select_phrase = 1
 
+    let g:EasyMotion_special_mapping_l = 'L'
+    let g:EasyMotion_special_mapping_p = 'p'
+
     " keep cursor column
     let g:EasyMotion_startofline = 0
+
+    " smartcase
+    let g:EasyMotion_smartcase = 1
+
     "}}}
 
     " Change mapping for Unite"{{{
     let g:EasyMotion_mapping_f = ';,f'
     let g:EasyMotion_mapping_F = ';,F'
-    let g:EasyMotion_mapping_t = ';,t'
-    let g:EasyMotion_mapping_T = ';,T'
     let g:EasyMotion_mapping_W = ';,W'
     let g:EasyMotion_mapping_b = ';,b'
     let g:EasyMotion_mapping_B = ';,B'
