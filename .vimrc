@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/02 22:55:01 .
+" Last Change:2013/10/04 21:44:23 .
 
 " NeoBundle {{{====================
 
@@ -1073,44 +1073,41 @@ endif "}}}
 " vim-easymotion {{{
 if s:bundle_tap('vim-easymotion') "{{{
     let g:EasyMotion_leader_key = ';'
-    let g:EasyMotion_keys='hjklasdyuiopqwergtnmzxcvb;f'
+    let g:EasyMotion_keys='hklyuiopnm,.qwertzxcvbasdgjf;'
     " Shortcut!
-    nnoremap s :call EasyMotion#S(0,2)<CR>
-    vnoremap s :<C-u>call EasyMotion#S(1,2)<CR>
-    " Keymaps                                "{{{
-    "----------------------------------------"
-    " [easymotion]s : Find Key               "
-    " [easymotion]j : Line Downward          "
-    " [easymotion]k : Line Upward            "
-    " [easymotion]n : Search                 "
-    " [easymotion]N : Search backward        "
-    " [easymotion]w : Beginning of word      "
-    " [easymotion]e : End of word            "
-    " [easymotion]ge: End of word backward   "
-    "----------------------------------------"}}}
+    " let g:EasyMotion_mapping_s = 's'
+    " let g:EasyMotion_mapping_S = 'S'
+    nmap s ;s
+    vmap s ;s
+    nmap S ;S
+    vmap S ;S
+    nnoremap ;l :call EasyMotion#JK(0,2)<CR>
 
     " Highlight"{{{
     hi link EasyMotionTarget ErrorMsg
     hi link EasyMotionShade  Comment
-    hi link EasyMotionTarget2First Wildmenu
-    hi link EasyMotionTarget2Second Folded
+    hi link EasyMotionTarget2First MatchParen
+    hi link EasyMotionTarget2Second MatchParen
     "}}}
 
     " forked easymotion extention"{{{
-    let g:EasyMotion_special_select_line = 0
-    let g:EasyMotion_special_select_phrase = 0
+    let g:EasyMotion_special_select_line = 1
+    let g:EasyMotion_special_select_phrase = 1
+
+    " keep cursor column
+    let g:EasyMotion_startofline = 0
     "}}}
 
-    " Disable for Unite Mapping"{{{
-    let g:EasyMotion_mapping_f = '_f'
-    let g:EasyMotion_mapping_F = '_F'
-    let g:EasyMotion_mapping_t = '_t'
-    let g:EasyMotion_mapping_T = '_T'
-    let g:EasyMotion_mapping_W = '_W'
-    let g:EasyMotion_mapping_b = '_b'
-    let g:EasyMotion_mapping_B = '_B'
-    let g:EasyMotion_mapping_E = '_E'
-    let g:EasyMotion_mapping_gE = '_gE'
+    " Change mapping for Unite"{{{
+    let g:EasyMotion_mapping_f = ';,f'
+    let g:EasyMotion_mapping_F = ';,F'
+    let g:EasyMotion_mapping_t = ';,t'
+    let g:EasyMotion_mapping_T = ';,T'
+    let g:EasyMotion_mapping_W = ';,W'
+    let g:EasyMotion_mapping_b = ';,b'
+    let g:EasyMotion_mapping_B = ';,B'
+    let g:EasyMotion_mapping_E = ';,E'
+    let g:EasyMotion_mapping_gE = ';,gE'
     "}}}
 
   call s:bundle_untap()
