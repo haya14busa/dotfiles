@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/05 11:22:38 .
+" Last Change:2013/10/05 13:19:55 .
 
 " NeoBundle {{{====================
 
@@ -1103,6 +1103,9 @@ if s:bundle_tap('vim-easymotion') "{{{
 
     " smartcase
     let g:EasyMotion_smartcase = 1
+
+    " Don't skip folded line
+    let g:EasyMotion_skipfoldedline = 1
 
     "}}}
 
