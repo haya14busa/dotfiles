@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/05 13:19:55 .
+" Last Change:2013/10/09 22:08:17 .
 
 " NeoBundle {{{====================
 
@@ -248,10 +248,12 @@ set wildignore+=*.stats                          " Pylint stats
 
 " }}}
 
-" Fold Basic Settings
+" Fold Basic Settings "{{{
 set foldenable
 set foldmethod=marker
 set foldlevel=100
+"}}}
+
 "}}}
 
 " release autogroup in MyAutoCmd {{{
@@ -697,26 +699,26 @@ augroup END
 function! Sass_convert()
     let scss = expand('%:p')
     let css  = substitute(scss, 'scss$', 'css', '')
-    let cmd  = printf('sass --compass -I /usr/local/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass %s %s', scss, css)
+    let cmd  = printf('sass --compass -i /usr/local/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass %s %s', scss, css)
     let res  = system(cmd)
     if res != ''
         echo res
     endif
 endfunction
 
-augroup SassAutocmd
-    autocmd BufWritePost *.scss call Sass_convert()
-augroup END
+augroup sassautocmd
+    autocmd bufwritepost *.scss call Sass_convert()
+augroup end
 "}}}
 
 
 "}}}
 
-" END Vim Setup}}}
+" end vim setup}}}
 
-" Plugin Settings {{{====================
+" plugin settings {{{====================
 
-" Shougo/vimproc"{{{
+" shougo/vimproc"{{{
 if s:bundle_tap('vimproc') "{{{
   call s:bundle_config({
        \ 'build' : {
@@ -1105,7 +1107,7 @@ if s:bundle_tap('vim-easymotion') "{{{
     let g:EasyMotion_smartcase = 1
 
     " Don't skip folded line
-    let g:EasyMotion_skipfoldedline = 1
+    let g:EasyMotion_skipfoldedline = 0
 
     "}}}
 
