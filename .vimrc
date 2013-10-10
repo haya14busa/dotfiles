@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/09 22:08:17 .
+" Last Change:2013/10/10 20:49:42 .
 
 " NeoBundle {{{====================
 
@@ -10,9 +10,9 @@ set nocompatible
 filetype plugin indent off
 
 if has('vim_starting')
-    set runtimepath& runtimepath+=~/.vim/.bundle/neobundle.vim/
+    set runtimepath& runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/.bundle/'))
+call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -135,6 +135,11 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
       \ }}
 "}}}
 
+"}}}
+
+" NeoBundle Japanese {{{
+NeoBundle 'migemo', {'type':'nosync','base':'~/.vim/bundle/manual'}
+NeoBundle 'tyru/eskk.vim'
 "}}}
 
 " ColorScheme {{{
@@ -279,7 +284,7 @@ nnoremap <Leader>ss :<C-u>syntax on<CR>
 
 " Escape Keymaps {{{
 inoremap <silent> jj <ESC>
-inoremap <silent> kk <ESC>
+"inoremap <silent> kk <ESC>
 vnoremap <silent> <C-j> <ESC>
 inoremap <silent> <C-c> <ESC>
 "}}}
@@ -1084,7 +1089,7 @@ if s:bundle_tap('vim-easymotion') "{{{
     vmap s ;s
     nmap S ;S
     vmap S ;S
-    nnoremap ;l :call EasyMotion#JK(0,2)<CR>
+    "nnoremap ;l :call EasyMotion#JK(0,2)<CR>
 
     " Highlight"{{{
     hi link EasyMotionTarget ErrorMsg
@@ -1385,6 +1390,21 @@ if s:bundle_tap('autodate.vim') "{{{
   let autodate_format = '%Y/%m/%d %H:%M:%S '
   call s:bundle_untap()
 endif "}}}
+"}}}
+
+" eskk.vim {{{
+let g:eskk#directory = "~/.eskk"
+let g:eskk#dictionary = {
+  \   'path': "~/.skk-jisyo",
+  \   'sorted': 0,
+  \   'encoding': 'utf-8',
+  \   }
+let g:eskk#large_dictionary = {
+  \   'path': "~/.eskk/SKK-JISYO.L",
+  \   'sorted': 1,
+  \   'encoding': 'euc-jp',
+  \   }
+let g:eskk#enable_completion = 1
 "}}}
 
 " End plugins }}}
