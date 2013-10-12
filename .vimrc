@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/10 20:49:42 .
+" Last Change:2013/10/12 20:48:50 .
 
 " NeoBundle {{{====================
 
@@ -291,8 +291,17 @@ inoremap <silent> <C-c> <ESC>
 
 " Breakline with Enter {{{
 nnoremap <CR> o<ESC>
-" for Undo Revision
-inoremap <CR> <C-g>u<CR>
+"}}}
+
+" For Undo Revision, Break Undo Sequence "{{{
+inoremap <CR> <C-]><C-G>u<CR>
+
+inoremap <C-h> <C-g>u<C-h>
+inoremap <BS> <C-g>u<BS>
+inoremap <Del> <C-g>u<Del>
+inoremap <C-d> <C-g>u<Del>
+inoremap <C-w> <C-g>u<C-w>
+inoremap <C-u> <C-g>u<C-u>
 "}}}
 
 " Motion {{{
@@ -314,6 +323,10 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+
+" Word Motion in Insert Mode
+inoremap <M-w> <S-Right>
+inoremap <M-b> <S-Left>
 "}}}
 
 " Paste in insert  and Ex mode"{{{
@@ -380,6 +393,11 @@ vnoremap <C-p> I<C-r>"<ESC><ESC>
 " Get info"{{{
 " get the total of lines, words, chars and bytes (and for the current position)
 nnoremap <Leader>gi g<C-G>
+"}}}
+
+
+" Relative Number "{{{
+nnoremap <Leader><Leader>r :<C-u>set relativenumber!<CR>
 "}}}
 
 "}}}
@@ -1085,7 +1103,7 @@ if s:bundle_tap('vim-easymotion') "{{{
     " let g:EasyMotion_mapping_s = 's'
     " let g:EasyMotion_mapping_S = 'S'
     nmap s ;s
-    imap <C-d> <C-o>;s
+    imap <M-s> <C-o>;s
     vmap s ;s
     nmap S ;S
     vmap S ;S
@@ -1393,18 +1411,26 @@ endif "}}}
 "}}}
 
 " eskk.vim {{{
-let g:eskk#directory = "~/.eskk"
-let g:eskk#dictionary = {
-  \   'path': "~/.skk-jisyo",
-  \   'sorted': 0,
-  \   'encoding': 'utf-8',
-  \   }
-let g:eskk#large_dictionary = {
-  \   'path': "~/.eskk/SKK-JISYO.L",
-  \   'sorted': 1,
-  \   'encoding': 'euc-jp',
-  \   }
-let g:eskk#enable_completion = 1
+if s:bundle_tap('eskk.vim') "{{{
+  let g:eskk#directory = "~/.eskk"
+  let g:eskk#dictionary = {
+    \   'path': "~/.skk-jisyo",
+    \   'sorted': 0,
+    \   'encoding': 'utf-8',
+    \   }
+  let g:eskk#large_dictionary = {
+    \   'path': "~/.eskk/SKK-JISYO.L",
+    \   'sorted': 1,
+    \   'encoding': 'euc-jp',
+    \   }
+  let g:eskk#enable_completion = 1
+endif "}}}
+"}}}
+
+" clever-f.vim {{{
+if s:bundle_tap('clever-f.vim') "{{{
+  let g:clever_f_use_migemo = 1
+endif "}}}
 "}}}
 
 " End plugins }}}
