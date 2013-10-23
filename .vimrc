@@ -2,14 +2,14 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/12 20:48:50 .
+" Last Change:2013/10/23 15:07:18 .
 
 " NeoBundle {{{====================
 
-set nocompatible
 filetype plugin indent off
 
 if has('vim_starting')
+    set nocompatible
     set runtimepath& runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 call neobundle#rc(expand('~/.vim/bundle/'))
@@ -30,6 +30,16 @@ endfunction " }}}
 function! s:bundle_untap() " {{{
   let s:tapped_bundle = {}
 endfunction " }}}
+
+" MyNeoBundle {{{
+command! -nargs=1
+\   MyNeoBundle
+\   NeoBundle <args>, {
+\       "base" : "~/.vim/myplugin/",
+\       "type" : "nosync",
+\   }
+"}}}
+
 "}}}
 
 NeoBundle 'Shougo/vimproc'
@@ -79,7 +89,8 @@ NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 "NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'haya14busa/vim-easymotion'
+"NeoBundle 'haya14busa/vim-easymotion'
+MyNeoBundle 'vim-easymotion'
 " Neobundle Text Object {{{
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-entire'           " ae, ie
@@ -291,6 +302,10 @@ inoremap <silent> <C-c> <ESC>
 
 " Breakline with Enter {{{
 nnoremap <CR> o<ESC>
+
+nnoremap <C-j> O<ESC>j
+nnoremap <C-k> k"_dd
+
 "}}}
 
 " For Undo Revision, Break Undo Sequence "{{{
@@ -302,6 +317,7 @@ inoremap <Del> <C-g>u<Del>
 inoremap <C-d> <C-g>u<Del>
 inoremap <C-w> <C-g>u<C-w>
 inoremap <C-u> <C-g>u<C-u>
+
 "}}}
 
 " Motion {{{
@@ -335,10 +351,10 @@ cnoremap <C-y> <C-r>"
 "}}}
 
 " Window {{{
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 
 nnoremap <S-Right> :<C-u>vertical resize +2<CR>
 nnoremap <S-Left> :<C-u>vertical resize -2<CR>
@@ -862,6 +878,7 @@ if s:bundle_tap('vimfiler') "{{{
         \ })
   let g:vimfiler_as_default_explorer=1
   let g:vimfiler_safe_mode_by_default=0
+  nnoremap <silent> <Leader>vf :VimFilerBufferDir -split -simple -no-quit -winwidth=32<CR>
   call s:bundle_untap()
 endif "}}}
 "}}}
@@ -1437,4 +1454,3 @@ endif "}}}
 
 "------------------------------------
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
-
