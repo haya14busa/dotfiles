@@ -25,8 +25,14 @@ SAVEHIST=1000000
 # 1行表示
 # PROMPT="%~ %# "
 # 2行表示
-PROMPT="%{${fg[red]}%}[%n@%m]%{${reset_color}%} %~
-%# "
+# PROMPT="%{${fg[red]}%}[%n@%m]%{${reset_color}%} %~
+# %# "
+# PROMPT="%{${fg[red]}%}[haya14busa@%m]%{${reset_color}%} %~ "$'\n'"%# "
+local p_name="%(!,root,haya14busa)"
+local p_info="%B%F{red}[$p_name@%m]%f%b"
+local p_cdir="%~"$'\n'
+local p_mark="%B%(!,su#,#)%b"
+PROMPT="$p_info $p_cdir$p_mark "
 
 
 # 単語の区切り文字を指定する
