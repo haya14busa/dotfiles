@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/23 15:07:18 .
+" Last Change:2013/10/24 01:55:36 .
 
 " NeoBundle {{{====================
 
@@ -149,7 +149,8 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
 "}}}
 
 " NeoBundle Japanese {{{
-NeoBundle 'migemo', {'type':'nosync','base':'~/.vim/bundle/manual'}
+"NeoBundle 'migemo', {'type':'nosync','base':'~/.vim/bundle/manual'}
+MyNeoBundle 'migemo'
 NeoBundle 'tyru/eskk.vim'
 "}}}
 
@@ -426,7 +427,7 @@ autocmd MyAutoCmd InsertLeave * set nopaste
 " Show invisibles {{{
 
 " Shortcut to rapidly toggle `set list`
-nnoremap <Leader>l :<C-u>set list!<CR>
+nnoremap <silent> <Leader>l :<C-u>set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -1149,6 +1150,7 @@ if s:bundle_tap('vim-easymotion') "{{{
     " Don't skip folded line
     let g:EasyMotion_skipfoldedline = 0
 
+    let g:EasyMotion_use_migemo = 1
     "}}}
 
     " Change mapping for Unite"{{{
@@ -1447,6 +1449,7 @@ endif "}}}
 " clever-f.vim {{{
 if s:bundle_tap('clever-f.vim') "{{{
   let g:clever_f_use_migemo = 1
+  let g:clever_f_smart_case = 1
 endif "}}}
 "}}}
 
