@@ -419,8 +419,7 @@ nnoremap <Leader>gi g<C-G>
 nnoremap <Leader><Leader>r :<C-u>set relativenumber!<CR>
 "}}}
 
-
-" repeat on every line {{{
+" Repeat on every line {{{
 vnoremap . :normal .<CR>
 "}}}
 
