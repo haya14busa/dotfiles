@@ -76,7 +76,7 @@ NeoBundle 'tokuhirom/jsref'
 NeoBundle 'mustardamus/jqapi'
 "}}}
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-commentary' "gc{motion} , \\{motion}, \\\
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-markdown'
 " NeoBundle Git {{{
