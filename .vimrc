@@ -83,6 +83,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 "}}}
+NeoBundleLazy 'kana/vim-smartinput'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundleLazy 'mattn/emmet-vim'
@@ -91,6 +92,7 @@ NeoBundle 'mattn/webapi-vim'
 "NeoBundle 'Lokaltog/vim-easymotion'
 "NeoBundle 'haya14busa/vim-easymotion'
 MyNeoBundle 'vim-easymotion'
+
 " Neobundle Text Object {{{
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-entire'           " ae, ie
@@ -310,7 +312,8 @@ nnoremap <C-k> k"_dd
 "}}}
 
 " For Undo Revision, Break Undo Sequence "{{{
-inoremap <CR> <C-]><C-G>u<CR>
+" -> vim-smartinput
+" inoremap <CR> <C-]><C-G>u<CR>
 
 inoremap <C-h> <C-g>u<C-h>
 inoremap <BS> <C-g>u<BS>
@@ -412,10 +415,24 @@ vnoremap <C-p> I<C-r>"<ESC><ESC>
 nnoremap <Leader>gi g<C-G>
 "}}}
 
-
 " Relative Number "{{{
 nnoremap <Leader><Leader>r :<C-u>set relativenumber!<CR>
 "}}}
+
+
+" repeat on every line {{{
+vnoremap . :normal .<CR>
+"}}}
+
+" Keymap candidate
+" n
+" ---
+" K
+" U
+" S
+" X
+" <C-e>
+" <C-y>
 
 "}}}
 
@@ -1461,6 +1478,42 @@ endif "}}}
 if s:bundle_tap('clever-f.vim') "{{{
   let g:clever_f_use_migemo = 1
   let g:clever_f_smart_case = 1
+endif "}}}
+"}}}
+
+" vim-smartinput {{{
+if s:bundle_tap('vim-smartinput') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'insert' : 1,
+        \   }
+        \ })
+
+  " Space in Bracket "{{{
+  call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
+  call smartinput#define_rule({
+              \   'at'    : '(\%#)',
+              \   'char'  : '<Space>',
+              \   'input' : '<Space><Space><Left>',
+              \   })
+
+  call smartinput#define_rule({
+              \   'at'    : '( \%# )',
+              \   'char'  : '<BS>',
+              \   'input' : '<Del><BS>',
+              \   })
+  "}}}
+
+  " Delete EOL Space "{{{
+  call smartinput#define_rule({
+              \   'at'    : '\s\+\%#',
+              \   'char'  : '<CR>',
+              \   'input' :
+                \ "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><C-]><C-G>u<CR>",
+              \   })
+  "}}}
+
+
 endif "}}}
 "}}}
 
