@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/03 04:49:41 .
+" Last Change:2013/11/03 04:59:59 .
 
 " NeoBundle {{{====================
 
@@ -114,6 +114,7 @@ NeoBundle 'tpope/vim-surround'
 " Extend Basic Vim Commands
 NeoBundle 'matchit.zip'
 NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'rhysd/accelerated-jk'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'vim-scripts/Align'
@@ -1479,6 +1480,14 @@ endif "}}}
 if s:bundle_tap('clever-f.vim') "{{{
   let g:clever_f_use_migemo = 1
   let g:clever_f_smart_case = 1
+endif "}}}
+"}}}
+
+"  accelerated-jk {{{
+if s:bundle_tap('accelerated-jk') "{{{
+  nmap j <Plug>(accelerated_jk_gj)
+  nmap k <Plug>(accelerated_jk_gk)
+  let g:accelerated_jk_acceleration_table=[7,52,57]
 endif "}}}
 "}}}
 
