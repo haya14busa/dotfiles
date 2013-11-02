@@ -30,3 +30,10 @@
 	d10 = diff HEAD~~~~~~~~~~  # HEADから10前とdiff
 [github]
 	user = haya14busa
+[merge]
+	tool = vimdiff
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "vimdiff3"]
+	cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"

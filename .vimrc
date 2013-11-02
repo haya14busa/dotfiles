@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/10/24 01:55:36 .
+" Last Change:2013/11/03 00:59:19 .
 
 " NeoBundle {{{====================
 
@@ -713,6 +713,17 @@ augroup AutoMkdir
     endif
   endfunction  " }}}
 augroup END
+"}}}
+
+" Mapping for vimdiff{{{
+" for git mergetool
+if &diff
+  map <Leader>1 :diffget LOCAL<CR>
+  map <Leader>2 :diffget BASE<CR>
+  map <Leader>3 :diffget REMOTE<CR>
+  map <Leader>u :<C-u>diffupdate<CR>
+  map u u:<C-u>diffupdate<CR>
+endif
 "}}}
 
 " Filetypes "{{{====================
