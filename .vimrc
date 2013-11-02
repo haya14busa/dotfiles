@@ -1470,6 +1470,8 @@ if s:bundle_tap('eskk.vim') "{{{
     \   'encoding': 'euc-jp',
     \   }
   let g:eskk#enable_completion = 1
+  imap <C-j> <Plug>(eskk:toggle)
+  cmap <C-j> <Plug>(eskk:toggle)
 endif "}}}
 "}}}
 
