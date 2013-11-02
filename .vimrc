@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/03 00:59:19 .
+" Last Change:2013/11/03 04:49:41 .
 
 " NeoBundle {{{====================
 
@@ -84,7 +84,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 "}}}
 NeoBundleLazy 'kana/vim-smartinput'
-NeoBundle 'kana/vim-smartchr'
+NeoBundleLazy 'kana/vim-smartchr'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
@@ -1513,6 +1513,26 @@ if s:bundle_tap('vim-smartinput') "{{{
               \   })
   "}}}
 
+
+endif "}}}
+"}}}
+
+" vim-smartchr {{{
+if s:bundle_tap('vim-smartchr') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'insert' : 1,
+        \   }
+        \ })
+  "inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
+  "inoremap <expr> > smartchr#loop(' > ', ' >> ', '>')
+  "inoremap <expr> < smartchr#loop(' < ', ' << ', '<')
+  "inoremap <expr> & smartchr#loop(' & ', ' && ', '&')
+  "inoremap <expr> <Bar> smartchr#loop(' | ', ' || ', '|')
+
+  "inoremap <expr> + smartchr#loop(' + ', '++', '+')
+  "inoremap <expr> - smartchr#loop(' - ', '--', '-')
+  "inoremap <expr> * smartchr#loop(' * ', '*')
 
 endif "}}}
 "}}}
