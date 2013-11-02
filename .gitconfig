@@ -31,9 +31,11 @@
 [github]
 	user = haya14busa
 [merge]
-	tool = vimdiff
+	tool = myvimdiff
 [mergetool]
 	prompt = false
 	keepBackup = false
 [mergetool "vimdiff3"]
 	cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+[mergetool "myvimdiff"]
+	cmd = myvimdiff \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
