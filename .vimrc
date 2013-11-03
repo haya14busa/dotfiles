@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/03 04:59:59 .
+" Last Change:2013/11/03 18:23:27 .
 
 " NeoBundle {{{====================
 
@@ -115,6 +115,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'matchit.zip'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'rhysd/accelerated-jk'
+NeoBundle 'deris/columnjump'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'vim-scripts/Align'
@@ -307,8 +308,8 @@ inoremap <silent> <C-c> <ESC>
 " Breakline with Enter {{{
 nnoremap <CR> o<ESC>
 
-nnoremap <C-j> O<ESC>j
-nnoremap <C-k> k"_dd
+"nnoremap <C-j> O<ESC>j
+"nnoremap <C-k> k"_dd
 
 "}}}
 
@@ -1544,6 +1545,13 @@ if s:bundle_tap('vim-smartchr') "{{{
   "inoremap <expr> - smartchr#loop(' - ', '--', '-')
   "inoremap <expr> * smartchr#loop(' * ', '*')
 
+endif "}}}
+"}}}
+
+" columnjump {{{
+if s:bundle_tap('columnjump') "{{{
+  nmap <C-k> <Plug>(columnjump-backward)
+  nmap <C-j> <Plug>(columnjump-forward)
 endif "}}}
 "}}}
 
