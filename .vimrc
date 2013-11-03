@@ -129,6 +129,11 @@ NeoBundle 'autodate.vim'
 NeoBundleLazy 'tyru/open-browser.vim'
 NeoBundle 'vim-scripts/loremipsum'
 
+" NeoBundle Lisp & Scheme
+" NeoBundleLazy 'amdt/vim-niji'
+NeoBundleLazy 'aharisu/vim_goshrepl'
+NeoBundle 'kien/rainbow_parentheses.vim'
+
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'pangloss/vim-javascript'
@@ -1557,6 +1562,58 @@ endif "}}}
 if s:bundle_tap('columnjump') "{{{
   nmap <C-k> <Plug>(columnjump-backward)
   nmap <C-j> <Plug>(columnjump-forward)
+endif "}}}
+"}}}
+
+" amdt/vim-niji "{{{
+if s:bundle_tap('vim-niji') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'filetypes' : [
+        \       'scheme',
+        \       'clojure',
+        \       'lisp'
+        \     ]},
+        \ })
+  echom 'vim-niji Loaded'
+  let g:loaded_niji = 0
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+" aharisu/vim_goshrepl "{{{
+if s:bundle_tap('vim_goshrepl') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'filetypes' : [
+        \       'scheme',
+        \       'clojure',
+        \       'lisp'
+        \     ]},
+        \ })
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+" kien/rainbow_parentheses.vim "{{{
+if s:bundle_tap('rainbow_parentheses.vim') "{{{
+  " Scheme {{{
+  augroup SchemeAutocmd
+    autocmd!
+    autocmd BufRead,BufNewFile,BufReadPre *.scm
+          \ RainbowParenthesesLoadRound
+    autocmd BufWinEnter *.scm
+          \ RainbowParenthesesToggle
+  augroup END
+  " }}}
+  " n -> niji
+  nnoremap <silent> <Leader><Leader>n
+        \ :RainbowParenthesesLoadRound<CR>
+        \ :RainbowParenthesesLoadSquare<CR>
+        \ :RainbowParenthesesLoadBraces<CR>
+        \ :RainbowParenthesesLoadChevrons<CR>
+        \ :RainbowParenthesesToggleAll<CR>
+  call s:bundle_untap()
 endif "}}}
 "}}}
 
