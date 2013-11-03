@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/03 18:23:27 .
+" Last Change:2013/11/03 18:29:01 .
 
 " NeoBundle {{{====================
 
@@ -84,7 +84,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 "}}}
 NeoBundleLazy 'kana/vim-smartinput'
-NeoBundleLazy 'kana/vim-smartchr'
+"NeoBundleLazy 'kana/vim-smartchr'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
@@ -1535,6 +1535,7 @@ if s:bundle_tap('vim-smartchr') "{{{
         \     'insert' : 1,
         \   }
         \ })
+  " TODO: Good Settings
   "inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
   "inoremap <expr> > smartchr#loop(' > ', ' >> ', '>')
   "inoremap <expr> < smartchr#loop(' < ', ' << ', '<')
