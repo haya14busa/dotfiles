@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/03 18:29:01 .
+" Last Change:2013/11/03 20:38:03 .
 
 " NeoBundle {{{====================
 
@@ -293,7 +293,8 @@ augroup Reloadvimrc
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
 " Reload syntax after source $MYVIMRC
-nnoremap <Leader>ss :<C-u>syntax on<CR>
+" -> <C-l>
+" nnoremap <Leader><Leader>s :<C-u>syntax on<CR>
 "}}}
 
 " Useful Keymaps{{{
@@ -316,7 +317,7 @@ nnoremap <CR> o<ESC>
 " For Undo Revision, Break Undo Sequence "{{{
 " -> vim-smartinput
 " inoremap <CR> <C-]><C-G>u<CR>
-
+"
 inoremap <C-h> <C-g>u<C-h>
 inoremap <BS> <C-g>u<BS>
 inoremap <Del> <C-g>u<Del>
@@ -1264,7 +1265,9 @@ if s:bundle_tap('vim-anzu') "{{{
   " clear status
   "nnoremap <Esc><Esc> :call anzu#clear_search_status()<CR>
   "nnoremap <silent><Esc><Esc> :<C-u>nohlsearch<CR>
-  nnoremap <silent><C-l> :<C-u>nohlsearch<CR><C-l>
+  nnoremap <silent><C-l>
+        \ :<C-u>nohlsearch<CR>
+        \ :syntax on<CR><C-l>
 
   augroup VimAnzu
   " Clear hit count when nokeyinput, move window, or move tab
@@ -1484,7 +1487,7 @@ if s:bundle_tap('clever-f.vim') "{{{
 endif "}}}
 "}}}
 
-"  accelerated-jk {{{
+" accelerated-jk {{{
 if s:bundle_tap('accelerated-jk') "{{{
   nmap j <Plug>(accelerated_jk_gj)
   nmap k <Plug>(accelerated_jk_gk)
