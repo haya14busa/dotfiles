@@ -1499,7 +1499,8 @@ if s:bundle_tap('vim-smartinput') "{{{
         \     'insert' : 1,
         \   }
         \ })
-
+  " Clear Default Rules
+  call smartinput#clear_rules()
   " Space in Bracket "{{{
   call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
   call smartinput#define_rule({
