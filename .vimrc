@@ -174,6 +174,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'pentie/VimRepress' "WordPress
 NeoBundle 'tsukkee/lingr-vim' "Lingr
 NeoBundle 'mattn/learn-vimscript'
+NeoBundle 'thinca/vim-prettyprint'
 "}}}
 
 filetype plugin indent on
