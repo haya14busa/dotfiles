@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/07 03:22:44 .
+" Last Change:2013/11/07 17:04:28 .
 
 " NeoBundle {{{====================
 
@@ -65,6 +65,7 @@ else
     NeoBundleLazy 'Shougo/neocomplcache.vim'
 endif
 "}}}
+
 NeoBundle 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-scouter'
 NeoBundle 'thinca/vim-visualstar'
@@ -75,6 +76,7 @@ NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'tokuhirom/jsref'
 NeoBundle 'mustardamus/jqapi'
 "}}}
+
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-commentary' "gc{motion} , \\{motion}, \\\
 NeoBundle 'tpope/vim-haml'
@@ -83,15 +85,19 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 "}}}
+
 NeoBundleLazy 'kana/vim-smartinput'
 "NeoBundleLazy 'kana/vim-smartchr'
 NeoBundle 'kana/vim-fakeclip'
+
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
+
 "NeoBundle 'Lokaltog/vim-easymotion'
 "NeoBundle 'haya14busa/vim-easymotion'
 MyNeoBundle 'vim-easymotion'
+NeoBundle 'vim-scripts/DrawIt'
 
 " Neobundle Text Object {{{
 NeoBundle 'kana/vim-textobj-user'
