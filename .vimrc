@@ -460,6 +460,10 @@ vnoremap / <esc>/\v%V
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 "}}}
+
+" select last inserted text
+nnoremap gV `[v`]
+
 " Keymap candidate
 " n
 " ---
