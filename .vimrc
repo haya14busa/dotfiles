@@ -355,6 +355,8 @@ vnoremap gk k
 
 nnoremap l <Right>
 
+nnoremap - $
+
 "inoremap <C-j> <Down>
 "inoremap <C-k> <Up>
 inoremap <C-b> <Left>
