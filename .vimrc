@@ -445,7 +445,10 @@ nnoremap <Leader><Leader>r :<C-u>set relativenumber!<CR>
 "}}}
 
 " Repeat on every line {{{
+" repeat last command for each line of a visual selection
 vnoremap . :normal .<CR>
+" replay @q macro for each line of a visual selection
+vnoremap @q :normal @q<CR>
 "}}}
 
 " Search {{{
