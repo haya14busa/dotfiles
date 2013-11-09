@@ -448,6 +448,15 @@ nnoremap <Leader><Leader>r :<C-u>set relativenumber!<CR>
 vnoremap . :normal .<CR>
 "}}}
 
+" Search {{{
+" always 'very magic'
+nnoremap / /\v
+" search within visual block
+vnoremap / <esc>/\v%V
+
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+"}}}
 " Keymap candidate
 " n
 " ---
