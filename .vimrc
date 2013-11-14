@@ -125,7 +125,8 @@ NeoBundle 'rhysd/accelerated-jk'
 NeoBundle 'deris/columnjump'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'LeafCage/foldCC'
-NeoBundle 'vim-scripts/Align'
+"NeoBundle 'vim-scripts/Align'
+NeoBundle 'h1mesuke/vim-alignta'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides'
 NeoBundleLazy "davidhalter/jedi-vim"
 NeoBundleLazy "sjl/gundo.vim"
