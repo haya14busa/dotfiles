@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/07 17:04:28 .
+" Last Change:2013/11/14 08:59:37 .
 
 " NeoBundle {{{====================
 
@@ -75,6 +75,7 @@ NeoBundleLazy 'thinca/vim-ref'
 NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'tokuhirom/jsref'
 NeoBundle 'mustardamus/jqapi'
+NeoBundle 'soh335/vim-ref-jquery'
 "}}}
 
 NeoBundle 'tpope/vim-repeat'
