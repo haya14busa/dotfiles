@@ -1205,8 +1205,8 @@ if s:bundle_tap('vim-easymotion') "{{{
     "}}}
 
     " forked easymotion extention"{{{
-    let g:EasyMotion_special_select_line = 1
-    let g:EasyMotion_special_select_phrase = 1
+    let g:EasyMotion_special_select_line = 0
+    let g:EasyMotion_special_select_phrase = 0
 
     let g:EasyMotion_special_mapping_l = 'L'
     let g:EasyMotion_special_mapping_p = 'p'
