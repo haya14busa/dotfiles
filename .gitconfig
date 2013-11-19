@@ -39,3 +39,5 @@
 	cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 [mergetool "myvimdiff"]
 	cmd = myvimdiff \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+[url "https://"]
+	insteadOf = git://
