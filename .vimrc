@@ -780,11 +780,11 @@ augroup END
 " Mapping for vimdiff{{{
 " for git mergetool
 if &diff
-  map <Leader>1 :diffget LOCAL<CR>
-  map <Leader>2 :diffget BASE<CR>
-  map <Leader>3 :diffget REMOTE<CR>
-  map <Leader>u :<C-u>diffupdate<CR>
-  map u u:<C-u>diffupdate<CR>
+  noremap <Leader>1 :diffget LOCAL<CR>
+  noremap <Leader>2 :diffget BASE<CR>
+  noremap <Leader>3 :diffget REMOTE<CR>
+  noremap <Leader>u :<C-u>diffupdate<CR>
+  noremap u u:<C-u>diffupdate<CR>
 endif
 "}}}
 
