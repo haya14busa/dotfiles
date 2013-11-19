@@ -183,6 +183,8 @@ NeoBundle 'pentie/VimRepress' "WordPress
 NeoBundle 'tsukkee/lingr-vim' "Lingr
 NeoBundle 'mattn/learn-vimscript'
 NeoBundle 'thinca/vim-prettyprint'
+NeoBundle 'basyura/TweetVim' " twitter client for vim
+NeoBundle 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
 "}}}
 
 filetype plugin indent on
