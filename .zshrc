@@ -4,9 +4,8 @@
 # 環境変数
 
 export LC_ALL=C
-# export LANG=en_US.UTF-8
-export LANG=ja_JP.UTF-8
-# export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
+#export LANG=ja_JP.UTF-8
 
 
 # 色を使用出来るようにする
@@ -31,7 +30,7 @@ SAVEHIST=1000000
 local p_name="%(!,root,haya14busa)"
 local p_info="%B%F{red}[$p_name@%m]%f%b"
 local p_cdir="%~"$'\n'
-local p_mark="%B%(!,su#,#)%b"
+local p_mark="%B%F{green}%(!,su>,>)%f%b"
 PROMPT="$p_info $p_cdir$p_mark "
 
 
@@ -230,3 +229,6 @@ alias lesson='lesson-ls && pbpaste | xargs ./lesson-dl'
 # export JAKLD_HOME=$HOME/jakld
 # export PATH=$JAKLD_HOME/bin:$PATH
 alias jakld='java -jar $HOME/jakld/jakld/jakld.jar'
+
+
+export PATH="$HOME/bin:$PATH"

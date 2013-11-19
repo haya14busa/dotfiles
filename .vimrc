@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/14 08:59:37 .
+" Last Change:2013/11/19 03:45:13 .
 
 " NeoBundle {{{====================
 
@@ -167,7 +167,7 @@ NeoBundleLazy "vim-scripts/phpfolding.vim", {
 
 " NeoBundle Japanese {{{
 "NeoBundle 'migemo', {'type':'nosync','base':'~/.vim/bundle/manual'}
-MyNeoBundle 'migemo'
+"MyNeoBundle 'migemo'
 NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
 NeoBundle 'tyru/eskk.vim'
 "}}}
@@ -225,7 +225,8 @@ set wrapscan
 syntax enable
 set background=dark
 set t_Co=256
-colorscheme molokai
+"colorscheme molokai
+colorscheme darkblue
 "}}}
 
 " Tab Basic Settings {{{
@@ -1438,10 +1439,10 @@ if s:bundle_tap('lightline.vim') "{{{
       \   'mode': 'MyMode',
       \   'syntastic': 'SyntasticStatuslineFlag',
       \   'anzu': 'anzu#search_status',
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
+      \ }
+      " \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      " \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
 
   function! MyModified()
     return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
