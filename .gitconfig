@@ -14,7 +14,7 @@
 	ci = commit
 	ft = fetch
 	ad = add
-	cam = commit -a --amend
+	cam = commit --amend
 	log-graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
 	log-all = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
 	# diff関連
