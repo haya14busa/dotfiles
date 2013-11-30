@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/27 13:18:46 .
+" Last Change:2013/12/04 01:49:55 .
 
 " NeoBundle {{{====================
 
@@ -1194,26 +1194,29 @@ if s:bundle_tap('vim-easymotion') "{{{
     " Shortcut!
     " let g:EasyMotion_mapping_s = 's'
     " let g:EasyMotion_mapping_S = 'S'
-    nmap s ;s
-    imap <M-s> <C-o>;s
-    vmap s ;s
-    nmap S ;S
-    vmap S ;S
+    "nmap s ;s
+    "imap <M-s> <C-o>;s
+    "vmap s ;s
+    "nmap S ;S
+    "vmap S ;S
+    nmap s <Plug>(easymotion-s)
+    vmap s <Plug>(easymotion-s)
+    omap z <Plug>(easymotion-s)
     "nnoremap ;l :call EasyMotion#JK(0,2)<CR>
 
     " Highlight"{{{
-    hi link EasyMotionTarget ErrorMsg
-    hi link EasyMotionShade  Comment
-    hi link EasyMotionTarget2First MatchParen
-    hi link EasyMotionTarget2Second MatchParen
+    " hi link EasyMotionTarget ErrorMsg
+    " hi link EasyMotionShade  Comment
+    " hi link EasyMotionTarget2First MatchParen
+    " hi link EasyMotionTarget2Second MatchParen
     "}}}
 
     " forked easymotion extention"{{{
-    let g:EasyMotion_special_select_line = 0
-    let g:EasyMotion_special_select_phrase = 0
+    let g:EasyMotion_special_select_line = 1
+    let g:EasyMotion_special_select_phrase = 1
 
-    let g:EasyMotion_special_mapping_l = 'L'
-    let g:EasyMotion_special_mapping_p = 'p'
+    " let g:EasyMotion_special_mapping_l = 'L'
+    " let g:EasyMotion_special_mapping_p = 'p'
 
     " keep cursor column
     let g:EasyMotion_startofline = 0
@@ -1224,6 +1227,7 @@ if s:bundle_tap('vim-easymotion') "{{{
     " Don't skip folded line
     let g:EasyMotion_skipfoldedline = 0
 
+    " Migemo
     let g:EasyMotion_use_migemo = 1
     "}}}
 
@@ -1302,8 +1306,10 @@ endif "}}}
 
 " osyo-manga/vim-anzu search{{{
 if s:bundle_tap('vim-anzu') "{{{
-  nmap n zz<Plug>(anzu-n)
-  nmap N zz<Plug>(anzu-N)
+  " nmap n zz<Plug>(anzu-n)
+  " nmap N zz<Plug>(anzu-N)
+  nmap n <Plug>(anzu-n)zz
+  nmap N <Plug>(anzu-N)zz
   nmap * <Plug>(anzu-star-with-echo)
   nmap # <Plug>(anzu-sharp-with-echo)
   " clear status
@@ -1546,9 +1552,6 @@ if s:bundle_tap('vim-smartinput') "{{{
         \     'insert' : 1,
         \   }
         \ })
-  " Clear Default Rules
-  call smartinput#clear_rules()
-  " Space in Bracket "{{{
   call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
   call smartinput#define_rule({
               \   'at'    : '(\%#)',
