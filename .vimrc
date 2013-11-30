@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/11/14 08:59:37 .
+" Last Change:2013/12/01 00:18:52 .
 
 " NeoBundle {{{====================
 
@@ -1300,8 +1300,8 @@ endif "}}}
 
 " osyo-manga/vim-anzu search{{{
 if s:bundle_tap('vim-anzu') "{{{
-  nmap n zz<Plug>(anzu-n)
-  nmap N zz<Plug>(anzu-N)
+  nmap n <Plug>(anzu-n)zz
+  nmap N <Plug>(anzu-N)zz
   nmap * <Plug>(anzu-star-with-echo)
   nmap # <Plug>(anzu-sharp-with-echo)
   " clear status
