@@ -919,9 +919,9 @@ if s:bundle_tap('unite.vim') "{{{
   " Execute help by cursor keyword.
   nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord -silent help<CR>
   " Outeline
-  nnoremap <silent> [unite]o :<C-u>Unite -silent outline -start-insert -resume<CR>
+  nnoremap <silent> [unite]o :<C-u>Unite -silent outline -start-insert<CR>
   " Fold
-  nnoremap <silent> [unite]<Space> :<C-u>Unite -silent fold<CR>
+  nnoremap <silent> [unite]<Space> :<C-u>Unite -silent fold -start-insert<<CR>
 
   "}}}
   "}}}
