@@ -87,7 +87,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 "}}}
 
-NeoBundleLazy 'kana/vim-smartinput'
+"NeoBundleLazy 'kana/vim-smartinput'
 "NeoBundleLazy 'kana/vim-smartchr'
 NeoBundle 'kana/vim-fakeclip'
 
