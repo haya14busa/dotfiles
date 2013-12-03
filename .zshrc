@@ -231,5 +231,7 @@ alias lesson='lesson-ls && pbpaste | xargs ./lesson-dl'
 # export PATH=$JAKLD_HOME/bin:$PATH
 alias jakld='java -jar $HOME/jakld/jakld/jakld.jar'
 
+export PATH=$HOME/bin:$PATH
+
 #rlwrap Gauche
 alias gosh='rlwrap gosh'
