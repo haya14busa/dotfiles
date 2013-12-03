@@ -232,3 +232,6 @@ alias jakld='java -jar $HOME/jakld/jakld/jakld.jar'
 
 
 export PATH="$HOME/bin:$PATH"
+
+#rlwrap Gauche
+alias gosh='rlwrap gosh'
