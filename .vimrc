@@ -1666,8 +1666,6 @@ endif "}}}
 
 " mhinz/vim-signify "{{{
 if s:bundle_tap('vim-signify') "{{{
-  let g:signify_mapping_next_hunk = '<leader>gj'
-  let g:signify_mapping_prev_hunk = '<leader>gk'
   nmap ;J <plug>(signify-next-hunk)
   nmap ;K <plug>(signify-prev-hunk)
   call s:bundle_untap()
