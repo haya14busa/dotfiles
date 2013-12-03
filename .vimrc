@@ -382,6 +382,9 @@ inoremap <M-b> <S-Left>
 
 " Paste in insert  and Ex mode"{{{
 inoremap <C-y> <C-r>"
+" TODO: i_C-y is conflicted with emmet
+inoremap <C-y><C-y> <C-r>"
+
 cnoremap <C-y> <C-r>"
 "}}}
 
