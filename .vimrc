@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/04 01:49:55 .
+" Last Change:2013/12/04 01:52:16 .
 
 " NeoBundle {{{====================
 
@@ -85,6 +85,8 @@ NeoBundle 'tpope/vim-markdown'
 " NeoBundle Git {{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
+"NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'mhinz/vim-signify'
 "}}}
 
 "NeoBundleLazy 'kana/vim-smartinput'
@@ -1658,6 +1660,16 @@ if s:bundle_tap('rainbow_parentheses.vim') "{{{
         \ :RainbowParenthesesLoadBraces<CR>
         \ :RainbowParenthesesLoadChevrons<CR>
         \ :RainbowParenthesesToggleAll<CR>
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+" mhinz/vim-signify "{{{
+if s:bundle_tap('vim-signify') "{{{
+  let g:signify_mapping_next_hunk = '<leader>gj'
+  let g:signify_mapping_prev_hunk = '<leader>gk'
+  nmap ;J <plug>(signify-next-hunk)
+  nmap ;K <plug>(signify-prev-hunk)
   call s:bundle_untap()
 endif "}}}
 "}}}
