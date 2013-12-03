@@ -422,7 +422,7 @@ nnoremap <C-b> <C-b>zz
 "}}}
 
 " Spelling Keymaps {{{
-
+set spelllang+=cjk
 " turn on the spell checking and set the English language
 nnoremap <Leader>se :set spell spelllang=en<CR>
 " turn off the spell checking
