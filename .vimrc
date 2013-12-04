@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/04 01:52:16 .
+" Last Change:2013/12/04 15:50:31 .
 
 " NeoBundle {{{====================
 
@@ -428,7 +428,7 @@ nnoremap <C-b> <C-b>zz
 " Spelling Keymaps {{{
 set spelllang+=cjk
 " turn on the spell checking and set the English language
-nnoremap <Leader>se :set spell spelllang=en<CR>
+nnoremap <Leader>se :set spell spelllang=en,cjk<CR>
 " turn off the spell checking
 nnoremap <Leader>so :set nospell <CR>
 " jump to the next bad spell word
