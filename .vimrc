@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/04 15:50:31 .
+" Last Change:2013/12/04 16:21:26 .
 
 " NeoBundle {{{====================
 
@@ -1581,7 +1581,7 @@ if s:bundle_tap('vim-smartinput') "{{{
   "}}}
 
 
-endif "}}}
+endif
 "}}}
 
 " vim-smartchr {{{
