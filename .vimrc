@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/04 16:21:26 .
+" Last Change:2013/12/06 07:13:48 .
 
 " NeoBundle {{{====================
 
@@ -178,6 +178,13 @@ NeoBundle 'tyru/eskk.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'vim-scripts/twilight'
+NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'vim-scripts/rdark'
+
 "}}}
 
 " Others"{{{
@@ -232,10 +239,9 @@ set wrapscan
 
 " Colorscheme {{{
 syntax enable
-set background=dark
+set background=light
 set t_Co=256
-"colorscheme molokai
-colorscheme darkblue
+colorscheme wombat
 "}}}
 
 " Tab Basic Settings {{{
