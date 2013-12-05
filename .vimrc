@@ -201,7 +201,11 @@ set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 set ambiwidth=double
 set autoread
 set backspace=indent,eol,start
-set clipboard& clipboard+=unnamed,autoselect
+if has('unnamedplus')
+  set clipboard& clipboard=unnamedplus
+elseif
+  set clipboard& clipboard+=unnamed,autoselect
+endif
 set cmdheight=1
 set display=lastline
 set grepprg=internal
