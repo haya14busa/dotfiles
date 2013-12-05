@@ -91,7 +91,7 @@ NeoBundle 'mhinz/vim-signify'
 
 NeoBundleLazy 'kana/vim-smartinput'
 "NeoBundleLazy 'kana/vim-smartchr'
-NeoBundle 'kana/vim-fakeclip'
+"NeoBundle 'kana/vim-fakeclip'
 
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
