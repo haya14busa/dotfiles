@@ -946,7 +946,7 @@ if s:bundle_tap('unite.vim') "{{{
   " Outeline
   nnoremap <silent> [unite]o :<C-u>Unite -silent outline -start-insert<CR>
   " Fold
-  nnoremap <silent> [unite]<Space> :<C-u>Unite -silent fold -start-insert<<CR>
+  nnoremap <silent> [unite]<Space> :<C-u>Unite -silent fold -start-insert<CR>
 
   "}}}
   "}}}
