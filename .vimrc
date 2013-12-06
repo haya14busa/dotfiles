@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/06 07:20:13 .
+" Last Change:2013/12/06 10:36:43 .
 
 " NeoBundle {{{====================
 
@@ -376,6 +376,14 @@ nnoremap l <Right>
 
 nnoremap - $
 
+nnoremap <Space>j <C-f>zz
+nnoremap <Space>k <C-b>zz
+vnoremap <Space>j <C-f>zz
+vnoremap <Space>k <C-b>zz
+
+nnoremap <Space><Space> <C-f>zz
+
+" Insert & Comandline Mode "{{{
 "inoremap <C-j> <Down>
 "inoremap <C-k> <Up>
 inoremap <C-b> <Left>
@@ -391,6 +399,8 @@ cnoremap <C-e> <End>
 " Word Motion in Insert Mode
 inoremap <M-w> <S-Right>
 inoremap <M-b> <S-Left>
+"}}}
+
 "}}}
 
 " Paste in insert  and Ex mode"{{{
