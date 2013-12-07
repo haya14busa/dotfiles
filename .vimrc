@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/06 10:36:43 .
+" Last Change:2013/12/07 22:28:03 .
 
 " NeoBundle {{{====================
 
@@ -118,6 +118,10 @@ NeoBundle 'h1mesuke/textobj-wiw'              " a,w a,e
 
 " to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
+
+" Operator
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'kana/vim-operator-replace'
 "}}}
 
 " Extend Basic Vim Commands
@@ -1689,6 +1693,13 @@ endif "}}}
 if s:bundle_tap('vim-signify') "{{{
   nmap ;J <plug>(signify-next-hunk)
   nmap ;K <plug>(signify-prev-hunk)
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+" kana/vim-operator-replace "{{{
+if s:bundle_tap('vim-operator-replace') "{{{
+  map _  <Plug>(operator-replace)
   call s:bundle_untap()
 endif "}}}
 "}}}
