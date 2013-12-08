@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/07 22:43:05 .
+" Last Change:2013/12/07 23:28:39 .
 
 " NeoBundle {{{====================
 
@@ -324,7 +324,7 @@ command! ETabVimrc tabnew $MYVIMRC
 
 augroup Reloadvimrc
   autocmd!
-  autocmd BufWritePost *vimrc source $MYVIMRC | setlocal foldmethod=marker
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC | setlocal foldmethod=marker
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
 " Reload syntax after source $MYVIMRC
