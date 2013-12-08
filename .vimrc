@@ -1331,8 +1331,8 @@ endif "}}}
 
 " osyo-manga/vim-anzu search{{{
 if s:bundle_tap('vim-anzu') "{{{
-  nmap n <Plug>(anzu-n)zz
-  nmap N <Plug>(anzu-N)zz
+  nmap n <Plug>(anzu-n)zzzv
+  nmap N <Plug>(anzu-N)zzzv
   nmap * <Plug>(anzu-star-with-echo)
   nmap # <Plug>(anzu-sharp-with-echo)
   " clear status
