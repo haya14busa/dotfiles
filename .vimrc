@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/07 23:28:39 .
+" Last Change:2013/12/10 00:16:05 .
 
 " NeoBundle {{{====================
 
@@ -1697,6 +1697,13 @@ endif "}}}
 " kana/vim-operator-replace "{{{
 if s:bundle_tap('vim-operator-replace') "{{{
   map _  <Plug>(operator-replace)
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+" migemo "{{{
+if s:bundle_tap('migemo') "{{{
+  noremap g/ :<C-u>Migemo<CR>
   call s:bundle_untap()
 endif "}}}
 "}}}
