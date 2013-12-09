@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/10 00:16:05 .
+" Last Change:2013/12/10 02:24:40 .
 
 " NeoBundle {{{====================
 
@@ -329,7 +329,7 @@ augroup Reloadvimrc
 augroup END
 " Reload syntax after source $MYVIMRC
 " -> <C-l>
-" nnoremap <Leader><Leader>s :<C-u>syntax on<CR>
+" nnoremap <Leader><Leader>s :<C-u>syntax enable<CR>
 "}}}
 
 " Useful Keymaps{{{
@@ -1340,7 +1340,7 @@ if s:bundle_tap('vim-anzu') "{{{
   "nnoremap <silent><Esc><Esc> :<C-u>nohlsearch<CR>
   nnoremap <silent><C-l>
         \ :<C-u>nohlsearch<CR>
-        \ :syntax on<CR><C-l>
+        \ :syntax enable<CR><C-l>
 
   augroup VimAnzu
   " Clear hit count when nokeyinput, move window, or move tab
