@@ -1604,6 +1604,7 @@ if s:bundle_tap('vim-smartinput') "{{{
 
 endif
 "}}}
+"}}}
 
 " vim-smartchr {{{
 if s:bundle_tap('vim-smartchr') "{{{
