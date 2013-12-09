@@ -1231,10 +1231,10 @@ if s:bundle_tap('vim-easymotion') "{{{
     "nnoremap ;l :call EasyMotion#JK(0,2)<CR>
 
     " Highlight"{{{
-    hi link EasyMotionTarget ErrorMsg
-    hi link EasyMotionShade  Comment
-    hi link EasyMotionTarget2First MatchParen
-    hi link EasyMotionTarget2Second MatchParen
+    " hi link EasyMotionTarget ErrorMsg
+    " hi link EasyMotionShade  Comment
+    " hi link EasyMotionTarget2First MatchParen
+    " hi link EasyMotionTarget2Second MatchParen
     "}}}
 
     " forked easymotion extention"{{{
