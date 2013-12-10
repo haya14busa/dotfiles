@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/10 02:24:40 .
+" Last Change:2013/12/10 13:33:42 .
 
 " NeoBundle {{{====================
 
@@ -147,6 +147,8 @@ NeoBundle 'vim-scripts/loremipsum'
 " NeoBundleLazy 'amdt/vim-niji'
 NeoBundleLazy 'aharisu/vim_goshrepl'
 NeoBundle 'kien/rainbow_parentheses.vim'
+
+NeoBundle 'osyo-manga/vim-over' " :substitute preview
 
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
