@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/10 13:33:42 .
+" Last Change:2013/12/10 13:40:51 .
 
 " NeoBundle {{{====================
 
@@ -148,7 +148,7 @@ NeoBundle 'vim-scripts/loremipsum'
 NeoBundleLazy 'aharisu/vim_goshrepl'
 NeoBundle 'kien/rainbow_parentheses.vim'
 
-NeoBundle 'osyo-manga/vim-over' " :substitute preview
+NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
@@ -1706,6 +1706,20 @@ endif "}}}
 " migemo "{{{
 if s:bundle_tap('migemo') "{{{
   noremap g/ :<C-u>Migemo<CR>
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+
+" osyo-manga/vim-over {{{
+if s:bundle_tap('vim-over') "{{{
+  call s:bundle_config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       'OverCommandLine',
+        \     ]
+        \   }
+        \ })
   call s:bundle_untap()
 endif "}}}
 "}}}
