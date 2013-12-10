@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/10 13:40:51 .
+" Last Change:2013/12/10 13:44:35 .
 
 " NeoBundle {{{====================
 
@@ -149,6 +149,7 @@ NeoBundleLazy 'aharisu/vim_goshrepl'
 NeoBundle 'kien/rainbow_parentheses.vim'
 
 NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
+NeoBundle 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
 
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
