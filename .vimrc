@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/11 20:08:22 .
+" Last Change:2013/12/11 20:09:43 .
 
 " NeoBundle {{{====================
 
@@ -135,8 +135,8 @@ NeoBundle 'LeafCage/yankround.vim'
 "NeoBundle 'vim-scripts/Align'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides'
-NeoBundleLazy "davidhalter/jedi-vim"
-NeoBundleLazy "sjl/gundo.vim"
+NeoBundleLazy 'davidhalter/jedi-vim'
+NeoBundleLazy 'sjl/gundo.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'autodate.vim'
 
@@ -159,15 +159,15 @@ NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 " NeoBundle for expr {{{
-NeoBundleLazy "python_fold", {
+NeoBundleLazy 'python_fold', {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"],
       \ }}
-NeoBundleLazy "vim-scripts/CSS-one-line--multi-line-folding", {
+NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding', {
       \ "autoload": {
       \   "filetypes": ["css"],
       \ }}
-NeoBundleLazy "vim-scripts/phpfolding.vim", {
+NeoBundleLazy 'vim-scripts/phpfolding.vim', {
       \ "autoload": {
       \   "filetypes": ["php"],
       \ }}
