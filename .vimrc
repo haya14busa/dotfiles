@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/10 13:44:35 .
+" Last Change:2013/12/11 09:47:57 .
 
 " NeoBundle {{{====================
 
@@ -1224,14 +1224,9 @@ if s:bundle_tap('vim-easymotion') "{{{
     let g:EasyMotion_leader_key = ';'
     let g:EasyMotion_keys='hklyuiopnm,qwertzxcvbasdgjf;'
     " Shortcut!
-    " let g:EasyMotion_mapping_s = 's'
-    " let g:EasyMotion_mapping_S = 'S'
-    nmap s ;s
-    imap <M-s> <C-o>;s
-    vmap s ;s
-    nmap S ;S
-    vmap S ;S
-    "nnoremap ;l :call EasyMotion#JK(0,2)<CR>
+    nmap s <Plug>(easymotion-s)
+    vmap s <Plug>(easymotion-s)
+    omap z <Plug>(easymotion-s)
 
     " Highlight"{{{
     " hi link EasyMotionTarget ErrorMsg
