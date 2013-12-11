@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/11 19:58:09 .
+" Last Change:2013/12/11 20:08:22 .
 
 " NeoBundle {{{====================
 
@@ -131,6 +131,7 @@ NeoBundle 'rhysd/accelerated-jk'
 NeoBundle 'deris/columnjump'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'LeafCage/foldCC'
+NeoBundle 'LeafCage/yankround.vim'
 "NeoBundle 'vim-scripts/Align'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides'
@@ -1724,6 +1725,16 @@ if s:bundle_tap('vim-over') "{{{
         \     ]
         \   }
         \ })
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+" Leafcage/yankround {{{
+if s:bundle_tap('yankround.vim') "{{{
+	nmap p <Plug>(yankround-p)
+	nmap P <Plug>(yankround-P)
+	nmap <C-p> <Plug>(yankround-prev)
+	nmap <C-n> <Plug>(yankround-next)
   call s:bundle_untap()
 endif "}}}
 "}}}
