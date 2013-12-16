@@ -1741,6 +1741,14 @@ if s:bundle_tap('yankround.vim') "{{{
 endif "}}}
 "}}}
 
+" basyura/TweetVim {{{
+if s:bundle_tap('TweetVim') "{{{
+    let g:tweetvim_display_icon=1
+  call s:bundle_untap()
+endif "}}}
+"}}}
+
+
 " End plugins }}}
 
 "------------------------------------
