@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/11 20:09:43 .
+" Last Change:2013/12/15 12:00:18 .
 
 " NeoBundle {{{====================
 
@@ -176,8 +176,8 @@ NeoBundleLazy 'vim-scripts/phpfolding.vim', {
 "}}}
 
 " NeoBundle Japanese {{{
-"MyNeoBundle 'vim-migemo'
-NeoBundleLazy 'haya14busa/vim-migemo'
+MyNeoBundle 'vim-migemo'
+"NeoBundleLazy 'haya14busa/vim-migemo'
 NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
 NeoBundle 'tyru/eskk.vim'
 "}}}
