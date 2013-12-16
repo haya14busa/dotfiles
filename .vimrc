@@ -241,6 +241,7 @@ set showcmd
 set showmatch
 set textwidth=0
 set title
+set viminfo+=!
 set virtualedit=block
 set whichwrap=b,s,h,l,[,],<,>
 set wrap
