@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/15 12:00:18 .
+" Last Change:2013/12/17 00:39:52 .
 
 " NeoBundle {{{====================
 
@@ -1398,6 +1398,7 @@ if s:bundle_tap('jedi-vim') "{{{
   let g:jedi#rename_command = '<Leader>R'
   " For gundo
   let g:jedi#goto_assignments_command = '<Leader>G'
+  let g:jedi#completions_command = "<C-N>"
   call s:bundle_untap()
 endif "}}}
 "}}}
