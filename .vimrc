@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 00:47:32 .
+" Last Change:2013/12/17 02:45:59 .
 
 " NeoBundle {{{====================
 
@@ -318,8 +318,8 @@ set foldlevel=100
 
 "}}}
 
-" release autogroup in MyAutoCmd {{{
-augroup MyAutoCmd
+" release autogroup in MyVimrc {{{
+augroup MyVimrc
   autocmd!
 augroup END
 "}}}
@@ -328,11 +328,8 @@ augroup END
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 
-augroup Reloadvimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC | setlocal foldmethod=marker
-  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-augroup END
+autocmd MyVimrc BufWritePost *vimrc source $MYVIMRC | setlocal foldmethod=marker
+autocmd MyVimrc BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 " Reload syntax after source $MYVIMRC
 " -> <C-l>
 " nnoremap <Leader><Leader>s :<C-u>syntax enable<CR>
@@ -519,7 +516,7 @@ nnoremap gV `[v`]
 
 
 " set nopaste when Insertleave"{{{
-autocmd MyAutoCmd InsertLeave * set nopaste
+autocmd MyVimrc InsertLeave * set nopaste
 "}}}
 
 " Show invisibles {{{
@@ -535,21 +532,15 @@ hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 
 " Highlight End-of-Line Whitespace {{{
-augroup HighlightTrailingSpaces
-  autocmd!
-  autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
-  autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
-augroup END
+autocmd MyVimrc VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+autocmd MyVimrc VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 "}}}
 
 "}}}
 
 " Save Cursor Position and Fold {{{
-augroup SaveInfo
-  autocmd!
-  autocmd BufWinLeave *.* silent mkview!
-  autocmd BufWinEnter *.* silent loadview
-augroup END
+autocmd MyVimrc BufWinLeave *.* silent mkview!
+autocmd MyVimrc BufWinEnter *.* silent loadview
 
 "}}}
 
@@ -801,16 +792,13 @@ endfunction"}}}
 "}}}
 
 " Create Directory Automatically {{{
-augroup AutoMkdir
-  autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+autocmd MyVimrc BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
   function! s:auto_mkdir(dir, force)  " {{{
     if !isdirectory(a:dir) && (a:force ||
     \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
       call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
     endif
   endfunction  " }}}
-augroup END
 "}}}
 
 " Mapping for vimdiff{{{
@@ -827,21 +815,15 @@ endif
 " Filetypes "{{{====================
 
 " Stylus {{{
-augroup StylusAutocmd
-  autocmd!
-  autocmd BufRead,BufNewFile,BufReadPre *.styl setlocal filetype=sass
-  autocmd FileType sass     setlocal sw=2 sts=2 ts=2 et
-  autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
-augroup END
+autocmd MyVimrc BufRead,BufNewFile,BufReadPre *.styl setlocal filetype=sass
+autocmd MyVimrc FileType sass     setlocal sw=2 sts=2 ts=2 et
+autocmd MyVimrc BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
 "}}}
 
 " CoffeeScript {{{
-augroup CoffeeAutocmd
-  autocmd!
-  autocmd BufRead,BufNewFile,BufReadPre *.coffee   setlocal filetype=coffee
-  autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
-  autocmd BufWritePost,FileWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
-augroup END
+autocmd MyVimrc BufRead,BufNewFile,BufReadPre *.coffee   setlocal filetype=coffee
+autocmd MyVimrc FileType coffee     setlocal sw=2 sts=2 ts=2 et
+autocmd MyVimrc BufWritePost,FileWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
 "}}}
 
 " Sass {{{
@@ -855,9 +837,7 @@ function! Sass_convert()
     endif
 endfunction
 
-augroup sassautocmd
-    autocmd bufwritepost *.scss call Sass_convert()
-augroup end
+autocmd MyVimrc BufWritePost *.scss call Sass_convert()
 "}}}
 
 
@@ -1114,13 +1094,13 @@ endif "}}}
 
 " thinca/vim-template {{{
 if s:bundle_tap('vim-template') "{{{
-  autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
+  autocmd MyVimrc User plugin-template-loaded call s:template_keywords()
   function! s:template_keywords()
       silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
       silent! %s/<+FILENAME+>/\=expand('%:r')/g
   endfunction
 
-  autocmd MyAutoCmd User plugin-template-loaded
+  autocmd MyVimrc User plugin-template-loaded
       \   if search('<+CURSOR+>')
       \ |   silent! execute 'normal! "_da>'
       \ | endif
@@ -1161,7 +1141,7 @@ endif "}}}
 
 " gregsexton/gitv {{{
 if s:bundle_tap('gitv') "{{{
-  autocmd MyAutoCmd FileType gitv call s:my_gitv_settings()
+  autocmd MyVimrc FileType gitv call s:my_gitv_settings()
   function! s:my_gitv_settings()
     setlocal iskeyword&
     setlocal iskeyword+=/,-,.
@@ -1179,7 +1159,7 @@ if s:bundle_tap('gitv') "{{{
     return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
   endfunction
 
-  autocmd MyAutoCmd FileType git setlocal nofoldenable foldlevel=0
+  autocmd MyVimrc FileType git setlocal nofoldenable foldlevel=0
   function! s:toggle_git_folding()
     if &filetype ==# 'git'
       setlocal foldenable!
@@ -1343,12 +1323,9 @@ if s:bundle_tap('vim-anzu') "{{{
         \ :<C-u>nohlsearch<CR>
         \ :syntax enable<CR><C-l>
 
-  augroup VimAnzu
   " Clear hit count when nokeyinput, move window, or move tab
-      autocmd!
-      autocmd CursorHold,CursorHoldI,WinLeave,TabLeave
-        \   * call anzu#clear_search_status()
-  augroup END
+  autocmd MyVimrc CursorHold,CursorHoldI,WinLeave,TabLeave
+      \   * call anzu#clear_search_status()
   call s:bundle_untap()
 "}}}
 endif "}}}
@@ -1366,13 +1343,10 @@ if s:bundle_tap('vim-indent-guides') "{{{
   let g:indent_guides_auto_colors = 1
   let g:indent_guides_color_change_percent = 20
   let g:indent_guides_default_mapping = 0
-  augroup VimIndentGuides
-      autocmd!
-      autocmd VimEnter,Colorscheme *
+  autocmd MyVimrc VimEnter,Colorscheme *
         \   :hi IndentGuidesOdd  ctermbg=darkgrey
-      autocmd VimEnter,Colorscheme *
+  autocmd MyVimrc VimEnter,Colorscheme *
         \   :hi IndentGuidesEven ctermbg=grey
-  augroup END
   nnoremap <Leader>i :<C-u>IndentGuidesToggle<CR>
   call s:bundle_untap()
 endif "}}}
@@ -1669,13 +1643,10 @@ endif "}}}
 " kien/rainbow_parentheses.vim "{{{
 if s:bundle_tap('rainbow_parentheses.vim') "{{{
   " Scheme {{{
-  augroup SchemeAutocmd
-    autocmd!
-    autocmd BufRead,BufNewFile,BufReadPre *.scm
+  autocmd MyVimrc BufRead,BufNewFile,BufReadPre *.scm
           \ RainbowParenthesesLoadRound
-    autocmd BufWinEnter *.scm
+  autocmd MyVimrc BufWinEnter *.scm
           \ RainbowParenthesesToggle
-  augroup END
   " }}}
   " n -> niji
   nnoremap <silent> <Leader><Leader>n
