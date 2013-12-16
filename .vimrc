@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 00:39:52 .
+" Last Change:2013/12/17 00:47:32 .
 
 " NeoBundle {{{====================
 
@@ -220,7 +220,7 @@ set autoread
 set backspace=indent,eol,start
 if has('unnamedplus')
   set clipboard& clipboard=unnamedplus
-elseif
+else
   set clipboard& clipboard+=unnamed,autoselect
 endif
 set cmdheight=1
