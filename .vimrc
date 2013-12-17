@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 20:22:17 .
+" Last Change:2013/12/17 20:36:12 .
 
 " NeoBundle {{{====================
 
@@ -109,7 +109,7 @@ NeoBundle 'tpope/vim-surround'
 
 " Operator
 NeoBundle 'kana/vim-operator-user'
-NeoBundle 'kana/vim-operator-replace'
+NeoBundleLazy 'kana/vim-operator-replace'
 "}}}
 
 " Extend Basic Vim Commands
@@ -1463,6 +1463,22 @@ function! s:NumberTextObject(whole)
 endfunction
 "}}}
 
+" kana/vim-operator-replace "{{{
+if neobundle#tap('vim-operator-replace') "{{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-operator-user',
+        \   'autoload' : {
+        \     'mappings' : '<Plug>(operator-replace)'
+        \   }
+        \ })
+  map _  <Plug>(operator-replace)
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif "}}}
+"}}}
+
 "}}}
 
 " vim-scripts/Align {{{
@@ -1842,13 +1858,6 @@ endif "}}}
 if neobundle#tap('vim-signify') "{{{
   nmap ;J <plug>(signify-next-hunk)
   nmap ;K <plug>(signify-prev-hunk)
-  call neobundle#untap()
-endif "}}}
-"}}}
-
-" kana/vim-operator-replace "{{{
-if neobundle#tap('vim-operator-replace') "{{{
-  map _  <Plug>(operator-replace)
   call neobundle#untap()
 endif "}}}
 "}}}
