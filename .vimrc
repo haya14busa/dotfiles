@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 18:42:35 .
+" Last Change:2013/12/17 19:55:45 .
 
 " NeoBundle {{{====================
 
@@ -18,18 +18,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " NeoBundle Function {{{
-function! s:bundle_tap(bundle) " {{{
-  let s:tapped_bundle = neobundle#get(a:bundle)
-  return neobundle#is_installed(a:bundle)
-endfunction " }}}
-function! s:bundle_config(config) " {{{
-  if exists("s:tapped_bundle") && s:tapped_bundle != {}
-    call neobundle#config(s:tapped_bundle.name, a:config)
-  endif
-endfunction " }}}
-function! s:bundle_untap() " {{{
-  let s:tapped_bundle = {}
-endfunction " }}}
 
 " MyNeoBundle {{{
 command! -nargs=1
@@ -867,9 +855,25 @@ autocmd MyVimrc BufWritePost *.scss call Sass_convert()
 
 " plugin settings {{{====================
 
+" Sample 
+" if neobundle#tap('sample') " {{{
+"   call neobundle#config({
+"         \   'autoload' : {
+"         \     'unite_sources' : [
+"         \       'help',
+"         \     ],
+"         \   }
+"         \ })
+" 
+"   function! neobundle#tapped.hooks.on_source(bundle)
+"   endfunction
+"
+"  call neobundle#untap()
+"endif " }}}
+
 " shougo/vimproc"{{{
-if s:bundle_tap('vimproc') "{{{
-  call s:bundle_config({
+if neobundle#tap('vimproc') "{{{
+  call neobundle#config({
        \ 'build' : {
        \     'windows' : 'make -f make_mingw32.mak',
        \     'cygwin'  : 'make -f make_cygwin.mak',
@@ -877,14 +881,14 @@ if s:bundle_tap('vimproc') "{{{
        \     'unix'    : 'make -f make_unix.mak',
        \    },
        \ })
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " Shougo/unite.vim"{{{
-if s:bundle_tap('unite.vim') "{{{
+if neobundle#tap('unite.vim') "{{{
   " Config"{{{
-  call s:bundle_config({
+  call neobundle#config({
         \   'depends': ['Shougo/vimproc'],
         \   'autoload' : {
         \     'commands' : [
@@ -899,7 +903,7 @@ if s:bundle_tap('unite.vim') "{{{
         \ })"}}}
 
   " Settings"{{{
-  function! s:tapped_bundle.hooks.on_source(bundle)
+  function! neobundle#tapped.hooks.on_source(bundle)
     let g:unite_kind_jump_list_after_jump_scroll=0
     let g:unite_enable_start_insert = 0
     let g:unite_source_rec_min_cache_files = 1000
@@ -960,24 +964,24 @@ if s:bundle_tap('unite.vim') "{{{
   "}}}
   "}}}
 
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " Shougo/unite-ssh"{{{
-if s:bundle_tap('unite-ssh') "{{{
-  call s:bundle_config({
+if neobundle#tap('unite-ssh') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'filetypes' : 'vimshell',
         \   }
         \ })
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " Shougo/VimFiler {{{
-if s:bundle_tap('vimfiler') "{{{
-  call s:bundle_config({
+if neobundle#tap('vimfiler') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'commands' : [
         \       'VimFiler',
@@ -986,16 +990,18 @@ if s:bundle_tap('vimfiler') "{{{
         \     ]
         \   }
         \ })
-  let g:vimfiler_as_default_explorer=1
-  let g:vimfiler_safe_mode_by_default=0
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let g:vimfiler_as_default_explorer=1
+    let g:vimfiler_safe_mode_by_default=0
+  endfunction
   nnoremap <silent> <Leader>vf :VimFilerBufferDir -split -simple -no-quit -winwidth=32<CR>
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " Shougo/vimshell {{{
-if s:bundle_tap('vimshell') "{{{
-  call s:bundle_config({
+if neobundle#tap('vimshell') "{{{
+  call neobundle#config({
         \   'depends': ['Shougo/vimproc'],
         \   'autoload' : {
         \     'commands' : [
@@ -1005,26 +1011,35 @@ if s:bundle_tap('vimshell') "{{{
         \     ]
         \   }
         \ })
-  "let g:vimshell_prompt_expr = 'getcwd()." > "'
-  "let g:vimshell_prompt_pattern = '^\f\+ > '
+  function! neobundle#tapped.hooks.on_source(bundle)
+    "let g:vimshell_prompt_expr = 'getcwd()." > "'
+    "let g:vimshell_prompt_pattern = '^\f\+ > '
 
-  " Use current directory as vimshell prompt.
-  let g:vimshell_prompt_expr =
-            \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
-  let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
-  call s:bundle_untap()
+    " Use current directory as vimshell prompt.
+    let g:vimshell_prompt_expr =
+              \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
+    let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
+  endfunction
+
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 
 " Shougo/neosnippet.vim"{{{
-if s:bundle_tap('neosnippet.vim') "{{{
-  call s:bundle_config({
+if neobundle#tap('neosnippet.vim') "{{{
+  call neobundle#config({
         \   'depends' : ['honza/vim-snippets'],
         \   'autoload' : {
         \     'insert' : 1,
         \   }
         \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+    " Tell Neosnippet about the other snippets
+    " let g:neosnippet#snippets_directory=s:bundle_root . '/vim-snippets/snippets'
+  endfunction
+
   " Plugin key-mappings.
   "imap <C-k>     <Plug>(neosnippet_expand_or_jump)
   "smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -1042,33 +1057,32 @@ if s:bundle_tap('neosnippet.vim') "{{{
   endif
   " Enable snipMate compatibility feature.
   let g:neosnippet#enable_snipmate_compatibility = 1
-  " Tell Neosnippet about the other snippets
-  " let g:neosnippet#snippets_directory=s:bundle_root . '/vim-snippets/snippets'
 
-  call s:bundle_untap()
+
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " Shougo/neocomplete.vim"{{{
-if s:bundle_tap('neocomplete.vim') "{{{
-  call s:bundle_config({
+if neobundle#tap('neocomplete.vim') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'insert' : 1,
         \   }
         \ })
-  function! s:tapped_bundle.hooks.on_source(bundle)
+  function! neobundle#tapped.hooks.on_source(bundle)
     let g:neocomplete#enable_at_startup = 1
     let s:hooks = neobundle#get_hooks("neocomplete.vim")
     let g:acp_enableAtStartup = 0
     let g:neocomplet#enable_smart_case = 1
   endfunction
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " Shougo/neocomplcache.vim"{{{
-if s:bundle_tap('neocomplcache.vim') "{{{
-  call s:bundle_config({
+if neobundle#tap('neocomplcache.vim') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'insert' : 1,
         \   }
@@ -1079,41 +1093,43 @@ if s:bundle_tap('neocomplcache.vim') "{{{
       let g:acp_enableAtStartup = 0
       let g:neocomplcache_enable_smart_case = 1
   endfunction
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " thinca/vim-quickrun {{{
-if s:bundle_tap('vim-quickrun') "{{{
-  let g:quickrun_config = {
-  \   "_" : {
-  \       "runner" : "vimproc",
-  \       "runner/vimproc/updatetime" : 60
-  \   },
-  \}
-  let g:quickrun_config.markdown = {
-  \ 'type': 'markdown/pandoc',
-  \ 'cmdopt': '-s',
-  \ 'outputter': 'browser'
-  \ }
-  call s:bundle_untap()
-endif "}}}
+if neobundle#tap('vim-quickrun') "{{{
 
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let g:quickrun_config = {
+    \   "_" : {
+    \       "runner" : "vimproc",
+    \       "runner/vimproc/updatetime" : 60
+    \   },
+    \}
+    let g:quickrun_config.markdown = {
+    \ 'type': 'markdown/pandoc',
+    \ 'cmdopt': '-s',
+    \ 'outputter': 'browser'
+    \ }
+  endfunction
+  call neobundle#untap()
+endif "}}}
 "}}}
 
 " thinca/vim-scouter"{{{
-if s:bundle_tap('vim-scouter') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim-scouter') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'commands' : 'Scouter',
         \   }
         \ })
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " thinca/vim-template {{{
-if s:bundle_tap('vim-template') "{{{
+if neobundle#tap('vim-template') "{{{
   autocmd MyVimrc User plugin-template-loaded call s:template_keywords()
   function! s:template_keywords()
       silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
@@ -1125,42 +1141,44 @@ if s:bundle_tap('vim-template') "{{{
       \ |   silent! execute 'normal! "_da>'
       \ | endif
 
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " thinca/vim-ref {{{
-if s:bundle_tap('vim-ref') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim-ref') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'commands' : 'Ref',
         \   }
         \ })
-  let g:ref_jquery_doc_path = $HOME . '/.vim/.bundle/jqapi'
-  let g:ref_javascript_doc_path = $HOME . '/.vim/.bundle/jsref/htdocs'
-  let g:ref_wikipedia_lang = ['ja', 'en']
-  let g:ref_use_cache = 1
-  let g:ref_source_webdict_sites = {
-  \   'je': {
-  \     'url': 'http://eow.alc.co.jp/search?q=%s&ref=sa',
-  \   },
-  \   'ej': {
-  \     'url': 'http://eow.alc.co.jp/search?q=%s&ref=sa',
-  \   },
-  \   'etm': {
-  \     'url': 'http://home.alc.co.jp/db/owa/etm_sch?stg=1&instr=%s',
-  \   },
-  \   'wiki': {
-  \     'url': 'http://ja.wikipedia.org/wiki/%s',
-  \   },
-  \ }
-  let g:ref_alc_encoding = 'shift-jis'
-  call s:bundle_untap()
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let g:ref_jquery_doc_path = $HOME . '/.vim/.bundle/jqapi'
+    let g:ref_javascript_doc_path = $HOME . '/.vim/.bundle/jsref/htdocs'
+    let g:ref_wikipedia_lang = ['ja', 'en']
+    let g:ref_use_cache = 1
+    let g:ref_source_webdict_sites = {
+    \   'je': {
+    \     'url': 'http://eow.alc.co.jp/search?q=%s&ref=sa',
+    \   },
+    \   'ej': {
+    \     'url': 'http://eow.alc.co.jp/search?q=%s&ref=sa',
+    \   },
+    \   'etm': {
+    \     'url': 'http://home.alc.co.jp/db/owa/etm_sch?stg=1&instr=%s',
+    \   },
+    \   'wiki': {
+    \     'url': 'http://ja.wikipedia.org/wiki/%s',
+    \   },
+    \ }
+    let g:ref_alc_encoding = 'shift-jis'
+  endfunction
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " gregsexton/gitv {{{
-if s:bundle_tap('gitv') "{{{
+if neobundle#tap('gitv') "{{{
   autocmd MyVimrc FileType gitv call s:my_gitv_settings()
   function! s:my_gitv_settings()
     setlocal iskeyword&
@@ -1186,14 +1204,13 @@ if s:bundle_tap('gitv') "{{{
     endif
   endfunction
 
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
-
 "}}}
 
 " mattn/emmet-vim"{{{
-if s:bundle_tap('emmet-vim') "{{{
-  call s:bundle_config({
+if neobundle#tap('emmet-vim') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'filetypes' : [
         \       'html',
@@ -1206,37 +1223,27 @@ if s:bundle_tap('emmet-vim') "{{{
         \       'markdown'
         \     ]},
         \ })
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " mattn/gist-vim"{{{
-if s:bundle_tap('gist-vim') "{{{
-  call s:bundle_config({
+if neobundle#tap('gist-vim') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'commands' : [
         \       'Gist',
         \     ]},
         \ })
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " vim-easymotion {{{
-if s:bundle_tap('vim-easymotion') "{{{
+if neobundle#tap('vim-easymotion') "{{{
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:EasyMotion_leader_key = ';'
     let g:EasyMotion_keys='hklyuiopnm,qwertzxcvbasdgjf;'
-    " Shortcut!
-    nmap s <Plug>(easymotion-s)
-    vmap s <Plug>(easymotion-s)
-    omap z <Plug>(easymotion-s)
-
-    " Highlight"{{{
-    " hi link EasyMotionTarget ErrorMsg
-    " hi link EasyMotionShade  Comment
-    " hi link EasyMotionTarget2First MatchParen
-    " hi link EasyMotionTarget2Second MatchParen
-    "}}}
 
     " forked easymotion extention"{{{
     let g:EasyMotion_special_select_line = 0
@@ -1266,30 +1273,41 @@ if s:bundle_tap('vim-easymotion') "{{{
     let g:EasyMotion_mapping_E = ';,E'
     let g:EasyMotion_mapping_gE = ';,gE'
     "}}}
+  endfunction "}}}
+    " Shortcut!
+    nmap s <Plug>(easymotion-s)
+    vmap s <Plug>(easymotion-s)
+    omap z <Plug>(easymotion-s)
 
-  call s:bundle_untap()
+    " Highlight"{{{
+    " hi link EasyMotionTarget ErrorMsg
+    " hi link EasyMotionShade  Comment
+    " hi link EasyMotionTarget2First MatchParen
+    " hi link EasyMotionTarget2Second MatchParen
+    "}}}
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " TextObject Keymaps{{{
 
 " thinca/vim-textobj-between"{{{
-if s:bundle_tap('vim-textobj-between') "{{{
+if neobundle#tap('vim-textobj-between') "{{{
   omap if <Plug>(textobj-between-i)
   omap af <Plug>(textobj-between-a)
   vmap if <Plug>(textobj-between-i)
   vmap af <Plug>(textobj-between-a)
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " osyo-manga/vim-textobj-multiblock"{{{
-if s:bundle_tap('vim-textobj-multiblock') "{{{
+if neobundle#tap('vim-textobj-multiblock') "{{{
   omap ib <Plug>(textobj-multiblock-i)
   omap ab <Plug>(textobj-multiblock-a)
   vmap ib <Plug>(textobj-multiblock-i)
   vmap ab <Plug>(textobj-multiblock-a)
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
@@ -1321,17 +1339,19 @@ endfunction
 "}}}
 
 " vim-scripts/Align {{{
-if s:bundle_tap('Align') "{{{
-  let g:Align_xstrlen = 3
+if neobundle#tap('Align') "{{{
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let g:Align_xstrlen = 3
+  endfunction
   nnoremap <Leader>acl :<C-u>AlignCtrl l<CR>
   nnoremap <Leader>acr :<C-u>AlignCtrl r<CR>
   nnoremap <Leader>acc :<C-u>AlignCtrl c<CR>
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " osyo-manga/vim-anzu search{{{
-if s:bundle_tap('vim-anzu') "{{{
+if neobundle#tap('vim-anzu') "{{{
   nmap n <Plug>(anzu-n)zzzv
   nmap N <Plug>(anzu-N)zzzv
   nmap * <Plug>(anzu-star-with-echo)
@@ -1346,35 +1366,37 @@ if s:bundle_tap('vim-anzu') "{{{
   " Clear hit count when nokeyinput, move window, or move tab
   autocmd MyVimrc CursorHold,CursorHoldI,WinLeave,TabLeave
       \   * call anzu#clear_search_status()
-  call s:bundle_untap()
+  call neobundle#untap()
 "}}}
 endif "}}}
 
 " nathanaelkane/vim-indent-guides {{{
-if s:bundle_tap('vim-indent-guides') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim-indent-guides') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'commands' : [
         \       'IndentGuidesToggle',
         \     ]},
         \ })
-  let g:indent_guides_enable_on_vim_startup = 0
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_auto_colors = 1
-  let g:indent_guides_color_change_percent = 20
-  let g:indent_guides_default_mapping = 0
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let g:indent_guides_enable_on_vim_startup = 0
+    let g:indent_guides_guide_size = 1
+    let g:indent_guides_auto_colors = 1
+    let g:indent_guides_color_change_percent = 20
+    let g:indent_guides_default_mapping = 0
+  endfunction
   autocmd MyVimrc VimEnter,Colorscheme *
         \   :hi IndentGuidesOdd  ctermbg=darkgrey
   autocmd MyVimrc VimEnter,Colorscheme *
         \   :hi IndentGuidesEven ctermbg=grey
   nnoremap <Leader>i :<C-u>IndentGuidesToggle<CR>
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " jedi-vim {{{
-if s:bundle_tap('jedi-vim') "{{{
-  call s:bundle_config({
+if neobundle#tap('jedi-vim') "{{{
+  call neobundle#config({
         \ "autoload": {
         \   "filetypes": ["python", "python3", "djangohtml"],
         \ },
@@ -1382,35 +1404,37 @@ if s:bundle_tap('jedi-vim') "{{{
         \   "mac": "pip install jedi",
         \   "unix": "pip install jedi",
         \ }})
-  " Disable automatically set completeopt+=preview
-  let g:jedi#auto_vim_configuration = 0
-  " Disable automatically select the first entry that pops up
-  let g:jedi#popup_select_first = 0
-  " Disable automatically starts completion upon typing a period
-  let g:jedi#popup_on_dot = 0
-  " For quickrun
-  let g:jedi#rename_command = '<Leader>R'
-  " For gundo
-  let g:jedi#goto_assignments_command = '<Leader>G'
-  let g:jedi#completions_command = "<C-N>"
-  call s:bundle_untap()
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    " Disable automatically set completeopt+=preview
+    let g:jedi#auto_vim_configuration = 0
+    " Disable automatically select the first entry that pops up
+    let g:jedi#popup_select_first = 0
+    " Disable automatically starts completion upon typing a period
+    let g:jedi#popup_on_dot = 0
+    " For quickrun
+    let g:jedi#rename_command = '<Leader>R'
+    " For gundo
+    let g:jedi#goto_assignments_command = '<Leader>G'
+    let g:jedi#completions_command = "<C-N>"
+  endfunction "}}}
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " sjl/gundo.vim" {{{
-if s:bundle_tap('gundo.vim') "{{{
-  call s:bundle_config({
+if neobundle#tap('gundo.vim') "{{{
+  call neobundle#config({
         \ "autoload": {
         \   "commands": ['GundoToggle'],
         \}})
   nnoremap <Leader>g :<C-u>GundoToggle<CR>
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " tyru/open-browser {{{
-if s:bundle_tap('open-browser.vim') "{{{
-  call s:bundle_config({
+if neobundle#tap('open-browser.vim') "{{{
+  call neobundle#config({
         \ 'autoload' : {
         \   'mappings' : '<Plug>(openbrowser-smart-search)',
         \   'commands' : [
@@ -1424,72 +1448,78 @@ if s:bundle_tap('open-browser.vim') "{{{
   " If it looks like URI, open selected URI.
   " Otherwise, search selected word.
   vmap <Leader>o <Plug>(openbrowser-smart-search)
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " lightline.vim {{{
-if s:bundle_tap('lightline.vim') "{{{
-  let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'mode_map': {
-      \   'n' : 'N',
-      \   'i' : 'I',
-      \   'R' : 'R',
-      \   'v' : 'V',
-      \   'V' : 'V-L',
-      \   'c' : 'COMMAND',
-      \   "\<C-v>": 'V-B',
-      \   's' : 'SELECT',
-      \   'S' : 'S-L',
-      \   "\<C-s>": 'S-B',
-      \   '?': '      '
-      \ },
-      \ 'active': {
-      \   'left': [
-      \       [ 'mode', 'paste' ],
-      \       [ 'fugitive','filename', 'anzu'],
-      \   ],
-      \   'right': [
-      \       [ 'lineinfo', 'syntastic' ],
-      \       [ 'percent' ],
-      \       [ 'absolutepath', 'filetype'],
-      \   ]
-      \ },
-      \ 'component_function': {
-      \   'modified': 'MyModified',
-      \   'readonly': 'MyReadonly',
-      \   'fugitive': 'MyFugitive',
-      \   'filename': 'MyFilename',
-      \   'fileformat': 'MyFileformat',
-      \   'filetype': 'MyFiletype',
-      \   'fileencoding': 'MyFileencoding',
-      \   'mode': 'MyMode',
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \   'anzu': 'anzu#search_status',
-      \ }
-      \ }
-      "\ 'separator': { 'left': '⮀', 'right': '⮂' },
-      "\ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+if neobundle#tap('lightline.vim') "{{{
 
-  function! MyModified()
+    let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'mode_map': {
+        \   'n' : 'N',
+        \   'i' : 'I',
+        \   'R' : 'R',
+        \   'v' : 'V',
+        \   'V' : 'V-L',
+        \   'c' : 'COMMAND',
+        \   "\<C-v>": 'V-B',
+        \   's' : 'SELECT',
+        \   'S' : 'S-L',
+        \   "\<C-s>": 'S-B',
+        \   '?': '      '
+        \ },
+        \ 'active': {
+        \   'left': [
+        \       [ 'mode', 'paste' ],
+        \       [ 'fugitive','filename', 'anzu'],
+        \   ],
+        \   'right': [
+        \       [ 'lineinfo', 'syntastic' ],
+        \       [ 'percent' ],
+        \       [ 'absolutepath', 'filetype'],
+        \   ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'MyModified',
+        \   'readonly': 'MyReadonly',
+        \   'fugitive': 'MyFugitive',
+        \   'filename': 'MyFilename',
+        \   'fileformat': 'MyFileformat',
+        \   'filetype': 'MyFiletype',
+        \   'fileencoding': 'MyFileencoding',
+        \   'mode': 'MyMode',
+        \   'syntastic': 'SyntasticStatuslineFlag',
+        \   'anzu': 'anzu#search_status',
+        \ }
+        \ }
+        "\ 'separator': { 'left': '⮀', 'right': '⮂' },
+        "\ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    let g:unite_force_overwrite_statusline=0
+    let g:vimfiler_force_overwrite_statusline=0
+    let g:vimshell_force_overwrite_statusline=0
+  endfunction "}}}
+
+  function! MyModified() "{{{
     return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-  endfunction
+  endfunction "}}}
 
-  function! MyReadonly()
+  function! MyReadonly() "{{{
     return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
-  endfunction
+  endfunction "}}}
 
-  function! MyFilename()
+  function! MyFilename() "{{{
     return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
           \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
           \  &ft == 'unite' ? unite#get_status_string() :
           \  &ft == 'vimshell' ? vimshell#get_status_string() :
           \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
           \ ('' != MyModified() ? ' ' . MyModified() : '')
-  endfunction
+  endfunction "}}}
 
-  function! MyFugitive()
+  function! MyFugitive() "{{{
     try
       if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
         return fugitive#head()
@@ -1497,76 +1527,78 @@ if s:bundle_tap('lightline.vim') "{{{
     catch
     endtry
     return ''
-  endfunction
+  endfunction "}}}
 
-  function! MyFileformat()
+  function! MyFileformat() "{{{
     return winwidth('.') > 70 ? &fileformat : ''
-  endfunction
+  endfunction "}}}
 
-  function! MyFiletype()
+  function! MyFiletype() "{{{
     return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-  endfunction
+  endfunction "}}}
 
-  function! MyFileencoding()
+  function! MyFileencoding() "{{{
     return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-  endfunction
+  endfunction "}}}
 
-  function! MyMode()
+  function! MyMode() "{{{
     return winwidth('.') > 60 ? lightline#mode() : ''
-  endfunction
+  endfunction "}}}
 
-  let g:unite_force_overwrite_statusline=0
-  let g:vimfiler_force_overwrite_statusline=0
-  let g:vimshell_force_overwrite_statusline=0
-
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " autodate.vim {{{
-if s:bundle_tap('autodate.vim') "{{{
+if neobundle#tap('autodate.vim') "{{{
   let autodate_format = '%Y/%m/%d %H:%M:%S '
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " eskk.vim {{{
-if s:bundle_tap('eskk.vim') "{{{
-  let g:eskk#directory = "~/.eskk"
-  let g:eskk#dictionary = {
-    \   'path': "~/.skk-jisyo",
-    \   'sorted': 0,
-    \   'encoding': 'utf-8',
-    \   }
-  let g:eskk#large_dictionary = {
-    \   'path': "~/.eskk/SKK-JISYO.L",
-    \   'sorted': 1,
-    \   'encoding': 'euc-jp',
-    \   }
-  let g:eskk#enable_completion = 1
+if neobundle#tap('eskk.vim') "{{{
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    let g:eskk#directory = "~/.eskk"
+    let g:eskk#dictionary = {
+      \   'path': "~/.skk-jisyo",
+      \   'sorted': 0,
+      \   'encoding': 'utf-8',
+      \   }
+    let g:eskk#large_dictionary = {
+      \   'path': "~/.eskk/SKK-JISYO.L",
+      \   'sorted': 1,
+      \   'encoding': 'euc-jp',
+      \   }
+    let g:eskk#enable_completion = 1
+  endfunction "}}}
   imap <C-j> <Plug>(eskk:toggle)
   cmap <C-j> <Plug>(eskk:toggle)
 endif "}}}
 "}}}
 
 " clever-f.vim {{{
-if s:bundle_tap('clever-f.vim') "{{{
-  let g:clever_f_use_migemo = 1
-  let g:clever_f_smart_case = 1
+if neobundle#tap('clever-f.vim') "{{{
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    let g:clever_f_use_migemo = 1
+    let g:clever_f_smart_case = 1
+  endfunction "}}}
 endif "}}}
 "}}}
 
 " accelerated-jk {{{
-if s:bundle_tap('accelerated-jk') "{{{
+if neobundle#tap('accelerated-jk') "{{{
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    let g:accelerated_jk_acceleration_table=[7,52,57]
+  endfunction "}}}
   nmap j <Plug>(accelerated_jk_gj)
   nmap k <Plug>(accelerated_jk_gk)
-  let g:accelerated_jk_acceleration_table=[7,52,57]
 endif "}}}
 "}}}
 
 " vim-smartinput {{{
-if s:bundle_tap('vim-smartinput') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim-smartinput') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'insert' : 1,
         \   }
@@ -1597,14 +1629,13 @@ if s:bundle_tap('vim-smartinput') "{{{
               \   })
   "}}}
 
-
 endif
 "}}}
 "}}}
 
 " vim-smartchr {{{
-if s:bundle_tap('vim-smartchr') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim-smartchr') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'insert' : 1,
         \   }
@@ -1624,15 +1655,15 @@ endif "}}}
 "}}}
 
 " columnjump {{{
-if s:bundle_tap('columnjump') "{{{
+if neobundle#tap('columnjump') "{{{
   nmap <C-k> <Plug>(columnjump-backward)
   nmap <C-j> <Plug>(columnjump-forward)
 endif "}}}
 "}}}
 
 " amdt/vim-niji "{{{
-if s:bundle_tap('vim-niji') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim-niji') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'filetypes' : [
         \       'scheme',
@@ -1640,15 +1671,16 @@ if s:bundle_tap('vim-niji') "{{{
         \       'lisp'
         \     ]},
         \ })
-  echom 'vim-niji Loaded'
-  let g:loaded_niji = 0
-  call s:bundle_untap()
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    let g:loaded_niji = 0
+  endfunction "}}}
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " aharisu/vim_goshrepl "{{{
-if s:bundle_tap('vim_goshrepl') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim_goshrepl') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'filetypes' : [
         \       'scheme',
@@ -1656,12 +1688,12 @@ if s:bundle_tap('vim_goshrepl') "{{{
         \       'lisp'
         \     ]},
         \ })
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " kien/rainbow_parentheses.vim "{{{
-if s:bundle_tap('rainbow_parentheses.vim') "{{{
+if neobundle#tap('rainbow_parentheses.vim') "{{{
   " Scheme {{{
   autocmd MyVimrc BufRead,BufNewFile,BufReadPre *.scm
           \ RainbowParenthesesLoadRound
@@ -1675,28 +1707,28 @@ if s:bundle_tap('rainbow_parentheses.vim') "{{{
         \ :RainbowParenthesesLoadBraces<CR>
         \ :RainbowParenthesesLoadChevrons<CR>
         \ :RainbowParenthesesToggleAll<CR>
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " mhinz/vim-signify "{{{
-if s:bundle_tap('vim-signify') "{{{
+if neobundle#tap('vim-signify') "{{{
   nmap ;J <plug>(signify-next-hunk)
   nmap ;K <plug>(signify-prev-hunk)
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " kana/vim-operator-replace "{{{
-if s:bundle_tap('vim-operator-replace') "{{{
+if neobundle#tap('vim-operator-replace') "{{{
   map _  <Plug>(operator-replace)
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " migemo "{{{
-if s:bundle_tap('vim-migemo') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim-migemo') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'commands' : [
         \       'Migemo',
@@ -1704,41 +1736,41 @@ if s:bundle_tap('vim-migemo') "{{{
         \   }
         \ })
   noremap g/ :<C-u>Migemo<CR>
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
-
 " osyo-manga/vim-over {{{
-if s:bundle_tap('vim-over') "{{{
-  call s:bundle_config({
+if neobundle#tap('vim-over') "{{{
+  call neobundle#config({
         \   'autoload' : {
         \     'commands' : [
         \       'OverCommandLine',
         \     ]
         \   }
         \ })
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " Leafcage/yankround {{{
-if s:bundle_tap('yankround.vim') "{{{
+if neobundle#tap('yankround.vim') "{{{
 	nmap p <Plug>(yankround-p)
 	nmap P <Plug>(yankround-P)
 	nmap <C-p> <Plug>(yankround-prev)
 	nmap <C-n> <Plug>(yankround-next)
-  call s:bundle_untap()
+  call neobundle#untap()
 endif "}}}
 "}}}
 
 " basyura/TweetVim {{{
-if s:bundle_tap('TweetVim') "{{{
+if neobundle#tap('TweetVim') "{{{
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:tweetvim_display_icon=1
-  call s:bundle_untap()
+  endfunction "}}}
+  call neobundle#untap()
 endif "}}}
 "}}}
-
 
 " End plugins }}}
 
