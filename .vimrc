@@ -263,6 +263,11 @@ set softtabstop=4
 set tabstop=4
 "}}}
 
+" Turn off Automatically comment out when line break {{{
+set formatoptions-=r
+set formatoptions-=o
+"}}}
+
 " Search Basic Settings {{{
 set incsearch
 set ignorecase
