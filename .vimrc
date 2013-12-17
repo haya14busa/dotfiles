@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 18:14:59 .
+" Last Change:2013/12/17 18:23:40 .
 
 " NeoBundle {{{====================
 
@@ -320,6 +320,10 @@ set wildignore+=*.stats                          " Pylint stats
 set foldenable
 set foldmethod=marker
 set foldlevel=100
+"}}}
+
+" Open Vim help by K {{{
+set keywordprg=:help
 "}}}
 
 "}}}
