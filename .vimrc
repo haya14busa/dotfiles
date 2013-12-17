@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 18:23:40 .
+" Last Change:2013/12/17 18:42:35 .
 
 " NeoBundle {{{====================
 
@@ -820,6 +820,12 @@ if &diff
   noremap <Leader>u :<C-u>diffupdate<CR>
   noremap u u:<C-u>diffupdate<CR>
 endif
+
+" Spell check in git commit
+autocmd MyVimrc FileType gitcommit setlocal nofoldenable spell
+" Enter Insert mode in git commit
+autocmd MyVimrc VimEnter COMMIT_EDITMSG if getline(1) == '' | execute 1 | startinsert | endif
+"}}}
 "}}}
 
 " Filetypes "{{{====================
