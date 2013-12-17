@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 02:45:59 .
+" Last Change:2013/12/17 18:14:59 .
 
 " NeoBundle {{{====================
 
@@ -257,8 +257,9 @@ colorscheme wombat
 " Tab Basic Settings {{{
 set autoindent
 set expandtab
-set softtabstop=4
+set shiftround
 set shiftwidth=4
+set softtabstop=4
 set tabstop=4
 "}}}
 
