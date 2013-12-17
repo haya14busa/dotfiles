@@ -326,6 +326,10 @@ set foldlevel=100
 set keywordprg=:help
 "}}}
 
+" command-line window {{{
+set cmdwinheight=3
+"}}}
+
 "}}}
 
 " release autogroup in MyVimrc {{{
