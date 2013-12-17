@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 19:55:45 .
+" Last Change:2013/12/17 20:21:14 .
 
 " NeoBundle {{{====================
 
@@ -92,17 +92,17 @@ NeoBundle 'vim-scripts/DrawIt'
 
 " Neobundle Text Object {{{
 NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-entire'           " ae, ie
-NeoBundle 'kana/vim-textobj-fold'             " az, iz
-NeoBundle 'kana/vim-textobj-indent'           " ai, ii
-NeoBundle 'kana/vim-textobj-line'             " al, il
-NeoBundle 'kana/vim-textobj-syntax'           " ay, iy
-NeoBundle 'kana/vim-textobj-django-template'  " adb, idb
-NeoBundle 'thinca/vim-textobj-between'        " af{char}, if{char}
-NeoBundle 'mattn/vim-textobj-url'             " au, ai
-NeoBundle 'osyo-manga/vim-textobj-multiblock' " ab, ib
-NeoBundle 'lucapette/vim-textobj-underscore'  " a_, i_
-NeoBundle 'h1mesuke/textobj-wiw'              " a,w a,e
+NeoBundleLazy 'kana/vim-textobj-entire'           " ae, ie
+NeoBundleLazy 'kana/vim-textobj-fold'             " az, iz
+NeoBundleLazy 'kana/vim-textobj-indent'           " ai, ii
+NeoBundleLazy 'kana/vim-textobj-line'             " al, il
+NeoBundleLazy 'kana/vim-textobj-syntax'           " ay, iy
+NeoBundleLazy 'kana/vim-textobj-django-template'  " adb, idb
+NeoBundleLazy 'thinca/vim-textobj-between'        " af{char}, if{char}
+NeoBundleLazy 'mattn/vim-textobj-url'             " au, iu
+NeoBundleLazy 'osyo-manga/vim-textobj-multiblock' " ab, ib
+NeoBundleLazy 'lucapette/vim-textobj-underscore'  " a_, i_
+NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
 
 " to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
@@ -1291,25 +1291,152 @@ endif "}}}
 
 " TextObject Keymaps{{{
 
-" thinca/vim-textobj-between"{{{
-if neobundle#tap('vim-textobj-between') "{{{
-  omap if <Plug>(textobj-between-i)
-  omap af <Plug>(textobj-between-a)
-  vmap if <Plug>(textobj-between-i)
-  vmap af <Plug>(textobj-between-a)
-  call neobundle#untap()
-endif "}}}
-"}}}
+if neobundle#tap('vim-textobj-entire') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'ae'], ['xo', 'ie']]
+        \   }
+        \ })
 
-" osyo-manga/vim-textobj-multiblock"{{{
-if neobundle#tap('vim-textobj-multiblock') "{{{
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-fold') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'az'], ['xo', 'iz']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-indent') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'ai'], ['xo', 'aI'], ['xo', 'ii'], ['xo', 'iI']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-line') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'al'], ['xo', 'il']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-syntax') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'ay'], ['xo', 'iy']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-django-template') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'adb'], ['xo', 'idb']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-between') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'af'], ['xo', 'if'], ['xo', '<Plug>(textobj-between-']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-url') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'au'], ['xo', 'iu']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-multiblock') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'ab'], ['xo', 'ib'], ['xo', '<Plug>(textobj-multiblock-']]
+        \   }
+        \ })
   omap ib <Plug>(textobj-multiblock-i)
   omap ab <Plug>(textobj-multiblock-a)
   vmap ib <Plug>(textobj-multiblock-i)
   vmap ab <Plug>(textobj-multiblock-a)
-  call neobundle#untap()
-endif "}}}
-"}}}
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('vim-textobj-underscore') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'a_'], ['xo', 'i_']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
+if neobundle#tap('textobj-wiw') " {{{
+  call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'a,w'], ['xo', 'i,w']]
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+ call neobundle#untap()
+endif " }}}
 
 " Number Text Object {{{
 onoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
