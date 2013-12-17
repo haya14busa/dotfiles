@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 20:21:14 .
+" Last Change:2013/12/17 20:22:17 .
 
 " NeoBundle {{{====================
 
@@ -855,7 +855,7 @@ autocmd MyVimrc BufWritePost *.scss call Sass_convert()
 
 " plugin settings {{{====================
 
-" Sample 
+" Sample
 " if neobundle#tap('sample') " {{{
 "   call neobundle#config({
 "         \   'autoload' : {
@@ -1241,7 +1241,6 @@ endif "}}}
 
 " vim-easymotion {{{
 if neobundle#tap('vim-easymotion') "{{{
-  function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:EasyMotion_leader_key = ';'
     let g:EasyMotion_keys='hklyuiopnm,qwertzxcvbasdgjf;'
 
@@ -1273,6 +1272,7 @@ if neobundle#tap('vim-easymotion') "{{{
     let g:EasyMotion_mapping_E = ';,E'
     let g:EasyMotion_mapping_gE = ';,gE'
     "}}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
   endfunction "}}}
     " Shortcut!
     nmap s <Plug>(easymotion-s)
