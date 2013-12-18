@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/18 16:09:37 .
+" Last Change:2013/12/18 18:45:47 .
 
 " NeoBundle {{{====================
 
@@ -194,6 +194,7 @@ NeoBundle 'basyura/TweetVim' " twitter client for vim
 NeoBundle 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
 NeoBundle 'bohrshaw/vim-vimperator-syntax'
 NeoBundle 'supermomonga/thingspast.vim'
+MyNeoBundle 'vim-helloworld'
 "}}}
 
 filetype plugin indent on
