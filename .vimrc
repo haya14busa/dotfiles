@@ -813,7 +813,7 @@ autocmd MyVimrc BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang
   endfunction  " }}}
 "}}}
 
-" Mapping for vimdiff{{{
+" Git Setting {{{
 " for git mergetool
 if &diff
   noremap <Leader>1 :diffget LOCAL<CR>
@@ -827,7 +827,23 @@ endif
 autocmd MyVimrc FileType gitcommit setlocal nofoldenable spell
 " Enter Insert mode in git commit
 autocmd MyVimrc VimEnter COMMIT_EDITMSG if getline(1) == '' | execute 1 | startinsert | endif
+
+" git blame {{{
+function! s:git_blame(fname, ...)
+    execute 'lcd' fnamemodify(a:fname, ':p:h')
+    let range = (a:0==0 ? line('.') : a:1.','.a:2)
+    let errfmt = &errorformat
+    set errorformat=.*
+    cgetexpr system('git blame -L '.range.' '.fnamemodify(a:fname, ':p'))
+    let &errorformat = errfmt
+    Unite quickfix -no-start-insert
+endfunction
+command! -nargs=0 GitBlameThisLine call <SID>git_blame(expand('%'))
+command! -range GitBlameRange call <SID>git_blame(expand('%'), <line1>, <line2>)
+nnoremap <silent><Leader>gb :<C-u>GitBlameThisLine<CR>
+vnoremap <silent><Leader>gb :GitBlameRange<CR>
 "}}}
+
 "}}}
 
 " Filetypes "{{{====================
