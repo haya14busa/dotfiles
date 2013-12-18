@@ -1940,6 +1940,7 @@ endif "}}}
 if neobundle#tap('TweetVim') "{{{
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:tweetvim_display_icon=1
+    autocmd FileType tweetvim setlocal nonumber
   endfunction "}}}
   call neobundle#untap()
 endif "}}}
