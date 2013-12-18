@@ -3,10 +3,18 @@
 ########################################
 # 環境変数
 
-export LC_ALL=C
+# export LC_ALL=C
 export LANG=en_US.UTF-8
-#export LANG=ja_JP.UTF-8
-
+# export LANG=ja_JP.UTF-8
+# export LC_MESSAGES=ja_JP.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_IDENTIFICATION=ja_JP.UTF-8
+export LC_COLLATE=ja_JP.UTF-8
+# export LANG=ja_JP.UTF-8
+export LC_MEASUREMENT=ja_JP.UTF-8
+export LC_CTYPE=ja_JP.UTF-8
+export LC_TIME=ja_JP.UTF-8
+export LC_NAME=ja_JP.UTF-8
 
 # 色を使用出来るようにする
 autoload -Uz colors
@@ -184,6 +192,7 @@ alias say="say >& /dev/null"
 alias SayKotoeri2="SayKotoeri2 >& /dev/null"
 alias SayKotoeri="SayKotoeri >& /dev/null"
 alias tmux="tmux -u"
+#alias tmux="tmux -u2"
 
 # path to pandoc
 PATH=${HOME}/.cabal/bin:$PATH
@@ -226,12 +235,17 @@ alias lesson='lesson-ls && pbpaste | xargs ./lesson-dl'
 ########################################
 
 # jakld
-# export JAKLD_HOME=$HOME/jakld
-# export PATH=$JAKLD_HOME/bin:$PATH
-alias jakld='java -jar $HOME/jakld/jakld/jakld.jar'
+export JAKLD_HOME=$HOME/jakld
+export PATH=$JAKLD_HOME/bin:$PATH
+alias jakld='rlwrap java -jar $HOME/jakld/jakld.jar'
 
 
 export PATH="$HOME/bin:$PATH"
 
 #rlwrap Gauche
 alias gosh='rlwrap gosh'
+
+
+export IntelliJ=$HOME/Downloads/idea-IC-133.193/
+export PATH=$IntelliJ/bin:$PATH
+alias intellij='$IntelliJ/bin/idea.sh'
