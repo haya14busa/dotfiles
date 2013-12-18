@@ -1508,7 +1508,7 @@ if neobundle#tap('vim-operator-replace') "{{{
         \     'mappings' : '<Plug>(operator-replace)'
         \   }
         \ })
-  map _  <Plug>(operator-replace)
+  map ;R  <Plug>(operator-replace)
   function! neobundle#tapped.hooks.on_source(bundle)
   endfunction
 
