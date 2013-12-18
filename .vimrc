@@ -1111,6 +1111,7 @@ if neobundle#tap('neocomplete.vim') "{{{
     let s:hooks = neobundle#get_hooks("neocomplete.vim")
     let g:acp_enableAtStartup = 0
     let g:neocomplet#enable_smart_case = 1
+    let g:neocomplete#enable_fuzzy_completion = 1
   endfunction
   call neobundle#untap()
 endif "}}}
