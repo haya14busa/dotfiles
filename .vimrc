@@ -41,6 +41,7 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'thinca/vim-unite-history'
+NeoBundle 'osyo-manga/unite-quickfix'
 "}}}
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
