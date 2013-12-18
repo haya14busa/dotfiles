@@ -879,7 +879,7 @@ autocmd MyVimrc BufWritePost *.scss call Sass_convert()
 
 " end vim setup}}}
 
-" plugin settings {{{====================
+" Plugin settings {{{====================
 
 " Sample
 " if neobundle#tap('sample') " {{{
@@ -947,7 +947,7 @@ if neobundle#tap('unite.vim') "{{{
   xmap ; [unite]
 
   " Source
-  nnoremap <silent> [unite]; :<C-u>Unite source -silent -start-insert<CR>
+  nnoremap <silent> [unite]; :<C-u>Unite source -vertical -silent -start-insert<CR>
 
   " Buffer
   nnoremap <silent> [unite]b :<C-u>Unite -silent buffer file_mru bookmark<CR>
@@ -958,7 +958,10 @@ if neobundle#tap('unite.vim') "{{{
   "nnoremap <silent> [unite]m :<C-u>Unite -silent file_mru<CR>
 
   " Register List
-  nnoremap <silent> [unite]r :<C-u>Unite -silent -buffer-name=register register<CR>
+  " nnoremap <silent> [unite]r :<C-u>Unite -silent -buffer-name=register register<CR>
+
+  " Restore Unite
+  nnoremap <silent> [unite]r         :<C-u>UniteResume<CR>
 
   " Yank History
   let g:unite_source_history_yank_enable = 1
@@ -976,6 +979,9 @@ if neobundle#tap('unite.vim') "{{{
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite -silent -no-quit grep<CR>
 
+  " Open plugin directory by t
+  call unite#custom#alias('directory', 'tabopen', 'tabvimfiler')
+
   " Unite Plugin Settings
   "-Unite Plugin Settings--------------"{{{
   " Execute help.
@@ -983,10 +989,11 @@ if neobundle#tap('unite.vim') "{{{
   " Execute help by cursor keyword.
   nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord -silent help<CR>
   " Outeline
-  nnoremap <silent> [unite]o :<C-u>Unite -silent outline -start-insert<CR>
+  nnoremap <silent> [unite]o :<C-u>Unite -silent outline -vertical -winwidth=40 -no-start-insert<CR>
   " Fold
-  nnoremap <silent> [unite]<Space> :<C-u>Unite -silent fold -start-insert<CR>
-
+  nnoremap <silent> [unite]<Space> :<C-u>Unite -silent fold -vertical -winwidth=40 -no-start-insert<CR>
+  " Unite Beautiful Atack
+  nnoremap [unite]C :<C-u>Unite -auto-preview colorscheme<CR>
   "}}}
   "}}}
 
