@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/17 20:36:12 .
+" Last Change:2013/12/18 16:09:37 .
 
 " NeoBundle {{{====================
 
@@ -180,7 +180,8 @@ NeoBundle 'vim-scripts/twilight'
 NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'vim-scripts/rdark'
-
+NeoBundle 'djjcast/mirodark'
+NeoBundle 'sjl/badwolf'
 "}}}
 
 " Others"{{{
@@ -237,9 +238,13 @@ set wrapscan
 
 " Colorscheme {{{
 syntax enable
-set background=light
+set background=dark
 set t_Co=256
-colorscheme wombat
+try
+  colorscheme wombat
+catch
+  desert
+endtry
 "}}}
 
 " Tab Basic Settings {{{
