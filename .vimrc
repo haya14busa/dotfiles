@@ -1024,10 +1024,13 @@ if neobundle#tap('vimfiler') "{{{
         \   }
         \ })
   function! neobundle#tapped.hooks.on_source(bundle)
-    let g:vimfiler_as_default_explorer=1
-    let g:vimfiler_safe_mode_by_default=0
   endfunction
-  nnoremap <silent> <Leader>vf :VimFilerBufferDir -split -simple -no-quit -winwidth=32<CR>
+  let g:vimfiler_as_default_explorer=1
+  let g:vimfiler_safe_mode_by_default=0
+  nnoremap <silent> ;vf :VimFilerBufferDir -split -simple -no-quit -winwidth=32<CR>
+  nnoremap <silent> ;vt :VimFilerBufferDir -tab<CR>
+
+  "autocmd FileType vimfiler nmap <buffer><silent><Tab> <Plug>(vimfiler_choose_action)
   call neobundle#untap()
 endif "}}}
 "}}}
