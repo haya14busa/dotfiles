@@ -215,7 +215,8 @@ NeoBundle 'thinca/vim-splash'
 NeoBundle 'https://gist.github.com/OrgaChem/7649755' " vim_intro.txt
 NeoBundle 'https://gist.github.com/OrgaChem/7679840' " vimorg
 "let g:splash#path = '/home/haya14busa/.vim/bundle/7649755/all_your_vim_are_belong_to_us.txt'
-let g:splash#path = '/home/haya14busa/.vim/bundle/7679840/vim_org.txt'
+"let g:splash#path = '/home/haya14busa/.vim/bundle/7679840/vim_org.txt'
+let g:splash#path = expand('~/.vim/bundle/7679840/vim_org.txt')
 "}}}
 
 "}}}
