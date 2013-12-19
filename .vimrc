@@ -244,8 +244,8 @@ endif
 set cmdheight=1
 set display=lastline
 set grepprg=internal
-set hidden
-set infercase
+set hidden " Display another buffer when current buffer isn't saved.
+set infercase " Ignore case on insert completion.
 set laststatus=2
 set matchtime=3
 set modeline
@@ -454,10 +454,6 @@ cnoremap <C-y> <C-r>+
 "}}}
 
 " Window {{{
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
 
 nnoremap <S-Right> :<C-u>vertical resize +2<CR>
 nnoremap <S-Left> :<C-u>vertical resize -2<CR>
@@ -655,7 +651,10 @@ nnoremap ,t :<C-u>call Endtagcomment()<CR>
 " Fold {{{
 
 " Leafcage/foldCC Settings {{{
-set foldtext=foldCC#foldtext()
+if exists('*FoldCCtext')
+  " Use FoldCCtext().
+  set foldtext=foldCC#foldtext()
+endif
 "}}}
 
 " Color setting for Fold {{{
@@ -850,6 +849,9 @@ if &diff
   noremap <Leader>u :<C-u>diffupdate<CR>
   noremap u u:<C-u>diffupdate<CR>
 endif
+
+" Update diff
+autocmd MyVimrc InsertLeave * if &l:diff | diffupdate | endif
 
 " Spell check in git commit
 autocmd MyVimrc FileType gitcommit setlocal nofoldenable spell
@@ -2301,6 +2303,7 @@ endif " }}}
 " End plugins }}}
 
 call neobundle#call_hook('on_source')
+set secure
 
 "------------------------------------
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
