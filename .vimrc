@@ -222,6 +222,9 @@ let g:splash#path = expand('~/.vim/bundle/7679840/vim_org.txt')
 "}}}
 
 filetype plugin indent on
+
+" Installation check.
+NeoBundleCheck
 " END Neobundle}}}
 
 " Vim Setup  {{{====================
@@ -2296,6 +2299,8 @@ endif " }}}
 "}}}
 
 " End plugins }}}
+
+call neobundle#call_hook('on_source')
 
 "------------------------------------
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
