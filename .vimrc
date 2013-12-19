@@ -210,6 +210,13 @@ NeoBundleLazy 'supermomonga/thingspast.vim'
 MyNeoBundle 'vim-helloworld'
 NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
 NeoBundleLazy 't9md/vim-smalls'
+" Splash {{{
+NeoBundle 'thinca/vim-splash'
+NeoBundle 'https://gist.github.com/OrgaChem/7649755' " vim_intro.txt
+NeoBundle 'https://gist.github.com/OrgaChem/7679840' " vimorg
+"let g:splash#path = '/home/haya14busa/.vim/bundle/7649755/all_your_vim_are_belong_to_us.txt'
+let g:splash#path = '/home/haya14busa/.vim/bundle/7679840/vim_org.txt'
+"}}}
 
 "}}}
 
