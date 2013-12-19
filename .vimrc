@@ -68,7 +68,7 @@ endif
 NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-scouter'
 NeoBundleLazy 'thinca/vim-visualstar'
-NeoBundle 'thinca/vim-template'
+"NeoBundle 'thinca/vim-template'
 " thinca/vim-ref {{{
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundle 'mojako/ref-sources.vim'
