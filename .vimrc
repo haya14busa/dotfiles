@@ -268,7 +268,7 @@ set t_Co=256
 try
   colorscheme wombat
 catch
-  desert
+  colorscheme desert
 endtry
 "}}}
 
@@ -903,7 +903,7 @@ autocmd MyVimrc BufWritePost *.scss call Sass_convert()
 
 " end vim setup}}}
 
-" Plugin settings {{{====================
+" Plugin settings {{{==============
 
 " Sample
 " if neobundle#tap('sample') " {{{
