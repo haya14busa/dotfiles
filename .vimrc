@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Change:2013/12/18 18:45:47 .
+" Last Modified: 19 Dec 2013.
 
 " NeoBundle {{{====================
 
@@ -127,7 +127,7 @@ NeoBundleLazy 'nathanaelkane/vim-indent-guides'
 NeoBundleLazy 'davidhalter/jedi-vim'
 NeoBundleLazy 'sjl/gundo.vim'
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'autodate.vim'
+NeoBundleLazy 'autodate.vim'
 
 " NeoBundle Web
 NeoBundleLazy 'tyru/open-browser.vim'
@@ -1732,7 +1732,15 @@ endif "}}}
 
 " autodate.vim {{{
 if neobundle#tap('autodate.vim') "{{{
-  let autodate_format = '%Y/%m/%d %H:%M:%S '
+  call neobundle#config({
+        \   'autoload' : {
+        \     'filetypes' : 'vim',
+        \   }
+        \ })
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+    let autodate_format = '%d %3m %Y'
+    let autodate_keyword_pre = 'Last \%(Change\|Modified\):'
   call neobundle#untap()
 endif "}}}
 "}}}
