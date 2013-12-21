@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 19 Dec 2013.
+" Last Modified: 21 Dec 2013.
 "
 "=============================================================
 "     __                     _____ __  __
@@ -96,9 +96,12 @@ NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 
+" Motion {{{
 "NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundleLazy 'haya14busa/vim-easymotion', 'lazymotion'
-"MyNeoBundle 'vim-easymotion'
+"NeoBundleLazy 'haya14busa/vim-easymotion', 'lazymotion'
+MyNeoBundle 'vim-easymotion'
+NeoBundleLazy 'rhysd/clever-f.vim'
+"}}}
 
 NeoBundleLazy 'vim-scripts/DrawIt'
 
@@ -128,7 +131,6 @@ NeoBundleLazy 'kana/vim-operator-replace'
 
 " Extend Basic Vim Commands
 NeoBundle 'matchit.zip'
-NeoBundleLazy 'rhysd/clever-f.vim'
 NeoBundleLazy 'rhysd/accelerated-jk'
 NeoBundleLazy 'deris/columnjump'
 NeoBundleLazy 'osyo-manga/vim-anzu'
@@ -153,6 +155,7 @@ NeoBundleLazy 'kien/rainbow_parentheses.vim'
 
 NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
+NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
 
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
@@ -209,7 +212,6 @@ NeoBundle 'bohrshaw/vim-vimperator-syntax'
 NeoBundleLazy 'supermomonga/thingspast.vim'
 MyNeoBundle 'vim-helloworld'
 NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
-NeoBundleLazy 't9md/vim-smalls'
 " Splash {{{
 NeoBundle 'thinca/vim-splash'
 NeoBundle 'https://gist.github.com/OrgaChem/7649755' " vim_intro.txt
@@ -423,7 +425,7 @@ nnoremap <Space>k <C-b>zz
 vnoremap <Space>j <C-f>zz
 vnoremap <Space>k <C-b>zz
 
-nnoremap <Space><Space> <C-f>zz
+"nnoremap <Space><Space> <C-f>zz
 
 " Insert & Comandline Mode "{{{
 "inoremap <C-j> <Down>
@@ -1411,15 +1413,21 @@ endif "}}}
 " vim-easymotion {{{
 if neobundle#tap('vim-easymotion') "{{{
   call neobundle#config({
+        \   'lazy' : 1,
         \   'autoload' : {
         \     'mappings' : [['sxno', '<Plug>(easymotion-']],
         \   }
         \ })
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    map ;1 :<C-u>call EasyMotion#User(
+      \ '^\(\w\|\s*\zs\|$\)' . '\|' . '\(\%' . virtcol('.') . 'v\)' . '\|' . '\(.\ze$\)'
+      \ ,0,2)<CR>
   endfunction "}}}
 
     " Do not mapping automatically
-    let g:EasyMotion_keys='hklyuiopnm,qwertzxcvbasdgjf;'
+    "let g:EasyMotion_keys='hklyuiopnm,qwertzxcvbasdgjf;'
+    let g:EasyMotion_keys='HKLYUIOPNM,QWERTZXCVBASDGJF;'
+    let g:EasyMotion_use_upper = 1
     let g:EasyMotion_leader_key = ';'
 
     " EasyMotion Mapping {{{
@@ -1429,10 +1437,20 @@ if neobundle#tap('vim-easymotion') "{{{
     omap z <Plug>(easymotion-s)
     map ;j <Plug>(easymotion-j)
     map ;k <Plug>(easymotion-bd-jk)
-    "map ;t <Plug>(easymotion-t)
-    map ;w <Plug>(easymotion-bd-w)
+    map ;t <Plug>(easymotion-t)
+    " map ;w <Plug>(easymotion-bd-w)
     map ;e <Plug>(easymotion-bd-e)
     map ;n <Plug>(easymotion-bd-n)
+
+    "let g:Easymotion_re_anywhere = '\v(<.|.>|^$)'
+    let g:EasyMotion_re_anywhere = '\v' .
+        \	 '(<.|^)' . '|' .
+        \	 '(<.|.$)' . '|' .
+        \	 '(\l)\zs(\u)' . '|' .
+        \	 '(_\zs.)' . '|' .
+        \	 '(/\zs.)' . '|' .
+        \	 '(#\zs.)'
+    map <Space><Space> <Plug>(easymotion-jumptoanywhere)
     "}}}
 
     " EasyMotion Config {{{
@@ -1459,10 +1477,10 @@ if neobundle#tap('vim-easymotion') "{{{
 
     " " EasyMotion User {{{
     " "map ;u :<C-u>call EasyMotion#User(substitute(@/,'\\v','','') . '\|easymotion',0,2)<CR>
-    " " JK start of line, cursor colum, end of line
-    " let s:re = '^\(\w\|\s*\zs\|$\)' . '\|' . '\(\%' . virtcol('.') . 'v\)' . '\|' . '$'
-    " " exec "map  ;1 :<C-u>call EasyMotion#User('" . s:re . "',0,2)<CR>"
-    " " exec "xmap  ;1 :<C-u>call EasyMotion#User('" . s:re . "',1,2)<CR>"
+    " JK start of line, cursor colum, end of line
+    "let s:re = '^\(\w\|\s*\zs\|$\)' . '\|' . '\(\%' . virtcol('.') . 'v\)' . '\|' . '$'
+    "exec "map  ;1 :<C-u>call EasyMotion#User('" . s:re . "',0,2)<CR>"
+    "exec "xmap  ;1 :<C-u>call EasyMotion#User('" . s:re . "',1,2)<CR>"
     " call EasyMotion#UserMapping(
     "   \   '^\(\w\|\s*\zs\|$\)' . '\|' . '\(\%' . virtcol('.') . 'v\)' . '\|' . '$'
     "   \ , ';1',2)
