@@ -101,6 +101,7 @@ NeoBundle 'mattn/webapi-vim'
 "NeoBundleLazy 'haya14busa/vim-easymotion', 'lazymotion'
 MyNeoBundle 'vim-easymotion'
 NeoBundleLazy 'rhysd/clever-f.vim'
+NeoBundleLazy 't9md/vim-smalls'
 "}}}
 
 NeoBundleLazy 'vim-scripts/DrawIt'
@@ -2314,6 +2315,20 @@ if neobundle#tap('vim-prettyprint') " {{{
         \     'commands' : 'PP',
         \   }
         \ })
+  call neobundle#untap()
+endif " }}}
+"}}}
+
+" t9md/vim-smalls {{{
+if neobundle#tap('vim-smalls') " {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'mappings' : '<Plug>(smalls',
+        \   }
+        \ })
+  nmap ;s <Plug>(smalls)
+  omap ;z <Plug>(smalls)
+  xmap ;s <Plug>(smalls)
   call neobundle#untap()
 endif " }}}
 "}}}
