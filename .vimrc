@@ -1450,18 +1450,27 @@ if neobundle#tap('vim-easymotion') "{{{
     map ;j <Plug>(easymotion-j)
     map ;k <Plug>(easymotion-bd-jk)
     map ;t <Plug>(easymotion-t)
-    " map ;w <Plug>(easymotion-bd-w)
+    map ;w <Plug>(easymotion-bd-w)
     map ;e <Plug>(easymotion-bd-e)
     map ;n <Plug>(easymotion-bd-n)
 
+    map ;;;;;;;;;;;;;; <Plug>(easymotion-b)
+    map <Nop> <Plug>(easymotion-B)
+    map <Nop> <Plug>(easymotion-f)
+    map <Nop> <Plug>(easymotion-F)
+
+    " let g:EasyMotion_mapping_e = ';,e'
+    " let g:EasyMotion_mapping_T = '<C-e>'
+
     "let g:Easymotion_re_anywhere = '\v(<.|.>|^$)'
+
     let g:EasyMotion_re_anywhere = '\v' .
-        \	 '(<.|^)' . '|' .
-        \	 '(<.|.$)' . '|' .
-        \	 '(\l)\zs(\u)' . '|' .
-        \	 '(_\zs.)' . '|' .
-        \	 '(/\zs.)' . '|' .
-        \	 '(#\zs.)'
+        \  '(<.|^)' . '|' .
+        \  '(.$)' . '|' .
+        \  '(\l)\zs(\u)' . '|' .
+        \  '(_\zs.)' . '|' .
+        \  '(/\zs.)' . '|' .
+        \  '(#\zs.)'
     map <Space><Space> <Plug>(easymotion-jumptoanywhere)
     "}}}
 
@@ -2292,7 +2301,6 @@ if neobundle#tap('vim-commentary') " {{{
   call neobundle#untap()
 endif " }}}
 "}}}
-
 
 " vim-scripts/loremipsum {{{
 if neobundle#tap('loremipsum') " {{{
