@@ -214,6 +214,7 @@ NeoBundle 'bohrshaw/vim-vimperator-syntax'
 NeoBundleLazy 'supermomonga/thingspast.vim'
 MyNeoBundle 'vim-helloworld'
 NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
+NeoBundleLazy 'rbtnn/puyo.vim'
 " Splash {{{
 NeoBundle 'thinca/vim-splash'
 NeoBundle 'https://gist.github.com/OrgaChem/7649755' " vim_intro.txt
@@ -2333,6 +2334,20 @@ if neobundle#tap('vim-smalls') " {{{
   call neobundle#untap()
 endif " }}}
 "}}}
+
+" rbtnn/puyo.vim {{{
+if neobundle#tap('puyo.vim') " {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       'Puyo'
+        \     ],
+        \   }
+        \ })
+  call neobundle#untap()
+endif " }}}
+"}}}
+
 
 " End plugins }}}
 
