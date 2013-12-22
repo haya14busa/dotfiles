@@ -353,6 +353,15 @@ set foldlevel=100
 set keywordprg=:help
 "}}}
 
+" Close Vim help by q {{{
+if !exists("autocommands_help_loaded")
+  let autocommands_help_loaded = 1
+  autocmd FileType help nnoremap <buffer> q <C-w>c
+  " autocmd FileType help nnoremap <buffer> <Space> <C-]>
+  " autocmd FileType help nnoremap <buffer> <S-Space> <C-t>
+endif
+"}}}
+
 " command-line window {{{
 set cmdwinheight=3
 "}}}
