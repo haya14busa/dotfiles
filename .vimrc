@@ -358,8 +358,8 @@ set keywordprg=:help
 if !exists("autocommands_help_loaded")
   let autocommands_help_loaded = 1
   autocmd FileType help nnoremap <buffer> q <C-w>c
-  " autocmd FileType help nnoremap <buffer> <Space> <C-]>
-  " autocmd FileType help nnoremap <buffer> <S-Space> <C-t>
+  autocmd FileType help nnoremap <buffer> ;q q
+  autocmd FileType help nnoremap <buffer> Q q
 endif
 "}}}
 
