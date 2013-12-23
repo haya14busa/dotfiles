@@ -166,17 +166,32 @@ NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 " NeoBundle for expr {{{
-NeoBundleLazy 'python_fold', {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"],
-      \ }}
+NeoBundle 'tmhedberg/SimpylFold'
+if neobundle#tap('SimpylFold') " {{{
+  call neobundle#config({
+        \ "autoload": {
+        \   "filetypes": ["python", "python3", "djangohtml"],
+        \   }
+        \ })
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+  let g:SimpylFold_docstring_preview = 1
+  call neobundle#untap()
+endif " }}}
+NeoBundleLazy 'heavenshell/vim-pydocstring'
+if neobundle#tap('vim-pydocstring') " {{{
+  call neobundle#config({
+        \ "autoload": {
+        \   "filetypes": ["python", "python3", "djangohtml"],
+        \   }
+        \ })
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+  call neobundle#untap()
+endif " }}}
 NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding', {
       \ "autoload": {
       \   "filetypes": ["css"],
-      \ }}
-NeoBundleLazy 'vim-scripts/phpfolding.vim', {
-      \ "autoload": {
-      \   "filetypes": ["php"],
       \ }}
 "}}}
 
