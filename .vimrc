@@ -378,9 +378,10 @@ augroup END
 " Open & AutoReload .vimrc {{{
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
-
-autocmd MyVimrc BufWritePost *vimrc source $MYVIMRC | setlocal foldmethod=marker
-autocmd MyVimrc BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+command! SoVimrc source $MYVIMRC
+"autocmd MyVimrc BufWritePost *vimrc source $MYVIMRC | setlocal foldmethod=marker
+"aiueo
+"autocmd MyVimrc BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 " Reload syntax after source $MYVIMRC
 " -> <C-l>
 " nnoremap <Leader><Leader>s :<C-u>syntax enable<CR>
