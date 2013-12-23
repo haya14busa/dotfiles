@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 22 Dec 2013.
+" Last Modified: 23 Dec 2013.
 "
 "=============================================================
 "     __                     _____ __  __
@@ -78,7 +78,8 @@ NeoBundle 'soh335/vim-ref-jquery'
 "}}}
 
 NeoBundle 'tpope/vim-repeat'
-NeoBundleLazy 'tpope/vim-commentary' "gc{motion} , \\{motion}, \\\
+" NeoBundleLazy 'tpope/vim-commentary' "gc{motion} , \\{motion}, \\\
+NeoBundleLazy 'tryu/caw.vim'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-markdown'
 " NeoBundle Git {{{
@@ -2291,13 +2292,31 @@ if neobundle#tap('vim-visualstar') " {{{
 endif " }}}
 "}}}
 
-" tpope/vim-commentary {{{
-if neobundle#tap('vim-commentary') " {{{
+" tryu/caw.vim {{{
+if neobundle#tap('caw.vim') " {{{
   call neobundle#config({
         \   'autoload' : {
-        \     'mappings' : ['\\'],
+        \     'mappings' : ['<Plug>(caw:'],
         \   }
         \ })
+  let g:caw_no_default_keymappings = 1
+  " Beggining of Line Comment Toggle
+  nmap <Leader>cc <Plug>(caw:i:toggle)
+  vmap <Leader>cc <Plug>(caw:i:toggle)
+  nmap <Leader>ci <Plug>(caw:i:toggle)
+  vmap <Leader>ci <Plug>(caw:i:toggle)
+
+  " End of Line Comment Toggle
+  nmap <Leader>ca <Plug>(caw:a:toggle)
+  vmap <Leader>ca <Plug>(caw:a:toggle)
+
+  " Block Comment Toggle
+  nmap <Leader>cw <Plug>(caw:wrap:toggle)
+  vmap <Leader>cw <Plug>(caw:wrap:toggle)
+
+  " Break line and Comment
+  nmap <Leader>co <Plug>(caw:jump:comment-next)
+  nmap <Leader>cO <Plug>(caw:jump:comment-prev)
   call neobundle#untap()
 endif " }}}
 "}}}
