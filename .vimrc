@@ -2,8 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 23 Dec 2013.
-"
+" Last Modified: 24 Dec 2013.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -2458,8 +2457,6 @@ endfunction
 command! -nargs=0 AutoDown call <SID>set_auto_down()
 command! -nargs=0 StopAutoDown autocmd! vimrc-auto-down
 "}}}
-
-
 call neobundle#call_hook('on_source')
 set secure
 
