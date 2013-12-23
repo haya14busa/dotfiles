@@ -2165,13 +2165,14 @@ endif "}}}
 " migemo "{{{
 if neobundle#tap('vim-migemo') "{{{
   call neobundle#config({
+        \   'lazy' : 1,
         \   'autoload' : {
-        \     'commands' : [
-        \       'Migemo',
-        \     ]
+        \     'mappings' : ['<Plug>(migemo-'],
         \   }
         \ })
-  noremap g/ :<C-u>Migemo<CR>
+
+  let g:migemodict = '/usr/share/cmigemo/utf-8/migemo-dict'
+  nmap g/ <Plug>(migemo-migemosearch)
   call neobundle#untap()
 endif "}}}
 "}}}
