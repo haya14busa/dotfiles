@@ -1457,6 +1457,7 @@ if neobundle#tap('vim-easymotion') "{{{
 
     " EasyMotion Mapping {{{
     let g:EasyMotion_do_mapping = 0
+    let g:EasyMotion_do_special_mapping = 1
     nmap s <Plug>(easymotion-s)
     vmap s <Plug>(easymotion-s)
     omap z <Plug>(easymotion-s)
@@ -1466,16 +1467,6 @@ if neobundle#tap('vim-easymotion') "{{{
     map ;w <Plug>(easymotion-bd-w)
     map ;e <Plug>(easymotion-bd-e)
     map ;n <Plug>(easymotion-bd-n)
-
-    map ;;;;;;;;;;;;;; <Plug>(easymotion-b)
-    map <Nop> <Plug>(easymotion-B)
-    map <Nop> <Plug>(easymotion-f)
-    map <Nop> <Plug>(easymotion-F)
-
-    " let g:EasyMotion_mapping_e = ';,e'
-    " let g:EasyMotion_mapping_T = '<C-e>'
-
-    "let g:Easymotion_re_anywhere = '\v(<.|.>|^$)'
 
     let g:EasyMotion_re_anywhere = '\v' .
         \  '(<.|^)' . '|' .
@@ -1499,14 +1490,15 @@ if neobundle#tap('vim-easymotion') "{{{
     "}}}
 
     " EasyMotion Special Function {{{
-    omap L <Plug>(easymotion-special-l)
-    omap P <Plug>(easymotion-special-p)
-    xmap L <Plug>(easymotion-special-l)
-    xmap P <Plug>(easymotion-special-p)
-    nmap dP d<Plug>(easymotion-special-p)
-    nmap yP y<Plug>(easymotion-special-p)
-    nmap dL d<Plug>(easymotion-special-l)
-    nmap yL y<Plug>(easymotion-special-l)
+    "omap L <Plug>(easymotion-special-l)
+    "xmap L <Plug>(easymotion-special-l)
+    "nmap dL d<Plug>(easymotion-special-l)
+    "nmap yL y<Plug>(easymotion-special-l)
+
+    " omap P <Plug>(easymotion-special-p)
+    " xmap P <Plug>(easymotion-special-p)
+    " nmap dP d<Plug>(easymotion-special-p)
+    " nmap yP y<Plug>(easymotion-special-p)
     "}}}
 
     " " EasyMotion User {{{
