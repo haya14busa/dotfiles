@@ -2432,6 +2432,16 @@ endif " }}}
 "     setlocal conceallevel=0
 "   endif
 " endif
+
+" Auto Scroll
+function! s:set_auto_down()
+    augroup vimrc-auto-down
+        autocmd!
+        autocmd CursorHold * call feedkeys("3\<C-e>", 'n')
+    augroup END
+endfunction
+command! -nargs=0 AutoDown call <SID>set_auto_down()
+command! -nargs=0 StopAutoDown autocmd! vimrc-auto-down
 "}}}
 
 
