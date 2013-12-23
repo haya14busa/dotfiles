@@ -5,10 +5,9 @@ if has('gui_macvim')
   set guioptions-=T    " ツールバー非表示
   set antialias        " アンチエイリアス
   set tabstop=4        " タブサイズ
-  set number           " 行番号表示
   set nobackup         " バックアップなし
   set visualbell t_vb= " ビープ音なし
-  set cursorline
+  "set cursorline
 
   "colorscheme molokai   " カラースキーマ
   "set columns=100      " 横幅
