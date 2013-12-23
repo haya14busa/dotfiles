@@ -2199,6 +2199,7 @@ endif "}}}
 
 " basyura/TweetVim {{{
 if neobundle#tap('TweetVim') "{{{
+  " Config {{{
   call neobundle#config({
         \   'depends' :
         \     ['basyura/twibill.vim',
@@ -2213,10 +2214,38 @@ if neobundle#tap('TweetVim') "{{{
         \          'TweetVimUserStream']
         \   }
         \ })
+  "}}}
+
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:tweetvim_display_icon=1
     autocmd FileType tweetvim setlocal nonumber
+    autocmd FileType tweetvim nnoremap <buffer><Leader>s :<C-u>TweetVimSay<CR>
+    autocmd FileType tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
+    autocmd FileType tweetvim     nmap <buffer><Leader>a TweetVimAutoUpdate
   endfunction "}}}
+
+  " Auto reload {{{
+  let s:tweetvim_update_interval_seconds = 10
+  let s:tweetvim_timestamp = localtime()
+  function! s:tweetvim_autoupdate()
+      let current = localtime()
+      if current - s:tweetvim_timestamp > s:tweetvim_update_interval_seconds
+          call feedkeys("\<Plug>(tweetvim_action_reload)")
+          let s:tweetvim_timestamp = current
+      endif
+      call feedkeys(mode() ==# 'i' ? "\<C-g>\<Esc>" : "g\<Esc>", 'n')
+  endfunction
+
+  function! s:tweetvim_setup_autoupdate()
+      augroup vimrc-tweetvim-autoupdate
+          autocmd!
+          autocmd CursorHold * call <SID>tweetvim_autoupdate()
+          autocmd TabLeave * TweetVimStopAutoUpdate
+      augroup END
+  endfunction
+  command! -nargs=0 TweetVimAutoUpdate call <SID>tweetvim_setup_autoupdate()
+  command! -nargs=0 TweetVimStopAutoUpdate autocmd! vimrc-tweetvim-autoupdate
+  "}}}
   call neobundle#untap()
 endif "}}}
 "}}}
