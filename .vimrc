@@ -1161,11 +1161,22 @@ endif "}}}
 if neobundle#tap('vimfiler') "{{{
   call neobundle#config({
         \   'autoload' : {
-        \     'commands' : [
-        \       'VimFiler',
-        \       'VimFilerTab',
-        \       'VimFilerBufferDir',
-        \     ]
+        \    'commands' : [
+        \       { 'name' : 'VimFiler',
+        \         'complete' : 'customlist,vimfiler#complete' },
+        \       { 'name' : 'VimFilerTab',
+        \         'complete' : 'customlist,vimfiler#complete' },
+        \       { 'name' : 'VimFilerBufferDir',
+        \         'complete' : 'customlist,vimfiler#complete' },
+        \       { 'name' : 'VimFilerExplorer',
+        \         'complete' : 'customlist,vimfiler#complete' },
+        \       { 'name' : 'Edit',
+        \         'complete' : 'customlist,vimfiler#complete' },
+        \       { 'name' : 'Write',
+        \         'complete' : 'customlist,vimfiler#complete' },
+        \       'Read', 'Source'],
+        \    'mappings' : '<Plug>(vimfiler_',
+        \    'explorer' : 1,
         \   }
         \ })
   function! neobundle#tapped.hooks.on_source(bundle)
