@@ -3,11 +3,32 @@
 ########################################
 # 環境変数
 
-export LC_ALL=C
+# export LC_ALL=C
 # export LANG=en_US.UTF-8
-export LANG=ja_JP.UTF-8
 # export LANG=ja_JP.UTF-8
+# export LC_MESSAGES=ja_JP.UTF-8
+# export LC_MESSAGES=en_US.UTF-8
+# export LC_IDENTIFICATION=ja_JP.UTF-8
+# export LC_COLLATE=ja_JP.UTF-8
+# export LANG=ja_JP.UTF-8
+# export LC_MEASUREMENT=ja_JP.UTF-8
+# export LC_CTYPE=ja_JP.UTF-8
+# export LC_TIME=ja_JP.UTF-8
+# export LC_NAME=ja_JP.UTF-8
 
+export LANG="ja_JP.UTF-8"
+export LC_CTYPE="ja_JP.UTF-8"
+export LC_NUMERIC="ja_JP.UTF-8"
+export LC_TIME="ja_JP.UTF-8"
+export LC_COLLATE="ja_JP.UTF-8"
+export LC_MONETARY="ja_JP.UTF-8"
+export LC_MESSAGES="ja_JP.UTF-8"
+export LC_PAPER="ja_JP.UTF-8"
+export LC_NAME="ja_JP.UTF-8"
+export LC_ADDRESS="ja_JP.UTF-8"
+export LC_TELEPHONE="ja_JP.UTF-8"
+export LC_MEASUREMENT="ja_JP.UTF-8"
+export LC_IDENTIFICATION="ja_JP.UTF-8"
 
 # 色を使用出来るようにする
 autoload -Uz colors
@@ -71,7 +92,8 @@ zstyle ':vcs_info:*' formats '(%s)-[%b]'
 zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
 precmd () {
     psvar=()
-    LANG=en_US.UTF-8 vcs_info
+    #LANG=en_US.UTF-8 vcs_info
+	LANG=ja_JP.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 RPROMPT="%1(v|%F{green}%1v%f|)"
@@ -213,6 +235,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 ## ドットインストールで学習する ########
 # help:lessonコマンドで学習したいレッスンを選び､クリップボードにコピーします｡Vimを閉じると､選択したレッスンがダウンロードされます｡
