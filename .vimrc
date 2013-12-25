@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 24 Dec 2013.
+" Last Modified: 25 Dec 2013.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1173,6 +1173,7 @@ endif "}}}
 
 " Shougo/VimFiler {{{
 if neobundle#tap('vimfiler') "{{{
+  " Config {{{
   call neobundle#config({
         \   'autoload' : {
         \    'commands' : [
@@ -1193,7 +1194,9 @@ if neobundle#tap('vimfiler') "{{{
         \    'explorer' : 1,
         \   }
         \ })
+  " }}}
   function! neobundle#tapped.hooks.on_source(bundle)
+    hi link exrenameModified Normal
   endfunction
   let g:vimfiler_as_default_explorer=1
   let g:vimfiler_safe_mode_by_default=0
