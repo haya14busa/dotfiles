@@ -2199,7 +2199,7 @@ if neobundle#tap('vim-migemo') "{{{
         \   }
         \ })
 
-  let g:migemodict = '/usr/share/cmigemo/utf-8/migemo-dict'
+  "let g:migemodict = '/usr/share/cmigemo/utf-8/migemo-dict'
   nmap g/ <Plug>(migemo-migemosearch)
   call neobundle#untap()
 endif "}}}
