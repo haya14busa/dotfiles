@@ -365,18 +365,6 @@ set foldmethod=marker
 set foldlevel=100
 "}}}
 
-" Open Vim help by K {{{
-set keywordprg=:help
-"}}}
-
-" Close Vim help by q {{{
-if !exists("autocommands_help_loaded")
-  let autocommands_help_loaded = 1
-  autocmd FileType help nnoremap <buffer> q <C-w>c
-  autocmd FileType help nnoremap <buffer> ;q q
-  autocmd FileType help nnoremap <buffer> Q q
-endif
-"}}}
 
 " command-line window {{{
 set cmdwinheight=3
@@ -401,6 +389,20 @@ command! SoVimrc source $MYVIMRC
 " -> <C-l>
 " nnoremap <Leader><Leader>s :<C-u>syntax enable<CR>
 "}}}
+
+" Open Vim help by K {{{
+set keywordprg=:help
+"}}}
+
+" Close Vim help by q {{{
+if !exists("autocommands_help_loaded")
+  let autocommands_help_loaded = 1
+  autocmd FileType help nnoremap <buffer> q <C-w>c
+  autocmd FileType help nnoremap <buffer> ;q q
+  autocmd FileType help nnoremap <buffer> Q q
+endif
+"}}}
+
 
 " Useful Keymaps{{{
 
@@ -580,7 +582,6 @@ nnoremap x "_x
 " <C-y>
 
 "}}}
-
 
 " set nopaste when Insertleave"{{{
 autocmd MyVimrc InsertLeave * set nopaste
