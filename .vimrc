@@ -1274,6 +1274,9 @@ if neobundle#tap('neosnippet.vim') "{{{
   endif
   " Enable snipMate compatibility feature.
   let g:neosnippet#enable_snipmate_compatibility = 1
+  " Remove snippets marker automatically
+  autocmd MyVimrc InsertLeave * :NeoSnippetClearMarkers
+
 
 
   call neobundle#untap()
