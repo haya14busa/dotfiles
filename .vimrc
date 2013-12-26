@@ -1504,7 +1504,18 @@ if neobundle#tap('vim-easymotion') "{{{
     " Don't skip folded line
     let g:EasyMotion_skipfoldedline = 0
     " pseudo-migemo
-    let g:EasyMotion_use_migemo = 1
+    let g:EasyMotion_use_migemo = 0
+    function! g:EasyMotionMigemoToggle()
+      if !exists(g:EasyMotion_use_migemo) && g:EasyMotion_use_migemo == 1
+        let g:EasyMotion_use_migemo = 0
+        echo 'Turn Off migemo'
+      else
+        let g:EasyMotion_use_migemo = 1
+        echo 'Turn On migemo'
+      endif
+    endfunction
+    command! -nargs=0 EasyMotionMigemoToggle :call g:EasyMotionMigemoToggle()
+
     "}}}
 
     " EasyMotion Special Function {{{
