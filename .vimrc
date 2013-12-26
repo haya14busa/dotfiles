@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 26 Dec 2013.
+" Last Modified: 27 Dec 2013.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -78,7 +78,7 @@ NeoBundle 'soh335/vim-ref-jquery'
 
 NeoBundle 'tpope/vim-repeat'
 " NeoBundleLazy 'tpope/vim-commentary' "gc{motion} , \\{motion}, \\\
-NeoBundleLazy 'tryu/caw.vim'
+NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-markdown'
 " NeoBundle Git {{{
@@ -2365,7 +2365,7 @@ if neobundle#tap('vim-visualstar') " {{{
 endif " }}}
 "}}}
 
-" tryu/caw.vim {{{
+" tyru/caw.vim {{{
 if neobundle#tap('caw.vim') " {{{
   call neobundle#config({
         \   'autoload' : {
