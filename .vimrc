@@ -1205,6 +1205,12 @@ if neobundle#tap('vimfiler') "{{{
   nnoremap <silent> ;vf :VimFilerBufferDir -split -simple -no-quit -winwidth=32<CR>
   nnoremap <silent> ;vt :VimFilerBufferDir -tab<CR>
 
+  "autocmd! FileType vimfiler call g:my_vimfiler_settings()
+  autocmd FileType vimfiler map <buffer>' <Plug>(vimfiler_toggle_mark_current_line)
+  function! g:my_vimfiler_settings()
+    map <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
+  endfunction
+
   "autocmd FileType vimfiler nmap <buffer><silent><Tab> <Plug>(vimfiler_choose_action)
   call neobundle#untap()
 endif "}}}
