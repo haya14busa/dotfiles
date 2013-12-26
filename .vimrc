@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 25 Dec 2013.
+" Last Modified: 26 Dec 2013.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -164,6 +164,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'othree/html5.vim'
 " NeoBundle for expr {{{
 NeoBundle 'tmhedberg/SimpylFold'
 if neobundle#tap('SimpylFold') " {{{
