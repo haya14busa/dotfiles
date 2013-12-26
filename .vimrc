@@ -397,9 +397,9 @@ set keywordprg=:help
 " Close Vim help by q {{{
 if !exists("autocommands_help_loaded")
   let autocommands_help_loaded = 1
-  autocmd FileType help nnoremap <buffer> q <C-w>c
-  autocmd FileType help nnoremap <buffer> ;q q
-  autocmd FileType help nnoremap <buffer> Q q
+  autocmd MyVimrc FileType help nnoremap <buffer> q <C-w>c
+  autocmd MyVimrc FileType help nnoremap <buffer> ;q q
+  autocmd MyVimrc FileType help nnoremap <buffer> Q q
 endif
 "}}}
 
@@ -1205,13 +1205,13 @@ if neobundle#tap('vimfiler') "{{{
   nnoremap <silent> ;vf :VimFilerBufferDir -split -simple -no-quit -winwidth=32<CR>
   nnoremap <silent> ;vt :VimFilerBufferDir -tab<CR>
 
-  "autocmd! FileType vimfiler call g:my_vimfiler_settings()
-  autocmd FileType vimfiler map <buffer>' <Plug>(vimfiler_toggle_mark_current_line)
+  "autocmd MyVimrc FileType vimfiler call g:my_vimfiler_settings()
+  autocmd MyVimrc FileType vimfiler map <buffer>' <Plug>(vimfiler_toggle_mark_current_line)
   function! g:my_vimfiler_settings()
     map <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
   endfunction
 
-  "autocmd FileType vimfiler nmap <buffer><silent><Tab> <Plug>(vimfiler_choose_action)
+  "autocmd MyVimrc FileType vimfiler nmap <buffer><silent><Tab> <Plug>(vimfiler_choose_action)
   call neobundle#untap()
 endif "}}}
 "}}}
@@ -2257,10 +2257,10 @@ if neobundle#tap('TweetVim') "{{{
 
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:tweetvim_display_icon=1
-    autocmd FileType tweetvim setlocal nonumber
-    autocmd FileType tweetvim nnoremap <buffer><Leader>s :<C-u>TweetVimSay<CR>
-    autocmd FileType tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
-    autocmd FileType tweetvim     nmap <buffer><Leader>a TweetVimAutoUpdate
+    autocmd MyVimrc FileType tweetvim setlocal nonumber
+    autocmd MyVimrc FileType tweetvim nnoremap <buffer><Leader>s :<C-u>TweetVimSay<CR>
+    autocmd MyVimrc FileType tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
+    autocmd MyVimrc FileType tweetvim     nmap <buffer><Leader>a TweetVimAutoUpdate
   endfunction "}}}
 
   " Auto reload {{{
