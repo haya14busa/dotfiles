@@ -1513,7 +1513,7 @@ if neobundle#tap('vim-easymotion') "{{{
     let g:EasyMotion_startofline = 0
     " Don't skip folded line
     let g:EasyMotion_skipfoldedline = 0
-    " pseudo-migemo
+    " pseudo-migemo {{{
     let g:EasyMotion_use_migemo = 0
     function! g:EasyMotionMigemoToggle()
       if !exists(g:EasyMotion_use_migemo) && g:EasyMotion_use_migemo == 1
@@ -1525,6 +1525,10 @@ if neobundle#tap('vim-easymotion') "{{{
       endif
     endfunction
     command! -nargs=0 EasyMotionMigemoToggle :call g:EasyMotionMigemoToggle()
+
+    autocmd MyVimrc FileType markdown let g:EasyMotion_use_migemo = 1
+
+    "}}}
 
     "}}}
 
