@@ -420,8 +420,8 @@ nnoremap <CR> o<ESC>
 
 " For Undo Revision, Break Undo Sequence "{{{
 " -> vim-smartinput
-" inoremap <CR> <C-]><C-G>u<CR>
-"
+inoremap <CR> <C-]><C-G>u<CR>
+
 inoremap <C-h> <C-g>u<C-h>
 inoremap <BS> <C-g>u<BS>
 inoremap <Del> <C-g>u<Del>
