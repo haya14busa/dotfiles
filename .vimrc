@@ -497,7 +497,7 @@ cnoremap <C-n> <Down>
 "}}}
 
 " Save as root"{{{
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
 "}}}
 
 " From the cursor to the end of line {{{
