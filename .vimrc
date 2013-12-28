@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 27 Dec 2013.
+" Last Modified: 28 Dec 2013.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -67,7 +67,6 @@ endif
 NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-scouter'
 NeoBundleLazy 'thinca/vim-visualstar'
-"NeoBundle 'thinca/vim-template'
 " thinca/vim-ref {{{
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundle 'mojako/ref-sources.vim'
@@ -77,7 +76,6 @@ NeoBundle 'soh335/vim-ref-jquery'
 "}}}
 
 NeoBundle 'tpope/vim-repeat'
-" NeoBundleLazy 'tpope/vim-commentary' "gc{motion} , \\{motion}, \\\
 NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-markdown'
@@ -90,7 +88,6 @@ NeoBundle 'mhinz/vim-signify'
 
 NeoBundleLazy 'kana/vim-smartinput'
 "NeoBundleLazy 'kana/vim-smartchr'
-"NeoBundle 'kana/vim-fakeclip'
 
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
@@ -98,7 +95,7 @@ NeoBundle 'mattn/webapi-vim'
 
 " Motion {{{
 "NeoBundle 'Lokaltog/vim-easymotion'
-"NeoBundleLazy 'haya14busa/vim-easymotion', 'lazymotion'
+"NeoBundleLazy 'haya14busa/vim-easymotion'
 MyNeoBundle 'vim-easymotion'
 NeoBundleLazy 'rhysd/clever-f.vim'
 NeoBundleLazy 't9md/vim-smalls'
@@ -137,7 +134,6 @@ NeoBundleLazy 'deris/columnjump'
 NeoBundleLazy 'osyo-manga/vim-anzu'
 NeoBundle 'LeafCage/foldCC'
 NeoBundleLazy 'LeafCage/yankround.vim'
-"NeoBundle 'vim-scripts/Align'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides'
 NeoBundleLazy 'davidhalter/jedi-vim'
@@ -150,7 +146,6 @@ NeoBundleLazy 'tyru/open-browser.vim'
 NeoBundleLazy 'vim-scripts/loremipsum'
 
 " NeoBundle Lisp & Scheme
-" NeoBundleLazy 'amdt/vim-niji'
 NeoBundleLazy 'aharisu/vim_goshrepl'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 
@@ -235,8 +230,6 @@ NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundle 'thinca/vim-splash'
 NeoBundle 'https://gist.github.com/OrgaChem/7649755' " vim_intro.txt
 NeoBundle 'https://gist.github.com/OrgaChem/7679840' " vimorg
-"let g:splash#path = '/home/haya14busa/.vim/bundle/7649755/all_your_vim_are_belong_to_us.txt'
-"let g:splash#path = '/home/haya14busa/.vim/bundle/7679840/vim_org.txt'
 let g:splash#path = expand('~/.vim/bundle/7679840/vim_org.txt')
 "}}}
 
@@ -320,7 +313,6 @@ set hlsearch
 
 " Line Basic Settings {{{
 set number
-"set cursorline
 "}}}
 
 " Backup Settings {{{
@@ -365,7 +357,6 @@ set foldmethod=marker
 set foldlevel=100
 "}}}
 
-
 " command-line window {{{
 set cmdwinheight=3
 "}}}
@@ -400,12 +391,10 @@ autocmd MyVimrc FileType help nnoremap <buffer> ;q q
 autocmd MyVimrc FileType help nnoremap <buffer> Q q
 "}}}
 
-
 " Useful Keymaps{{{
 
 " Escape Keymaps {{{
 inoremap <silent> jj <ESC>
-"inoremap <silent> kk <ESC>
 vnoremap <silent> <C-j> <ESC>
 inoremap <silent> <C-c> <ESC>
 "}}}
@@ -453,11 +442,7 @@ nnoremap <Space>k <C-b>zz
 vnoremap <Space>j <C-f>zz
 vnoremap <Space>k <C-b>zz
 
-"nnoremap <Space><Space> <C-f>zz
-
 " Insert & Comandline Mode "{{{
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-a> <Home>
@@ -484,7 +469,6 @@ cnoremap <C-y> <C-r>+
 "}}}
 
 " Window {{{
-
 nnoremap <S-Right> :<C-u>vertical resize +2<CR>
 nnoremap <S-Left> :<C-u>vertical resize -2<CR>
 nnoremap <S-Up> :<C-u>resize +1<CR>
@@ -564,20 +548,15 @@ xnoremap & :&&<CR>
 " select last inserted text
 nnoremap gV `[v`]
 
-
 " Don't use register by x
 nnoremap x "_x
 
 " Keymap candidate
 " n
 " ---
-" K
 " U
 " S
 " X
-" <C-e>
-" <C-y>
-
 "}}}
 
 " set nopaste when Insertleave"{{{
@@ -606,10 +585,10 @@ autocmd MyVimrc VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 " Save Cursor Position and Fold {{{
 autocmd MyVimrc BufWinLeave *.* silent mkview!
 autocmd MyVimrc BufWinEnter *.* silent loadview
-
 "}}}
 
 " Count Up Function {{{
+" TODO: RenBang
 nnoremap <silent> co :ContinuousNumber <C-a><CR>
 vnoremap <silent> co :ContinuousNumber <C-a><CR>
 command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
@@ -702,7 +681,6 @@ noremap [fold]j zj
 noremap [fold]k zk
 noremap [fold]n ]z
 noremap [fold]p [z
-"noremap [fold]h zc
 noremap <silent>[fold]h :<C-u>call <SID>smart_foldcloser()<CR>
 noremap [fold]l zo
 noremap [fold]L zO
@@ -762,8 +740,6 @@ endfunction
 " Tab KeyMaps {{{
 nnoremap t; t
 nmap t <nop>
-"nnoremap [tab] <nop>
-"nnoremap t [tab]
 nnoremap tl gt
 nnoremap th gT
 nnoremap to :<C-u>edit<Space>
@@ -932,7 +908,6 @@ endfunction
 
 autocmd MyVimrc BufWritePost *.scss call Sass_convert()
 "}}}
-
 
 "}}}
 
@@ -1226,9 +1201,6 @@ if neobundle#tap('vimshell') "{{{
         \   }
         \ })
   function! neobundle#tapped.hooks.on_source(bundle)
-    "let g:vimshell_prompt_expr = 'getcwd()." > "'
-    "let g:vimshell_prompt_pattern = '^\f\+ > '
-
     " Use current directory as vimshell prompt.
     let g:vimshell_prompt_expr =
               \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
@@ -1238,7 +1210,6 @@ if neobundle#tap('vimshell') "{{{
   call neobundle#untap()
 endif "}}}
 "}}}
-
 
 " Shougo/neosnippet.vim"{{{
 if neobundle#tap('neosnippet.vim') "{{{
