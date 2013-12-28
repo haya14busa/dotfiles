@@ -395,12 +395,9 @@ set keywordprg=:help
 "}}}
 
 " Close Vim help by q {{{
-if !exists("autocommands_help_loaded")
-  let autocommands_help_loaded = 1
-  autocmd MyVimrc FileType help nnoremap <buffer> q <C-w>c
-  autocmd MyVimrc FileType help nnoremap <buffer> ;q q
-  autocmd MyVimrc FileType help nnoremap <buffer> Q q
-endif
+autocmd MyVimrc FileType help nnoremap <buffer> q <C-w>c
+autocmd MyVimrc FileType help nnoremap <buffer> ;q q
+autocmd MyVimrc FileType help nnoremap <buffer> Q q
 "}}}
 
 
