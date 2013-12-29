@@ -438,11 +438,6 @@ nnoremap l <Right>
 
 nnoremap - $
 
-nnoremap <Space>j <C-f>zz
-nnoremap <Space>k <C-b>zz
-vnoremap <Space>j <C-f>zz
-vnoremap <Space>k <C-b>zz
-
 " Insert & Comandline Mode "{{{
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
@@ -457,6 +452,25 @@ cnoremap <C-e> <End>
 " Word Motion in Insert Mode
 inoremap <M-w> <S-Right>
 inoremap <M-b> <S-Left>
+"}}}
+
+
+" Scroll {{{
+nnoremap <C-e> <C-e>j
+nnoremap <C-y> <C-y>k
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
+
+nnoremap <Down> <C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e>
+nnoremap <Up>   <C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y>
+vnoremap <Down> <C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e>
+vnoremap <Up>   <C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y>
+
+nnoremap <Space>j <C-f>zz
+nnoremap <Space>k <C-b>zz
+vnoremap <Space>j <C-f>zz
+vnoremap <Space>k <C-b>zz
+
 "}}}
 
 "}}}
@@ -490,13 +504,6 @@ cnoremap w!! w !sudo tee > /dev/null %
 vnoremap v $h
 " Yank from cursor position to end of line
 nnoremap Y y$
-"}}}
-
-" Scroll {{{
-nnoremap <C-e> <C-e>j
-nnoremap <C-y> <C-y>k
-nnoremap <C-f> <C-f>zz
-nnoremap <C-b> <C-b>zz
 "}}}
 
 " Spelling Keymaps {{{
