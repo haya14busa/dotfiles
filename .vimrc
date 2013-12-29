@@ -1477,6 +1477,19 @@ if neobundle#tap('vim-easymotion') "{{{
     map ;e <Plug>(easymotion-bd-e)
     map ;n <Plug>(easymotion-bd-n)
 
+    map zh <Plug>(easymotion-linebackward)
+    map zj <Plug>(easymotion-j)
+    map zk <Plug>(easymotion-k)
+    map zl <Plug>(easymotion-lineforward)
+
+    let g:EasyMotion_re_line_anywhere = '\v' .
+        \       '(<.|^.)' . '|' .
+        \       '(.>|.$)' . '|' .
+        \       '(\l)\zs(\u)' . '|' .
+        \       '(_\zs.)' . '|' .
+        \       '(#\zs.)'
+
+
     let g:EasyMotion_re_anywhere = '\v' .
         \  '(<.|^)' . '|' .
         \  '(.$)' . '|' .
@@ -1511,6 +1524,7 @@ if neobundle#tap('vim-easymotion') "{{{
 
     "}}}
 
+    let g:EasyMotion_use_smartsign_us = 1
     "}}}
 
     " EasyMotion Special Function {{{
