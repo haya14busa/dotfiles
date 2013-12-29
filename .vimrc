@@ -140,6 +140,7 @@ NeoBundleLazy 'davidhalter/jedi-vim'
 NeoBundleLazy 'sjl/gundo.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundleLazy 'autodate.vim'
+NeoBundle 't9md/vim-choosewin'
 
 " NeoBundle Web
 NeoBundleLazy 'tyru/open-browser.vim'
@@ -1179,10 +1180,12 @@ if neobundle#tap('vimfiler') "{{{
   nnoremap <silent> ;vf :VimFilerBufferDir -split -simple -no-quit -winwidth=32<CR>
   nnoremap <silent> ;vt :VimFilerBufferDir -tab<CR>
 
-  "autocmd MyVimrc FileType vimfiler call g:my_vimfiler_settings()
-  autocmd MyVimrc FileType vimfiler map <buffer>' <Plug>(vimfiler_toggle_mark_current_line)
+  autocmd MyVimrc FileType vimfiler call g:my_vimfiler_settings()
+  "autocmd MyVimrc FileType vimfiler map <buffer>' <Plug>(vimfiler_toggle_mark_current_line)
   function! g:my_vimfiler_settings()
     map <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
+    " vimfiler mapping for choosewin
+    map <buffer> <CR> :call vimfiler#mappings#do_action('choosewin')<CR>
   endfunction
 
   "autocmd MyVimrc FileType vimfiler nmap <buffer><silent><Tab> <Plug>(vimfiler_choose_action)
@@ -1462,7 +1465,7 @@ if neobundle#tap('vim-easymotion') "{{{
     map ;j <Plug>(easymotion-j)
     map ;k <Plug>(easymotion-bd-jk)
     map ;t <Plug>(easymotion-t)
-    map ;w <Plug>(easymotion-bd-w)
+    " map ;w <Plug>(easymotion-bd-w)
     map ;e <Plug>(easymotion-bd-e)
     map ;n <Plug>(easymotion-bd-n)
 
@@ -2430,6 +2433,44 @@ if neobundle#tap('puyo.vim') " {{{
   call neobundle#untap()
 endif " }}}
 "}}}
+
+if neobundle#tap('vim-choosewin') " {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'mappings' : [
+        \       '<Plug>(choosewin)',
+        \     ],
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+  nmap <C-w><C-w> <Plug>(choosewin)
+  nmap ;w <Plug>(choosewin)
+  let g:choosewin_color_label = {
+        \ 'cterm': [ 2, 16]
+        \ }
+  " Unite choosewin {{{
+  let action = {
+  \ 'description' : 'choosewin.vim',
+  \ 'is_selectable' : 0,
+  \ }
+
+  function! action.func(candidate)
+      let bufpath = unite#util#substitute_path_separator(expand('%:p'))
+
+      if bufpath !=# a:candidate.action__path
+          ChooseWin
+      endif
+      call unite#take_action('open', a:candidate)
+      normal zz;
+  endfunction
+  call unite#custom_action('file', 'choosewin', action)
+  unlet action
+  "}}}
+  call neobundle#untap()
+endif " }}}
 
 
 " End plugins }}}
