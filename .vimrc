@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 28 Dec 2013.
+" Last Modified: 29 Dec 2013.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -860,6 +860,8 @@ autocmd MyVimrc InsertLeave * if &l:diff | diffupdate | endif
 
 " Spell check in git commit
 autocmd MyVimrc FileType gitcommit setlocal nofoldenable spell
+" Set textwidth
+autocmd MyVimrc FileType gitcommit setlocal textwidth=72
 " Enter Insert mode in git commit
 autocmd MyVimrc VimEnter COMMIT_EDITMSG if getline(1) == '' | execute 1 | startinsert | endif
 
