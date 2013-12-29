@@ -2496,6 +2496,22 @@ function! s:set_auto_down()
 endfunction
 command! -nargs=0 AutoDown call <SID>set_auto_down()
 command! -nargs=0 StopAutoDown autocmd! vimrc-auto-down
+
+  " " sticky_table {{{
+  " let sticky_table_us = {
+  "       \',' : '<', '.' : '>', '/' : '?',
+  "       \'1' : '!', '2' : '@', '3' : '#', '4' : '$', '5' : '%',
+  "       \'6' : '^', '7' : '&', '8' : '*', '9' : '(', '0' : ')', '-' : '_', '=' : '+',
+  "       \';' : ':', '[' : '{', ']' : '}', '`' : '~', "'" : "\"", '\' : '|',
+  "       \}
+  "
+  " let sticky_table_ja = {
+  "       \',' : '<', '.' : '>', '/' : '?',
+  "       \'1' : '!', '2' : '"', '3' : '#', '4' : '$', '5' : '%',
+  "       \'6' : '&', '7' : "'", '8' : '(', '9' : ')', '0' : '_', '-' : '=', '^' : '~',
+  "       \';' : '+', ':' : '*', '[' : '{', ']' : '}', '@' : '`', '\' : '|'
+  "       \}
+  " "}}}
 "}}}
 call neobundle#call_hook('on_source')
 set secure
