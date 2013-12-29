@@ -2520,6 +2520,8 @@ endfunction
 command! -nargs=0 AutoDown call <SID>set_auto_down()
 command! -nargs=0 StopAutoDown autocmd! vimrc-auto-down
 
+NeoBundleLazy 'osyo-manga/vim-operator-jump_side'
+
   " " sticky_table {{{
   " let sticky_table_us = {
   "       \',' : '<', '.' : '>', '/' : '?',
