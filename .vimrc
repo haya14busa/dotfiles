@@ -1193,6 +1193,7 @@ if neobundle#tap('vimfiler') "{{{
     map <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
     " vimfiler mapping for choosewin
     map <buffer> <CR> :call vimfiler#mappings#do_action('choosewin')<CR>
+    map <buffer> t :call vimfiler#mappings#do_action('tabopen')<CR>
   endfunction
 
   "autocmd MyVimrc FileType vimfiler nmap <buffer><silent><Tab> <Plug>(vimfiler_choose_action)
