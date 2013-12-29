@@ -2231,6 +2231,7 @@ if neobundle#tap('yankround.vim') "{{{
   nmap P <Plug>(yankround-P)
   nmap <C-p> <Plug>(yankround-prev)
   nmap <C-n> <Plug>(yankround-next)
+  let g:yankround_use_region_hl = 1
   call neobundle#untap()
 endif "}}}
 "}}}
