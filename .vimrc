@@ -569,6 +569,7 @@ autocmd MyVimrc VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 "}}}
 
 " Save Cursor Position and Fold {{{
+set viewoptions=cursor,folds
 autocmd MyVimrc BufWinLeave *.* silent mkview!
 autocmd MyVimrc BufWinEnter *.* silent loadview
 "}}}
