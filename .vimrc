@@ -215,12 +215,6 @@ NeoBundleLazy 'supermomonga/thingspast.vim'
 MyNeoBundle 'vim-helloworld'
 NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
 NeoBundleLazy 'rbtnn/puyo.vim'
-" Splash {{{
-NeoBundle 'thinca/vim-splash'
-NeoBundle 'https://gist.github.com/OrgaChem/7649755' " vim_intro.txt
-NeoBundle 'https://gist.github.com/OrgaChem/7679840' " vimorg
-let g:splash#path = expand('~/.vim/bundle/7679840/vim_org.txt')
-"}}}
 
 "}}}
 
