@@ -894,6 +894,10 @@ endfunction
 autocmd MyVimrc BufWritePost *.scss call Sass_convert()
 "}}}
 
+" Markdown {{{
+autocmd MyVimrc FileType markdown setlocal sw=2 sts=2 ts=2 et
+"}}}
+
 "}}}
 
 " end vim setup}}}
