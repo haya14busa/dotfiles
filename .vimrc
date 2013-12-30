@@ -2344,6 +2344,9 @@ endif
 
 " Sandbox {{{
 
+" Use command-line window
+nnoremap : q:i
+
 " " sticky_table {{{
 " let sticky_table_us = {
 "       \',' : '<', '.' : '>', '/' : '?',
