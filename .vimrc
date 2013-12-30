@@ -38,7 +38,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " NeoBundle Function {{{
-
 " MyNeoBundle {{{
 command! -nargs=1
 \   MyNeoBundle
@@ -47,12 +46,11 @@ command! -nargs=1
 \       "type" : "nosync",
 \   }
 "}}}
-
 "}}}
 
-NeoBundle 'Shougo/vimproc'
+" Unite {{{
 NeoBundleLazy 'Shougo/unite.vim'
-" NeoBundle Unite plugins {{{
+
 NeoBundleLazy 'tsukkee/unite-help'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'Shougo/unite-outline'
@@ -61,8 +59,13 @@ NeoBundleLazy 'kmnk/vim-unite-giti'
 NeoBundleLazy 'thinca/vim-unite-history'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
 "}}}
+
+" Synthesis {{{
 NeoBundleLazy 'Shougo/vimfiler'
 NeoBundleLazy 'Shougo/vimshell'
+"}}}
+
+" Writing {{{
 NeoBundleLazy 'Shougo/neosnippet.vim'
 " Shougo/neocomplete {{{
 if has('lua') && v:version >= 703
@@ -71,11 +74,25 @@ else
     NeoBundleLazy 'Shougo/neocomplcache.vim'
 endif
 "}}}
+NeoBundleLazy 'mattn/emmet-vim'
+NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
+NeoBundleLazy 'h1mesuke/vim-alignta'
+NeoBundleLazy 'autodate.vim'
+NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
+"}}}
 
+" Development {{{
 NeoBundleLazy 'thinca/vim-quickrun'
-NeoBundleLazy 'thinca/vim-scouter'
-NeoBundleLazy 'thinca/vim-visualstar'
-" thinca/vim-ref {{{
+NeoBundle 'scrooloose/syntastic'
+"}}}
+
+" Library {{{
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'mattn/webapi-vim'
+NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
+"}}}
+
+" Document {{{
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'tokuhirom/jsref'
@@ -83,27 +100,31 @@ NeoBundle 'mustardamus/jqapi'
 NeoBundle 'soh335/vim-ref-jquery'
 "}}}
 
-NeoBundle 'tpope/vim-repeat'
-NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
-
-" NeoBundle Git {{{
-NeoBundleLazy 'tpope/vim-fugitive'
-NeoBundleLazy 'gregsexton/gitv'
-NeoBundle 'mhinz/vim-signify'
+" Extend Basic Vim Commands {{{
+" Matching
+NeoBundle 'matchit.zip'
+" Yank
+NeoBundleLazy 'LeafCage/yankround.vim'
+" Undo
+NeoBundleLazy 'sjl/gundo.vim'
+" Select Window
+NeoBundleLazy 't9md/vim-choosewin'
+" Visual mode
+NeoBundleLazy 'kana/vim-niceblock'
+" Search
+NeoBundleLazy 'thinca/vim-visualstar'
+NeoBundleLazy 'osyo-manga/vim-anzu'
 "}}}
-
-NeoBundleLazy 'mattn/emmet-vim'
-NeoBundleLazy 'mattn/gist-vim'
-NeoBundle 'mattn/webapi-vim'
 
 " Motion {{{
 "NeoBundleLazy 'haya14busa/vim-easymotion'
 MyNeoBundle 'vim-easymotion'
 NeoBundleLazy 'rhysd/clever-f.vim'
+NeoBundleLazy 'rhysd/accelerated-jk'
 NeoBundleLazy 't9md/vim-smalls'
 "}}}
 
-" Neobundle Text Object {{{
+" Text Object {{{
 NeoBundleLazy 'kana/vim-textobj-user'
 NeoBundleLazy 'kana/vim-textobj-entire'           " ae, ie
 NeoBundleLazy 'kana/vim-textobj-fold'             " az, iz
@@ -119,6 +140,7 @@ NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
 
 " to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
 
 " Operator
 NeoBundle 'kana/vim-operator-user'
@@ -127,34 +149,28 @@ NeoBundleLazy 'kana/vim-operator-replace'
 
 "}}}
 
-" Extend Basic Vim Commands
-NeoBundle 'matchit.zip'
-NeoBundleLazy 'rhysd/accelerated-jk'
-NeoBundleLazy 'osyo-manga/vim-anzu'
-NeoBundle 'LeafCage/foldCC'
-NeoBundleLazy 'LeafCage/yankround.vim'
-NeoBundleLazy 'h1mesuke/vim-alignta'
-NeoBundleLazy 'nathanaelkane/vim-indent-guides'
-NeoBundleLazy 'davidhalter/jedi-vim'
-NeoBundleLazy 'sjl/gundo.vim'
+" Git {{{
+NeoBundleLazy 'tpope/vim-fugitive'
+NeoBundleLazy 'gregsexton/gitv'
+NeoBundle 'mhinz/vim-signify'
+"}}}
+
+" UI {{{
 NeoBundle 'itchyny/lightline.vim'
-NeoBundleLazy 'autodate.vim'
-NeoBundleLazy 't9md/vim-choosewin'
-" NeoBundle Web
-NeoBundleLazy 'tyru/open-browser.vim'
-NeoBundleLazy 'vim-scripts/loremipsum'
+NeoBundleLazy 'nathanaelkane/vim-indent-guides'
+" }}}
 
-" NeoBundle Lisp & Scheme
-NeoBundleLazy 'aharisu/vim_goshrepl'
-NeoBundleLazy 'kien/rainbow_parentheses.vim'
-
-NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
+" Utility {{{
 NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
-NeoBundleLazy 'kana/vim-niceblock'
-NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
+NeoBundleLazy 'tyru/open-browser.vim'
+"}}}
 
-" Neobundle Syntax {{{
-NeoBundle 'scrooloose/syntastic'
+" Memo {{{
+NeoBundleLazy 'mattn/gist-vim'
+NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
+"}}}
+
+" Filetype {{{
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -162,50 +178,25 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'plasticboy/vim-markdown'
 
-" NeoBundle for expr {{{
-NeoBundle 'tmhedberg/SimpylFold'
-" tmhedberg/SimpylFold {{{
-if neobundle#tap('SimpylFold')
-  call neobundle#config({
-        \ "autoload": {
-        \   "filetypes": ["python", "python3", "djangohtml"],
-        \   }
-        \ })
-  function! neobundle#tapped.hooks.on_source(bundle)
-  endfunction
-  let g:SimpylFold_docstring_preview = 1
-  call neobundle#untap()
-endif
-"}}}
+" Python {{{
+NeoBundleLazy 'davidhalter/jedi-vim'
 NeoBundleLazy 'heavenshell/vim-pydocstring'
-" heavenshell/vim-pydocstring {{{
-if neobundle#tap('vim-pydocstring')
-  call neobundle#config({
-        \ "autoload": {
-        \   "filetypes": ["python", "python3", "djangohtml"],
-        \   }
-        \ })
-  function! neobundle#tapped.hooks.on_source(bundle)
-  endfunction
-  call neobundle#untap()
-endif
 "}}}
+
+" Scheme {{{
+NeoBundleLazy 'aharisu/vim_goshrepl'
+NeoBundleLazy 'kien/rainbow_parentheses.vim'
+" }}}
+
+" Fold {{{
+NeoBundle 'LeafCage/foldCC'
+NeoBundleLazy 'tmhedberg/SimpylFold' "for Python
 NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding'
-" vim-scripts/CSS-one-line--multi-line-folding {{{
-if neobundle#tap('CSS-one-line--multi-line-folding')
-  call neobundle#config({
-        \ "autoload": {
-        \   "filetypes": ["css"],
-        \   }
-        \ })
-  call neobundle#untap()
-endif
-"}}}
 "}}}
 
 "}}}
 
-" NeoBundle Japanese {{{
+" Japanese {{{
 "MyNeoBundle 'vim-migemo'
 NeoBundleLazy 'haya14busa/vim-migemo'
 NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
@@ -225,18 +216,20 @@ NeoBundle 'djjcast/mirodark'
 NeoBundle 'sjl/badwolf'
 "}}}
 
-" Others {{{
-NeoBundleLazy 'pentie/VimRepress' "WordPress
+" Vim script {{{
+MyNeoBundle 'vim-helloworld'
 NeoBundle 'mattn/learn-vimscript'
 NeoBundleLazy 'thinca/vim-prettyprint'
+"}}}
+
+" Others {{{
+NeoBundleLazy 'pentie/VimRepress' "WordPress
 NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
 NeoBundleLazy 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
 NeoBundle 'bohrshaw/vim-vimperator-syntax'
 NeoBundleLazy 'supermomonga/thingspast.vim'
-MyNeoBundle 'vim-helloworld'
-NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
 NeoBundleLazy 'rbtnn/puyo.vim'
-
+NeoBundleLazy 'thinca/vim-scouter'
 "}}}
 
 filetype plugin indent on
@@ -2324,6 +2317,43 @@ if neobundle#tap('vim-fugitive')
 endif
 " }}}
 
+" vim-scripts/CSS-one-line--multi-line-folding {{{
+if neobundle#tap('CSS-one-line--multi-line-folding')
+  call neobundle#config({
+        \ "autoload": {
+        \   "filetypes": ["css"],
+        \   }
+        \ })
+  call neobundle#untap()
+endif
+"}}}
+
+" heavenshell/vim-pydocstring {{{
+if neobundle#tap('vim-pydocstring')
+  call neobundle#config({
+        \ "autoload": {
+        \   "filetypes": ["python", "python3", "djangohtml"],
+        \   }
+        \ })
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+  call neobundle#untap()
+endif
+"}}}
+
+" tmhedberg/SimpylFold {{{
+if neobundle#tap('SimpylFold')
+  call neobundle#config({
+        \ "autoload": {
+        \   "filetypes": ["python", "python3", "djangohtml"],
+        \   }
+        \ })
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+  let g:SimpylFold_docstring_preview = 1
+  call neobundle#untap()
+endif
+"}}}
 
 " End plugins }}}
 
