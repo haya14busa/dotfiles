@@ -123,14 +123,13 @@ NeoBundleLazy 'rhysd/accelerated-jk'
 NeoBundleLazy 'osyo-manga/vim-anzu'
 NeoBundle 'LeafCage/foldCC'
 NeoBundleLazy 'LeafCage/yankround.vim'
-NeoBundle 'h1mesuke/vim-alignta'
+NeoBundleLazy 'h1mesuke/vim-alignta'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides'
 NeoBundleLazy 'davidhalter/jedi-vim'
 NeoBundleLazy 'sjl/gundo.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundleLazy 'autodate.vim'
-NeoBundle 't9md/vim-choosewin'
-
+NeoBundleLazy 't9md/vim-choosewin'
 " NeoBundle Web
 NeoBundleLazy 'tyru/open-browser.vim'
 NeoBundleLazy 'vim-scripts/loremipsum'
@@ -2413,6 +2412,22 @@ if neobundle#tap('vim-choosewin') " {{{
   "}}}
   call neobundle#untap()
 endif " }}}
+
+" h1mesuke/vim-alignta {{{
+if neobundle#tap('vim-alignta')
+  call neobundle#config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       'Alignta',
+        \     ],
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+  call neobundle#untap()
+endif
+"}}}
 
 if neobundle#tap('vim-submode') " {{{
   call neobundle#config({})
