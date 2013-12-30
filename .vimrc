@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 29 Dec 2013.
+" Last Modified: 30 Dec 2013.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -153,6 +153,7 @@ NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
 NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
+NeoBundleLazy 'kana/vim-niceblock'
 
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
@@ -2495,6 +2496,24 @@ if neobundle#tap('vim-choosewin') " {{{
   call neobundle#untap()
 endif " }}}
 
+if neobundle#tap('vim-niceblock') " {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'mappings' : [
+        \       '<Plug>(niceblock-',
+        \     ],
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+  " Improved visual selection.
+  xmap I  <Plug>(niceblock-I)
+  xmap A  <Plug>(niceblock-A)
+
+  call neobundle#untap()
+endif " }}}
 
 " End plugins }}}
 
