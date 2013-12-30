@@ -401,7 +401,8 @@ vnoremap k gk
 nnoremap gk k
 vnoremap gk k
 
-nnoremap l <Right>
+" nnoremap l <Right>
+" -> fold
 
 nnoremap - $
 "}}}
@@ -633,7 +634,7 @@ noremap [fold]r zR
 noremap [fold]f zf
 noremap [fold]d zd
 
-nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
+nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : '<Right>'
 
 nnoremap  [fold][     :<C-u>call <SID>put_foldmarker(0)<CR>
 nnoremap  [fold]]     :<C-u>call <SID>put_foldmarker(1)<CR>
