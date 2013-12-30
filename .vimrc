@@ -43,10 +43,8 @@ command! -nargs=1
 NeoBundle 'Shougo/vimproc'
 NeoBundleLazy 'Shougo/unite.vim'
 " NeoBundle Unite plugins {{{
-NeoBundleLazy 'Shougo/unite-ssh'
 NeoBundleLazy 'tsukkee/unite-help'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
-NeoBundleLazy 'mattn/unite-advent_calendar'
 NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'osyo-manga/unite-fold'
 NeoBundleLazy 'kmnk/vim-unite-giti'
@@ -55,7 +53,6 @@ NeoBundleLazy 'osyo-manga/unite-quickfix'
 "}}}
 NeoBundleLazy 'Shougo/vimfiler'
 NeoBundleLazy 'Shougo/vimshell'
-NeoBundleLazy 'ujihisa/vimshell-ssh'
 NeoBundleLazy 'Shougo/neosnippet.vim'
 " Shougo/neocomplete {{{
 if has('lua') && v:version >= 703
@@ -78,31 +75,23 @@ NeoBundle 'soh335/vim-ref-jquery'
 
 NeoBundle 'tpope/vim-repeat'
 NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
-NeoBundle 'tpope/vim-haml'
-NeoBundle 'tpope/vim-markdown'
+
 " NeoBundle Git {{{
 NeoBundle 'tpope/vim-fugitive'
 NeoBundleLazy 'gregsexton/gitv'
-"NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'mhinz/vim-signify'
 "}}}
-
-NeoBundleLazy 'kana/vim-smartinput'
-"NeoBundleLazy 'kana/vim-smartchr'
 
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 
 " Motion {{{
-"NeoBundle 'Lokaltog/vim-easymotion'
 "NeoBundleLazy 'haya14busa/vim-easymotion'
 MyNeoBundle 'vim-easymotion'
 NeoBundleLazy 'rhysd/clever-f.vim'
 NeoBundleLazy 't9md/vim-smalls'
 "}}}
-
-NeoBundleLazy 'vim-scripts/DrawIt'
 
 " Neobundle Text Object {{{
 NeoBundleLazy 'kana/vim-textobj-user'
@@ -131,7 +120,6 @@ NeoBundleLazy 'kana/vim-operator-replace'
 " Extend Basic Vim Commands
 NeoBundle 'matchit.zip'
 NeoBundleLazy 'rhysd/accelerated-jk'
-NeoBundleLazy 'deris/columnjump'
 NeoBundleLazy 'osyo-manga/vim-anzu'
 NeoBundle 'LeafCage/foldCC'
 NeoBundleLazy 'LeafCage/yankround.vim'
@@ -151,7 +139,6 @@ NeoBundleLazy 'vim-scripts/loremipsum'
 NeoBundleLazy 'aharisu/vim_goshrepl'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 
-NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
 NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
 NeoBundleLazy 'kana/vim-niceblock'
@@ -198,9 +185,7 @@ NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding', {
 " NeoBundle Japanese {{{
 "MyNeoBundle 'vim-migemo'
 NeoBundleLazy 'haya14busa/vim-migemo'
-NeoBundleLazy 'rhysd/migemo-search.vim'
 NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
-"NeoBundle 'tyru/eskk.vim'
 "}}}
 
 " ColorScheme {{{
@@ -219,7 +204,6 @@ NeoBundle 'sjl/badwolf'
 
 " Others {{{
 NeoBundleLazy 'pentie/VimRepress' "WordPress
-NeoBundleLazy 'tsukkee/lingr-vim' "Lingr
 NeoBundle 'mattn/learn-vimscript'
 NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
@@ -1145,17 +1129,6 @@ if neobundle#tap('unite-quickfix') " {{{
 endif " }}}
 "}}}
 " End unite-sources}}}
-
-" Shougo/unite-ssh"{{{
-if neobundle#tap('unite-ssh') "{{{
-  call neobundle#config({
-        \   'autoload' : {
-        \     'filetypes' : 'vimshell',
-        \   }
-        \ })
-  call neobundle#untap()
-endif "}}}
-"}}}
 
 " Shougo/VimFiler {{{
 if neobundle#tap('vimfiler') "{{{
@@ -2116,34 +2089,6 @@ if neobundle#tap('vim-smartchr') "{{{
 endif "}}}
 "}}}
 
-" columnjump {{{
-if neobundle#tap('columnjump') "{{{
-  call neobundle#config({
-        \   'autoload' : {
-        \     'mappings' : [['sxno','<Plug>(columnjump-']],
-        \   }
-        \ })
-  nmap <C-k> <Plug>(columnjump-backward)
-  nmap <C-j> <Plug>(columnjump-forward)
-endif "}}}
-"}}}
-
-" amdt/vim-niji "{{{
-if neobundle#tap('vim-niji') "{{{
-  call neobundle#config({
-        \   'autoload' : {
-        \     'filetypes' : [
-        \       'scheme',
-        \       'clojure',
-        \       'lisp'
-        \     ]},
-        \ })
-  function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    let g:loaded_niji = 0
-  endfunction "}}}
-  call neobundle#untap()
-endif "}}}
-"}}}
 
 " aharisu/vim_goshrepl "{{{
 if neobundle#tap('vim_goshrepl') "{{{
@@ -2209,18 +2154,6 @@ if neobundle#tap('vim-migemo') "{{{
 endif "}}}
 "}}}
 
-" osyo-manga/vim-over {{{
-if neobundle#tap('vim-over') "{{{
-  call neobundle#config({
-        \   'autoload' : {
-        \     'commands' : [
-        \       'OverCommandLine',
-        \     ]
-        \   }
-        \ })
-  call neobundle#untap()
-endif "}}}
-"}}}
 
 " Leafcage/yankround {{{
 if neobundle#tap('yankround.vim') "{{{
@@ -2291,22 +2224,6 @@ if neobundle#tap('TweetVim') "{{{
 endif "}}}
 "}}}
 
-" vim-script/DrawIt {{{
-if neobundle#tap('DrawIt') " {{{
-  call neobundle#config({
-        \   'autoload' : {
-        \     'commands' : [
-        \       'DrawIt',
-        \     ],
-        \   }
-        \ })
-
-  function! neobundle#tapped.hooks.on_source(bundle)
-  endfunction
-
-  call neobundle#untap()
-endif " }}}
-"}}}
 
 " pentie/VimRepress {{{
 if neobundle#tap('VimRepress') " {{{
