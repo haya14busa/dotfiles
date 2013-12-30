@@ -634,6 +634,7 @@ nnoremap ,t :<C-u>call Endtagcomment()<CR>
 " Change Keymap for Fold {{{
 noremap [fold] <nop>
 nmap <Space> [fold]
+vmap <Space> [fold]
 
 noremap [fold]j zj
 noremap [fold]k zk
