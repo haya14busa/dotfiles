@@ -614,16 +614,16 @@ command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <co
 " After
 " <div id="hoge" class="fuga">
 " ...
-" <!-- /div#hoge.fuga --></div>
+" </div><!-- /div#hoge.fuga -->
 "}}}
 
-function! Endtagcomment()"{{{
+function! Endtagcomment() "{{{
     let reg_save = @@
 
     try
-        silent normal vaty
+        silent normal! vaty
     catch
-        execute "normal \<Esc>"
+        execute "normal! \<Esc>"
         echohl ErrorMsg
         echo 'no match html tags'
         echohl None
@@ -647,20 +647,20 @@ function! Endtagcomment()"{{{
         let class = '.' . join(split(class_match[1], '\v\s+'), '.')
     endif
 
-    execute "normal `>va<\<Esc>`<"
+    execute "normal! `>va<\<Esc>`<"
 
-    let comment = g:endtagcommentFormat
+    let comment = s:endtagcommentFormat
     let comment = substitute(comment, '{%tag_name}', tag_name, 'g')
     let comment = substitute(comment, '{%id}', id, 'g')
     let comment = substitute(comment, '{%class}', class, 'g')
     let @@ = comment
 
-    normal ""P
+    normal! %""p
 
     let @@ = reg_save
-endfunction"}}}
+endfunction "}}}
 
-let g:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
+let s:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
 nnoremap ,t :<C-u>call Endtagcomment()<CR>
 
 "}}}
