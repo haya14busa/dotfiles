@@ -15,8 +15,6 @@
 
 " NeoBundle {{{====================
 
-filetype plugin indent off
-
 if has('vim_starting')
     set nocompatible
     set runtimepath& runtimepath+=~/.vim/bundle/neobundle.vim/
