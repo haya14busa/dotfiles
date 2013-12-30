@@ -149,6 +149,8 @@ NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'othree/html5.vim'
+NeoBundle 'plasticboy/vim-markdown'
+
 " NeoBundle for expr {{{
 NeoBundle 'tmhedberg/SimpylFold'
 if neobundle#tap('SimpylFold') " {{{
