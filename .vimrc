@@ -1139,7 +1139,6 @@ if neobundle#tap('vimfiler')
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     hi link exrenameModified Normal
     let g:vimfiler_as_default_explorer=1
-    let g:vimfiler_safe_mode_by_default=0
 
     autocmd MyVimrc FileType vimfiler call g:my_vimfiler_settings()
 
@@ -1151,6 +1150,7 @@ if neobundle#tap('vimfiler')
     endfunction
   endfunction "}}}
 
+  let g:vimfiler_safe_mode_by_default=0
   nnoremap <silent> ;vf :VimFilerBufferDir -split -simple -no-quit -winwidth=32<CR>
   nnoremap <silent> ;vt :VimFilerBufferDir -tab<CR>
 
