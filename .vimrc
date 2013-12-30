@@ -2536,6 +2536,8 @@ if neobundle#tap('vim-niceblock') " {{{
   " Improved visual selection.
   xmap I  <Plug>(niceblock-I)
   xmap A  <Plug>(niceblock-A)
+  vnoremap <expr> <Plug>(niceblock-r) niceblock#force_blockwise('r')
+  xmap r <Plug>(niceblock-r)
 
   call neobundle#untap()
 endif " }}}
