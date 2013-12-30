@@ -2496,6 +2496,31 @@ if neobundle#tap('vim-choosewin') " {{{
   call neobundle#untap()
 endif " }}}
 
+if neobundle#tap('vim-submode') " {{{
+  call neobundle#config({})
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+  let g:submode_keep_leaving_key = 1
+  " Tab move
+  call submode#enter_with('changetab', 'n', '', 'tl', 'gt')
+  call submode#enter_with('changetab', 'n', '', 'th', 'gT')
+  call submode#map('changetab', 'n', '', 'l', 'gt')
+  call submode#map('changetab', 'n', '', 'h', 'gT')
+
+  " Resize window
+  call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+  call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+  call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
+  call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+  call submode#map('winsize', 'n', '', '>', '<C-w>3>')
+  call submode#map('winsize', 'n', '', '<', '<C-w>3<')
+  call submode#map('winsize', 'n', '', '+', '<C-w>3-')
+  call submode#map('winsize', 'n', '', '-', '<C-w>3+')
+
+  call neobundle#untap()
+endif " }}}
+
 if neobundle#tap('vim-niceblock') " {{{
   call neobundle#config({
         \   'autoload' : {
