@@ -13,10 +13,20 @@
 "
 "=============================================================
 
-" NeoBundle {{{====================
-
+" Startup {{{======================
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
+
+" release autogroup in MyVimrc {{{
+augroup MyVimrc
+  autocmd!
+augroup END
+"}}}
+
+"}}}
+
+" NeoBundle {{{====================
+
 
 if has('vim_starting')
     set nocompatible
@@ -354,12 +364,6 @@ set foldlevel=100
 set cmdwinheight=3
 "}}}
 
-"}}}
-
-" release autogroup in MyVimrc {{{
-augroup MyVimrc
-  autocmd!
-augroup END
 "}}}
 
 " Open & AutoReload .vimrc {{{
