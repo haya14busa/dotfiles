@@ -141,6 +141,7 @@ NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
 NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
 NeoBundleLazy 'kana/vim-niceblock'
+NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
 
 " Neobundle Syntax {{{
 NeoBundle 'scrooloose/syntastic'
@@ -580,13 +581,6 @@ autocmd MyVimrc VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 " Save Cursor Position and Fold {{{
 autocmd MyVimrc BufWinLeave *.* silent mkview!
 autocmd MyVimrc BufWinEnter *.* silent loadview
-"}}}
-
-" Count Up Function {{{
-" TODO: RenBang
-nnoremap <silent> co :ContinuousNumber <C-a><CR>
-vnoremap <silent> co :ContinuousNumber <C-a><CR>
-command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
 "}}}
 
 " Add Endtagcomment function {{{
@@ -2476,6 +2470,30 @@ if neobundle#tap('vim-niceblock') " {{{
 
   call neobundle#untap()
 endif " }}}
+" vim-rengbang {{{
+if neobundle#tap('vim-rengbang')
+  call neobundle#config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       'RengBang',
+        \     ],
+        \   }
+        \ })
+
+  function! neobundle#tapped.hooks.on_source(bundle)
+  endfunction
+
+  " Count Up Function {{{
+  nnoremap <silent> co :ContinuousNumber <C-a><CR>
+  vnoremap <silent> co :ContinuousNumber <C-a><CR>
+  command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
+  "}}}
+
+  call neobundle#untap()
+endif
+" }}}
+
+
 
 " End plugins }}}
 
