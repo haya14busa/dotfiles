@@ -87,7 +87,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 
 " NeoBundle Git {{{
-NeoBundle 'tpope/vim-fugitive'
+NeoBundleLazy 'tpope/vim-fugitive'
 NeoBundleLazy 'gregsexton/gitv'
 NeoBundle 'mhinz/vim-signify'
 "}}}
@@ -996,7 +996,7 @@ if neobundle#tap('unite.vim')
   nnoremap <silent> [unite]<C-o> :<C-u>Unite -silent change jump<CR>
 
   " Grep
-  nnoremap <silent> [unite]g :<C-u>Unite -silent -no-quit grep<CR>
+  nnoremap <silent> [unite]gr :<C-u>Unite -silent -no-quit grep<CR>
 
   " Open plugin directory by t
   call unite#custom#alias('directory', 'tabopen', 'tabvimfiler')
@@ -2289,6 +2289,40 @@ if neobundle#tap('vim-rengbang')
   call neobundle#untap()
 endif
 " }}}
+
+
+" tpope/vim-fugutive {{{
+if neobundle#tap('vim-fugitive')
+  " Config {{{
+  call neobundle#config({
+        \ 'autoload' : {
+        \   'commands' : [
+        \     'Gstatus', 'Gcommit', 'Gwrite', 'Gdiff', 'Gblame', 'Git', 'Ggrep'
+        \   ]
+        \   }
+        \ })
+  " }}}
+
+  let s:bundle = neobundle#get('vim-fugitive')
+  function! s:bundle.hooks.on_post_source(bundle)
+    doautoall fugitive BufNewFile
+  endfunction
+
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+
+
+  " Setting {{{
+  nnoremap ;gs :<C-u>Gstatus<CR>
+  nnoremap ;gc :<C-u>Gcommit -v<CR>
+  nnoremap ;ga :<C-u>Gwrite<CR>
+  nnoremap ;gd :<C-u>Gdiff<CR>
+  nnoremap ;gb :<C-u>Gblame<CR>
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
 
 " End plugins }}}
 
