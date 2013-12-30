@@ -15,6 +15,9 @@
 
 " NeoBundle {{{====================
 
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
 if has('vim_starting')
     set nocompatible
     set runtimepath& runtimepath+=~/.vim/bundle/neobundle.vim/
