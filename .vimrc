@@ -241,40 +241,99 @@ NeoBundleCheck
 " Vim Setup  {{{====================
 
 " Basic Options {{{
-set encoding=utf-8
-set fileformats=unix,dos,mac
-set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
-set ambiwidth=double
-set autoread
-set backspace=indent,eol,start
+set ambiwidth=double "Use twice the width of ASCII characters for Multybyte
+set autoread "Automatically read file again which has been changed outside of Vim
+set backspace=indent,eol,start "Working of <BS>,<Del>,CTRL-W,CTRL-U
 if has('unnamedplus')
-  set clipboard& clipboard=unnamedplus
+  set clipboard& clipboard=unnamedplus "uses the clipboard register '+'
 else
   set clipboard& clipboard+=unnamed,autoselect
 endif
-set cmdheight=1
-set display=lastline
-set grepprg=internal
-set hidden " Display another buffer when current buffer isn't saved.
-set infercase " Ignore case on insert completion.
-set laststatus=2
-set matchtime=3
-set modeline
-set noerrorbells
-set novisualbell
-set nrformats-=octal
-set ruler
-set shortmess&
-set shortmess+=I
-set showcmd
-set showmatch
-set textwidth=0
-set title
-set viminfo+=!
-set virtualedit=block
-set whichwrap=b,s,h,l,[,],<,>
-set wrap
-set wrapscan
+set cmdheight=1 "Number of screen lines to use for the command-line
+set cmdwinheight=3 "Number of screen lines to use for the command-line window
+set display=lastline "Display as much as possible of the last line
+set encoding=utf-8 "Sets the character encoding used inside Vim
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis "A list of character encodings
+set fileformats=unix,dos,mac "This gives the end-of-line (<EOL>) formats
+set formatoptions-=r,o " Turn off Automatically comment out when line break
+set grepprg=internal "Program to use for the :grep command
+set hidden "Display another buffer when current buffer isn't saved.
+set infercase "Ignore case on insert completion.
+set keywordprg=:help " Open Vim internal help by K command
+set laststatus=2 "Always display statusline
+set matchtime=3 "Tenths of a second to show the matching paren
+set modeline "Set Vim local buffer option to specific file
+set noerrorbells "Don't ring the bell for error messages
+set number "Print the line number in front of each line
+set novisualbell "Don't use visual bell instead of beeping
+set nrformats-=octal "Bases Vim will consider for numbers(Ctrl-a,Ctrl-x)
+set ruler "Show the line and column number of the cursor position
+set shortmess& shortmess+=I "Don't give the message when starting Vim :intro
+set showcmd "Show (partial) command in the last line of the screen
+set showmatch "Briefly jump to the matching one
+set spelllang=en,cjk "Spell checking language
+set textwidth=0 "Maximum width of text that is being inserted
+set viewoptions=cursor,folds "Changes the effect of the :mkview command
+set viminfo+=! "Store information when you exit Vim for later
+set virtualedit=block "Cursor can be positioned virtually when Visual-block mode
+set whichwrap=b,s,h,l,[,],<,> "Allow specified keys to move to the previous/next line
+set wrap "Lines longer than the width of the window will wrap
+set wrapscan "Searches wrap around the end of the file
+
+" Tab Basic Settings {{{
+set autoindent "Copy indent from current line when starting a new line
+set expandtab "Use the appropriate number of spaces to insert a <Tab>
+set shiftround "Round indent to multiple of 'shiftwidth'
+set shiftwidth=4 "Number of spaces to use for each step of (auto)indent
+set softtabstop=4 "Number of spaces that a <Tab> counts for while editing operations
+set tabstop=4 "Number of spaces that a <Tab> in the file counts for
+"}}}
+
+" Search Basic Settings {{{
+set incsearch "Incremental searching
+set ignorecase "Ignore case in search patterns
+set smartcase "Override the ignorecase option if the pattern contains upper case
+set hlsearch "Highlight search patterns
+"}}}
+
+" Backup Settings {{{
+"Don't create backup
+set nobackup "Don't make a backup before overwriting a file
+set nowritebackup "Don't make a backup before overwriting a file
+set backupdir-=. "List of directories for the backup file
+"}}}
+
+" Swap Settings {{{
+set swapfile "Use a swapfile for the buffer
+set directory-=. "List of directory names for the swap file
+"}}}
+
+" Undo Basic {{{
+if has('persistent_undo')
+  set undofile "Automatically saves undo history
+  set undoreload=1000 "Save the whole buffer for undo when reloading it
+  let &undodir=&directory "List of directory names for undo files
+endif
+"}}}
+
+" Wildmenu {{{
+set wildmenu " Command line autocompletion
+set wildmode=list:longest,full "Shows all the options
+
+set wildignore& " A file that matches with one of these patterns is ignored
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=*.jar                            " Java archives
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.stats                          " Pylint stats
+
+" }}}
+
+" Fold Basic Settings "{{{
+set foldenable "Enable fold
+set foldlevel=100 "Folds with a higher level will be closed
+"}}}
 
 " Colorscheme {{{
 syntax enable
@@ -287,76 +346,6 @@ catch
 endtry
 "}}}
 
-" Tab Basic Settings {{{
-set autoindent
-set expandtab
-set shiftround
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-"}}}
-
-" Turn off Automatically comment out when line break {{{
-set formatoptions-=r
-set formatoptions-=o
-"}}}
-
-" Search Basic Settings {{{
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
-"}}}
-
-" Line Basic Settings {{{
-set number
-"}}}
-
-" Backup Settings {{{
-" Don't create backup
-set nobackup
-set nowritebackup
-set backupdir-=.
-"}}}
-
-" Swap Settings {{{
-set swapfile
-set directory-=.
-"}}}
-
-" Undo Basic {{{
-if v:version >= 703
-  " Set undofile.
-  set undofile
-  set undoreload=1000
-  let &undodir=&directory
-endif
-"}}}
-
-" Wildmenu {{{
-
-set wildmenu                        " Command line autocompletion
-set wildmode=list:longest,full      " Shows all the options
-
-set wildignore&
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
-set wildignore+=*.luac                           " Lua byte code
-set wildignore+=*.jar                            " Java archives
-set wildignore+=*.pyc                            " Python byte code
-set wildignore+=*.stats                          " Pylint stats
-
-" }}}
-
-" Fold Basic Settings "{{{
-set foldenable
-set foldlevel=100
-"}}}
-
-" command-line window {{{
-set cmdwinheight=3
-"}}}
-
 "}}}
 
 " Open & AutoReload .vimrc {{{
@@ -366,10 +355,6 @@ command! SoVimrc source $MYVIMRC
 "autocmd MyVimrc BufWritePost *vimrc source $MYVIMRC
 "aiueo
 "autocmd MyVimrc BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-"}}}
-
-" Open Vim help by K {{{
-set keywordprg=:help
 "}}}
 
 " Close Vim help by q {{{
@@ -482,7 +467,6 @@ nnoremap Y y$
 "}}}
 
 " Spelling Keymaps {{{
-set spelllang+=cjk
 " turn on the spell checking and set the English language
 nnoremap <Leader>se :set spell<CR>
 " turn off the spell checking
@@ -562,7 +546,6 @@ autocmd MyVimrc VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 "}}}
 
 " Save Cursor Position and Fold {{{
-set viewoptions=cursor,folds
 autocmd MyVimrc BufWinLeave *.* silent mkview!
 autocmd MyVimrc BufWinEnter *.* silent loadview
 "}}}
