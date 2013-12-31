@@ -25,6 +25,8 @@ augroup END
 
 " Echo startup time on start {{{
 if has('vim_starting') && has('reltime')
+  " Shell: vim --startuptime {filename} -q; vim {filename}
+  " vim --cmd 'profile start profile.txt' --cmd 'profile file $HOME/.vimrc' +q && vim profile.txt
   let g:startuptime = reltime()
     autocmd MyVimrc VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
     \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
