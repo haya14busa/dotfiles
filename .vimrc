@@ -236,6 +236,7 @@ NeoBundle 'sjl/badwolf'
 MyNeoBundle 'vim-helloworld'
 NeoBundle 'mattn/learn-vimscript'
 NeoBundleLazy 'thinca/vim-prettyprint'
+NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
 "}}}
 
 " Others {{{
@@ -2401,6 +2402,23 @@ if neobundle#tap('vim-quickhl')
   vmap ;m <Plug>(quickhl-manual-this)
   nmap ;M <Plug>(quickhl-manual-reset)
   vmap ;M <Plug>(quickhl-manual-reset)
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
+" tyru/capture.vim {{{
+if neobundle#tap('capture.vim')
+  " Config {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'commands' : [ 'Capture' ],
+        \   }
+        \ })
+  " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
   "}}}
   call neobundle#untap()
 endif
