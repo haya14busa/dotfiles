@@ -246,7 +246,7 @@ NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
 NeoBundleLazy 'pentie/VimRepress' "WordPress
 NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
 NeoBundleLazy 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
-NeoBundleLazy 'basyura/J6uil.vim', { 'depends' : [ 'Shougo/vimproc.vim', 'mattn/webapi-vim' ] }
+NeoBundleLazy 'basyura/J6uil.vim'
 NeoBundle 'bohrshaw/vim-vimperator-syntax'
 NeoBundleLazy 'supermomonga/thingspast.vim'
 NeoBundleLazy 'rbtnn/puyo.vim'
@@ -2371,6 +2371,7 @@ endif
 if neobundle#tap('J6uil.vim')
   " Config {{{
   call neobundle#config({
+        \   'depends': ['Shougo/vimproc', 'mattn/webapi-vim'],
         \   'autoload' : {
         \     'commands' : [ 'J6uil' ],
         \     'unite_sources' : [ 'J6uil/members', 'J6uil/rooms' ],
