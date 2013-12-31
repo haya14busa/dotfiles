@@ -173,6 +173,7 @@ NeoBundle 'mhinz/vim-signify'
 " UI {{{
 NeoBundle 'itchyny/lightline.vim'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides'
+NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selected word
 " }}}
 
 " Utility {{{
@@ -2285,7 +2286,6 @@ if neobundle#tap('vim-rengbang')
 endif
 " }}}
 
-
 " tpope/vim-fugutive {{{
 if neobundle#tap('vim-fugitive')
   " Config {{{
@@ -2384,6 +2384,28 @@ if neobundle#tap('J6uil.vim')
   call neobundle#untap()
 endif
 " }}}
+
+" t9md/vim-quickhl {{{
+if neobundle#tap('vim-quickhl')
+  " Config {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'mappings' : [ '<Plug>(quickhl-manual-' ],
+        \   }
+        \ })
+  " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
+  nmap ;m <Plug>(quickhl-manual-this)
+  vmap ;m <Plug>(quickhl-manual-this)
+  nmap ;M <Plug>(quickhl-manual-reset)
+  vmap ;M <Plug>(quickhl-manual-reset)
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
 " End plugins }}}
 
 " Sandbox {{{
