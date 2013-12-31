@@ -2439,9 +2439,16 @@ endif
 
 " Sandbox {{{
 
-" Use command-line window
-nnoremap : q:i
-vnoremap : q:i
+" Use command-line window {{{
+nnoremap : q:
+vnoremap : q:
+
+autocmd MyVimrc CmdwinEnter * call s:init_cmdwin()
+function! s:init_cmdwin()
+  nnoremap <silent><buffer> q :<C-u>quit<CR>
+  startinsert!
+endfunction
+"}}}
 
 " " sticky_table {{{
 " let sticky_table_us = {
