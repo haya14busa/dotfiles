@@ -31,6 +31,13 @@ if has('vim_starting') && has('reltime')
 endif
 "}}}
 
+" Secret  {{{
+" This file contains only g:vimrc_secrets.
+if filereadable(expand('~/.secret_vimrc'))
+  let g:vimrc_secrets = {}
+  execute 'source' expand('~/.secret_vimrc')
+endif
+" }}}
 
 "}}}
 
