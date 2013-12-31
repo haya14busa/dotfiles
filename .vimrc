@@ -241,6 +241,7 @@ NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'pentie/VimRepress' "WordPress
 NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
 NeoBundleLazy 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
+NeoBundleLazy 'basyura/J6uil.vim', { 'depends' : [ 'Shougo/vimproc.vim', 'mattn/webapi-vim' ] }
 NeoBundle 'bohrshaw/vim-vimperator-syntax'
 NeoBundleLazy 'supermomonga/thingspast.vim'
 NeoBundleLazy 'rbtnn/puyo.vim'
@@ -2355,6 +2356,34 @@ if neobundle#tap('SimpylFold')
 endif
 "}}}
 
+" basyura/J6uil.vim {{{
+if neobundle#tap('J6uil.vim')
+  " Config {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'commands' : [ 'J6uil' ],
+        \     'unite_sources' : [ 'J6uil/members', 'J6uil/rooms' ],
+        \   }
+        \ })
+  " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+	let g:J6uil_user     = 'haya14busa'
+    let g:lingr_vim_user     = g:vimrc_secrets['J6uil_user']
+    let g:lingr_vim_password = g:vimrc_secrets['J6uil_password']
+    let g:EasyMotion_use_migemo = 1
+
+    autocmd MyVimrc FileType J6uil call s:J6uil_settings()
+    function! s:J6uil_settings()
+      nunmap <buffer> s
+      nmap <Plug>(easymotion-s)
+      nmap <buffer> <Leader>s <Plug>(J6uil_open_say_buffer)
+    endfunction
+  endfunction "}}}
+  " Setting {{{
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
 " End plugins }}}
 
 " Sandbox {{{
