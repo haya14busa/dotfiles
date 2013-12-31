@@ -177,7 +177,8 @@ NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selecte
 " }}}
 
 " Utility {{{
-NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
+" NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
+NeoBundle 'thinca/vim-submode', 'my-master' " Vim plugin: Create your own submodes
 NeoBundleLazy 'tyru/open-browser.vim'
 "}}}
 
