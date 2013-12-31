@@ -1961,10 +1961,17 @@ if neobundle#tap('yankround.vim')
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:yankround_use_region_hl = 1
   endfunction "}}}
-  nmap p <Plug>(yankround-p)
+  " nmap p <Plug>(yankround-p)
   nmap P <Plug>(yankround-P)
   nmap <C-p> <Plug>(yankround-prev)
   nmap <C-n> <Plug>(yankround-next)
+
+  nmap <expr> p yankround#is_active() ?
+    \ '<Plug>(my-yankround-start)' : '<Plug>(yankround-p)'
+  call submode#enter_with('yankround', 'n', 'r',
+    \ '<Plug>(my-yankround-start)', '<Plug>(yankround-prev)')
+  call submode#map('yankround', 'n', 'r', 'p', '<Plug>(yankround-prev)')
+  call submode#map('yankround', 'n', 'r', 'n', '<Plug>(yankround-next)')
   call neobundle#untap()
 endif
 "}}}
