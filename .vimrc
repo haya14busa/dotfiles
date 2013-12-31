@@ -563,9 +563,8 @@ autocmd MyVimrc VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 
 "}}}
 
-" Save Cursor Position and Fold {{{
-autocmd MyVimrc BufWinLeave *.* silent mkview!
-autocmd MyVimrc BufWinEnter *.* silent loadview
+" Restore last cursor position when open a file {{{
+autocmd MyVimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 "}}}
 
 " Add Endtagcomment function {{{
