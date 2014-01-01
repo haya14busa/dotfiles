@@ -249,3 +249,5 @@ alias gosh='rlwrap gosh'
 export IntelliJ=$HOME/Downloads/idea-IC-133.193/
 export PATH=$IntelliJ/bin:$PATH
 alias intellij='$IntelliJ/bin/idea.sh'
+
+alias g='git'
