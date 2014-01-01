@@ -5,6 +5,7 @@
 	ui = true
 [core]
 	editor = /usr/local/bin/vim
+	excludesfile = /home/haya14busa/.gitignore
 [alias]
 	co = checkout
 	st = status
