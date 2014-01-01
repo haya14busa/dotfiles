@@ -240,6 +240,7 @@ MyNeoBundle 'vim-helloworld'
 NeoBundle 'mattn/learn-vimscript'
 NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
+NeoBundle 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
 "}}}
 
 " Others {{{
