@@ -13,6 +13,9 @@
 	so = remote show origin
 	ci = commit
 	ft = fetch
+	ph = push
+	pl = pull
+	lp = log -p
 	ad = add
 	cam = commit --amend
 	log-graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
