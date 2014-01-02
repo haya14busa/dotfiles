@@ -65,6 +65,7 @@ command! -nargs=1
 "}}}
 "}}}
 
+" Synthesis {{{
 " Unite {{{
 NeoBundleLazy 'Shougo/unite.vim'
 
@@ -76,14 +77,12 @@ NeoBundleLazy 'kmnk/vim-unite-giti'
 NeoBundleLazy 'thinca/vim-unite-history'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
 "}}}
-
-" Synthesis {{{
 NeoBundleLazy 'Shougo/vimfiler'
 NeoBundleLazy 'Shougo/vimshell'
+
 "}}}
 
 " Writing {{{
-NeoBundleLazy 'Shougo/neosnippet.vim'
 " Shougo/neocomplete {{{
 if has('lua') && v:version >= 703
     NeoBundleLazy 'Shougo/neocomplete.vim'
@@ -91,6 +90,7 @@ else
     NeoBundleLazy 'Shougo/neocomplcache.vim'
 endif
 "}}}
+NeoBundleLazy 'Shougo/neosnippet.vim'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
 NeoBundleLazy 'h1mesuke/vim-alignta'
