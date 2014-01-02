@@ -464,7 +464,7 @@ vnoremap <Space>k <C-b>zz
 
 "}}}
 
-" Paste in insert and Ex mode"{{{
+" Paste in insert and Command-line mode"{{{
 inoremap <C-y><C-y> <C-r>+
 cnoremap <C-y><C-y> <C-r>+
 "}}}
