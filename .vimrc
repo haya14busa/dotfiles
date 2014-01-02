@@ -1329,6 +1329,7 @@ endif
 " gregsexton/gitv {{{
 if neobundle#tap('gitv')
   call neobundle#config({
+    \ 'depends': ['tpope/vim-fugitive'],
     \ 'autoload': {
     \   'commands' : ['Gitv']
     \   }
