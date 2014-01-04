@@ -101,6 +101,8 @@ NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 " Development {{{
 NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'koron/codic-vim' " Codic vim plugin
+NeoBundle 'rhysd/codic-vim-with-unite'
 "}}}
 
 " Library {{{
