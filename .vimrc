@@ -101,8 +101,8 @@ NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 " Development {{{
 NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundle 'scrooloose/syntastic'
-" NeoBundle 'koron/codic-vim' " Codic vim plugin
-NeoBundle 'rhysd/codic-vim-with-unite'
+NeoBundleLazy 'koron/codic-vim' " Codic vim plugin
+NeoBundleLazy 'rhysd/unite-codic.vim' " A unite.vim source for codic-vim.
 "}}}
 
 " Library {{{
@@ -2422,6 +2422,26 @@ if neobundle#tap('capture.vim')
   call neobundle#config({
         \   'autoload' : {
         \     'commands' : [ 'Capture' ],
+        \   }
+        \ })
+  " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
+" rhysd/unite-codic.vim {{{
+if neobundle#tap('unite-codic.vim')
+  " Config {{{
+  call neobundle#config({
+        \   'depends': ['koron/codic-vim'],
+        \   'autoload' : {
+        \     'unite_sources' : [
+        \       'codic',
+        \     ],
         \   }
         \ })
   " }}}
