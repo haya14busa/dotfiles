@@ -262,8 +262,6 @@ NeoBundleLazy 'thinca/vim-scouter'
 
 filetype plugin indent on
 
-" Installation check.
-NeoBundleCheck
 " END Neobundle}}}
 
 " Vim Setup  {{{====================
@@ -2511,8 +2509,12 @@ endfunction
 
 "}}}
 
+" Finally {{{ =====================
+" Installation check.
+NeoBundleCheck
 call neobundle#call_hook('on_source')
 set secure
+"}}}
 
 "------------------------------------
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
