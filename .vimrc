@@ -174,7 +174,10 @@ NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selecte
 
 " Utility {{{
 " NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
-NeoBundle 'thinca/vim-submode', 'my-master' " Vim plugin: Create your own submodes
+NeoBundle 'thinca/vim-submode', {
+      \ 'rev' : 'my-master',
+      \ 'name' : 'vim-submode',
+      \ }
 NeoBundleLazy 'tyru/open-browser.vim'
 "}}}
 
@@ -2231,7 +2234,7 @@ endif
 
 " vim-submode {{{
 if neobundle#tap('vim-submode')
-  call neobundle#config({})
+  " call neobundle#config({})
 
   function! neobundle#tapped.hooks.on_source(bundle)
     let g:submode_keep_leaving_key = 1
