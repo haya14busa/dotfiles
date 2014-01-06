@@ -905,7 +905,7 @@ endif
 
 " Plugin settings {{{==============
 
-" author/sample {{{
+" " author/sample {{{
 " if neobundle#tap('plugin-name')
 "   " Config {{{
 "   call neobundle#config({
@@ -922,7 +922,7 @@ endif
 "   "}}}
 "   call neobundle#untap()
 " endif
-" }}}
+" " }}}
 
 " shougo/vimproc "{{{
 if neobundle#tap('vimproc')
