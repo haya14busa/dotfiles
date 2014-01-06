@@ -77,8 +77,8 @@ NeoBundleLazy 'kmnk/vim-unite-giti'
 NeoBundleLazy 'thinca/vim-unite-history'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
 "}}}
-NeoBundleLazy 'Shougo/vimfiler'
-NeoBundleLazy 'Shougo/vimshell'
+NeoBundleLazy 'Shougo/vimfiler.vim'
+NeoBundleLazy 'Shougo/vimshell.vim'
 
 "}}}
 
@@ -1126,7 +1126,7 @@ endif
 " End unite-sources }}}
 
 " Shougo/VimFiler {{{
-if neobundle#tap('vimfiler')
+if neobundle#tap('vimfiler.vim')
   " Config {{{
   call neobundle#config({
         \   'autoload' : {
@@ -1171,8 +1171,8 @@ if neobundle#tap('vimfiler')
 endif
 "}}}
 
-" Shougo/vimshell {{{
-if neobundle#tap('vimshell')
+" Shougo/vimshell.vim {{{
+if neobundle#tap('vimshell.vim')
   call neobundle#config({
         \   'depends': ['Shougo/vimproc'],
         \   'autoload' : {
