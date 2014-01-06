@@ -186,6 +186,10 @@ NeoBundle 'thinca/vim-submode', 'my-master' " Vim plugin: Create your own submod
 NeoBundleLazy 'tyru/open-browser.vim'
 "}}}
 
+" Application {{{
+NeoBundleLazy 'itchyny/calendar.vim' " A calendar application for Vim
+"}}}
+"
 " Memo {{{
 NeoBundleLazy 'mattn/gist-vim'
 NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
@@ -2446,6 +2450,27 @@ if neobundle#tap('unite-codic.vim')
         \ })
   " }}}
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
+" itchyny/calendar.vim {{{
+if neobundle#tap('calendar.vim')
+  " Config {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       'Calendar',
+        \     ],
+        \   }
+        \ })
+  " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    let g:calendar_google_calendar = 1
+    let g:calendar_google_task = 1
   endfunction "}}}
   " Setting {{{
   "}}}
