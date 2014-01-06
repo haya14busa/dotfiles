@@ -2478,7 +2478,7 @@ endif
 
 " End plugins }}}
 
-" Sandbox {{{
+" Sandbox {{{======================
 
 " Use command-line window {{{
 nnoremap : q:
