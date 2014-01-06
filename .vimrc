@@ -1052,18 +1052,6 @@ if neobundle#tap('unite-colorscheme')
   call neobundle#untap()
 endif
 "}}}
-" mattn/unite-advent_calendar {{{
-if neobundle#tap('unite-advent_calendar')
-  call neobundle#config({
-        \   'autoload' : {
-        \     'unite_sources' : [
-        \       'advent_calendar'
-        \     ],
-        \   }
-        \ })
-  call neobundle#untap()
-endif
-"}}}
 " Shougo/unite-outline {{{
 if neobundle#tap('unite-outline')
   call neobundle#config({
