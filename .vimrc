@@ -83,6 +83,7 @@ else
 endif
 "}}}
 NeoBundleLazy 'Shougo/neosnippet.vim'
+MyNeoBundle 'haya14busa-snippets'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
 NeoBundleLazy 'h1mesuke/vim-alignta'
@@ -1188,10 +1189,10 @@ if neobundle#tap('neosnippet.vim')
   call neobundle#config({
         \   'autoload' : {
         \     'insert' : 1,
-        \   'filetypes' : 'snippet',
-        \   'unite_sources' : [
-        \     'snippet', 'neosnippet/user', 'neosnippet/runtime'
-        \     ],
+        \     'filetypes' : 'neosnippet',
+        \     'unite_sources' : [
+        \       'snippet', 'neosnippet/user', 'neosnippet/runtime'
+        \       ],
         \   }
         \ })
 
@@ -1206,6 +1207,10 @@ if neobundle#tap('neosnippet.vim')
     autocmd MyVimrc InsertLeave * :NeoSnippetClearMarkers
   endfunction "}}}
 
+  " haya14busa-snippets {{{
+  let g:neosnippet#snippets_directory=$HOME.'/.vim/myplugin/haya14busa-snippets/neosnippets'
+  "}}}
+
   " SuperTab like snippets behavior.
   imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -1213,6 +1218,12 @@ if neobundle#tap('neosnippet.vim')
   smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)"
     \: "\<TAB>"
+
+  " Plugin key-mappings.
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
 
   call neobundle#untap()
 endif
