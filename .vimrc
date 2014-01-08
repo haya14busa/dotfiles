@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 30 Dec 2013.
+" Last Modified: 08 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -185,7 +185,7 @@ NeoBundleLazy 'tyru/open-browser.vim'
 " Application {{{
 NeoBundleLazy 'itchyny/calendar.vim' " A calendar application for Vim
 "}}}
-"
+
 " Memo {{{
 NeoBundleLazy 'mattn/gist-vim'
 NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
@@ -1912,9 +1912,9 @@ if neobundle#tap('autodate.vim')
         \   }
         \ })
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    let autodate_format = '%d %3m %Y'
-    let autodate_keyword_pre = 'Last \%(Change\|Modified\):'
   endfunction "}}}
+  let autodate_format = '%d %3m %Y'
+  let autodate_keyword_pre = 'Last \%(Change\|Modified\):'
   call neobundle#untap()
 endif
 "}}}
