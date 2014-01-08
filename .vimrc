@@ -815,6 +815,17 @@ endfunction"}}}
 
 "}}}
 
+" Use command-line window {{{
+nnoremap : q:
+vnoremap : q:
+
+autocmd MyVimrc CmdwinEnter * call s:init_cmdwin()
+function! s:init_cmdwin()
+  nnoremap <silent><buffer> q :<C-u>quit<CR>
+  startinsert!
+endfunction
+"}}}
+
 " Create Directory Automatically {{{
 autocmd MyVimrc BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
   function! s:auto_mkdir(dir, force)  " {{{
@@ -2481,17 +2492,6 @@ endif
 " End plugins }}}
 
 " Sandbox {{{======================
-
-" Use command-line window {{{
-nnoremap : q:
-vnoremap : q:
-
-autocmd MyVimrc CmdwinEnter * call s:init_cmdwin()
-function! s:init_cmdwin()
-  nnoremap <silent><buffer> q :<C-u>quit<CR>
-  startinsert!
-endfunction
-"}}}
 
 " " sticky_table {{{
 " let sticky_table_us = {
