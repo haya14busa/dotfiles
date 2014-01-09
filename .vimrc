@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 08 Jan 2014.
+" Last Modified: 09 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -202,6 +202,7 @@ NeoBundle 'plasticboy/vim-markdown'
 " Python {{{
 NeoBundleLazy 'davidhalter/jedi-vim'
 NeoBundleLazy 'heavenshell/vim-pydocstring'
+NeoBundleLazy 'tell-k/vim-autopep8'
 "}}}
 
 " Scheme {{{
@@ -1250,6 +1251,14 @@ if neobundle#tap('neocomplete.vim')
   function! neobundle#tapped.hooks.on_source(bundle)
     let g:neocomplet#enable_smart_case = 1
     let g:neocomplete#enable_fuzzy_completion = 1
+
+    autocmd FileType python setlocal omnifunc=jedi#completions
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:jedi#auto_vim_configuration = 0
+    let g:neocomplete#force_omni_input_patterns.python =
+    \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   endfunction
   call neobundle#untap()
 endif
@@ -1293,6 +1302,23 @@ if neobundle#tap('vim-quickrun')
   nnoremap <Leader>q  <Nop>
   nnoremap <silent><Leader>qr :<C-u>QuickRun<CR>
   vnoremap <silent><Leader>qr :QuickRun<CR>
+
+  let g:quickrun_config = {
+  \   "_" : {
+  \       "runner" : "vimproc",
+  \       "runner/vimproc/updatetime" : 60
+  \   },
+  \}
+  if executable('pyflakes')
+    let g:quickrun_config['syntax/python'] = {
+                \ 'command' : 'pyflakes',
+                \ 'exec' : '%c %o %s:p',
+                \ 'runner' : 'vimproc',
+                \ 'errorformat' : '%f:%l:%m',
+                \ }
+    Autocmd BufWritePost *.py QuickRun -outputter quickfix -type syntax/python
+  endif
+
   call neobundle#untap()
 endif
 "}}}
@@ -2366,6 +2392,21 @@ if neobundle#tap('vim-pydocstring')
 endif
 "}}}
 
+" tell-k/vim-autopep8 {{{
+if neobundle#tap('vim-autopep8')
+  call neobundle#config({
+        \ "autoload": {
+        \   "filetypes": ["python", "python3", "djangohtml"],
+        \   }
+        \ })
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
 " tmhedberg/SimpylFold {{{
 if neobundle#tap('SimpylFold')
   call neobundle#config({
@@ -2484,6 +2525,24 @@ if neobundle#tap('calendar.vim')
     let g:calendar_google_task = 1
   endfunction "}}}
   " Setting {{{
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
+" scrooloose/syntastic {{{
+if neobundle#tap('syntastic')
+  " " Config {{{
+  " call neobundle#config({
+  "       \   'autoload' : {
+  "       \     'insert' : 1,
+  "       \   }
+  "       \ })
+  " " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
+  let g:syntastic_python_checkers=['pyflakes','flake8','pep8']
   "}}}
   call neobundle#untap()
 endif
