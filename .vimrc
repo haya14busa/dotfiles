@@ -32,10 +32,10 @@ AutocmdFT vim match myVimAutocmd /\<\(Autocmd\|AutocmdFT\)\>/
 if has('vim_starting') && has('reltime')
   " Shell: vim --startuptime {filename} -q; vim {filename}
   " vim --cmd 'profile start profile.txt' --cmd 'profile file $HOME/.vimrc' +q && vim profile.txt
-  let g:startuptime = reltime()
-    " autocmd MyVimrc VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
-    Autocmd VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
-    \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+  let s:startuptime = reltime()
+    " autocmd MyVimrc VimEnter * let s:startuptime = reltime(s:startuptime) | redraw
+    Autocmd VimEnter * let s:startuptime = reltime(s:startuptime) | redraw
+    \ | echomsg 'startuptime: ' . reltimestr(s:startuptime)
 endif
 "}}}
 
