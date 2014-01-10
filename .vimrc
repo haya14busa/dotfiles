@@ -927,9 +927,7 @@ AutocmdFT markdown setlocal sw=2 sts=2 ts=2 et
 " end vim setup}}}
 
 " Secret {{{=======================
-" This file contains only g:vimrc_secrets.
 if filereadable(expand('~/.secret_vimrc'))
-  let g:vimrc_secrets = {}
   execute 'source' expand('~/.secret_vimrc')
 endif
 " }}}
