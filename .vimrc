@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 09 Jan 2014.
+" Last Modified: 10 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -21,6 +21,11 @@ if !1 | finish | endif
 augroup MyVimrc
   autocmd!
 augroup END
+command! -nargs=* Autocmd autocmd MyVimrc <args>
+command! -nargs=* AutocmdFT autocmd MyVimrc FileType <args>
+
+AutocmdFT vim highlight def link myVimAutocmd vimAutoCmd
+AutocmdFT vim match myVimAutocmd /\<\(Autocmd\|AutocmdFT\)\>/
 "}}}
 
 " Echo startup time on start {{{
@@ -28,7 +33,8 @@ if has('vim_starting') && has('reltime')
   " Shell: vim --startuptime {filename} -q; vim {filename}
   " vim --cmd 'profile start profile.txt' --cmd 'profile file $HOME/.vimrc' +q && vim profile.txt
   let g:startuptime = reltime()
-    autocmd MyVimrc VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
+    " autocmd MyVimrc VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
+    Autocmd VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
     \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
 endif
 "}}}
@@ -359,14 +365,20 @@ set foldlevel=100 "Folds with a higher level will be closed
 "}}}
 
 " Colorscheme {{{
-syntax enable
-set background=dark
-set t_Co=256
-try
-  colorscheme wombat
-catch
-  colorscheme desert
-endtry
+if has('vim_starting')
+  syntax enable
+  set background=dark
+  set t_Co=256
+  if &t_Co < 256
+    colorscheme default
+  else
+    try
+      colorscheme molokai
+    catch
+      colorscheme desert
+    endtry
+  endif
+endif
 "}}}
 
 "}}}
@@ -375,15 +387,15 @@ endtry
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 command! SoVimrc source $MYVIMRC
-"autocmd MyVimrc BufWritePost *vimrc source $MYVIMRC
+"Autocmd BufWritePost *vimrc source $MYVIMRC
 "aiueo
-"autocmd MyVimrc BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+"Autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 "}}}
 
 " Close Vim help by q {{{
-autocmd MyVimrc FileType help nnoremap <buffer> q <C-w>c
-autocmd MyVimrc FileType help nnoremap <buffer> ;q q
-autocmd MyVimrc FileType help nnoremap <buffer> Q q
+AutocmdFT help nnoremap <buffer> q <C-w>c
+AutocmdFT help nnoremap <buffer> ;q q
+AutocmdFT help nnoremap <buffer> Q q
 "}}}
 
 " Useful Keymaps{{{
@@ -547,7 +559,7 @@ nnoremap x "_x
 "}}}
 
 " set nopaste when Insertleave"{{{
-autocmd MyVimrc InsertLeave * set nopaste
+Autocmd InsertLeave * set nopaste
 "}}}
 
 " Show invisibles {{{
@@ -562,15 +574,18 @@ set listchars=tab:▸\ ,eol:¬
 hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 
-" Highlight End-of-Line Whitespace {{{
-autocmd MyVimrc VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
-autocmd MyVimrc VimEnter,WinEnter * match TrailingSpaces /\s\+$/
+" Highlight End-of-Line & Zenkaku Whitespace {{{
+Autocmd VimEnter,ColorScheme * highlight link TrailingSpaces Error
+Autocmd VimEnter,WinEnter * syntax match TrailingSpaces containedin=ALL /\s\+$/
+
+Autocmd VimEnter,ColorScheme * highlight link ZenkakuSpace Error
+Autocmd VimEnter,WinEnter * syntax match ZenkakuSpace containedin=ALL /　/
 "}}}
 
 "}}}
 
 " Restore last cursor position when open a file {{{
-autocmd MyVimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+Autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 "}}}
 
 " Add Endtagcomment function {{{
@@ -820,21 +835,21 @@ endfunction"}}}
 nnoremap : q:
 vnoremap : q:
 
-autocmd MyVimrc CmdwinEnter * call s:init_cmdwin()
-function! s:init_cmdwin()
+Autocmd CmdwinEnter * call s:init_cmdwin()
+function! s:init_cmdwin() "{{{
   nnoremap <silent><buffer> q :<C-u>quit<CR>
   startinsert!
-endfunction
+endfunction "}}}
 "}}}
 
 " Create Directory Automatically {{{
-autocmd MyVimrc BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
-  function! s:auto_mkdir(dir, force)  " {{{
-    if !isdirectory(a:dir) && (a:force ||
-    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-    endif
-  endfunction  " }}}
+Autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+function! s:auto_mkdir(dir, force)  " {{{
+  if !isdirectory(a:dir) && (a:force ||
+  \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+    call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+  endif
+endfunction  " }}}
 "}}}
 
 " Git Setting {{{
@@ -848,13 +863,13 @@ if &diff
 endif
 
 " Update diff
-autocmd MyVimrc InsertLeave * if &l:diff | diffupdate | endif
+Autocmd InsertLeave * if &l:diff | diffupdate | endif
 " Spell check in git commit
-autocmd MyVimrc FileType gitcommit setlocal nofoldenable spell
+AutocmdFT gitcommit setlocal nofoldenable spell
 " Set textwidth
-autocmd MyVimrc FileType gitcommit setlocal textwidth=72
+AutocmdFT gitcommit setlocal textwidth=72
 " Enter Insert mode in git commit
-autocmd MyVimrc VimEnter COMMIT_EDITMSG if getline(1) == '' | execute 1 | startinsert | endif
+Autocmd VimEnter COMMIT_EDITMSG if getline(1) == '' | execute 1 | startinsert | endif
 
 " git blame {{{
 function! s:git_blame(fname, ...)
@@ -877,15 +892,15 @@ vnoremap <silent><Leader>gb :GitBlameRange<CR>
 " Filetypes "{{{====================
 
 " Stylus {{{
-autocmd MyVimrc BufRead,BufNewFile,BufReadPre *.styl setlocal filetype=sass
-autocmd MyVimrc FileType sass     setlocal sw=2 sts=2 ts=2 et
-autocmd MyVimrc BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
+Autocmd BufRead,BufNewFile,BufReadPre *.styl setlocal filetype=sass
+AutocmdFT sass     setlocal sw=2 sts=2 ts=2 et
+Autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
 "}}}
 
 " CoffeeScript {{{
-autocmd MyVimrc BufRead,BufNewFile,BufReadPre *.coffee   setlocal filetype=coffee
-autocmd MyVimrc FileType coffee     setlocal sw=2 sts=2 ts=2 et
-autocmd MyVimrc BufWritePost,FileWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
+Autocmd BufRead,BufNewFile,BufReadPre *.coffee   setlocal filetype=coffee
+AutocmdFT coffee     setlocal sw=2 sts=2 ts=2 et
+Autocmd BufWritePost,FileWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
 "}}}
 
 " Sass {{{
@@ -899,12 +914,12 @@ function! Sass_convert()
     endif
 endfunction
 
-autocmd MyVimrc BufWritePost *.scss call Sass_convert()
+Autocmd BufWritePost *.scss call Sass_convert()
 "}}}
 
 " Markdown {{{
-autocmd MyVimrc BufRead,BufNewFile *.md  setfiletype markdown
-autocmd MyVimrc FileType markdown setlocal sw=2 sts=2 ts=2 et
+Autocmd BufRead,BufNewFile *.md  set filetype=markdown
+AutocmdFT markdown setlocal sw=2 sts=2 ts=2 et
 "}}}
 
 "}}}
@@ -1155,7 +1170,7 @@ if neobundle#tap('vimfiler.vim')
     hi link exrenameModified Normal
     let g:vimfiler_as_default_explorer=1
 
-    autocmd MyVimrc FileType vimfiler call g:my_vimfiler_settings()
+    AutocmdFT vimfiler call g:my_vimfiler_settings()
 
     function! g:my_vimfiler_settings()
       map <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
@@ -1216,7 +1231,7 @@ if neobundle#tap('neosnippet.vim')
     " Enable snipMate compatibility feature.
     let g:neosnippet#enable_snipmate_compatibility = 1
     " Remove snippets marker automatically
-    autocmd MyVimrc InsertLeave * :NeoSnippetClearMarkers
+    Autocmd InsertLeave * :NeoSnippetClearMarkers
   endfunction "}}}
 
   " haya14busa-snippets {{{
@@ -1252,7 +1267,7 @@ if neobundle#tap('neocomplete.vim')
     let g:neocomplet#enable_smart_case = 1
     let g:neocomplete#enable_fuzzy_completion = 1
 
-    autocmd FileType python setlocal omnifunc=jedi#completions
+    AutocmdFT python setlocal omnifunc=jedi#completions
     if !exists('g:neocomplete#force_omni_input_patterns')
       let g:neocomplete#force_omni_input_patterns = {}
     endif
@@ -1500,7 +1515,7 @@ if neobundle#tap('vim-easymotion')
   endfunction
   command! -nargs=0 EasyMotionMigemoToggle :call g:EasyMotionMigemoToggle()
 
-  autocmd MyVimrc FileType markdown let g:EasyMotion_use_migemo = 1
+  AutocmdFT markdown let g:EasyMotion_use_migemo = 1
 
   call neobundle#untap()
 endif
@@ -1742,10 +1757,12 @@ if neobundle#tap('vim-anzu')
   " clear status
   nnoremap <silent><C-l>
         \ :<C-u>nohlsearch<CR>
-        \ :syntax enable<CR><C-l>
+        " \ :syntax enable<CR><C-l>
+  nnoremap <silent><Esc><Esc>
+        \ :<C-u>nohlsearch<CR>
 
   " Clear hit count when nokeyinput, move window, or move tab
-  autocmd MyVimrc CursorHold,CursorHoldI,WinLeave,TabLeave
+  Autocmd CursorHold,CursorHoldI,WinLeave,TabLeave
       \   * call anzu#clear_search_status()
   call neobundle#untap()
 endif
@@ -1766,9 +1783,9 @@ if neobundle#tap('vim-indent-guides')
     let g:indent_guides_color_change_percent = 20
     let g:indent_guides_default_mapping = 0
   endfunction
-  " autocmd MyVimrc VimEnter,Colorscheme *
+  " Autocmd VimEnter,Colorscheme *
   "       \   :hi IndentGuidesOdd  ctermbg=darkgrey
-  " autocmd MyVimrc VimEnter,Colorscheme *
+  " Autocmd VimEnter,Colorscheme *
   "       \   :hi IndentGuidesEven ctermbg=grey
   nnoremap <Leader>i :<C-u>IndentGuidesToggle<CR>
   call neobundle#untap()
@@ -2044,33 +2061,22 @@ if neobundle#tap('TweetVim')
 
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:tweetvim_display_icon=1
-    autocmd MyVimrc FileType tweetvim setlocal nonumber
-    autocmd MyVimrc FileType tweetvim nnoremap <buffer><Leader>s :<C-u>TweetVimSay<CR>
-    autocmd MyVimrc FileType tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
-    autocmd MyVimrc FileType tweetvim     nmap <buffer><Leader>a TweetVimAutoUpdate
-    " Auto reload {{{
-    let s:tweetvim_update_interval_seconds = 10
-    let s:tweetvim_timestamp = localtime()
-    function! s:tweetvim_autoupdate()
-        let current = localtime()
-        if current - s:tweetvim_timestamp > s:tweetvim_update_interval_seconds
-            call feedkeys("\<Plug>(tweetvim_action_reload)")
-            let s:tweetvim_timestamp = current
-        endif
-        call feedkeys(mode() ==# 'i' ? "\<C-g>\<Esc>" : "g\<Esc>", 'n')
-    endfunction
-
-    function! s:tweetvim_setup_autoupdate()
-        augroup vimrc-tweetvim-autoupdate
-            autocmd!
-            autocmd CursorHold * call <SID>tweetvim_autoupdate()
-            autocmd TabLeave * TweetVimStopAutoUpdate
-        augroup END
-    endfunction
-    command! -nargs=0 TweetVimAutoUpdate call <SID>tweetvim_setup_autoupdate()
-    command! -nargs=0 TweetVimStopAutoUpdate autocmd! vimrc-tweetvim-autoupdate
-    "}}}
+    AutocmdFT tweetvim setlocal nonumber
+    AutocmdFT tweetvim nnoremap <buffer><Leader>s :<C-u>TweetVimSay<CR>
+    AutocmdFT tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
+    AutocmdFT tweetvim     nmap <buffer><Leader>a TweetVimAutoUpdate
   endfunction "}}}
+  " Auto reload {{{
+  let s:tweetvim_update_interval_seconds = 60
+  let s:tweetvim_timestamp = localtime()
+  function! s:tweetvim_autoupdate()
+      let current = localtime()
+      if current - s:tweetvim_timestamp > s:tweetvim_update_interval_seconds
+          call feedkeys("\<Plug>(tweetvim_action_reload)")
+          let s:tweetvim_timestamp = current
+      endif
+      call feedkeys(mode() ==# 'i' ? "\<C-g>\<Esc>" : "g\<Esc>", 'n')
+  endfunction
 
   call neobundle#untap()
 endif
@@ -2433,12 +2439,7 @@ if neobundle#tap('J6uil.vim')
         \ })
   " }}}
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
-	let g:J6uil_user     = 'haya14busa'
-    let g:lingr_vim_user     = g:vimrc_secrets['J6uil_user']
-    let g:lingr_vim_password = g:vimrc_secrets['J6uil_password']
-    let g:EasyMotion_use_migemo = 1
-
-    autocmd MyVimrc FileType J6uil call s:J6uil_settings()
+    AutocmdFT J6uil call s:J6uil_settings()
     function! s:J6uil_settings()
       nunmap <buffer> s
       nmap <Plug>(easymotion-s)
