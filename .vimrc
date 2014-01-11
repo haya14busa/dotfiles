@@ -248,7 +248,7 @@ MyNeoBundle 'vim-helloworld'
 NeoBundle 'mattn/learn-vimscript'
 NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
-NeoBundle 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
+NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
 "}}}
 
 " Others {{{
@@ -2541,6 +2541,23 @@ if neobundle#tap('syntastic')
   endfunction "}}}
   " Setting {{{
   let g:syntastic_python_checkers=['pyflakes','flake8','pep8']
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
+" kana/vim-vspec {{{
+if neobundle#tap('vim-vspec')
+  " Config {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'filetypes' : ['vim'],
+        \   }
+        \ })
+  " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
   "}}}
   call neobundle#untap()
 endif
