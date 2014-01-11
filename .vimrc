@@ -38,7 +38,6 @@ if has('vim_starting') && has('reltime')
     \ | echomsg 'startuptime: ' . reltimestr(s:startuptime)
 endif
 "}}}
-
 "}}}
 
 " NeoBundle {{{====================
@@ -99,7 +98,7 @@ NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 
 " Development {{{
 NeoBundleLazy 'thinca/vim-quickrun'
-NeoBundle 'scrooloose/syntastic'
+NeoBundleLazy 'scrooloose/syntastic'
 NeoBundleLazy 'koron/codic-vim' " Codic vim plugin
 NeoBundleLazy 'rhysd/unite-codic.vim' " A unite.vim source for codic-vim.
 "}}}
@@ -2531,13 +2530,13 @@ endif
 
 " scrooloose/syntastic {{{
 if neobundle#tap('syntastic')
-  " " Config {{{
-  " call neobundle#config({
-  "       \   'autoload' : {
-  "       \     'insert' : 1,
-  "       \   }
-  "       \ })
-  " " }}}
+  " Config {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'insert' : 1,
+        \   }
+        \ })
+  " }}}
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
   endfunction "}}}
   " Setting {{{
