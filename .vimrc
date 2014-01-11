@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 10 Jan 2014.
+" Last Modified: 11 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -24,8 +24,8 @@ augroup END
 command! -nargs=* Autocmd autocmd MyVimrc <args>
 command! -nargs=* AutocmdFT autocmd MyVimrc FileType <args>
 
-AutocmdFT vim highlight def link myVimAutocmd vimAutoCmd
-AutocmdFT vim match myVimAutocmd /\<\(Autocmd\|AutocmdFT\)\>/
+Autocmd VimEnter,ColorScheme *vimrc nested highlight def link myVimAutocmd vimAutoCmd
+Autocmd VimEnter,WinEnter,BufWinEnter *vimrc nested syntax match vimAutoCmd /\<\(Autocmd\|AutocmdFT\)\>/
 "}}}
 
 " Echo startup time on start {{{
