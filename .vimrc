@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 11 Jan 2014.
+" Last Modified: 12 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -269,7 +269,14 @@ filetype plugin indent on
 " Vim Setup  {{{====================
 
 " Basic Options {{{
-set ambiwidth=double "Use twice the width of ASCII characters for Multybyte
+if exists('&ambiwidth')
+" For Ubuntu: gnome-terminal, terminator, guake
+"   /bin/sh -c "VTE_CJK_WIDTH=1 terminator -m"
+"   /bin/sh -c "VTE_CJK_WIDTH=1 gnome-terminal --disable-factory"
+"   /bin/sh -c "VTE_CJK_WIDTH=1 guake"
+"   https://gist.github.com/sgk/5991138
+  set ambiwidth=double "Use twice the width of ASCII characters for Multibyte
+endif
 set autoread "Automatically read file again which has been changed outside of Vim
 set backspace=indent,eol,start "Working of <BS>,<Del>,CTRL-W,CTRL-U
 if has('unnamedplus')
