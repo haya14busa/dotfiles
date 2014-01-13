@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 12 Jan 2014.
+" Last Modified: 13 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -285,7 +285,7 @@ else
   set clipboard& clipboard+=unnamed,autoselect
 endif
 set cmdheight=1 "Number of screen lines to use for the command-line
-set cmdwinheight=3 "Number of screen lines to use for the command-line window
+set cmdwinheight=5 "Number of screen lines to use for the command-line window
 set display=lastline "Display as much as possible of the last line
 set encoding=utf-8 "Sets the character encoding used inside Vim
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis "A list of character encodings
@@ -293,6 +293,7 @@ set fileformats=unix,dos,mac "This gives the end-of-line (<EOL>) formats
 set formatoptions-=r,o " Turn off Automatically comment out when line break
 set grepprg=internal "Program to use for the :grep command
 set hidden "Display another buffer when current buffer isn't saved.
+set history=1000 "Amount of Command history
 set infercase "Ignore case on insert completion.
 set keywordprg=:help " Open Vim internal help by K command
 set laststatus=2 "Always display statusline
@@ -841,9 +842,26 @@ endfunction"}}}
 nnoremap : q:
 vnoremap : q:
 
+nnoremap c; :
+
 Autocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() "{{{
-  nnoremap <silent><buffer> q :<C-u>quit<CR>
+  let b:neocomplete_sources_list = ['vim_complete']
+
+  nnoremap <silent><buffer>      q :<C-u>quit<CR>
+  nnoremap <buffer><CR>          <CR>
+  inoremap <buffer><expr><CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+  nnoremap <silent><buffer><TAB> :<C-u>quit<CR>
+
+  nnoremap <buffer><Space> <CR>q:
+  nnoremap <buffer>;; <CR>q:
+  inoremap <buffer>;; <CR>q:
+
+  " Completion.
+  inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <buffer><expr><C-p>  pumvisible() ? "\<C-p>" : "\<C-o>0\<UP>"
+  inoremap <buffer><expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-o>0\<DOWN>"
+
   startinsert!
 endfunction "}}}
 "}}}
