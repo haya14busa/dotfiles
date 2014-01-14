@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 13 Jan 2014.
+" Last Modified: 14 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -131,6 +131,7 @@ NeoBundleLazy 'kana/vim-niceblock'
 " Search
 NeoBundleLazy 'thinca/vim-visualstar'
 NeoBundleLazy 'osyo-manga/vim-anzu'
+NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 "}}}
 
 " Motion {{{
@@ -2577,6 +2578,25 @@ if neobundle#tap('vim-vspec')
   call neobundle#config({
         \   'autoload' : {
         \     'filetypes' : ['vim'],
+        \   }
+        \ })
+  " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
+" osyo-manga/vim-over {{{
+if neobundle#tap('vim-over')
+  " Config {{{
+  call neobundle#config({
+        \   'autoload' : {
+        \     'commands' : [
+        \       'OverCommandLine',
+        \     ],
         \   }
         \ })
   " }}}
