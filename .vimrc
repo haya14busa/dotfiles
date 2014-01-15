@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 14 Jan 2014.
+" Last Modified: 15 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -395,9 +395,8 @@ endif
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 command! SoVimrc source $MYVIMRC
-"Autocmd BufWritePost *vimrc source $MYVIMRC
-"aiueo
-"Autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+Autocmd BufWritePost *vimrc source $MYVIMRC
+Autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 "}}}
 
 " Close Vim help by q {{{
