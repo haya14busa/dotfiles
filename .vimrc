@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 15 Jan 2014.
+" Last Modified: 16 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -491,6 +491,10 @@ cnoremap <C-y><C-y> <C-r>+
 
 " Vertical Paste"{{{
 vnoremap <C-p> I<C-r>+<ESC><ESC>
+"}}}
+
+" Select pasted text {{{
+nnoremap <expr>gp '`['.strpart(getregtype(),0,1).'`]'
 "}}}
 
 " Command line History {{{
