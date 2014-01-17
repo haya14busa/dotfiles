@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 16 Jan 2014.
+" Last Modified: 17 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -550,6 +550,9 @@ vnoremap @q :normal @q<CR>
 nnoremap / /\v
 " search within visual block
 vnoremap / <esc>/\v%V
+
+" Automatically escape '/'
+cnoremap <expr>/ getcmdtype() == '/' ? '\/' : '/'
 
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
