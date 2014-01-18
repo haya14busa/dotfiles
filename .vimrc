@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 17 Jan 2014.
+" Last Modified: 18 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1293,8 +1293,24 @@ if neobundle#tap('neocomplete.vim')
         \   }
         \ })
   function! neobundle#tapped.hooks.on_source(bundle)
-    let g:neocomplet#enable_smart_case = 1
+    " Use smartcase.
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#enable_camel_case = 1
+
+    " Use fuzzy completion.
     let g:neocomplete#enable_fuzzy_completion = 1
+
+    " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    " Set auto completion length.
+    let g:neocomplete#auto_completion_start_length = 2
+    " Set manual completion length.
+    let g:neocomplete#manual_completion_start_length = 0
+    " Set minimum keyword length.
+    let g:neocomplete#min_keyword_length = 3
+
+    let g:neocomplete#disable_auto_select_buffer_name_pattern =
+          \ '\[Command Line\]'
 
     AutocmdFT python setlocal omnifunc=jedi#completions
     if !exists('g:neocomplete#force_omni_input_patterns')
@@ -1304,6 +1320,17 @@ if neobundle#tap('neocomplete.vim')
     let g:neocomplete#force_omni_input_patterns.python =
     \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   endfunction
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
+
+  " <C-f>, <C-b>: page move.
+  inoremap <expr><C-f>  pumvisible() ? "\<PageDown>" : "\<Right>"
+  inoremap <expr><C-b>  pumvisible() ? "\<PageUp>"   : "\<Left>"
+  " <C-y>: paste.
+  " inoremap <expr><C-y>  pumvisible() ? neocomplete#close_popup() :  "\<C-r>\""
+  " <C-e>: close popup.
+  inoremap <expr><C-e>  pumvisible() ? neocomplete#cancel_popup() : "\<End>"
+
   call neobundle#untap()
 endif
 "}}}
