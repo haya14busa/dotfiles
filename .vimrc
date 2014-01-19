@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 18 Jan 2014.
+" Last Modified: 19 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1025,6 +1025,8 @@ if neobundle#tap('unite.vim')
     let g:unite_source_file_mru_limit = 300
     let g:unite_source_directory_mru_long_limit = 6000
     let g:unite_prompt = '❯ '
+    " Open plugin directory by t
+    call unite#custom#alias('directory', 'tabopen', 'tabvimfiler')
   endfunction "}}}
 
   " Unite {{{
@@ -1063,18 +1065,16 @@ if neobundle#tap('unite.vim')
   " Grep
   nnoremap <silent> [unite]gr :<C-u>Unite -silent -no-quit grep<CR>
 
-  " Open plugin directory by t
-  call unite#custom#alias('directory', 'tabopen', 'tabvimfiler')
-
   "-Unite Plugin Settings--------------"{{{
   " Execute help.
-  nnoremap [unite]h  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
+  " nnoremap [unite]h  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
+  nnoremap [unite]gh  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
   " Execute help by cursor keyword.
-  nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord -silent help<CR>
+  " nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord -silent help<CR>
   " Outeline
   nnoremap <silent> [unite]o :<C-u>Unite -silent outline -vertical -winwidth=40 -no-start-insert<CR>
   " Fold
-  nnoremap <silent> [unite]<Space> :<C-u>Unite -silent fold -vertical -winwidth=40 -no-start-insert<CR>
+  nnoremap <silent> [unite]z :<C-u>Unite -silent fold -vertical -winwidth=40 -no-start-insert<CR>
   " Unite Beautiful Atack
   nnoremap [unite]C :<C-u>Unite -auto-preview colorscheme<CR>
   "}}}
@@ -1106,6 +1106,7 @@ if neobundle#tap('unite-colorscheme')
         \     ],
         \   }
         \ })
+  command! -nargs=* BeautifulAttack Unite colorscheme -auto-preview -winheight=3
   call neobundle#untap()
 endif
 "}}}
