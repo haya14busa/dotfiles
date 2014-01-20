@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 19 Jan 2014.
+" Last Modified: 20 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -209,6 +209,7 @@ NeoBundle 'plasticboy/vim-markdown'
 NeoBundleLazy 'davidhalter/jedi-vim'
 NeoBundleLazy 'heavenshell/vim-pydocstring'
 NeoBundleLazy 'tell-k/vim-autopep8'
+NeoBundleLazy 'hynek/vim-python-pep8-indent'
 "}}}
 
 " Scheme {{{
@@ -2467,6 +2468,23 @@ if neobundle#tap('vim-autopep8')
   " Setting {{{
   "}}}
   call neobundle#untap()
+endif
+" }}}
+
+" hynek/vim-python-pep8-indent {{{
+if neobundle#tap('vim-python-pep8-indent')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [ 'python'],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
 endif
 " }}}
 
