@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 20 Jan 2014.
+" Last Modified: 21 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -251,6 +251,7 @@ NeoBundle 'mattn/learn-vimscript'
 NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
 NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
+NeoBundleLazy 'tyru/restart.vim' " Restart your gVim
 "}}}
 
 " Others {{{
@@ -2649,6 +2650,24 @@ if neobundle#tap('vim-over')
         \     'commands' : [
         \       'OverCommandLine',
         \     ],
+        \   }
+        \ })
+  " }}}
+  function! neobundle#tapped.hooks.on_source(bundle) "{{{
+  endfunction "}}}
+  " Setting {{{
+  "}}}
+  call neobundle#untap()
+endif
+" }}}
+
+" tyru/restart.vim {{{
+if neobundle#tap('restart.vim')
+  " Config {{{
+  call neobundle#config({
+        \   'gui' : 1,
+        \   'autoload' : {
+        \     'commands' : 'Restart'
         \   }
         \ })
   " }}}
