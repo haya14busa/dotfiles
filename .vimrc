@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 21 Jan 2014.
+" Last Modified: 22 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -137,7 +137,8 @@ NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 " Motion {{{
 "NeoBundleLazy 'haya14busa/vim-easymotion'
 MyNeoBundle 'vim-easymotion'
-NeoBundleLazy 'rhysd/clever-f.vim'
+MyNeoBundle 'vim-lazy-lines'
+" NeoBundleLazy 'rhysd/clever-f.vim'
 NeoBundleLazy 'rhysd/accelerated-jk'
 NeoBundleLazy 't9md/vim-smalls'
 "}}}
@@ -332,7 +333,7 @@ set tabstop=4 "Number of spaces that a <Tab> in the file counts for
 set incsearch "Incremental searching
 set ignorecase "Ignore case in search patterns
 set smartcase "Override the ignorecase option if the pattern contains upper case
-set hlsearch "Highlight search patterns
+set nohlsearch "Highlight search patterns
 "}}}
 
 " Backup Settings {{{
@@ -1489,42 +1490,63 @@ endif
 " vim-easymotion {{{
 if neobundle#tap('vim-easymotion')
   call neobundle#config({
-        \   'lazy' : 1,
-        \   'autoload' : {
-        \     'mappings' : [['sxno', '<Plug>(easymotion-']],
-        \   }
-        \ })
+          \   'lazy' : 1,
+          \   'autoload' : {
+          \     'mappings' : [['sxno', '<Plug>(easymotion-']],
+          \     'functions' : [
+          \       'EasyMotion#User',
+          \       'EasyMotion#is_active',
+          \     ],
+          \   }
+          \ })
+  " map ; <Plug>(easymotion-prefix)
+  " omap ; <Plug>(easymotion-prefix)
+  " vmap ; <Plug>(easymotion-prefix)
+  let g:EasyMotion_do_mapping = 0
+  let g:EasyMotion_do_special_mapping = 0
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    let g:EasyMotion_keys='HKLYUIOPNM,QWERTZXCVBASDGJF;'
-    let g:EasyMotion_leader_key = ';'
-    let g:EasyMotion_do_mapping = 0
-    let g:EasyMotion_do_special_mapping = 1
-
     " EasyMotion Config {{{
+    let g:EasyMotion_keys=';HKLYUIOPNM,QWERTZXCVBASDGJF'
     " smartcase
     let g:EasyMotion_smartcase = 1
+    " Smartsign
+    let g:EasyMotion_use_smartsign_us = 1
     " keep cursor column
     let g:EasyMotion_startofline = 0
     " Don't skip folded line
     let g:EasyMotion_skipfoldedline = 0
     " pseudo-migemo
-    let g:EasyMotion_use_migemo = 0
-    " Smartsign
-    let g:EasyMotion_use_smartsign_us = 1
+    let g:EasyMotion_use_migemo = 1
     " Use upper case
     let g:EasyMotion_use_upper = 1
+
+    let g:EasyMotion_prompt = '{n}> '
+    " For multi input find motion
+    let g:EasyMotion_use_regexp = 1
+    " Cooperate with vim default search
+    let g:EasyMotion_add_search_history = 1
+    " let g:EasyMotion_move_highlight = 1
+    " let g:EasyMotion_landing_highlight = 1
+    let g:EasyMotion_cursor_highlight = 1
+    " Enter with ';'
+    let g:EasyMotion_command_line_key_mappings = {
+      \ ";" : "\<C-m>",
+      \ "\<C-;>" : "\<C-m>",
+      \ }
     "}}}
 
     " EasyMotion Regrex {{{
     let g:EasyMotion_re_line_anywhere = '\v' .
-        \       '(<.|^.)' . '|' .
-        \       '(.>|.$)' . '|' .
-        \       '(\l)\zs(\u)' . '|' .
-        \       '(_\zs.)' . '|' .
-        \       '(#\zs.)'
+        \  '(<.|^.)' . '|' .
+        \  '(.>|.$)' . '|' .
+        \  '(\s+\zs.)' . '|' .
+        \  '(\l)\zs(\u)' . '|' .
+        \  '(_\zs.)' . '|' .
+        \  '(#\zs.)'
     let g:EasyMotion_re_anywhere = '\v' .
         \  '(<.|^)' . '|' .
         \  '(.$)' . '|' .
+        \  '(\s+\zs.)' . '|' .
         \  '(\l)\zs(\u)' . '|' .
         \  '(_\zs.)' . '|' .
         \  '(/\zs.)' . '|' .
@@ -1537,33 +1559,113 @@ if neobundle#tap('vim-easymotion')
   nmap s <Plug>(easymotion-s)
   vmap s <Plug>(easymotion-s)
   omap z <Plug>(easymotion-s)
+
+  "multi input findmotion
+  " cooperate with vim search!
+  map  / <Plug>(easymotion-sn)
+  omap / <Plug>(easymotion-tn)
+  noremap  ;/ /
+  function! s:wrap_lazy_bd_n(is_visual)
+    " exec "normal \<Plug>(easymotion-bd-n)"
+    call EasyMotion#Search(a:is_visual,2)
+    call EasyMotion#activate(0)
+  endfunction
+  nnoremap ;n :call <SID>wrap_lazy_bd_n(0)<CR>
+  xnoremap ;n <Esc>:<C-u>call <SID>wrap_lazy_bd_n(1)<CR>
+
+  nmap n <Plug>(easymotion-next)<Plug>(anzu-update-search-status)zzzv
+  nmap N <Plug>(easymotion-prev)<Plug>(anzu-update-search-status)zzzv
+  xmap n <Plug>(easymotion-next)zzzv
+  xmap N <Plug>(easymotion-prev)zzzv
+
+  "search
+  map ;N <Plug>(easymotion-bd-n)
+
+  " Replace defaut
+  " smart f & F
+  map <expr>f EasyMotion#is_active() ?
+    \ '<Plug>(easymotion-next)' : '<Plug>(easymotion-s2)'
+  map <expr>F EasyMotion#is_active() ?
+    \ '<Plug>(easymotion-prev)' : '<Plug>(easymotion-F2)'
+  omap <expr>f EasyMotion#is_active() ?
+    \ '<Plug>(easymotion-next)' : '<Plug>(easymotion-sl)'
+  omap <expr>F EasyMotion#is_active() ?
+    \ '<Plug>(easymotion-prev)' : '<Plug>(easymotion-Fl)'
+
+  omap t <Plug>(easymotion-bd-tl)
+  map ;t <Plug>(easymotion-bd-t)
+
+
+  " Extend hjkl
+  map ;h <Plug>(easymotion-linebackward)
   map ;j <Plug>(easymotion-j)
-  map ;k <Plug>(easymotion-bd-jk)
-  map ;t <Plug>(easymotion-t)
-  map ;n <Plug>(easymotion-bd-n)
+  map ;k <Plug>(easymotion-k)
+  map ;l <Plug>(easymotion-lineforward)
 
-  map zh <Plug>(easymotion-linebackward)
-  map zj <Plug>(easymotion-j)
-  map zk <Plug>(easymotion-k)
-  map zl <Plug>(easymotion-lineforward)
-
+  " Anywhere!
   map <Space><Space> <Plug>(easymotion-jumptoanywhere)
+
+  " Repeat last motion
+  map ;<Space> <Plug>(easymotion-repeat)
+
+  " move to next/previous last motion match
+  nmap <expr> <C-n> yankround#is_active() ?
+    \ '<Plug>(yankround-next)' : '<Plug>(easymotion-next)'
+  nmap <expr> <C-p> yankround#is_active() ?
+    \ '<Plug>(yankround-prev)' : '<Plug>(easymotion-prev)'
+  xmap <C-n> <Plug>(easymotion-next)
+  xmap <C-p> <Plug>(easymotion-prev)
+
+  map <expr><Tab> EasyMotion#is_active() ?
+    \ '<Plug>(easymotion-next)' : '<TAB>'
+  map <expr>' EasyMotion#is_active() ?
+    \ '<Plug>(easymotion-prev)' : "'"
+
+  " Emulate '.' repeat
+  map ;. <Plug>(easymotion-dotrepeat)
+
+
+
+  " Select Phrase
+  xmap ;p <Plug>(easymotion-special-p)
+  nmap d;p <Plug>(easymotion-special-pd)
+  nmap y;p <Plug>(easymotion-special-py)
+
+  " Select Lines
+  xmap ;l <Plug>(easymotion-special-l)
+  nmap d;l <Plug>(easymotion-special-ld)
+  nmap y;l <Plug>(easymotion-special-ly)
 
   "}}}
 
-    " " EasyMotion User {{{
-    " "map ;u :<C-u>call EasyMotion#User(substitute(@/,'\\v','','') . '\|easymotion',0,2)<CR>
-    " JK start of line, cursor colum, end of line
-    "let s:re = '^\(\w\|\s*\zs\|$\)' . '\|' . '\(\%' . virtcol('.') . 'v\)' . '\|' . '$'
-    "exec "map  ;1 :<C-u>call EasyMotion#User('" . s:re . "',0,2)<CR>"
-    "exec "xmap  ;1 :<C-u>call EasyMotion#User('" . s:re . "',1,2)<CR>"
-    " call EasyMotion#UserMapping(
-    "   \   '^\(\w\|\s*\zs\|$\)' . '\|' . '\(\%' . virtcol('.') . 'v\)' . '\|' . '$'
-    "   \ , ';1',2)
-    " "unlet re
-    " "}}}
+  " EasyMotion User {{{
+  " EasyMotion#User(pattern, is_visual, direction, is_inclusive)
+  noremap  <silent><expr>;c
+    \ ':<C-u>call EasyMotion#User(' .
+    \ '"\\<' . expand('<cword>') . '\\>", 0, 2, 1)<CR>'
+  xnoremap  <silent><expr>;c
+    \ '<ESC>:<C-u>call EasyMotion#User(' .
+    \ '"\\<' . expand('<cword>') . '\\>", 1, 2, 1)<CR>'
 
-  function! g:EasyMotionMigemoToggle()
+  let g:lazypattern = {}
+  let g:lazypattern['syntax'] = '\v'
+        \ . 'function|endfunction|return|call'
+        \ . '|if|elseif|else|endif'
+        \ . '|for|endfor'
+        \ . '|while|endwhile'
+        \ . '|break|continue'
+        \ . '|let|unlet'
+        \ . '|noremap|map|expr|silent'
+        \ . '|g:|s:|b:|w:'
+        \ . '|autoload|#|plugin'
+
+  noremap   <silent>;1
+    \ :<C-u>call EasyMotion#User(g:lazypattern.syntax , 0, 2, 1)<CR>
+  xnoremap  <silent>;1
+    \ :<C-u>call EasyMotion#User(g:lazypattern.syntax , 1, 2, 1)<CR>
+  "}}}
+
+  function! g:EasyMotionMigemoToggle() "{{{
     if !exists(g:EasyMotion_use_migemo) && g:EasyMotion_use_migemo == 1
       let g:EasyMotion_use_migemo = 0
       echo 'Turn Off migemo'
@@ -1572,13 +1674,34 @@ if neobundle#tap('vim-easymotion')
       echo 'Turn On migemo'
     endif
   endfunction
-  command! -nargs=0 EasyMotionMigemoToggle :call g:EasyMotionMigemoToggle()
-
-  AutocmdFT markdown let g:EasyMotion_use_migemo = 1
+  command! -nargs=0 EasyMotionMigemoToggle :call g:EasyMotionMigemoToggle() "}}}
 
   call neobundle#untap()
 endif
 "}}}
+
+" haya14busa/vim-lazy-lines {{{
+if neobundle#tap('vim-lazy-lines')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' : 'vim-easymotion',
+                \   'autoload' : {
+                \     'mappings' : [
+                \       '<Plug>(lazy-',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    nmap d;j <Plug>(lazy-deletelines)
+    nmap d;k <Plug>(lazy-deletelines-k)
+    " nmap d;j <Plug>(lazy-deletelines-j)
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
 
 " TextObject Keymaps{{{
 " vim-textobj-entire {{{
@@ -1750,11 +1873,11 @@ endif
 
 " Number Text Object {{{
 onoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
-xnoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
+" xnoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
 onoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
+" xnoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
 onoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
+" xnoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
 
 function! s:NumberTextObject(whole)
     normal! v
@@ -1809,16 +1932,10 @@ if neobundle#tap('vim-anzu')
         \     'mappings' : ['<Plug>(anzu-'],
         \   }
         \ })
-  nmap n <Plug>(anzu-n)zzzv
-  nmap N <Plug>(anzu-N)zzzv
-  nmap * <Plug>(anzu-star-with-echo)
-  nmap # <Plug>(anzu-sharp-with-echo)
-  " clear status
-  nnoremap <silent><C-l>
-        \ :<C-u>nohlsearch<CR>
-        " \ :syntax enable<CR><C-l>
-  nnoremap <silent><Esc><Esc>
-        \ :<C-u>nohlsearch<CR>
+  " nmap n <Plug>(anzu-n)zzzv
+  " nmap N <Plug>(anzu-N)zzzv
+  nmap * <Plug>(anzu-star-with-echo);n
+  " nmap # <Plug>(anzu-sharp-with-echo)
 
   " Clear hit count when nokeyinput, move window, or move tab
   Autocmd CursorHold,CursorHoldI,WinLeave,TabLeave
@@ -2086,8 +2203,8 @@ if neobundle#tap('yankround.vim')
   endfunction "}}}
   " nmap p <Plug>(yankround-p)
   nmap P <Plug>(yankround-P)
-  nmap <C-p> <Plug>(yankround-prev)
-  nmap <C-n> <Plug>(yankround-next)
+  " nmap <C-p> <Plug>(yankround-prev)
+  " nmap <C-n> <Plug>(yankround-next)
 
   nmap <expr> p yankround#is_active() ?
     \ '<Plug>(my-yankround-start)' : '<Plug>(yankround-p)'
@@ -2178,7 +2295,7 @@ if neobundle#tap('vim-visualstar')
         \     'mappings' : ['<Plug>(visualstar-'],
         \   }
         \ })
-  vmap <silent>*  <Plug>(visualstar-*)N
+  vmap <silent>*  <Plug>(visualstar-*);n
   call neobundle#untap()
 endif
 "}}}
