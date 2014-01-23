@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 22 Jan 2014.
+" Last Modified: 23 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -172,6 +172,12 @@ NeoBundleLazy 'kana/vim-operator-replace'
 NeoBundleLazy 'tpope/vim-fugitive'
 NeoBundleLazy 'gregsexton/gitv'
 NeoBundle 'mhinz/vim-signify'
+
+NeoBundleLazy 'thinca/vim-openbuf'
+NeoBundleLazy 'Shougo/vim-vcs', {
+      \ 'depends' : 'thinca/vim-openbuf',
+      \ 'autoload' : {'commands' : 'Vcs'},
+      \ }
 "}}}
 
 " UI {{{
@@ -1226,11 +1232,15 @@ if neobundle#tap('vimshell.vim')
   call neobundle#config({
         \   'depends': ['Shougo/vimproc'],
         \   'autoload' : {
-        \     'commands' : [
-        \       'VimShell',
-        \       'VimShellTab',
-        \       'VimShellBufferDir',
-        \     ]
+        \       'commands' : [
+        \       { 'name' : 'VimShell',
+        \         'complete' : 'customlist,vimshell#complete'},
+        \       { 'name' : 'VimShellTab',
+        \         'complete' : 'customlist,vimshell#complete'},
+        \       { 'name' : 'VimShellBufferDir',
+        \         'complete' : 'customlist,vimshell#complete'},
+        \         'VimShellExecute', 'VimShellInteractive',
+        \         'VimShellTerminal', 'VimShellPop'],
         \   }
         \ })
   function! neobundle#tapped.hooks.on_source(bundle)
@@ -1238,6 +1248,7 @@ if neobundle#tap('vimshell.vim')
     let g:vimshell_prompt_expr =
               \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
     let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
+    let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]%p", "(%s)-[%b|%a]%p")'
   endfunction
 
   call neobundle#untap()
