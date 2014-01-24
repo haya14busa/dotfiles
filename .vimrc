@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 23 Jan 2014.
+" Last Modified: 24 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -234,8 +234,10 @@ NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding'
 
 " Japanese {{{
 "MyNeoBundle 'vim-migemo'
-NeoBundleLazy 'haya14busa/vim-migemo'
+" NeoBundleLazy 'haya14busa/vim-migemo'
 NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
+" NeoBundleLazy 'rhysd/migemo-search.vim' " Integrate migemo into search in Vim.
+" NeoBundle 'tyru/skk.vim' " skk.vim with miscellaneous hacks. patches/forks are welcome. if you are insterested in improving skk.vim, please contact me by twitter, email, and so on.
 "}}}
 
 " ColorScheme {{{
