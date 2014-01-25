@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 24 Jan 2014.
+" Last Modified: 25 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -66,7 +66,8 @@ command! -nargs=1
 " Unite {{{
 NeoBundleLazy 'Shougo/unite.vim'
 
-NeoBundleLazy 'tsukkee/unite-help'
+" NeoBundleLazy 'tsukkee/unite-help'
+NeoBundleLazy 'Shougo/unite-help'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'osyo-manga/unite-fold'
