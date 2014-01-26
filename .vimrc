@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 25 Jan 2014.
+" Last Modified: 26 Jan 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -262,6 +262,9 @@ NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
 NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
 NeoBundleLazy 'tyru/restart.vim' " Restart your gVim
+NeoBundleLazy 'thinca/vim-ft-help_fold', {
+      \ 'filetypes' : 'help'
+      \ }
 "}}}
 
 " Others {{{
@@ -1097,7 +1100,7 @@ endif
 "}}}
 
 " unite-sources {{{
-" tsukkee/unite-help {{{
+" Shougo/unite-help {{{
 if neobundle#tap('unite-help')
   call neobundle#config({
         \   'autoload' : {
