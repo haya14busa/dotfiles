@@ -523,7 +523,7 @@ cnoremap w!! w !sudo tee > /dev/null %
 
 " From the cursor to the end of line {{{
 " Select from cursor position to end of line
-vnoremap v $h
+" vnoremap v $h " -> D,C,Y
 " Yank from cursor position to end of line
 nnoremap Y y$
 "}}}
