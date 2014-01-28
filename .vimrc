@@ -1523,7 +1523,32 @@ if neobundle#tap('vim-easymotion')
   let g:EasyMotion_do_special_mapping = 0
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     " EasyMotion Config {{{
-    let g:EasyMotion_keys=';HKLYUIOPNM,QWERTZXCVBASDGJF'
+    let s:TEMP_KEYS = ';HKLYUIOPNM,QWERTZXCVBASDGJF'
+    " let s:TEMP_KEYS = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    let g:EasyMotion_keys = s:TEMP_KEYS
+    " function! s:generate_custome_keys(first_key) "{{{
+    "   return a:first_key . substitute(s:TEMP_KEYS, a:first_key,'','g')
+    " endfunction "}}}
+
+    " let g:EasyMotion_keys_s     = 'NMOLPKQJRISHTGUFVEWDXCYBZA'
+
+    " let g:EasyMotion_keys_s2    = s:generate_custome_keys('F')
+    " let g:EasyMotion_keys_bd_tl = s:generate_custome_keys('T')
+    " let g:EasyMotion_keys_wl    = s:generate_custome_keys('W')
+    " let g:EasyMotion_keys_bl    = s:generate_custome_keys('B')
+    " let g:EasyMotion_keys_el    = s:generate_custome_keys('E')
+    " let g:EasyMotion_keys_gel   = s:generate_custome_keys('E')
+    " let g:EasyMotion_keys_j     = s:generate_custome_keys('J')
+    " let g:EasyMotion_keys_k     = s:generate_custome_keys('K')
+
+    " let g:EasyMotion_keys_lineforward  = s:generate_custome_keys('L')
+    " let g:EasyMotion_keys_linebackward = s:generate_custome_keys('H')
+
+    omap ;w <Plug>(easymotion-wl)
+    omap ;b <Plug>(easymotion-bl)
+    omap ;e <Plug>(easymotion-el)
+    omap ;ge <Plug>(easymotion-gel)
+
     " smartcase
     let g:EasyMotion_smartcase = 1
     " Smartsign
@@ -1537,11 +1562,15 @@ if neobundle#tap('vim-easymotion')
     " Use upper case
     let g:EasyMotion_use_upper = 1
 
+    " Jump to first with enter
+    let g:EasyMotion_enter_jump_first = 1
+
     let g:EasyMotion_prompt = '{n}> '
     " For multi input find motion
     let g:EasyMotion_use_regexp = 1
     " Cooperate with vim default search
     let g:EasyMotion_add_search_history = 1
+    let g:EasyMotion_off_screen_search = 1
     " let g:EasyMotion_move_highlight = 1
     " let g:EasyMotion_landing_highlight = 1
     let g:EasyMotion_cursor_highlight = 1
@@ -1587,8 +1616,11 @@ if neobundle#tap('vim-easymotion')
     call EasyMotion#Search(a:is_visual,2)
     call EasyMotion#activate(0)
   endfunction
-  nnoremap ;n :call <SID>wrap_lazy_bd_n(0)<CR>
+  " nnoremap ;n :call <SID>wrap_lazy_bd_n(0)<CR>
+  nmap ;n <Plug>(easymotion-sn)<C-p>
   xnoremap ;n <Esc>:<C-u>call <SID>wrap_lazy_bd_n(1)<CR>
+
+  map ;N <Plug>(easymotion-bd-n)
 
   nmap n <Plug>(easymotion-next)<Plug>(anzu-update-search-status)zzzv
   nmap N <Plug>(easymotion-prev)<Plug>(anzu-update-search-status)zzzv
@@ -1596,7 +1628,6 @@ if neobundle#tap('vim-easymotion')
   xmap N <Plug>(easymotion-prev)zzzv
 
   "search
-  map ;N <Plug>(easymotion-bd-n)
 
   " Replace defaut
   " smart f & F
@@ -1610,6 +1641,7 @@ if neobundle#tap('vim-easymotion')
     \ '<Plug>(easymotion-prev)' : '<Plug>(easymotion-Fl)'
 
   omap t <Plug>(easymotion-bd-tl)
+  xmap t <Plug>(easymotion-bd-tl)
   map ;t <Plug>(easymotion-bd-t)
 
 
@@ -1618,6 +1650,9 @@ if neobundle#tap('vim-easymotion')
   map ;j <Plug>(easymotion-j)
   map ;k <Plug>(easymotion-k)
   map ;l <Plug>(easymotion-lineforward)
+
+  map ;w <Plug>(easymotion-w)
+  map ;e <Plug>(easymotion-e)
 
   " Anywhere!
   map <Space><Space> <Plug>(easymotion-jumptoanywhere)
