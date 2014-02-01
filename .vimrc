@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 31 Jan 2014.
+" Last Modified: 01 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -287,7 +287,7 @@ NeoBundleLazy 'thinca/vim-scouter'
 
 filetype plugin indent on
 
-" END Neobundle}}}
+" END NeoBundle}}}
 
 " Vim Setup  {{{====================
 
