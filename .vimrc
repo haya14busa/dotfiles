@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 01 Feb 2014.
+" Last Modified: 02 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1514,7 +1514,6 @@ endif
 " vim-easymotion {{{
 if neobundle#tap('vim-easymotion')
   call neobundle#config({
-          \   'lazy' : 1,
           \   'autoload' : {
           \     'mappings' : [['sxno', '<Plug>(easymotion-']],
           \     'functions' : [
@@ -1523,40 +1522,27 @@ if neobundle#tap('vim-easymotion')
           \     ],
           \   }
           \ })
-  " map ; <Plug>(easymotion-prefix)
+  " map  ; <Plug>(easymotion-prefix)
   " omap ; <Plug>(easymotion-prefix)
   " vmap ; <Plug>(easymotion-prefix)
-  let g:EasyMotion_do_mapping = 0
-  let g:EasyMotion_do_special_mapping = 0
+  function! neobundle#tapped.hooks.on_post_source(bundle)
+      EMCommandLineNoremap ; <CR>
+      EMCommandLineNoremap <C-;> <CR>
+      EMCommandLineNoremap <C-l> <Over>(buffer-complete)
+      EMCommandLineNoremap <C-y> <Over>(paste)
+      EMCommandLineNoremap <C-f> <Right>
+      EMCommandLineNoremap <C-b> <Left>
+      EMCommandLineNoremap <C-a> <Home>
+      EMCommandLineNoremap <C-p> <Up>
+      EMCommandLineNoremap <C-n> <Down>
+  endfunction
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    let g:EasyMotion_do_mapping = 0
+    " let g:EasyMotion_leader_key = ';'
+    " let g:EasyMotion_mapping_f = '_f'
+
     " EasyMotion Config {{{
-    let s:TEMP_KEYS = ';HKLYUIOPNM,QWERTZXCVBASDGJF'
-    " let s:TEMP_KEYS = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    let g:EasyMotion_keys = s:TEMP_KEYS
-    " function! s:generate_custome_keys(first_key) "{{{
-    "   return a:first_key . substitute(s:TEMP_KEYS, a:first_key,'','g')
-    " endfunction "}}}
-
-    " let g:EasyMotion_keys_s     = 'NMOLPKQJRISHTGUFVEWDXCYBZA'
-
-    " let g:EasyMotion_keys_s2    = s:generate_custome_keys('F')
-    " let g:EasyMotion_keys_bd_tl = s:generate_custome_keys('T')
-    " let g:EasyMotion_keys_wl    = s:generate_custome_keys('W')
-    " let g:EasyMotion_keys_bl    = s:generate_custome_keys('B')
-    " let g:EasyMotion_keys_el    = s:generate_custome_keys('E')
-    " let g:EasyMotion_keys_gel   = s:generate_custome_keys('E')
-    " let g:EasyMotion_keys_j     = s:generate_custome_keys('J')
-    " let g:EasyMotion_keys_k     = s:generate_custome_keys('K')
-
-    " let g:EasyMotion_keys_lineforward  = s:generate_custome_keys('L')
-    " let g:EasyMotion_keys_linebackward = s:generate_custome_keys('H')
-
-    omap ;w <Plug>(easymotion-wl)
-    omap ;b <Plug>(easymotion-bl)
-    omap ;e <Plug>(easymotion-el)
-    omap ;ge <Plug>(easymotion-gel)
-
-    " smartcase
+    let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTZXCVBASDGJF'
     let g:EasyMotion_smartcase = 1
     " Smartsign
     let g:EasyMotion_use_smartsign_us = 1
@@ -1573,19 +1559,8 @@ if neobundle#tap('vim-easymotion')
     let g:EasyMotion_enter_jump_first = 1
 
     let g:EasyMotion_prompt = '{n}> '
-    " For multi input find motion
-    let g:EasyMotion_use_regexp = 1
-    " Cooperate with vim default search
-    let g:EasyMotion_add_search_history = 1
-    let g:EasyMotion_off_screen_search = 1
-    " let g:EasyMotion_move_highlight = 1
-    " let g:EasyMotion_landing_highlight = 1
+
     let g:EasyMotion_cursor_highlight = 1
-    " Enter with ';'
-    let g:EasyMotion_command_line_key_mappings = {
-      \ ";" : "\<C-m>",
-      \ "\<C-;>" : "\<C-m>",
-      \ }
     "}}}
 
     " EasyMotion Regrex {{{
@@ -1619,7 +1594,6 @@ if neobundle#tap('vim-easymotion')
   omap / <Plug>(easymotion-tn)
   noremap  ;/ /
   function! s:wrap_lazy_bd_n(is_visual)
-    " exec "normal \<Plug>(easymotion-bd-n)"
     call EasyMotion#Search(a:is_visual,2)
     call EasyMotion#activate(0)
   endfunction
@@ -1633,8 +1607,6 @@ if neobundle#tap('vim-easymotion')
   nmap N <Plug>(easymotion-prev)<Plug>(anzu-update-search-status)zzzv
   xmap n <Plug>(easymotion-next)zzzv
   xmap N <Plug>(easymotion-prev)zzzv
-
-  "search
 
   " Replace defaut
   " smart f & F
@@ -1680,20 +1652,10 @@ if neobundle#tap('vim-easymotion')
   map <expr>' EasyMotion#is_active() ?
     \ '<Plug>(easymotion-prev)' : "'"
 
-  " Emulate '.' repeat
-  map ;. <Plug>(easymotion-dotrepeat)
-
-
-
-  " Select Phrase
-  xmap ;p <Plug>(easymotion-special-p)
-  nmap d;p <Plug>(easymotion-special-pd)
-  nmap y;p <Plug>(easymotion-special-py)
-
-  " Select Lines
-  xmap ;l <Plug>(easymotion-special-l)
-  nmap d;l <Plug>(easymotion-special-ld)
-  nmap y;l <Plug>(easymotion-special-ly)
+  omap ;w <Plug>(easymotion-wl)
+  omap ;b <Plug>(easymotion-bl)
+  omap ;e <Plug>(easymotion-el)
+  omap ;ge <Plug>(easymotion-gel)
 
   "}}}
 
@@ -1738,6 +1700,56 @@ if neobundle#tap('vim-easymotion')
   call neobundle#untap()
 endif
 "}}}
+
+" haya14busa/vim-easyoperator-line {{{
+if neobundle#tap('vim-easyoperator-line')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' : 'vim-easymotion',
+                \   'autoload' : {
+                \     'mappings' : [
+                \       '<Plug>(easyoperator-line-',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    xmap ;l  <Plug>(easyoperator-line-select)
+    omap ;l  <Plug>(easyoperator-line-select)
+    nmap d;l <Plug>(easyoperator-line-delete)
+    nmap y;l <Plug>(easyoperator-line-yank)
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" haya14busa/vim-easyoperator-phrase {{{
+if neobundle#tap('vim-easyoperator-phrase')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' : 'vim-easymotion',
+                \   'autoload' : {
+                \     'mappings' : [
+                \       '<Plug>(easyoperator-phrase-',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    xmap ;p  <Plug>(easyoperator-phrase-select)
+    omap ;p  <Plug>(easyoperator-phrase-select)
+    nmap d;p <Plug>(easyoperator-phrase-delete)
+    nmap y;p <Plug>(easyoperator-phrase-yank)
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+
 
 " haya14busa/vim-lazy-lines {{{
 if neobundle#tap('vim-lazy-lines')
