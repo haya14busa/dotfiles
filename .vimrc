@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 02 Feb 2014.
+" Last Modified: 03 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -871,25 +871,27 @@ endfunction"}}}
 nnoremap : q:
 vnoremap : q:
 
-nnoremap c; :
-
 Autocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() "{{{
+  silent! 1,$-20 delete _
+  " silent! 1,$-20 delete
+  call cursor('$', 0)
+
   let b:neocomplete_sources_list = ['vim_complete']
 
-  nnoremap <silent><buffer>      q :<C-u>quit<CR>
-  nnoremap <buffer><CR>          <CR>
-  inoremap <buffer><expr><CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-  nnoremap <silent><buffer><TAB> :<C-u>quit<CR>
+  nnoremap <silent><buffer>q          :<C-u>quit<CR>
+  nnoremap <silent><buffer><CR>       <CR>
+  inoremap <silent><buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+  nnoremap <silent><buffer><TAB>      :<C-u>quit<CR>
 
-  nnoremap <buffer><Space> <CR>q:
-  nnoremap <buffer>;; <CR>q:
-  inoremap <buffer>;; <CR>q:
+  nnoremap <silent><buffer><Space> <CR>q:
+  nnoremap <silent><buffer>;;      <CR>q:
+  inoremap <silent><buffer>;;      <CR>q:
 
   " Completion.
-  inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  inoremap <buffer><expr><C-p>  pumvisible() ? "\<C-p>" : "\<C-o>0\<UP>"
-  inoremap <buffer><expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-o>0\<DOWN>"
+  inoremap <silent><buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <silent><buffer><expr><C-p>  pumvisible() ? "\<C-p>" : "\<C-o>0\<UP>"
+  inoremap <silent><buffer><expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-o>0\<DOWN>"
 
   startinsert!
 endfunction "}}}
