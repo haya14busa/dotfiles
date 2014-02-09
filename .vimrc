@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 03 Feb 2014.
+" Last Modified: 09 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -21,11 +21,14 @@ if !1 | finish | endif
 augroup MyVimrc
   autocmd!
 augroup END
+" https://github.com/rhysd/dotfiles/blob/master/vimrc
 command! -nargs=* Autocmd autocmd MyVimrc <args>
 command! -nargs=* AutocmdFT autocmd MyVimrc FileType <args>
-
-Autocmd VimEnter,ColorScheme *vimrc nested highlight def link myVimAutocmd vimAutoCmd
-Autocmd VimEnter,WinEnter,BufWinEnter *vimrc nested syntax match vimAutoCmd /\<\(Autocmd\|AutocmdFT\)\>/
+function! s:hl_my_autocmd()
+  highlight def link myVimAutocmd vimAutoCmd
+  syntax match vimAutoCmd /\<\(Autocmd\|AutocmdFT\)\>/
+endfunction
+Autocmd VimEnter,WinEnter,ColorScheme *vimrc call s:hl_my_autocmd()
 "}}}
 
 " Echo startup time on start {{{
@@ -33,7 +36,6 @@ if has('vim_starting') && has('reltime')
   " Shell: vim --startuptime {filename} -q; vim {filename}
   " vim --cmd 'profile start profile.txt' --cmd 'profile file $HOME/.vimrc' +q && vim profile.txt
   let s:startuptime = reltime()
-    " autocmd MyVimrc VimEnter * let s:startuptime = reltime(s:startuptime) | redraw
     Autocmd VimEnter * let s:startuptime = reltime(s:startuptime) | redraw
     \ | echomsg 'startuptime: ' . reltimestr(s:startuptime)
 endif
@@ -611,11 +613,17 @@ hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 
 " Highlight End-of-Line & Zenkaku Whitespace {{{
-Autocmd VimEnter,ColorScheme * highlight link TrailingSpaces Error
-Autocmd VimEnter,WinEnter * syntax match TrailingSpaces containedin=ALL /\s\+$/
+function! s:hl_trailing_spaces() "{{{
+  highlight! link TrailingSpaces Error
+  syntax match TrailingSpaces containedin=ALL /\s\+$/
+endfunction "}}}
+function! s:hl_zenkaku() "{{{
+  highlight link ZenkakuSpace Error
+  syntax match ZenkakuSpace containedin=ALL /　/
+endfunction "}}}
 
-Autocmd VimEnter,ColorScheme * highlight link ZenkakuSpace Error
-Autocmd VimEnter,WinEnter * syntax match ZenkakuSpace containedin=ALL /　/
+Autocmd VimEnter,WinEnter,ColorScheme * call s:hl_trailing_spaces()
+Autocmd VimEnter,WinEnter,ColorScheme * call s:hl_zenkaku()
 "}}}
 
 "}}}
@@ -2894,9 +2902,15 @@ endif
 " Finally {{{ =====================
 " Installation check.
 NeoBundleCheck
-call neobundle#call_hook('on_source')
+if !has('vim_starting')
+  call neobundle#call_hook('on_source')
+
+  " Highlight : maybe workaround
+  call s:hl_zenkaku() "/　/
+  call s:hl_trailing_spaces() "  
+  call s:hl_my_autocmd() ""Autocmd AutocmdFT
+endif
 set secure
 "}}}
-
 "------------------------------------
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
