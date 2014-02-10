@@ -260,6 +260,8 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'vim-scripts/rdark'
 NeoBundle 'djjcast/mirodark'
 NeoBundle 'sjl/badwolf'
+NeoBundle 'cocopon/iceberg.vim' " A dark color scheme for Vim, came from Antarctica
+NeoBundle 'reedes/vim-colors-pencil'
 "}}}
 
 " Vim script {{{
