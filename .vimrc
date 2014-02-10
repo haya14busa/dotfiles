@@ -2360,6 +2360,7 @@ if neobundle#tap('vim-prettyprint')
   call neobundle#config({
         \   'autoload' : {
         \     'commands' : 'PP',
+        \     'functions' : 'PP',
         \   }
         \ })
   call neobundle#untap()
