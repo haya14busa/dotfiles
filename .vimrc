@@ -2733,6 +2733,24 @@ if neobundle#tap('vim-over')
 endif
 " }}}
 
+" vim-jp/vital.vim {{{
+if neobundle#tap('vital.vim')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'commands' : ['Vitalize'],
+                \     'functions' : ['vital#of', 'vital'],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
 " tyru/restart.vim {{{
 if neobundle#tap('restart.vim')
   " Config {{{
