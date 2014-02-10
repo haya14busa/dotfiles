@@ -2240,7 +2240,8 @@ if neobundle#tap('TweetVim')
         \          'TweetVimMentions',
         \          'TweetVimSay',
         \          'TweetVimUserTimeline',
-        \          'TweetVimUserStream']
+        \          'TweetVimUserStream'],
+        \     'unite_sources' : [ 'tweetvim/account', 'tweetvim' ],
         \   }
         \ })
   "}}}
@@ -2252,18 +2253,6 @@ if neobundle#tap('TweetVim')
     AutocmdFT tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
     AutocmdFT tweetvim     nmap <buffer><Leader>a TweetVimAutoUpdate
   endfunction "}}}
-  " Auto reload {{{
-  let s:tweetvim_update_interval_seconds = 60
-  let s:tweetvim_timestamp = localtime()
-  function! s:tweetvim_autoupdate()
-      let current = localtime()
-      if current - s:tweetvim_timestamp > s:tweetvim_update_interval_seconds
-          call feedkeys("\<Plug>(tweetvim_action_reload)")
-          let s:tweetvim_timestamp = current
-      endif
-      call feedkeys(mode() ==# 'i' ? "\<C-g>\<Esc>" : "g\<Esc>", 'n')
-  endfunction
-
   call neobundle#untap()
 endif
 "}}}
