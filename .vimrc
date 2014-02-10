@@ -2201,20 +2201,6 @@ if neobundle#tap('vim-signify')
 endif
 "}}}
 
-" migemo "{{{
-if neobundle#tap('vim-migemo')
-  call neobundle#config({
-        \   'lazy' : 1,
-        \   'autoload' : {
-        \     'mappings' : ['<Plug>(migemo-'],
-        \   }
-        \ })
-
-  nmap g/ <Plug>(migemo-migemosearch)
-  call neobundle#untap()
-endif
-"}}}
-
 " Leafcage/yankround {{{
 if neobundle#tap('yankround.vim')
   call neobundle#config({
