@@ -2727,6 +2727,7 @@ if neobundle#tap('vim-over')
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
   endfunction "}}}
   " Setting {{{
+  nnoremap S :OverCommandLine<CR>%s/
   "}}}
   call neobundle#untap()
 endif
