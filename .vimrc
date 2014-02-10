@@ -2791,8 +2791,9 @@ if neobundle#tap('vim-editvar')
 endif
 " }}}
 
-" Sandbox {{{======================
+" End plugins }}}
 
+" Misc {{{======================
 " " sticky_table {{{
 " let sticky_table_us = {
 "       \',' : '<', '.' : '>', '/' : '?',
