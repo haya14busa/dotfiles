@@ -173,7 +173,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 
 " Operator
-NeoBundle 'kana/vim-operator-user'
+NeoBundleLazy 'kana/vim-operator-user'
 NeoBundleLazy 'kana/vim-operator-replace'
 "NeoBundle 'rhysd/vim-operator-surround'
 
@@ -234,13 +234,12 @@ NeoBundleLazy 'hynek/vim-python-pep8-indent'
 NeoBundleLazy 'aharisu/vim_goshrepl'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 " }}}
+"}}}
 
 " Fold {{{
 NeoBundle 'LeafCage/foldCC'
 NeoBundleLazy 'tmhedberg/SimpylFold' "for Python
 NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding'
-"}}}
-
 "}}}
 
 " Japanese {{{
