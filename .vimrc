@@ -328,9 +328,9 @@ set matchpairs& matchpairs+=<:> "Characters that form pairs
 set matchtime=3 "Tenths of a second to show the matching paren
 set modeline "Set Vim local buffer option to specific file
 set noerrorbells "Don't ring the bell for error messages
-set number "Print the line number in front of each line
 set novisualbell "Don't use visual bell instead of beeping
 set nrformats-=octal "Bases Vim will consider for numbers(Ctrl-a,Ctrl-x)
+set number "Print the line number in front of each line
 set ruler "Show the line and column number of the cursor position
 set shortmess& shortmess+=I "Don't give the message when starting Vim :intro
 set showcmd "Show (partial) command in the last line of the screen
