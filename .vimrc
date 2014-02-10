@@ -2580,7 +2580,6 @@ if neobundle#tap('J6uil.vim')
     AutocmdFT J6uil call s:J6uil_settings()
     function! s:J6uil_settings()
       nunmap <buffer> s
-      nmap <Plug>(easymotion-s)
       nmap <buffer> <Leader>s <Plug>(J6uil_open_say_buffer)
     endfunction
   endfunction "}}}
