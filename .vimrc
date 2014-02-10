@@ -2818,6 +2818,70 @@ endif
 "       \}
 " "}}}
 
+function! g:plog(msg) "{{{
+  call vimproc#system('echo "' . PP(a:msg) . '" >> ~/vim.log')
+  " call g:plog(' kokomade OK')
+  " tail -f ~/vim.log
+endfunction
+"}}}
+
+" Color column
+if v:version >= 703
+  " For conceal.
+  set conceallevel=2 concealcursor=iv
+  set colorcolumn=79
+endif
+
+let g:loaded_netrwPlugin=1
+
+command! -nargs=* -bang Vanishment echo 'Van!shiment Th!s World!'
+
+function! s:open_help_en_jp(args)
+    let en = a:args . '@en'
+    let ja = a:args . '@ja'
+    exec "tab help " . en
+    setlocal scrollbind
+    split
+    exec "help " . ja
+    setlocal scrollbind
+endfunction
+command! -nargs=1 -complete=help Help
+    \ call <SID>open_help_en_jp('<args>')
+
+" Ref: https://github.com/rhysd/dotfiles/blob/master/vimrc
+" Execute a:cmd at first, and rotate cursor within line
+let s:smart_line_pos = -1
+function! s:smart_move(cmd) "{{{
+    let line = line('.')
+    if s:smart_line_pos == line . a:cmd
+        call <SID>rotate_in_line()
+    else
+        execute "normal! " . a:cmd
+        " Store previous line number and mapping
+        let s:smart_line_pos = line . a:cmd
+    endif
+endfunction "}}}
+function! s:rotate_in_line() "{{{
+    let c = virtcol('.')
+
+    let cmd = c == 1 ? 'g^' : 'g$'
+    execute "normal! ".cmd
+
+    " If there is no space at beginning of line, toggle bol & eol
+    if c == virtcol('.')
+        if cmd == 'g^'
+            normal! g$
+        else
+            normal! g0
+        endif
+    endif
+endfunction "}}}
+" Toggle 0, ^, $
+nnoremap <silent>0 :<C-u>call <SID>smart_move('g0')<CR>
+
+" Backspace: Act like normal backspace
+noremap <BS>  "_X
+
 "}}}
 
 " Finally {{{ =====================
