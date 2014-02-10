@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 09 Feb 2014.
+" Last Modified: 10 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -117,6 +117,7 @@ NeoBundleLazy 'rhysd/unite-codic.vim' " A unite.vim source for codic-vim.
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'mattn/webapi-vim'
 NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
+NeoBundle 'osyo-manga/vital-over'
 "}}}
 
 " Document {{{
