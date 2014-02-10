@@ -149,7 +149,6 @@ MyNeoBundleLazy 'vim-easyoperator-line'
 MyNeoBundleLazy 'vim-easyoperator-phrase'
 MyNeoBundleLazy 'vim-lazy-lines'
 NeoBundleLazy 'rhysd/accelerated-jk'
-NeoBundleLazy 't9md/vim-smalls'
 "}}}
 
 " Text Object {{{
@@ -2363,20 +2362,6 @@ if neobundle#tap('vim-prettyprint')
         \     'functions' : 'PP',
         \   }
         \ })
-  call neobundle#untap()
-endif
-"}}}
-
-" t9md/vim-smalls {{{
-if neobundle#tap('vim-smalls')
-  call neobundle#config({
-        \   'autoload' : {
-        \     'mappings' : '<Plug>(smalls',
-        \   }
-        \ })
-  nmap ;s <Plug>(smalls)
-  omap ;z <Plug>(smalls)
-  xmap ;s <Plug>(smalls)
   call neobundle#untap()
 endif
 "}}}
