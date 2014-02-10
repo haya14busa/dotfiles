@@ -192,6 +192,9 @@ NeoBundleLazy 'Shougo/vim-vcs', {
 NeoBundle 'itchyny/lightline.vim'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides'
 NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selected word
+"TODO
+NeoBundleLazy 'osyo-manga/vim-automatic', {
+    \ 'depends' : [ 'osyo-manga/vim-gift', 'osyo-manga/vim-reunions' ] }
 " }}}
 
 " Utility {{{
