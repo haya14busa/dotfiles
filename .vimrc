@@ -244,11 +244,9 @@ NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding'
 "}}}
 
 " Japanese {{{
-"MyNeoBundle 'vim-migemo'
-" NeoBundleLazy 'haya14busa/vim-migemo'
+" NeoBundleLazy 'haya14busa/vim-migemo' "use migemo of easymotion
 NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
-" NeoBundleLazy 'rhysd/migemo-search.vim' " Integrate migemo into search in Vim.
-" NeoBundle 'tyru/skk.vim' " skk.vim with miscellaneous hacks. patches/forks are welcome. if you are insterested in improving skk.vim, please contact me by twitter, email, and so on.
+" NeoBundle 'tyru/skk.vim'
 "}}}
 
 " ColorScheme {{{
