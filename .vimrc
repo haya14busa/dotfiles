@@ -1216,8 +1216,8 @@ if neobundle#tap('vimfiler.vim')
     AutocmdFT vimfiler call g:my_vimfiler_settings()
 
     function! g:my_vimfiler_settings()
-      map <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
-      " vimfiler mapping for choosewin
+      nmap <buffer>' <Plug>(vimfiler_toggle_mark_current_line)
+      xmap <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
       map <buffer> t :call vimfiler#mappings#do_action('tabopen')<CR>
     endfunction
   endfunction "}}}
