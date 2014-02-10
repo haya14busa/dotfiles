@@ -2215,22 +2215,6 @@ if neobundle#tap('autodate.vim')
 endif
 "}}}
 
-" clever-f.vim {{{
-if neobundle#tap('clever-f.vim')
-  call neobundle#config({
-        \   'autoload' : {
-        \     'mappings' : [['sxno','<Plug>(clever-f-']],
-        \   }
-        \ })
-  function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    let g:clever_f_use_migemo = 1
-    let g:clever_f_smart_case = 1
-  endfunction "}}}
-  map f <Plug>(clever-f-f)
-  map F <Plug>(clever-f-F)
-endif
-"}}}
-
 " accelerated-jk {{{
 if neobundle#tap('accelerated-jk')
   call neobundle#config({
