@@ -542,18 +542,7 @@ nnoremap Y y$
 
 " Spelling Keymaps {{{
 " turn on the spell checking and set the English language
-nnoremap <Leader>se :set spell<CR>
-" turn off the spell checking
-nnoremap <Leader>so :set nospell<CR>
-" jump to the next bad spell word
-nnoremap <Leader>sn ]s
-" suggest words
-nnoremap <Leader>sp z=
-" jump to the next bad spell word and suggests a correct one
-nnoremap <Leader>sc ]sz=
-" add word to the dictionary
-nnoremap <Leader>sa zg
-
+nnoremap <Leader>sp :set spell!<CR>
 " }}}
 
 " Get info"{{{
