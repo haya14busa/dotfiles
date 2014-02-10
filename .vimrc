@@ -1061,47 +1061,37 @@ if neobundle#tap('unite.vim')
   xmap ; [unite]
 
   " Source
-  nnoremap <silent> [unite]; :<C-u>Unite source -vertical -silent -start-insert<CR>
-
+  nnoremap <silent> [unite]u :<C-u>Unite source -vertical -silent -start-insert<CR>
   " Buffer
   nnoremap <silent> [unite]b :<C-u>Unite -silent buffer file_mru bookmark<CR>
   " File List
   nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -silent -buffer-name=files file<CR>
-
   " Register List
   nnoremap <silent> [unite]R :<C-u>Unite -silent -buffer-name=register register<CR>
-
   " Restore Unite
   nnoremap <silent> [unite]r         :<C-u>UniteResume<CR>
-
   " Yank History
   let g:unite_source_history_yank_enable = 1
   nnoremap <silent> [unite]y :<C-u>Unite -silent history/yank<CR>
-
   " Show Mapping List
   nnoremap <silent> [unite]ma :<C-u>Unite -silent mapping<CR>
-
   " Show Message
   nnoremap <silent> [unite]me :<C-u>Unite -silent output:message<CR>
-
   " Jump (mnemonic : <C-o> jump to Older cursor position)
   nnoremap <silent> [unite]<C-o> :<C-u>Unite -silent change jump<CR>
-
   " Grep
   nnoremap <silent> [unite]gr :<C-u>Unite -silent -no-quit grep<CR>
-
+  " Line
+  nnoremap <silent> g/ :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
   "-Unite Plugin Settings--------------"{{{
   " Execute help.
-  " nnoremap [unite]h  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
-  nnoremap [unite]gh  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
-  " Execute help by cursor keyword.
-  " nnoremap <silent> [unite]gh  :<C-u>UniteWithCursorWord -silent help<CR>
+  nnoremap <silent> [unite]gh  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
   " Outeline
   nnoremap <silent> [unite]o :<C-u>Unite -silent outline -vertical -winwidth=40 -no-start-insert<CR>
   " Fold
   nnoremap <silent> [unite]z :<C-u>Unite -silent fold -vertical -winwidth=40 -no-start-insert<CR>
   " Unite Beautiful Atack
-  nnoremap [unite]C :<C-u>Unite -auto-preview colorscheme<CR>
+  nnoremap <silent> [unite]C :<C-u>Unite -auto-preview colorscheme<CR>
   "}}}
   "}}}
 
