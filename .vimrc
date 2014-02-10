@@ -876,9 +876,7 @@ vnoremap : q:
 
 Autocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() "{{{
-  silent! 1,$-20 delete _
-  " silent! 1,$-20 delete
-  call cursor('$', 0)
+  silent! 1,$-20 delete _ | call cursor('$', 0)
 
   let b:neocomplete_sources_list = ['vim_complete']
 
