@@ -270,6 +270,7 @@ NeoBundle 'mattn/learn-vimscript'
 NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
 NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
+NeoBundleLazy 'thinca/vim-editvar' " Edits vim variable in buffer.
 NeoBundleLazy 'tyru/restart.vim' " Restart your gVim
 NeoBundleLazy 'thinca/vim-ft-help_fold', {
       \ 'filetypes' : 'help'
@@ -2858,7 +2859,27 @@ if neobundle#tap('restart.vim')
 endif
 " }}}
 
-" End plugins }}}
+" thinca/vim-editvar {{{
+if neobundle#tap('vim-editvar')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'commands' : [
+                \       'Editvar',
+                \     ],
+                \     'unite_sources' : [
+                \       'variable'
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
 
 " Sandbox {{{======================
 
