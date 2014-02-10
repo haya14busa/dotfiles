@@ -135,8 +135,6 @@ NeoBundle 'matchit.zip'
 NeoBundleLazy 'LeafCage/yankround.vim'
 " Undo
 NeoBundleLazy 'sjl/gundo.vim'
-" Select Window
-NeoBundleLazy 't9md/vim-choosewin'
 " Visual mode
 NeoBundleLazy 'kana/vim-niceblock'
 " Search
@@ -1220,7 +1218,6 @@ if neobundle#tap('vimfiler.vim')
     function! g:my_vimfiler_settings()
       map <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
       " vimfiler mapping for choosewin
-      map <buffer> <CR> :call vimfiler#mappings#do_action('choosewin')<CR>
       map <buffer> t :call vimfiler#mappings#do_action('tabopen')<CR>
     endfunction
   endfunction "}}}
@@ -2438,46 +2435,6 @@ if neobundle#tap('puyo.vim')
   call neobundle#untap()
 endif
 "}}}
-
-" vim-choosewin {{{
-if neobundle#tap('vim-choosewin')
-  call neobundle#config({
-        \   'autoload' : {
-        \     'mappings' : [
-        \       '<Plug>(choosewin)',
-        \     ],
-        \   }
-        \ })
-
-  function! neobundle#tapped.hooks.on_source(bundle)
-  endfunction
-
-  nmap <C-w><C-w> <Plug>(choosewin)
-  nmap ;w <Plug>(choosewin)
-  let g:choosewin_color_label = {
-        \ 'cterm': [ 2, 16]
-        \ }
-  " Unite choosewin {{{
-  let action = {
-  \ 'description' : 'choosewin.vim',
-  \ 'is_selectable' : 0,
-  \ }
-
-  function! action.func(candidate)
-      let bufpath = unite#util#substitute_path_separator(expand('%:p'))
-
-      if bufpath !=# a:candidate.action__path
-          ChooseWin
-      endif
-      call unite#take_action('open', a:candidate)
-      normal zz;
-  endfunction
-  call unite#custom_action('file', 'choosewin', action)
-  unlet action
-  "}}}
-  call neobundle#untap()
-endif
-" }}}
 
 " h1mesuke/vim-alignta {{{
 if neobundle#tap('vim-alignta')
