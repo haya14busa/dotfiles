@@ -458,8 +458,6 @@ inoremap <C-u> <C-g>u<C-u>
 " Motion {{{
 
 " Normal Mode {{{
-nnoremap h <Left>
-
 nnoremap j gj
 vnoremap j gj
 nnoremap gj j
@@ -469,9 +467,6 @@ nnoremap k gk
 vnoremap k gk
 nnoremap gk k
 vnoremap gk k
-
-" nnoremap l <Right>
-" -> fold
 
 nnoremap - $
 "}}}
