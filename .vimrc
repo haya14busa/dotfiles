@@ -795,9 +795,9 @@ endfor
 "}}}
 
 " MoveToNewTab {{{
-nnoremap <silent> tm :<C-u>call MoveToNewTab()<CR>
-
-function! MoveToNewTab()
+" http://www.sopht.jp/blog/index.php?/archives/445-vim.html
+nnoremap <silent> tm :<C-u>call <SID>MoveToNewTab()<CR>
+function! s:MoveToNewTab()
     tab split
     tabprevious
 
