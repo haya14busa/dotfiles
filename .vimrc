@@ -2661,6 +2661,16 @@ if neobundle#tap('calendar.vim')
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:calendar_google_calendar = 1
     let g:calendar_google_task = 1
+    let g:calendar_date_endian = 'big'
+
+    AutocmdFT calendar call s:init_calendar()
+    function! s:init_calendar() "{{{
+      nmap <buffer>l <Plug>(calendar_next)
+      nmap <buffer>h <Plug>(calendar_prev)
+      nmap <buffer>e <Plug>(calendar_event)
+      highlight clear TrailingSpaces
+    endfunction "}}}
+
   endfunction "}}}
   " Setting {{{
   "}}}
