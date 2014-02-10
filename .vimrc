@@ -1523,21 +1523,16 @@ if neobundle#tap('vim-easymotion')
   " omap ; <Plug>(easymotion-prefix)
   " vmap ; <Plug>(easymotion-prefix)
   function! neobundle#tapped.hooks.on_post_source(bundle) "{{{
-        " EMCommandLineNoreMap ; <CR>
-        " EMCommandLineNoreMap <C-j> ;
         EMCommandLineNoreMap <Space> <CR>
         EMCommandLineNoreMap <C-j> <Space>
   endfunction "}}}
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    let g:EasyMotion_do_mapping = 0
-    " let g:EasyMotion_leader_key = ';'
-    " let g:EasyMotion_mapping_f = '_f'
-
     " EasyMotion Config {{{
+    let g:EasyMotion_do_mapping = 0
     let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTZXCVBASDGJF'
     " Use upper case
     let g:EasyMotion_use_upper = 1
-
+    " Smartcase
     let g:EasyMotion_smartcase = 1
     " Smartsign
     let g:EasyMotion_use_smartsign_us = 1
@@ -1547,13 +1542,12 @@ if neobundle#tap('vim-easymotion')
     let g:EasyMotion_skipfoldedline = 0
     " pseudo-migemo
     let g:EasyMotion_use_migemo = 1
-
-    " Jump to first with enter
+    " Jump to first with enter & space
     let g:EasyMotion_enter_jump_first = 1
     let g:EasyMotion_space_jump_first = 1
-
+    " Prompt
     let g:EasyMotion_prompt = '{n}> '
-
+    " Highlight cursor
     let g:EasyMotion_cursor_highlight = 1
     "}}}
 
@@ -1582,19 +1576,11 @@ if neobundle#tap('vim-easymotion')
   vmap s <Plug>(easymotion-s)
   omap z <Plug>(easymotion-s)
 
-  "multi input findmotion
-  " cooperate with vim search!
+  " Extend search
   map  / <Plug>(easymotion-sn)
   omap / <Plug>(easymotion-tn)
   noremap  ;/ /
-  function! s:wrap_lazy_bd_n(is_visual)
-    call EasyMotion#Search(a:is_visual,2)
-    call EasyMotion#activate(0)
-  endfunction
-  " nnoremap ;n :call <SID>wrap_lazy_bd_n(0)<CR>
   nmap ;n <Plug>(easymotion-sn)<C-p>
-  xnoremap ;n <Esc>:<C-u>call <SID>wrap_lazy_bd_n(1)<CR>
-
   map ;N <Plug>(easymotion-bd-n)
 
   nmap n <Plug>(easymotion-next)<Plug>(anzu-update-search-status)zzzv
@@ -1604,28 +1590,16 @@ if neobundle#tap('vim-easymotion')
 
   " Replace defaut
   " smart f & F
-  map <expr>f EasyMotion#is_active() ?
-    \ '<Plug>(easymotion-next)' : '<Plug>(easymotion-s2)'
-  map <expr>F EasyMotion#is_active() ?
-    \ '<Plug>(easymotion-prev)' : '<Plug>(easymotion-F2)'
-  omap <expr>f EasyMotion#is_active() ?
-    \ '<Plug>(easymotion-next)' : '<Plug>(easymotion-sl)'
-  omap <expr>F EasyMotion#is_active() ?
-    \ '<Plug>(easymotion-prev)' : '<Plug>(easymotion-Fl)'
-
+  map f <Plug>(easymotion-bd-fl)
   omap t <Plug>(easymotion-bd-tl)
   xmap t <Plug>(easymotion-bd-tl)
   map ;t <Plug>(easymotion-bd-t)
-
 
   " Extend hjkl
   map ;h <Plug>(easymotion-linebackward)
   map ;j <Plug>(easymotion-j)
   map ;k <Plug>(easymotion-k)
   map ;l <Plug>(easymotion-lineforward)
-
-  map ;w <Plug>(easymotion-w)
-  map ;e <Plug>(easymotion-e)
 
   " Anywhere!
   map <Space><Space> <Plug>(easymotion-jumptoanywhere)
@@ -1646,9 +1620,12 @@ if neobundle#tap('vim-easymotion')
   map <expr>' EasyMotion#is_active() ?
     \ '<Plug>(easymotion-prev)' : "'"
 
-  omap ;w <Plug>(easymotion-wl)
-  omap ;b <Plug>(easymotion-bl)
-  omap ;e <Plug>(easymotion-el)
+  " Extene word motion
+  map  ;w  <Plug>(easymotion-bd-w)
+  map  ;e  <Plug>(easymotion-bd-e)
+  omap ;w  <Plug>(easymotion-wl)
+  omap ;b  <Plug>(easymotion-bl)
+  omap ;e  <Plug>(easymotion-el)
   omap ;ge <Plug>(easymotion-gel)
 
   "}}}
@@ -1662,8 +1639,8 @@ if neobundle#tap('vim-easymotion')
     \ '<ESC>:<C-u>call EasyMotion#User(' .
     \ '"\\<' . expand('<cword>') . '\\>", 1, 2, 1)<CR>'
 
-  let g:lazypattern = {}
-  let g:lazypattern['syntax'] = '\v'
+  let g:empattern = {}
+  let g:empattern['syntax'] = '\v'
         \ . 'function|endfunction|return|call'
         \ . '|if|elseif|else|endif'
         \ . '|for|endfor'
@@ -1674,10 +1651,10 @@ if neobundle#tap('vim-easymotion')
         \ . '|g:|s:|b:|w:'
         \ . '|autoload|#|plugin'
 
-  noremap   <silent>;1
-    \ :<C-u>call EasyMotion#User(g:lazypattern.syntax , 0, 2, 1)<CR>
-  xnoremap  <silent>;1
-    \ :<C-u>call EasyMotion#User(g:lazypattern.syntax , 1, 2, 1)<CR>
+  noremap  <silent>;1
+         \ :<C-u>call EasyMotion#User(g:empattern.syntax , 0, 2, 1)<CR>
+  xnoremap <silent>;1
+         \ :<C-u>call EasyMotion#User(g:empattern.syntax , 1, 2, 1)<CR>
   "}}}
 
   function! g:EasyMotionMigemoToggle() "{{{
