@@ -318,6 +318,7 @@ set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis "A list of character encodings
 set fileformats=unix,dos,mac "This gives the end-of-line (<EOL>) formats
 set formatoptions-=r,o " Turn off Automatically comment out when line break
 set grepprg=internal "Program to use for the :grep command
+set helpheight=12 " Minimal initial height of the help window
 set hidden "Display another buffer when current buffer isn't saved.
 set history=1000 "Amount of Command history
 set infercase "Ignore case on insert completion.
