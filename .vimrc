@@ -2413,6 +2413,14 @@ if neobundle#tap('vim-submode')
   call submode#map('winsize', 'n', '', '+', '<C-w>3-')
   call submode#map('winsize', 'n', '', '-', '<C-w>3+')
 
+  function! s:my_x()
+      undojoin
+      normal! "_x
+  endfunction
+  noremap <silent> <Plug>(my-x) :<C-u>call <SID>my_x()<CR>
+  call submode#enter_with('my_x', 'n', '', 'x', '"_x')
+  call submode#map('my_x', 'n', 'r', 'x', '<Plug>(my-x)')
+
   call neobundle#untap()
 endif
 " }}}
