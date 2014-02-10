@@ -146,10 +146,10 @@ NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 "}}}
 
 " Motion {{{
-"NeoBundleLazy 'haya14busa/vim-easymotion'
-MyNeoBundle 'vim-easymotion'
-MyNeoBundle 'vim-lazy-lines'
-" NeoBundleLazy 'rhysd/clever-f.vim'
+MyNeoBundleLazy 'vim-easymotion'
+MyNeoBundleLazy 'vim-easyoperator-line'
+MyNeoBundleLazy 'vim-easyoperator-phrase'
+MyNeoBundleLazy 'vim-lazy-lines'
 NeoBundleLazy 'rhysd/accelerated-jk'
 NeoBundleLazy 't9md/vim-smalls'
 "}}}
@@ -1536,17 +1536,12 @@ if neobundle#tap('vim-easymotion')
   " map  ; <Plug>(easymotion-prefix)
   " omap ; <Plug>(easymotion-prefix)
   " vmap ; <Plug>(easymotion-prefix)
-  function! neobundle#tapped.hooks.on_post_source(bundle)
-      EMCommandLineNoremap ; <CR>
-      EMCommandLineNoremap <C-;> <CR>
-      EMCommandLineNoremap <C-l> <Over>(buffer-complete)
-      EMCommandLineNoremap <C-y> <Over>(paste)
-      EMCommandLineNoremap <C-f> <Right>
-      EMCommandLineNoremap <C-b> <Left>
-      EMCommandLineNoremap <C-a> <Home>
-      EMCommandLineNoremap <C-p> <Up>
-      EMCommandLineNoremap <C-n> <Down>
-  endfunction
+  function! neobundle#tapped.hooks.on_post_source(bundle) "{{{
+        " EMCommandLineNoreMap ; <CR>
+        " EMCommandLineNoreMap <C-j> ;
+        EMCommandLineNoreMap <Space> <CR>
+        EMCommandLineNoreMap <C-j> <Space>
+  endfunction "}}}
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:EasyMotion_do_mapping = 0
     " let g:EasyMotion_leader_key = ';'
@@ -1554,6 +1549,9 @@ if neobundle#tap('vim-easymotion')
 
     " EasyMotion Config {{{
     let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTZXCVBASDGJF'
+    " Use upper case
+    let g:EasyMotion_use_upper = 1
+
     let g:EasyMotion_smartcase = 1
     " Smartsign
     let g:EasyMotion_use_smartsign_us = 1
@@ -1563,11 +1561,10 @@ if neobundle#tap('vim-easymotion')
     let g:EasyMotion_skipfoldedline = 0
     " pseudo-migemo
     let g:EasyMotion_use_migemo = 1
-    " Use upper case
-    let g:EasyMotion_use_upper = 1
 
     " Jump to first with enter
     let g:EasyMotion_enter_jump_first = 1
+    let g:EasyMotion_space_jump_first = 1
 
     let g:EasyMotion_prompt = '{n}> '
 
