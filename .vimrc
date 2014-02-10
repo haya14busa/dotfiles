@@ -1314,6 +1314,7 @@ if neobundle#tap('neocomplete.vim')
     " Use smartcase.
     let g:neocomplete#enable_smart_case = 1
     let g:neocomplete#enable_camel_case = 1
+    let g:neocomplete#enable_underbar_completion = 1
 
     " Use fuzzy completion.
     let g:neocomplete#enable_fuzzy_completion = 1
@@ -1330,7 +1331,13 @@ if neobundle#tap('neocomplete.vim')
     let g:neocomplete#disable_auto_select_buffer_name_pattern =
           \ '\[Command Line\]'
 
+    " Enable omni completion.
+    AutocmdFT css setlocal omnifunc=csscomplete#CompleteCSS
+    AutocmdFT html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    AutocmdFT javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    AutocmdFT xml setlocal omnifunc=xmlcomplete#CompleteTags
     AutocmdFT python setlocal omnifunc=jedi#completions
+
     if !exists('g:neocomplete#force_omni_input_patterns')
       let g:neocomplete#force_omni_input_patterns = {}
     endif
