@@ -180,7 +180,7 @@ NeoBundleLazy 'kana/vim-operator-replace'
 "}}}
 
 " Git {{{
-NeoBundleLazy 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundleLazy 'gregsexton/gitv'
 NeoBundle 'mhinz/vim-signify'
 
@@ -2126,12 +2126,12 @@ if neobundle#tap('lightline.vim')
         \ 'active': {
         \   'left': [
         \       [ 'mode', 'paste' ],
-        \       [ 'fugitive','filename', 'anzu'],
+        \       [ 'filename','fugitive','anzu'],
         \   ],
         \   'right': [
         \       [ 'lineinfo', 'syntastic' ],
         \       [ 'percent' ],
-        \       [ 'absolutepath', 'filetype'],
+        \       [ 'filetype'],
         \   ]
         \ },
         \ 'component_function': {
