@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 11 Feb 2014.
+" Last Modified: 12 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -28,7 +28,7 @@ function! s:hl_my_autocmd()
     highlight def link myVimAutocmd vimAutoCmd
     syntax match vimAutoCmd /\<\(Autocmd\|AutocmdFT\)\>/
 endfunction
-Autocmd VimEnter,WinEnter,ColorScheme *vimrc call s:hl_my_autocmd()
+Autocmd BufWinEnter,ColorScheme *vimrc call s:hl_my_autocmd()
 "}}}
 
 " Echo startup time on start {{{
@@ -612,8 +612,8 @@ function! s:hl_zenkaku() "{{{
     syntax match ZenkakuSpace containedin=ALL /　/
 endfunction "}}}
 
-Autocmd VimEnter,WinEnter,ColorScheme * call s:hl_trailing_spaces()
-Autocmd VimEnter,WinEnter,ColorScheme * call s:hl_zenkaku()
+Autocmd BufWinEnter,ColorScheme * call s:hl_trailing_spaces()
+Autocmd BufWinEnter,ColorScheme * call s:hl_zenkaku()
 "}}}
 
 "}}}
@@ -2774,11 +2774,6 @@ noremap <BS>  "_X
 NeoBundleCheck
 if !has('vim_starting')
     call neobundle#call_hook('on_source')
-
-    " Highlight : maybe workaround
-    call s:hl_zenkaku() "/　/
-    call s:hl_trailing_spaces() "  
-    call s:hl_my_autocmd() ""Autocmd AutocmdFT
 endif
 set secure
 "}}}
