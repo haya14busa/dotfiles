@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 12 Feb 2014.
+" Last Modified: 13 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -33,7 +33,7 @@ Autocmd BufWinEnter,ColorScheme *vimrc call s:hl_my_autocmd()
 
 " Echo startup time on start {{{
 if has('vim_starting') && has('reltime')
-    " Shell: vim --startuptime {filename} -q; vim {filename}
+    " Shell: vim --startuptime filename -q; vim filename
     " vim --cmd 'profile start profile.txt' --cmd 'profile file $HOME/.vimrc' +q && vim profile.txt
     let s:startuptime = reltime()
     Autocmd VimEnter * let s:startuptime = reltime(s:startuptime) | redraw
@@ -166,6 +166,7 @@ NeoBundleLazy 'lucapette/vim-textobj-underscore'  " a_, i_
 NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
 
 " to surround vim objects with a pair of identical chars
+" TODO: Make it lazy or use vim-operator-surround
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 
@@ -604,6 +605,7 @@ hi SpecialKey guifg=#4a4a59
 
 " Highlight End-of-Line & Zenkaku Whitespace {{{
 function! s:hl_trailing_spaces() "{{{
+    " Test   
     highlight! link TrailingSpaces Error
     syntax match TrailingSpaces containedin=ALL /\s\+$/
 endfunction "}}}
