@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 13 Feb 2014.
+" Last Modified: 15 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -148,6 +148,7 @@ MyNeoBundleLazy 'vim-easymotion'
 MyNeoBundleLazy 'vim-easyoperator-line'
 MyNeoBundleLazy 'vim-easyoperator-phrase'
 MyNeoBundleLazy 'vim-lazy-lines'
+NeoBundleLazy 'rhysd/clever-f.vim' " Extended f, F, t and T key mappings for Vim.
 NeoBundleLazy 'rhysd/accelerated-jk'
 "}}}
 
@@ -1733,6 +1734,22 @@ if neobundle#tap('vim-lazy-lines')
     call neobundle#untap()
 endif
 " }}}
+
+" clever-f.vim {{{
+if neobundle#tap('clever-f.vim')
+    call neobundle#config({
+        \   'autoload' : {
+        \     'mappings' : [['sxno','<Plug>(clever-f-']],
+        \   }
+        \ })
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        let g:clever_f_smart_case = 1
+        let g:clever_f_across_no_line = 1
+    endfunction "}}}
+    nmap f <Plug>(clever-f-f)
+    nmap F <Plug>(clever-f-F)
+endif
+"}}}
 
 " TextObject Keymaps{{{
 " vim-textobj-entire {{{
