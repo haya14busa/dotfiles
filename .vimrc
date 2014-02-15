@@ -358,7 +358,7 @@ set tabstop=4 "Number of spaces that a <Tab> in the file counts for
 set incsearch "Incremental searching
 set ignorecase "Ignore case in search patterns
 set smartcase "Override the ignorecase option if the pattern contains upper case
-set nohlsearch "Highlight search patterns
+set hlsearch | nohlsearch "Highlight search patterns, support reloading
 "}}}
 
 " Backup Settings {{{
@@ -1569,11 +1569,13 @@ if neobundle#tap('vim-easymotion')
 
     " Extend search
     map  / <Plug>(easymotion-sn)
+    xmap / <Esc><Plug>(easymotion-sn)\v%V
     omap / <Plug>(easymotion-tn)
     noremap  ;/ /
     nmap ;n <Plug>(easymotion-sn)<C-p>
     map ;N <Plug>(easymotion-bd-n)
 
+    set nohlsearch " use EasyMotion highlight
     nmap n <Plug>(easymotion-next)<Plug>(anzu-update-search-status)zzzv
     nmap N <Plug>(easymotion-prev)<Plug>(anzu-update-search-status)zzzv
     xmap n <Plug>(easymotion-next)zzzv
