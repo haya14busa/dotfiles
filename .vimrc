@@ -267,7 +267,6 @@ NeoBundle 'reedes/vim-colors-pencil'
 "}}}
 
 " Vim script {{{
-MyNeoBundle 'vim-helloworld'
 NeoBundle 'mattn/learn-vimscript'
 NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
