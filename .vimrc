@@ -2645,6 +2645,7 @@ if neobundle#tap('vim-over')
     " }}}
     " Setting {{{
     nnoremap S :OverCommandLine<CR>%s/
+    xnoremap S :OverCommandLine<CR>s/
     "}}}
     call neobundle#untap()
 endif
