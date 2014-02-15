@@ -707,7 +707,7 @@ noremap [fold]r zR
 noremap [fold]f zf
 noremap [fold]d zd
 
-nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : '<Right>'
+nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
 
 nnoremap  [fold][     :<C-u>call <SID>put_foldmarker(0)<CR>
 nnoremap  [fold]]     :<C-u>call <SID>put_foldmarker(1)<CR>
