@@ -2734,8 +2734,6 @@ endif
 
 let g:loaded_netrwPlugin=1
 
-command! -nargs=* -bang Vanishment echo 'Van!shiment Th!s World!'
-
 function! s:open_help_en_jp(args)
     let en = a:args . '@en'
     let ja = a:args . '@ja'
