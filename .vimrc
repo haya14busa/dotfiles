@@ -2620,14 +2620,8 @@ endif
 
 " kana/vim-vspec {{{
 if neobundle#tap('vim-vspec')
-    " Config {{{
-    call neobundle#config({
-        \   'autoload' : {
-        \     'filetypes' : ['vim'],
-        \   }
-        \ })
+    Autocmd BufRead,BufNew,BufNewFile *_spec.vim NeoBundleSource vim-vspec
     " }}}
-    " TODO:
     call neobundle#untap()
 endif
 " }}}
