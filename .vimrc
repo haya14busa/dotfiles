@@ -2621,7 +2621,7 @@ endif
 " kana/vim-vspec {{{
 if neobundle#tap('vim-vspec')
     Autocmd BufRead,BufNew,BufNewFile *_spec.vim NeoBundleSource vim-vspec
-    " }}}
+    "
     call neobundle#untap()
 endif
 " }}}
