@@ -1583,10 +1583,10 @@ if neobundle#tap('vim-easymotion')
 
     " Replace defaut
     " smart f & F
-    map f <Plug>(easymotion-bd-fl)
+    omap f <Plug>(easymotion-bd-fl)
+    xmap f <Plug>(easymotion-bd-fl)
     omap t <Plug>(easymotion-bd-tl)
     xmap t <Plug>(easymotion-bd-tl)
-    map ;t <Plug>(easymotion-bd-t)
 
     " Extend hjkl
     map ;h <Plug>(easymotion-linebackward)
