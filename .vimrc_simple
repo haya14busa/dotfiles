@@ -1,0 +1,15 @@
+if has('vim_starting')
+    set nocompatible
+endif
+syntax enable
+colorscheme desert
+
+set number
+
+" Search
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch | nohlsearch
+nnoremap <silent><ESC><ESC> :nohlsearch<CR>
+

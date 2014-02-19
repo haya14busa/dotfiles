@@ -201,6 +201,7 @@ esac
 
 #alias mvim="mvim --remote-tab-silent"
 alias mvim="mvim"
+alias vims="vim -u ~/.vimrc_simple"
 alias VimFiler="vim +VimFiler"
 alias note="mvim $HOME/notes/`date +%Y-%m-%d`.md"
 alias say="say >& /dev/null"
