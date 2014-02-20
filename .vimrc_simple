@@ -1,15 +1,39 @@
 if has('vim_starting')
     set nocompatible
 endif
+
+augroup MyVimrc
+    autocmd!
+augroup END
+
+if has('vim_starting') && has('reltime')
+    let s:startuptime = reltime()
+    autocmd MyVimrc VimEnter * let s:startuptime = reltime(s:startuptime) | redraw
+    \ | echomsg 'startuptime: ' . reltimestr(s:startuptime)
+endif
+
 syntax enable
-colorscheme desert
+set background=light
+colorscheme default
 
+" Line Number:
 set number
+set relativenumber
+nnoremap <silent> <Leader><Leader>r :set relativenumber!<CR>
 
-" Search
+" Search:
 set incsearch
 set ignorecase
 set smartcase
 set hlsearch | nohlsearch
-nnoremap <silent><ESC><ESC> :nohlsearch<CR>
+nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
+
+" Indent:
+set autoindent
+" set expandtab
+set shiftround
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set tabstop=4
 
