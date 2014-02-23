@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 15 Feb 2014.
+" Last Modified: 23 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1450,7 +1450,7 @@ if neobundle#tap('vim-ref')
             \     'url': 'http://ja.wikipedia.org/wiki/%s',
             \   },
             \ }
-        let g:ref_alc_encoding = 'shift-jis'
+        let g:ref_alc_encoding = 'utf-8'
     endfunction
     call neobundle#untap()
 endif
@@ -2096,9 +2096,9 @@ if neobundle#tap('lightline.vim')
 
     function! MyFugitive() "{{{
         try
-        if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-            return fugitive#head()
-        endif
+            if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+                return fugitive#head()
+            endif
         catch
         endtry
         return ''
@@ -2210,7 +2210,6 @@ if neobundle#tap('TweetVim')
         AutocmdFT tweetvim setlocal nonumber
         AutocmdFT tweetvim nnoremap <buffer><Leader>s :<C-u>TweetVimSay<CR>
         AutocmdFT tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
-        AutocmdFT tweetvim     nmap <buffer><Leader>a TweetVimAutoUpdate
     endfunction "}}}
     call neobundle#untap()
 endif
@@ -2327,7 +2326,7 @@ if neobundle#tap('puyo.vim')
     call neobundle#config({
         \   'autoload' : {
         \     'commands' : [
-        \       'Puyo'
+        \       'Puyo', 'PuyoTeto'
         \     ],
         \   }
         \ })
@@ -2410,7 +2409,7 @@ if neobundle#tap('vim-rengbang')
     " Count Up Function {{{
     nnoremap <silent> co :ContinuousNumber <C-a><CR>
     vnoremap <silent> co :ContinuousNumber <C-a><CR>
-    command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
+    command! -count -nargs=1 ContinuousNumber let s:c = col('.')|for s:n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . s:n . <q-args>|call cursor('.', s:c)|endfor
     "}}}
 
     call neobundle#untap()
