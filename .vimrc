@@ -2096,9 +2096,9 @@ if neobundle#tap('lightline.vim')
 
     function! MyFugitive() "{{{
         try
-        if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-            return fugitive#head()
-        endif
+            if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+                return fugitive#head()
+            endif
         catch
         endtry
         return ''
@@ -2210,7 +2210,6 @@ if neobundle#tap('TweetVim')
         AutocmdFT tweetvim setlocal nonumber
         AutocmdFT tweetvim nnoremap <buffer><Leader>s :<C-u>TweetVimSay<CR>
         AutocmdFT tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
-        AutocmdFT tweetvim     nmap <buffer><Leader>a TweetVimAutoUpdate
     endfunction "}}}
     call neobundle#untap()
 endif
