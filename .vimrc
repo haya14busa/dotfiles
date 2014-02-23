@@ -2326,7 +2326,7 @@ if neobundle#tap('puyo.vim')
     call neobundle#config({
         \   'autoload' : {
         \     'commands' : [
-        \       'Puyo'
+        \       'Puyo', 'PuyoTeto'
         \     ],
         \   }
         \ })
