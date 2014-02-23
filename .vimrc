@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 15 Feb 2014.
+" Last Modified: 23 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1450,7 +1450,7 @@ if neobundle#tap('vim-ref')
             \     'url': 'http://ja.wikipedia.org/wiki/%s',
             \   },
             \ }
-        let g:ref_alc_encoding = 'shift-jis'
+        let g:ref_alc_encoding = 'utf-8'
     endfunction
     call neobundle#untap()
 endif
