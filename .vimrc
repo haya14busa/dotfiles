@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 23 Feb 2014.
+" Last Modified: 25 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -2072,9 +2072,9 @@ if neobundle#tap('lightline.vim')
     "}}}
 
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
-        let g:unite_force_overwrite_statusline=0
-        let g:vimfiler_force_overwrite_statusline=0
-        let g:vimshell_force_overwrite_statusline=0
+        let g:unite_force_overwrite_statusline = 0
+        let g:vimfiler_force_overwrite_statusline = 0
+        let g:vimshell_force_overwrite_statusline = 0
     endfunction "}}}
 
     function! MyModified() "{{{
