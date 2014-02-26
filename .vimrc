@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 25 Feb 2014.
+" Last Modified: 26 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -2779,6 +2779,19 @@ nnoremap <silent>0 :<C-u>call <SID>smart_move('g0')<CR>
 " Backspace: Act like normal backspace
 noremap <BS>  "_X
 
+function! s:my_HL(motion) "{{{
+    let current_line = line('.')
+    let flag_line = a:motion == 'H' ? line('w0') : line('w$')
+    if current_line == flag_line && v:count == 0
+        " let middle_line = (line('w$') - line('w0')) / 2 + line('w0')
+        let middle_line = (line('w$') - line('w0') + 1) / 4 + 1
+        exec "normal! " . middle_line . a:motion
+    else
+        exec "normal! " . v:count . a:motion
+    endif
+endfunction "}}}
+nnoremap <silent> L :call <SID>my_HL('L')<CR>
+nnoremap <silent> H :call <SID>my_HL('H')<CR>
 "}}}
 
 " Finally {{{ =====================
