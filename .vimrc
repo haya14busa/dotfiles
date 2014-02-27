@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 26 Feb 2014.
+" Last Modified: 27 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1520,7 +1520,8 @@ if neobundle#tap('vim-easymotion')
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
         " EasyMotion Config {{{
         let g:EasyMotion_do_mapping = 0
-        let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTZXCVBASDGJF'
+        " let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTZXCVBASDGJF'
+        let g:EasyMotion_keys = ';HKLYUIONM,WERTXCVBASDGJF'
         " Use upper case
         let g:EasyMotion_use_upper = 1
         " Smartcase
