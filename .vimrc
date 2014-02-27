@@ -1564,9 +1564,12 @@ if neobundle#tap('vim-easymotion')
     endfunction "}}}
 
     " EasyMotion Mapping {{{
-    nmap s <Plug>(easymotion-s)
-    vmap s <Plug>(easymotion-s)
-    omap z <Plug>(easymotion-s)
+    nmap s <Plug>(easymotion-s2)
+    vmap s <Plug>(easymotion-s2)
+    omap z <Plug>(easymotion-s2)
+    nmap ;s <Plug>(easymotion-s)
+    vmap ;s <Plug>(easymotion-s)
+    omap ;z <Plug>(easymotion-s)
 
     " Extend search
     map  / <Plug>(easymotion-sn)
