@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 28 Feb 2014.
+" Last Modified: 02 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -534,6 +534,15 @@ cnoremap w!! w !sudo tee > /dev/null %
 " vnoremap v $h " -> D,C,Y
 " Yank from cursor position to end of line
 nnoremap Y y$
+"}}}
+
+" Yank with keeping cursor position in visual mode {{{
+function! s:wrap_y(command)
+    exec "normal! gv" . a:command
+    exec "normal! gv\<ESC>"
+endfunction
+xnoremap <silent> y <ESC>:call <SID>wrap_y('y')<CR>
+xnoremap <silent> Y <ESC>:call <SID>wrap_y('Y')<CR>
 "}}}
 
 " Spelling Keymaps {{{
