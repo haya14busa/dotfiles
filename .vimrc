@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 27 Feb 2014.
+" Last Modified: 28 Feb 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1625,6 +1625,15 @@ if neobundle#tap('vim-easymotion')
     omap ;e  <Plug>(easymotion-el)
     omap ;ge <Plug>(easymotion-gel)
 
+    function! s:wrap_M()
+        let current_line = getline('.')
+        keepjumps normal! M
+        let middle_line = getline('.')
+        if current_line == middle_line
+            call EasyMotion#JK(0,2)
+        endif
+    endfunction
+    nnoremap <silent> M :<C-u>call <SID>wrap_M()<CR>
     "}}}
 
     " EasyMotion User {{{
