@@ -2814,6 +2814,18 @@ function! s:my_HL(motion) "{{{
 endfunction "}}}
 nnoremap <silent> L :call <SID>my_HL('L')<CR>
 nnoremap <silent> H :call <SID>my_HL('H')<CR>
+
+function! s:my_gm()
+    let current_line = {}
+    let current_line.num = line('.')
+    function! current_line.getline()
+        return getline(self.num)
+    endfunction
+    let current_line.len = strlen(current_line.getline())
+    let current_line.disp_len = strdisplaywidth(current_line.getline())
+    call cursor(current_line.num, current_line.len / 2)
+endfunction
+nnoremap <silent> gm :<C-u>call <SID>my_gm()<CR>
 "}}}
 
 " Finally {{{ =====================
