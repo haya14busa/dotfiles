@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 02 Mar 2014.
+" Last Modified: 03 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1405,16 +1405,6 @@ if neobundle#tap('vim-quickrun')
                 \       "runner/vimproc/updatetime" : 60
                 \   },
                 \}
-    if executable('pyflakes')
-        let g:quickrun_config['syntax/python'] = {
-                    \ 'command' : 'pyflakes',
-                    \ 'exec' : '%c %o %s:p',
-                    \ 'runner' : 'vimproc',
-                    \ 'errorformat' : '%f:%l:%m',
-                    \ }
-        Autocmd BufWritePost *.py QuickRun -outputter quickfix -type syntax/python
-    endif
-
     call neobundle#untap()
 endif
 "}}}
