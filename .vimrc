@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 03 Mar 2014.
+" Last Modified: 05 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -864,7 +864,7 @@ function! MakeTabLabel(n)
 
     let s = no . mod . sp . bufname
     return s
-endfunction"}}}
+endfunction "}}}
 
 "}}}
 
@@ -1426,8 +1426,8 @@ if neobundle#tap('vim-ref')
         \   'autoload' : {
         \     'commands' :
         \       [{'name': 'Ref',
-        \         'complete': 'customlist,ref#complete'},
-        \       'RefHistory']
+        \         'complete': 'customlist,ref#complete'},],
+        \     'unite_sources' : ['ref'],
         \   }
         \ })
     function! neobundle#tapped.hooks.on_source(bundle)
@@ -1505,6 +1505,7 @@ if neobundle#tap('vim-easymotion')
           \     'mappings' : [['sxno', '<Plug>(easymotion-']],
           \     'functions' : [
           \       'EasyMotion#User',
+          \       'EasyMotion#JK',
           \       'EasyMotion#is_active',
           \     ],
           \   }
