@@ -1480,7 +1480,8 @@ if neobundle#tap('emmet-vim')
         \       'styl',
         \       'xml',
         \       'xls',
-        \       'markdown'
+        \       'markdown',
+        \       'htmldjango',
         \     ]},
         \ })
     call neobundle#untap()
