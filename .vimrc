@@ -1243,6 +1243,8 @@ if neobundle#tap('vimshell.vim')
         \         'complete' : 'customlist,vimshell#complete'},
         \       { 'name' : 'VimShellBufferDir',
         \         'complete' : 'customlist,vimshell#complete'},
+        \       { 'name' : 'VimShellCreate',
+        \         'complete' : 'customlist,vimshell#complete'},
         \         'VimShellExecute', 'VimShellInteractive',
         \         'VimShellTerminal', 'VimShellPop'],
         \   }
