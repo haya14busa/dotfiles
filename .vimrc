@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 07 Mar 2014.
+" Last Modified: 10 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -446,7 +446,7 @@ nnoremap <CR> o<ESC>
 "}}}
 
 " For Undo Revision, Break Undo Sequence "{{{
-inoremap <CR> <C-]><C-G>u<CR>
+inoremap <CR> <C-g>u<CR>
 
 inoremap <C-h> <C-g>u<C-h>
 inoremap <BS> <C-g>u<BS>
