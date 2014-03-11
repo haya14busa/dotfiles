@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 10 Mar 2014.
+" Last Modified: 11 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1214,9 +1214,9 @@ if neobundle#tap('vimfiler.vim')
         hi link exrenameModified Normal
         let g:vimfiler_as_default_explorer=1
 
-        AutocmdFT vimfiler call g:my_vimfiler_settings()
+        AutocmdFT vimfiler call <SID>my_vimfiler_settings()
 
-        function! g:my_vimfiler_settings()
+        function! <SID>my_vimfiler_settings()
             nmap <buffer>' <Plug>(vimfiler_toggle_mark_current_line)
             xmap <buffer>' <Plug>(vimfiler_toggle_mark_selected_lines)
             map <buffer> t :call vimfiler#mappings#do_action('tabopen')<CR>
@@ -1667,7 +1667,7 @@ if neobundle#tap('vim-easymotion')
                 \ :<C-u>call EasyMotion#User(g:empattern.syntax , 1, 2, 1)<CR>
     "}}}
 
-    function! g:EasyMotionMigemoToggle() "{{{
+    function! EasyMotionMigemoToggle() "{{{
         if !exists(g:EasyMotion_use_migemo) && g:EasyMotion_use_migemo == 1
             let g:EasyMotion_use_migemo = 0
             echo 'Turn Off migemo'
@@ -1676,7 +1676,7 @@ if neobundle#tap('vim-easymotion')
             echo 'Turn On migemo'
         endif
     endfunction
-    command! -nargs=0 EasyMotionMigemoToggle :call g:EasyMotionMigemoToggle() "}}}
+    command! -nargs=0 EasyMotionMigemoToggle :call EasyMotionMigemoToggle() "}}}
 
     call neobundle#untap()
 endif
@@ -2734,9 +2734,9 @@ endif
 "       \}
 " "}}}
 
-function! g:plog(msg) "{{{
+function! Plog(msg) "{{{
     call vimproc#system('echo "' . PP(a:msg) . '" >> ~/vim.log')
-    " call g:plog(' kokomade OK')
+    " call Plog(' kokomade OK')
     " tail -f ~/vim.log
 endfunction
 "}}}
