@@ -2185,7 +2185,7 @@ if neobundle#tap('yankround.vim')
         \   }
         \ })
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
-        let g:yankround_use_region_hl = 1
+        " let g:yankround_use_region_hl = 1
     endfunction "}}}
     " nmap p <Plug>(yankround-p)
     nmap P <Plug>(yankround-P)
