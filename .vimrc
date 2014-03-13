@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 11 Mar 2014.
+" Last Modified: 14 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -2759,8 +2759,8 @@ function! s:open_help_en_jp(args)
     exec "help " . ja
     setlocal scrollbind
 endfunction
-command! -nargs=1 -complete=help Help
-    \ call <SID>open_help_en_jp('<args>')
+command! -nargs=1 -complete=help Help call <SID>open_help_en_jp("<args>")
+
 
 " Ref: https://github.com/rhysd/dotfiles/blob/master/vimrc
 " Execute a:cmd at first, and rotate cursor within line
