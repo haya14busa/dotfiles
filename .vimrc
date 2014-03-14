@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 14 Mar 2014.
+" Last Modified: 15 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -2424,8 +2424,8 @@ if neobundle#tap('vim-rengbang')
         \ })
     " TODO:
     " Count Up Function {{{
-    nnoremap <silent> co :ContinuousNumber <C-a><CR>
-    vnoremap <silent> co :ContinuousNumber <C-a><CR>
+    " nnoremap <silent> <Leader>co :ContinuousNumber <C-a><CR>
+    vnoremap <silent> <Leader>co :ContinuousNumber <C-a><CR>
     command! -count -nargs=1 ContinuousNumber let s:c = col('.')|for s:n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . s:n . <q-args>|call cursor('.', s:c)|endfor
     "}}}
 
