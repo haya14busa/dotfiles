@@ -2821,6 +2821,9 @@ function! s:my_gm()
     call cursor(current_line.num, current_line.len / 2)
 endfunction
 nnoremap <silent> gm :<C-u>call <SID>my_gm()<CR>
+" Rename file
+" http://vim-users.jp/2009/05/hack17/
+command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "}}}
 
 " Finally {{{ =====================
