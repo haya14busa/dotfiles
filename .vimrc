@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 15 Mar 2014.
+" Last Modified: 17 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1761,6 +1761,7 @@ if neobundle#tap('clever-f.vim')
         \   }
         \ })
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        let g:clever_f_not_overwrites_standard_mappings = 1
         let g:clever_f_smart_case = 1
         let g:clever_f_across_no_line = 1
     endfunction "}}}
