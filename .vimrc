@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 17 Mar 2014.
+" Last Modified: 18 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1091,6 +1091,8 @@ if neobundle#tap('unite.vim')
     nnoremap <silent> [unite]z :<C-u>Unite -silent fold -vertical -winwidth=40 -no-start-insert<CR>
     " Unite Beautiful Atack
     nnoremap <silent> [unite]C :<C-u>Unite -auto-preview colorscheme<CR>
+    " Git repository
+    nnoremap <silent> [unite]<Space> :<C-u>Unite file_rec/async:! -start-insert<CR>
     "}}}
     "}}}
 
@@ -1606,7 +1608,7 @@ if neobundle#tap('vim-easymotion')
     map <Space><Space> <Plug>(easymotion-jumptoanywhere)
 
     " Repeat last motion
-    map ;<Space> <Plug>(easymotion-repeat)
+    " map ;<Space> <Plug>(easymotion-repeat)
 
     " move to next/previous last motion match
     nmap <expr> <C-n> yankround#is_active() ?
