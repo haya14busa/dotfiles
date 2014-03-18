@@ -165,7 +165,9 @@ NeoBundleLazy 'thinca/vim-textobj-between'        " af{char}, if{char}
 NeoBundleLazy 'mattn/vim-textobj-url'             " au, iu
 NeoBundleLazy 'osyo-manga/vim-textobj-multiblock' " ab, ib
 NeoBundleLazy 'lucapette/vim-textobj-underscore'  " a_, i_
-NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
+" NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
+
+NeoBundle 'wellle/targets.vim'
 
 " to surround vim objects with a pair of identical chars
 " TODO: Make it lazy or use vim-operator-surround
