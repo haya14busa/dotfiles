@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 18 Mar 2014.
+" Last Modified: 21 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -1053,6 +1053,10 @@ if neobundle#tap('unite.vim')
         let g:unite_prompt = '❯ '
         " Open plugin directory by t
         call unite#custom#alias('directory', 'tabopen', 'tabvimfiler')
+
+        " Fuzzy find
+        call unite#filters#matcher_default#use(['matcher_fuzzy'])
+        call unite#filters#sorter_default#use(['sorter_rank'])
     endfunction "}}}
 
     " Unite {{{
