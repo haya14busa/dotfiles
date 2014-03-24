@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 21 Mar 2014.
+" Last Modified: 25 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -209,6 +209,7 @@ NeoBundle 'thinca/vim-submode', {
       \ 'name' : 'vim-submode',
       \ }
 NeoBundleLazy 'tyru/open-browser.vim'
+NeoBundleLazy 'tyru/open-browser-github.vim'
 "}}}
 
 " Application {{{
@@ -2052,6 +2053,26 @@ if neobundle#tap('open-browser.vim')
     call neobundle#untap()
 endif
 "}}}
+" tyru/open-browser-github {{{
+if neobundle#tap('open-browser-github')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' :
+                \     ['tyru/open-browser.vim'],
+                \   'autoload' : {
+                \     'commands' : [
+                \       'OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
 
 " lightline.vim {{{
 if neobundle#tap('lightline.vim')
