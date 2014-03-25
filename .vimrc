@@ -2,7 +2,7 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 25 Mar 2014.
+" Last Modified: 26 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -84,6 +84,7 @@ NeoBundleLazy 'osyo-manga/unite-fold'
 NeoBundleLazy 'kmnk/vim-unite-giti'
 NeoBundleLazy 'thinca/vim-unite-history'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
+NeoBundleLazy 'moznion/unite-git-conflict.vim'
 "}}}
 NeoBundleLazy 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/vimshell.vim'
