@@ -104,7 +104,6 @@ MyNeoBundle 'haya14busa-snippets'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
 NeoBundleLazy 'h1mesuke/vim-alignta'
-NeoBundleLazy 'autodate.vim'
 NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 "}}}
 
@@ -2168,21 +2167,6 @@ if neobundle#tap('lightline.vim')
         return winwidth('.') > 60 ? lightline#mode() : ''
     endfunction "}}}
 
-    call neobundle#untap()
-endif
-"}}}
-
-" autodate.vim {{{
-if neobundle#tap('autodate.vim')
-    call neobundle#config({
-        \   'autoload' : {
-        \     'filetypes' : 'vim',
-        \   }
-        \ })
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    let autodate_format = '%d %3m %Y'
-    let autodate_keyword_pre = 'Last \%(Change\|Modified\):'
     call neobundle#untap()
 endif
 "}}}
