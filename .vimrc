@@ -2,7 +2,6 @@
 " Author: haya14busa
 " URL: http://haya14busa.com
 " Source: https://github.com/haya14busa/dotfiles/
-" Last Modified: 26 Mar 2014.
 "=============================================================
 "     __                     _____ __  __
 "    / /_  ____ ___  ______ <  / // / / /_  __  ___________ _
@@ -168,6 +167,7 @@ NeoBundleLazy 'lucapette/vim-textobj-underscore'  " a_, i_
 " NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
 
 NeoBundle 'wellle/targets.vim'
+" NeoBundle 'gcmt/wildfire.vim'
 
 " to surround vim objects with a pair of identical chars
 " TODO: Make it lazy or use vim-operator-surround
@@ -291,6 +291,9 @@ NeoBundle 'bohrshaw/vim-vimperator-syntax'
 NeoBundleLazy 'supermomonga/thingspast.vim'
 NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundleLazy 'thinca/vim-scouter'
+
+NeoBundleLazy 'thinca/vim-threes'
+" NeoBundle 'tpope/vim-rake'
 "}}}
 
 filetype plugin indent on
@@ -541,12 +544,15 @@ nnoremap Y y$
 "}}}
 
 " Yank with keeping cursor position in visual mode {{{
-function! s:wrap_y(command)
+function! s:keepcursor_visual_wrapper(command)
     exec "normal! gv" . a:command
     exec "normal! gv\<ESC>"
 endfunction
-xnoremap <silent> y <ESC>:call <SID>wrap_y('y')<CR>
-xnoremap <silent> Y <ESC>:call <SID>wrap_y('Y')<CR>
+xnoremap <silent> y :<C-u>call <SID>keepcursor_visual_wrapper('y')<CR>
+xnoremap <silent> Y :<C-u>call <SID>keepcursor_visual_wrapper('Y')<CR>
+" Below mappings doesn't support dot repeat
+" xnoremap <silent> > :<C-u>call <SID>keepcursor_visual_wrapper('>')<CR>
+" xnoremap <silent> < :<C-u>call <SID>keepcursor_visual_wrapper('<')<CR>
 "}}}
 
 " Spelling Keymaps {{{
@@ -952,7 +958,7 @@ vnoremap <silent><Leader>gb :GitBlameRange<CR>
 " Stylus {{{
 Autocmd BufRead,BufNewFile,BufReadPre *.styl setlocal filetype=sass
 AutocmdFT sass     setlocal sw=2 sts=2 ts=2 et
-Autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
+" Autocmd BufWritePost,FileWritePost *.styl silent !stylus <afile> -u nib >/dev/null
 "}}}
 
 " CoffeeScript {{{
@@ -972,13 +978,17 @@ function! Sass_convert()
     endif
 endfunction
 
-Autocmd BufWritePost *.scss call Sass_convert()
+" Autocmd BufWritePost *.scss call Sass_convert()
 "}}}
 
 " Markdown {{{
 Autocmd BufRead,BufNewFile *.md  set filetype=markdown
 AutocmdFT markdown setlocal sw=2 sts=2 ts=2 et
+AutocmdFT markdown normal! zR
 "}}}
+
+AutocmdFT html setlocal sw=2 sts=2 ts=2 et
+AutocmdFT scss setlocal sw=2 sts=2 ts=2 et
 
 "}}}
 
@@ -1049,9 +1059,10 @@ if neobundle#tap('unite.vim')
         let g:unite_source_rec_min_cache_files = 1000
         let g:unite_source_rec_max_cache_files = 5000
         let g:unite_source_file_mru_long_limit = 6000
-        let g:unite_source_file_mru_limit = 300
+        let g:unite_source_file_mru_limit = 500
         let g:unite_source_directory_mru_long_limit = 6000
         let g:unite_prompt = '❯ '
+        let g:unite_winheight = 25
         " Open plugin directory by t
         call unite#custom#alias('directory', 'tabopen', 'tabvimfiler')
 
@@ -1193,6 +1204,25 @@ if neobundle#tap('unite-quickfix')
     call neobundle#untap()
 endif
 "}}}
+" moznion/unite-git-conflict {{{
+if neobundle#tap('unite-git-conflict')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'unite_sources' : [
+                \       'git-conflict',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
 " End unite-sources }}}
 
 " Shougo/VimFiler {{{
@@ -1488,6 +1518,7 @@ if neobundle#tap('emmet-vim')
         \       'xhttml',
         \       'css',
         \       'sass',
+        \       'scss',
         \       'styl',
         \       'xml',
         \       'xls',
@@ -1529,12 +1560,17 @@ if neobundle#tap('vim-easymotion')
     function! neobundle#tapped.hooks.on_post_source(bundle) "{{{
         EMCommandLineNoreMap <Space> <CR>
         EMCommandLineNoreMap <C-j> <Space>
+        if ! g:EasyMotion_do_shade
+            highlight! link EasyMotionIncSearch IncSearch
+        endif
     endfunction "}}}
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
         " EasyMotion Config {{{
         let g:EasyMotion_do_mapping = 0
         " let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTZXCVBASDGJF'
         let g:EasyMotion_keys = ';HKLYUIONM,WERTXCVBASDGJF'
+        " Do not shade
+        let g:EasyMotion_do_shade = 0
         " Use upper case
         let g:EasyMotion_use_upper = 1
         " Smartcase
@@ -1553,7 +1589,7 @@ if neobundle#tap('vim-easymotion')
         " Prompt
         let g:EasyMotion_prompt = '{n}> '
         " Highlight cursor
-        let g:EasyMotion_cursor_highlight = 1
+        " let g:EasyMotion_cursor_highlight = 1
         "}}}
 
         " EasyMotion Regrex {{{
@@ -2390,18 +2426,18 @@ if neobundle#tap('vim-submode')
     " Resize window
     call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
     call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-    call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
-    call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+    call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
+    call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
     call submode#map('winsize', 'n', '', '>', '<C-w>3>')
     call submode#map('winsize', 'n', '', '<', '<C-w>3<')
-    call submode#map('winsize', 'n', '', '+', '<C-w>3-')
-    call submode#map('winsize', 'n', '', '-', '<C-w>3+')
+    call submode#map('winsize', 'n', '', '+', '<C-w>3+')
+    call submode#map('winsize', 'n', '', '-', '<C-w>3-')
 
     function! s:my_x()
         undojoin
         normal! "_x
     endfunction
-    noremap <silent> <Plug>(my-x) :<C-u>call <SID>my_x()<CR>
+    nnoremap <silent> <Plug>(my-x) :<C-u>call <SID>my_x()<CR>
     call submode#enter_with('my_x', 'n', '', 'x', '"_x')
     call submode#map('my_x', 'n', 'r', 'x', '<Plug>(my-x)')
 
@@ -2643,7 +2679,27 @@ if neobundle#tap('syntastic')
         \ })
     " }}}
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
-        let g:syntastic_python_checkers=['pyflakes','flake8','pep8']
+        let g:syntastic_python_checkers=['flake8', 'python']
+        " let g:syntastic_python_checkers=['pyflakes','flake8','pep8']
+        " https://github.com/mitsuhiko/dotfiles/blob/master/vim/vimrc
+        " Don't warn on
+        " " E121 continuation line indentation is not a multiple of four
+        " " E128 continuation line under-indented for visual indent
+        " " E711 comparison to None should be 'if cond is not None:'
+        " " E301 expected 1 blank line, found 0
+        " " E261 at least two spaces before inline comment
+        " " E241 multiple spaces after ':'
+        " " E124 closing bracket does not match visual indentation
+        " " E126 continuation line over-indented for hanging indent
+        " " E721 do not compare types, use 'isinstance()'
+        " let g:syntastic_python_flake8_args =
+        "             \ '--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
+        "             \ --max-line-length=84'
+
+        " E712 - Fix comparison with boolean.
+        " do not compare types, use ‘isinstance()’
+        let g:syntastic_python_flake8_args = '--ignore=E712'
+
     endfunction "}}}
     call neobundle#untap()
 endif
@@ -2669,8 +2725,8 @@ if neobundle#tap('vim-over')
         \ })
     " }}}
     " Setting {{{
-    nnoremap S :OverCommandLine<CR>%s/
-    xnoremap S :OverCommandLine<CR>s/
+    nnoremap <Leader>S :OverCommandLine<CR>%s/
+    xnoremap <Leader>S :OverCommandLine<CR>s/
     "}}}
     call neobundle#untap()
 endif
@@ -2726,6 +2782,40 @@ if neobundle#tap('vim-editvar')
     endfunction "}}}
     " Setting {{{
     "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+
+" thinca/vim-threes {{{
+if neobundle#tap('vim-threes')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'commands' : [
+                \       'ThreesStart',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+NeoBundle 'wellle/targets.vim'
+" welle/targets.vim {{{
+if neobundle#tap('targets.vim')
+    " Config {{{
+    call neobundle#config({})
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Disable `n` & `l` targets for line object
+    let g:targets_nlNL = '  NL'
     call neobundle#untap()
 endif
 " }}}
@@ -2836,9 +2926,34 @@ function! s:my_gm()
     call cursor(current_line.num, current_line.len / 2)
 endfunction
 nnoremap <silent> gm :<C-u>call <SID>my_gm()<CR>
+
+command! -nargs=0 GetHighlightingGroup
+            \ echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '>trans<'
+            \ . synIDattr(synID(line('.'),col('.'),0),'name') . '>lo<'
+            \ . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'
+
 " Rename file
 " http://vim-users.jp/2009/05/hack17/
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+
+" Change current directory.
+" http://vim-users.jp/2009/09/hack69/
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
+function! s:ChangeCurrentDir(directory, bang) "{{{
+    if a:directory == ''
+        lcd %:p:h
+    else
+        execute 'lcd' . a:directory
+    endif
+
+    if a:bang == ''
+        pwd
+    endif
+endfunction "}}}
+
+" nmap <expr> f v:count > 0 ? 'f' : '<Plug>(easymotion-fl)'
+" set wildignore=*.tmp,*.swp,*.bak,*.class,*.pyc,*.o,*.exe,*.dll,*.so " ignore some files when auto-completing file names
+" hi link EasyMotionMoveHL Search
 "}}}
 
 " Finally {{{ =====================
