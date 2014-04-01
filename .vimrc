@@ -128,6 +128,7 @@ NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'tokuhirom/jsref'
 NeoBundle 'mustardamus/jqapi'
 NeoBundle 'soh335/vim-ref-jquery'
+NeoBundle 'osyo-manga/ref-lynx'
 "}}}
 
 " Extend Basic Vim Commands {{{
