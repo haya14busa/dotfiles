@@ -110,7 +110,10 @@ NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 
 " Development {{{
 NeoBundleLazy 'thinca/vim-quickrun'
-NeoBundleLazy 'scrooloose/syntastic'
+" NeoBundleLazy 'scrooloose/syntastic'
+
+NeoBundleLazy "osyo-manga/vim-watchdogs"
+
 NeoBundleLazy 'koron/codic-vim' " Codic vim plugin
 NeoBundleLazy 'rhysd/unite-codic.vim' " A unite.vim source for codic-vim.
 "}}}
@@ -1465,6 +1468,9 @@ if neobundle#tap('vim-quickrun')
                     \       "runner" : "vimproc",
                     \       "runner/vimproc/updatetime" : 60
                     \   },
+                    \   "watchdogs_checker/_" : {
+                    \       "hook/close_quickfix/enable_exit" : 1,
+                    \   },
                     \}
         let g:quickrun_config.markdown = {
                     \ 'type': 'markdown/pandoc',
@@ -1476,12 +1482,6 @@ if neobundle#tap('vim-quickrun')
     nnoremap <silent><Leader>qr :<C-u>QuickRun<CR>
     vnoremap <silent><Leader>qr :QuickRun<CR>
 
-    let g:quickrun_config = {
-                \   "_" : {
-                \       "runner" : "vimproc",
-                \       "runner/vimproc/updatetime" : 60
-                \   },
-                \}
     call neobundle#untap()
 endif
 "}}}
@@ -2735,6 +2735,34 @@ if neobundle#tap('syntastic')
         " do not compare types, use ‘isinstance()’
         let g:syntastic_python_flake8_args = '--ignore=E712'
 
+
+        " JavaScript
+        let g:syntastic_javascript_checkers=['jshint']
+    endfunction "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" osyo-manga/vim-watchdogs {{{
+if neobundle#tap('vim-watchdogs')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' : [
+                \       'thinca/vim-quickrun',
+                \       'Shougo/vimproc',
+                \       'osyo-manga/shabadou.vim',
+                \       'jceb/vim-hier',
+                \       'dannyob/quickfixstatus',
+                \   ],
+                \   'autoload' : {
+                \     'insert' : 1,
+                \   },
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        let g:watchdogs_check_BufWritePost_enable = 1
+        let g:watchdogs_check_CursorHold_enable = 1
+        call watchdogs#setup(g:quickrun_config)
     endfunction "}}}
     call neobundle#untap()
 endif
