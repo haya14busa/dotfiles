@@ -2754,9 +2754,6 @@ if neobundle#tap('vim-watchdogs')
                 \       'jceb/vim-hier',
                 \       'dannyob/quickfixstatus',
                 \   ],
-                \   'autoload' : {
-                \     'insert' : 1,
-                \   },
                 \ })
     " }}}
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
@@ -2764,6 +2761,11 @@ if neobundle#tap('vim-watchdogs')
         let g:watchdogs_check_CursorHold_enable = 1
         call watchdogs#setup(g:quickrun_config)
     endfunction "}}}
+    augroup source-watchdogs
+        autocmd!
+        autocmd BufWritePre * NeoBundleSource vim-watchdogs
+        \       autocmd! source-watchdogs *
+    augroup END
     call neobundle#untap()
 endif
 " }}}
