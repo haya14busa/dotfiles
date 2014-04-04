@@ -234,6 +234,7 @@ NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundleLazy 'kannokanno/previm'
 
 " Python {{{
 NeoBundleLazy 'davidhalter/jedi-vim'
@@ -2871,7 +2872,6 @@ if neobundle#tap('vim-threes')
 endif
 " }}}
 
-NeoBundle 'wellle/targets.vim'
 " welle/targets.vim {{{
 if neobundle#tap('targets.vim')
     " Config {{{
@@ -2881,6 +2881,29 @@ if neobundle#tap('targets.vim')
     endfunction "}}}
     " Disable `n` & `l` targets for line object
     let g:targets_nlNL = '  NL'
+    call neobundle#untap()
+endif
+" }}}
+
+" kannokanno/previm {{{
+if neobundle#tap('previm')
+    " Config {{{
+    call neobundle#config({
+                \   'depends': ['tyru/open-browser.vim'],
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'markdown',
+                \     ],
+                \     'commands' : [
+                \       'PrevimOpen',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
     call neobundle#untap()
 endif
 " }}}
