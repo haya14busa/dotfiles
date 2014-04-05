@@ -147,6 +147,9 @@ NeoBundleLazy 'kana/vim-niceblock'
 NeoBundleLazy 'thinca/vim-visualstar'
 NeoBundleLazy 'osyo-manga/vim-anzu'
 NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
+
+NeoBundle 'tpope/vim-speeddating'
+
 "}}}
 
 " Motion {{{
