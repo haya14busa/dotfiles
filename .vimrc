@@ -57,13 +57,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 command! -nargs=1
 \   MyNeoBundle
 \   NeoBundle <args>, {
-\       "base" : "~/.vim/myplugin/",
+\       "base" : "~/.vim/myplugin",
 \       "type" : "nosync",
 \   }
 command! -nargs=1
 \   MyNeoBundleLazy
 \   NeoBundle <args>, {
-\       "base" : "~/.vim/myplugin/",
+\       "base" : "~/.vim/myplugin",
 \       "type" : "nosync",
 \       "lazy" : 1,
 \   }
