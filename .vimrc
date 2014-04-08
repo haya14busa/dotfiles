@@ -624,7 +624,8 @@ Autocmd InsertLeave * set nopaste
 " Show invisibles {{{
 
 " Shortcut to rapidly toggle `set list`
-nnoremap <silent> <Leader>l :<C-u>set list!<CR>
+nnoremap <silent> <Leader>l :<C-u>set list!
+                            \ \|  set list?<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
