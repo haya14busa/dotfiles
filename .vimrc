@@ -566,8 +566,9 @@ xnoremap <silent> Y :<C-u>call <SID>keepcursor_visual_wrapper('Y')<CR>
 "}}}
 
 " Spelling Keymaps {{{
-" turn on the spell checking and set the English language
-nnoremap <Leader>sp :set spell!<CR>
+" Toggle spell checking
+nnoremap <Leader>sp :<C-u>set spell!
+                  \ \|    set spell?<CR>
 " }}}
 
 " Get info"{{{
