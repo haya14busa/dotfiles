@@ -628,7 +628,9 @@ nnoremap <silent> <Leader>l :<C-u>set list!
                             \ \|  set list?<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+" set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,
+set list
 
 "Invisible character colors
 hi NonText guifg=#4a4a59
