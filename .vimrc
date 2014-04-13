@@ -3056,6 +3056,26 @@ endfunction "}}}
 " nmap <expr> f v:count > 0 ? 'f' : '<Plug>(easymotion-fl)'
 " set wildignore=*.tmp,*.swp,*.bak,*.class,*.pyc,*.o,*.exe,*.dll,*.so " ignore some files when auto-completing file names
 " hi link EasyMotionMoveHL Search
+
+" SplitAndGo {{{
+command! -count=1 -nargs=1 -complete=customlist,SAG_Complete SplitAndGo call SplitAndGo(<q-args>)
+
+function! SplitAndGo(cmd)
+  let cnt = v:count
+  let cmd = a:cmd ==# 'split' ? 'topleft ' . a:cmd : 'botright ' . a:cmd
+
+  execute cmd
+  if cnt > 0
+    execute "normal! " . cnt . 'G'
+  endif
+endfunction
+
+function! SAG_Complete(ArgLead, CmdLine, CursorPos)
+  return ['split', 'vsplit']
+endfunction
+
+nnoremap _ :SplitAndGo split<CR>
+nnoremap <bar> :SplitAndGo vsplit<CR>
 "}}}
 
 " Finally {{{ =====================
