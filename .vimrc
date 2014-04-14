@@ -1014,6 +1014,9 @@ AutocmdFT markdown setlocal sw=2 sts=2 ts=2 et
 AutocmdFT html setlocal sw=2 sts=2 ts=2 et
 AutocmdFT scss setlocal sw=2 sts=2 ts=2 et
 
+AutocmdFT c   setlocal foldmethod=syntax
+AutocmdFT cpp setlocal foldmethod=syntax
+
 "}}}
 
 " end vim setup}}}
