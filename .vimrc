@@ -1009,7 +1009,6 @@ endfunction
 " Markdown {{{
 Autocmd BufRead,BufNewFile *.md  set filetype=markdown
 AutocmdFT markdown setlocal sw=2 sts=2 ts=2 et
-AutocmdFT markdown normal! zR
 "}}}
 
 AutocmdFT html setlocal sw=2 sts=2 ts=2 et
