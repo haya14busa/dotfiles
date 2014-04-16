@@ -2590,9 +2590,12 @@ if neobundle#tap('vim-autopep8')
     call neobundle#config({
         \ "autoload": {
         \   "filetypes": ["python", "python3", "djangohtml"],
+        \   "commands": ["Autopep8"],
         \   }
         \ })
     call neobundle#untap()
+    let g:no_autopep8_maps = 1
+    command! -bar Autopep8 call Autopep8()
 endif
 " }}}
 
