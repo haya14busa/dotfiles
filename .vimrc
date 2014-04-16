@@ -246,6 +246,12 @@ NeoBundleLazy 'tell-k/vim-autopep8'
 NeoBundleLazy 'hynek/vim-python-pep8-indent'
 "}}}
 
+" Scala {{{
+NeoBundleLazy 'derekwyatt/vim-scala'
+NeoBundleLazy 'derekwyatt/vim-sbt'
+NeoBundleLazy 'mdreves/vim-scaladoc'
+NeoBundleLazy 'gre/play2vim'
+"}}}
 " Scheme {{{
 NeoBundleLazy 'aharisu/vim_goshrepl'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
@@ -1441,6 +1447,11 @@ if neobundle#tap('neocomplete.vim')
         let g:jedi#auto_vim_configuration = 0
         let g:neocomplete#force_omni_input_patterns.python =
                     \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+        let g:neocomplete#sources#dictionary#dictionaries = {
+            \ 'default' : '',
+            \ 'vimshell' : $HOME.'/.vimshell_hist',
+            \ 'scala' : $HOME.'/.vim/myplugin/vim-scala-dict/dict/scala.dict',
+            \ }
     endfunction
     " Use neocomplete.
     let g:neocomplete#enable_at_startup = 1
@@ -2927,6 +2938,63 @@ if neobundle#tap('previm')
 endif
 " }}}
 
+" derekwyatt/vim-scala {{{
+if neobundle#tap('vim-scala')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'scala',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" derekwyatt/vim-sbt {{{
+if neobundle#tap('vim-sbt')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'sbt',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" mdreves/vim-scaladoc {{{
+if neobundle#tap('vim-scaladoc')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'scala',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        AutocmdFT scala nnoremap <buffer> K :<C-u>call scaladoc#Search(expand("<cword>"))<CR>
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
 " End plugins }}}
 
 " Misc {{{======================
