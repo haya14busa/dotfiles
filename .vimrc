@@ -953,8 +953,8 @@ if &diff
     noremap u u:<C-u>diffupdate<CR>
 
     " same bindings for merging diffs as in normal mode
-    xnoremap dp :diffput<cr>
-    xnoremap do :diffget<cr>
+    xnoremap <Leader>dp :diffput<cr>
+    xnoremap <Leader>do :diffget<cr>
 endif
 
 " Update diff
