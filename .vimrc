@@ -246,6 +246,12 @@ NeoBundleLazy 'tell-k/vim-autopep8'
 NeoBundleLazy 'hynek/vim-python-pep8-indent'
 "}}}
 
+" JavaScript {{{
+NeoBundleLazy 'marijnh/tern_for_vim'
+NeoBundleLazy 'maksimr/vim-jsbeautify'
+"}}}
+
+
 " Scala {{{
 NeoBundleLazy 'derekwyatt/vim-scala'
 NeoBundleLazy 'derekwyatt/vim-sbt'
@@ -1437,7 +1443,9 @@ if neobundle#tap('neocomplete.vim')
         " Enable omni completion.
         AutocmdFT css setlocal omnifunc=csscomplete#CompleteCSS
         AutocmdFT html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        AutocmdFT javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        " AutocmdFT javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        AutocmdFT javascript setlocal omnifunc=tern#Complete
+        AutocmdFT coffee setlocal omnifunc=javascriptcomplete#CompleteJS
         AutocmdFT xml setlocal omnifunc=xmlcomplete#CompleteTags
         AutocmdFT python setlocal omnifunc=jedi#completions
 
@@ -2926,6 +2934,48 @@ if neobundle#tap('previm')
                 \     ],
                 \     'commands' : [
                 \       'PrevimOpen',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" marijnh/tern_for_vim {{{
+if neobundle#tap('tern_for_vim')
+    " Config {{{
+    call neobundle#config({
+                \   'build' : {
+                \     'othres' : 'npm install'
+                \   },
+                \   'autoload' : {
+                \       'functions' : ['tern#Complete', 'tern#Enable'],
+                \       'filetypes' : 'javascript'
+                \     },
+                \   'commands' : ['TernDef', 'TernDoc', 'TernType',
+                \                 'TernRefs', 'TernRename'],
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" maksimr/vim-jsbeautify {{{
+if neobundle#tap('vim-jsbeautify')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'javascript',
                 \     ],
                 \   }
                 \ })
