@@ -86,6 +86,7 @@ NeoBundleLazy 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'moznion/unite-git-conflict.vim'
 NeoBundleLazy 'Shougo/unite-session'
 NeoBundleLazy 'osyo-manga/unite-vimpatches'
+NeoBundleLazy 'tsukkee/unite-tag'
 "}}}
 NeoBundleLazy 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/vimshell.vim'
@@ -1287,6 +1288,20 @@ if neobundle#tap('unite-vimpatches')
                 \   'autoload' : {
                 \     'unite_sources' : [
                 \       'vimpatches',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    call neobundle#untap()
+endif
+" }}}
+" tsukkee/unite-tag {{{
+if neobundle#tap('unite-tag')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'unite_sources' : [
+                \       'tag',
                 \     ],
                 \   }
                 \ })
