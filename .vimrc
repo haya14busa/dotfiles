@@ -1100,7 +1100,7 @@ if neobundle#tap('unite.vim')
     " Settings"{{{
     function! neobundle#tapped.hooks.on_source(bundle)
         let g:unite_kind_jump_list_after_jump_scroll=0
-        let g:unite_enable_start_insert = 0
+        let g:unite_enable_start_insert = 1
         let g:unite_source_rec_min_cache_files = 1000
         let g:unite_source_rec_max_cache_files = 5000
         let g:unite_source_file_mru_long_limit = 6000
@@ -1114,6 +1114,18 @@ if neobundle#tap('unite.vim')
         " Fuzzy find
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
+
+        AutocmdFT unite call s:unite_settings()
+        function! s:unite_settings()
+            imap <silent><buffer> <C-j> <Plug>(unite_select_next_line)
+            imap <silent><buffer> <C-k> <Plug>(unite_select_previous_line)
+
+            imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+            imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+
+            nmap <buffer> <ESC> <Plug>(unite_exit)
+            nmap <buffer> q <Plug>(unite_exit)
+        endfunction
     endfunction "}}}
 
     " Unite {{{
