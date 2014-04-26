@@ -1034,6 +1034,7 @@ AutocmdFT cpp setlocal foldmethod=syntax
 Autocmd BufRead,BufNewFile *.scala  set filetype=scala
 Autocmd BufRead,BufNewFile *.sbt set filetype=sbt
 AutocmdFT scala setlocal foldmethod=syntax
+AutocmdFT scala setlocal sw=2 sts=2 ts=2 et
 
 "}}}
 
