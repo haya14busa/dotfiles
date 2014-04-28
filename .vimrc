@@ -3154,7 +3154,7 @@ function! s:rotate_in_line() "{{{
     endif
 endfunction "}}}
 " Toggle 0, ^, $
-nnoremap <silent>0 :<C-u>call <SID>smart_move('g0')<CR>
+" nnoremap <silent> 0 :<C-u>call <SID>smart_move('g0')<CR>
 
 " Backspace: Act like normal backspace
 noremap <BS>  "_X
