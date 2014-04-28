@@ -2194,7 +2194,7 @@ if neobundle#tap('open-browser.vim')
 endif
 "}}}
 " tyru/open-browser-github {{{
-if neobundle#tap('open-browser-github')
+if neobundle#tap('open-browser-github.vim')
     " Config {{{
     call neobundle#config({
                 \   'depends' :
