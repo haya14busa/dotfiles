@@ -3125,6 +3125,9 @@ function! Plog(msg) "{{{
     " tail -f ~/vim.log
 endfunction
 "}}}
+"
+command! -bar TimerStart let start_time = reltime()
+command! -bar TimerEnd echo reltimestr(reltime(start_time)) | unlet start_time
 
 " Color column
 if v:version >= 703
