@@ -105,6 +105,7 @@ NeoBundleLazy 'Shougo/neosnippet.vim'
 MyNeoBundle 'haya14busa-snippets'
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
+NeoBundle 'deris/vim-visualinc'
 NeoBundleLazy 'h1mesuke/vim-alignta'
 NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
 "}}}
