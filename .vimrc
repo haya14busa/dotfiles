@@ -2924,7 +2924,6 @@ if neobundle#tap('vim-editvar')
 endif
 " }}}
 
-
 " thinca/vim-threes {{{
 if neobundle#tap('vim-threes')
     " Config {{{
@@ -3079,6 +3078,28 @@ if neobundle#tap('vim-scaladoc')
     call neobundle#untap()
 endif
 " }}}
+
+" plasticboy/vim-markdown {{{
+if neobundle#tap('vim-markdown')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'markdown',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        let g:markdown_no_default_key_mappings = 1
+        AutocmdFT markdown nmap <buffer> ]] <Plug>(Markdown_MoveToNextHeader)
+        AutocmdFT markdown nmap <buffer> [[ <Plug>(Markdown_MoveToPreviousHeader)
+    endfunction "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+
 " End plugins }}}
 
 " Misc {{{======================
