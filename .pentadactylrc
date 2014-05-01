@@ -1,0 +1,76 @@
+"1.1
+
+" NOTE:
+" use `map -built` instead of `noremap`
+" <C-z> -> Disable Pentadactyl mappings. Press <ESC> to resume
+
+loadplugins '\.(js|penta)$'
+group user
+
+" Hint {{{
+set hintkeys="hjklyuiopnm,qwertzxcvbasdfg;"
+highlight -a Hint text-transform: uppercase;
+
+map -modes hints <C-f> -ex normal! <C-f>
+map -modes hints <C-b> -ex normal! <C-b>
+"}}}
+
+" Tab Page {{{
+nmap t; t
+nmap t <Nop>
+nmap tl gt
+nmap th gT
+nmap tt :<C-u>tabopen<Space>
+"}}}
+
+" Command Line {{{
+cmap -builtin <C-p>  <Up>
+cmap -builtin <C-n>  <Down>
+cmap -builtin <Up>   <C-p>
+cmap -builtin <Down> <C-n>
+
+" Move
+cmap -builtin <C-a> <Home>
+cmap -builtin <C-b> <Left>
+cmap -builtin <C-f> <Right>
+cmap -builtin <C-e> <End>
+" }}}
+
+" GUI Option {{{
+" BookmarkBar
+set guioptions+=B
+" Always show the command line, even when empty
+set guioptions+=c
+" Toolbar
+set guioptions+=T
+" }}}
+
+" Search {{{
+set hlfind
+nmap -builtin <C-l> :<C-u>nohlfind<CR>
+" }}}
+
+" Yank {{{
+nmap -builtin y Y
+nmap -builtin Y y
+
+noremap <C-c> <pass>
+noremap <C-v> <pass>
+cnoremap <C-c> <pass>
+cnoremap <C-v> <pass>
+inoremap <C-c> <pass>
+inoremap <C-v> <pass>
+"}}}
+
+" Zoop {{{
+nmap -builtin z0 zZ
+nmap -builtin zi ZI
+nmap -builtin zo ZO
+"}}}
+
+" Bookmarklet {{{
+command! bml-pocket -description "Bookmarklet: Save to pocket" open javascript:(function(){var%20e=function(t,n,r,i,s){var%20o=[4832339,4912311,1446348,7902611,6260142,4413264,5462301,3972619,2015233,4545953];var%20i=i||0,u=0,n=n||[],r=r||0,s=s||0;var%20a={'a':97,'b':98,'c':99,'d':100,'e':101,'f':102,'g':103,'h':104,'i':105,'j':106,'k':107,'l':108,'m':109,'n':110,'o':111,'p':112,'q':113,'r':114,'s':115,'t':116,'u':117,'v':118,'w':119,'x':120,'y':121,'z':122,'A':65,'B':66,'C':67,'D':68,'E':69,'F':70,'G':71,'H':72,'I':73,'J':74,'K':75,'L':76,'M':77,'N':78,'O':79,'P':80,'Q':81,'R':82,'S':83,'T':84,'U':85,'V':86,'W':87,'X':88,'Y':89,'Z':90,'0':48,'1':49,'2':50,'3':51,'4':52,'5':53,'6':54,'7':55,'8':56,'9':57,'\/':47,':':58,'?':63,'=':61,'-':45,'_':95,'&':38,'$':36,'!':33,'.':46};if(!s||s==0){t=o[0]+t}for(var%20f=0;f<t.length;f++){var%20l=function(e,t){return%20a[e[t]]?a[e[t]]:e.charCodeAt(t)}(t,f);if(!l*1)l=3;var%20c=l*(o[i]+l*o[u%o.length]);n[r]=(n[r]?n[r]+c:c)+s+u;var%20p=c%(50*1);if(n[p]){var%20d=n[r];n[r]=n[p];n[p]=d}u+=c;r=r==50?0:r+1;i=i==o.length-1?0:i+1}if(s==322){var%20v='';for(var%20f=0;f<n.length;f++){v+=String.fromCharCode(n[f]%(25*1)+97)}o=function(){};return%20v+'065e95d03b'}else{return%20e(u+'',n,r,i,s+1)}};var%20t=document,n=t.location.href,r=t.title;var%20i=e(n);var%20s=t.createElement('script');s.type='text/javascript';s.src='https://getpocket.com/b/r4.js?h='+i+'&u='+encodeURIComponent(n)+'&t='+encodeURIComponent(r);e=i=function(){};var%20o=t.getElementsByTagName('head')[0]||t.documentElement;o.appendChild(s)})()
+command! bml-twitter -description "Bookmarklet: Share on Twitter" open javascript:(function(){window.twttr=window.twttr||{};var%20D=550,A=450,C=screen.height,B=screen.width,H=Math.round((B/2)-(D/2)),G=0,F=document,E;if(C>A){G=Math.round((C/2)-(A/2))}window.twttr.shareWin=window.open('http://twitter.com/share','','left='+H+',top='+G+',width='+D+',height='+A+',personalbar=0,toolbar=0,scrollbars=1,resizable=1');E=F.createElement('script');E.src='http://platform.twitter.com/bookmarklets/share.js?v=1';F.getElementsByTagName('head')[0].appendChild(E)}());
+"}}}
+
+" vim: set ft=pentadactyl:
