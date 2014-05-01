@@ -3257,6 +3257,38 @@ endfunction
 
 nnoremap _ :SplitAndGo split<CR>
 nnoremap <bar> :SplitAndGo vsplit<CR>
+
+function! s:norelativenumber()
+    augroup restore_op
+        autocmd!
+        autocmd CursorMoved * setlocal norelativenumber
+        autocmd CursorMoved * augroup restore_op | execute "autocmd!" | execute "augroup END"
+        autocmd CursorHold * setlocal norelativenumber
+        autocmd CursorHold * augroup restore_op | execute "autocmd!" | execute "augroup END"
+    augroup END
+    return ""
+endfunction
+
+function! s:ToggleRelativeNumber()
+    if &relativenumber
+        set norelativenumber
+        let &number = exists("b:togglernu_number") ? b:togglernu_number : 1
+    else
+        let b:togglernu_number = &number
+        set relativenumber
+    endif
+    redraw! " these two lines required for omap
+
+    return ''
+endfunction
+
+nnoremap <silent> <Leader>m :call <SID>ToggleRelativeNumber()<CR>
+" vnoremap <silent> m :<C-U>call <SID>ToggleRelativeNumber()<CR>gv
+onoremap <expr> m <SID>ToggleRelativeNumber() . <SID>norelativenumber()
+
+"}}}
+
+
 "}}}
 
 " Finally {{{ =====================
