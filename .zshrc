@@ -207,7 +207,7 @@ alias note="mvim $HOME/notes/`date +%Y-%m-%d`.md"
 alias say="say >& /dev/null"
 alias SayKotoeri2="SayKotoeri2 >& /dev/null"
 alias SayKotoeri="SayKotoeri >& /dev/null"
-alias tmux="tmux -u"
+alias tmux="tmux -2"
 
 # path to pandoc
 PATH=${HOME}/.cabal/bin:$PATH
