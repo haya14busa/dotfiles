@@ -152,6 +152,8 @@ NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 
 NeoBundle 'tpope/vim-speeddating'
 
+NeoBundle 'vim-jp/autofmt'
+
 "}}}
 
 " Motion {{{
@@ -2098,7 +2100,7 @@ endif
 "}}}
 "}}}
 
-" osyo-manga/vim-anzu search{{{
+" osyo-manga/vim-anzu {{{
 if neobundle#tap('vim-anzu')
     call neobundle#config({
         \   'autoload' : {
@@ -3099,6 +3101,14 @@ if neobundle#tap('vim-markdown')
 endif
 " }}}
 
+" vim-jp/autofmt {{{
+if neobundle#tap('autofmt')
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+set formatexpr=autofmt#compat#formatexpr()
+    endfunction "}}}
+    call neobundle#untap()
+endif
+" }}}
 
 " End plugins }}}
 
