@@ -259,3 +259,24 @@ export PATH=$HOME/bin:$PATH
 
 #rlwrap Gauche
 alias gosh='rlwrap gosh'
+<<<<<<< HEAD
+=======
+
+
+export IntelliJ=$HOME/Downloads/idea-IC-133.193/
+export PATH=$IntelliJ/bin:$PATH
+alias intellij='$IntelliJ/bin/idea.sh'
+
+alias g='git'
+
+# Disable <C-s> feature
+# stty stop undef
+#so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
+stty -ixon
+
+
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+
+source $HOME/nvm/nvm.sh
+>>>>>>> 9e987ce... update misc

@@ -5,6 +5,7 @@ import rlcompleter
 import atexit
 import os
 from see import see
+# import imp
 # tab complete
 readline.parse_and_bind('tab: complete')
 # history file
@@ -16,11 +17,11 @@ except IOError:
 atexit.register(readline.write_history_file, histfile)
 del os, histfile, readline, rlcompleter, atexit
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# import sys
+# imp.reload(sys)
+# sys.setdefaultencoding('utf-8')
+# import codecs
+# sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
+# sys.stdin = codecs.getreader('utf_8')(sys.stdin)
 
-import codecs
-sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
-sys.stdin = codecs.getreader('utf_8')(sys.stdin)
-
+# vim:filetype=python

@@ -1,0 +1,21 @@
+"3.8 (created: 2013/10/13 18:08:56)
+
+"source! /home/haya14busa/.vimperatorrc.local
+
+
+set hintchars="hjklyuiopnm,qwertzxcvbasdfg;"
+
+" Tab KeyMaps {{{
+nnoremap t; t
+nmap t <nop>
+nnoremap tl gt
+nnoremap th gT
+nnoremap tt :<C-u>tabnew<Space>
+
+"}}}
+
+set editor="gnome-terminal -e vim "
+" set editor="gnome-editor --disable-factoy -x vim "
+" set editor="gnome-terminal --disable-factoy -x vim "
+
+" vim: set ft=vimperator:
