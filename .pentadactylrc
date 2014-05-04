@@ -8,7 +8,8 @@ loadplugins '\.(js|penta)$'
 group user
 
 " Hint {{{
-set hintkeys="hjklyuiopnm,qwertzxcvbasdfg;"
+" set hintkeys="hjklyuiopnm,qwertzxcvbasdfg;"
+set hintkeys="hjklyuiopnm,wertzxcvbasdfg;"
 highlight -a Hint text-transform: uppercase;
 
 map -modes hints <C-f> -ex normal! <C-f>
