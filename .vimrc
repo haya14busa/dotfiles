@@ -314,6 +314,7 @@ NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
 NeoBundleLazy 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
 NeoBundleLazy 'basyura/J6uil.vim'
 NeoBundle 'bohrshaw/vim-vimperator-syntax'
+NeoBundleLazy 'dogrover/vim-pentadactyl'
 NeoBundleLazy 'supermomonga/thingspast.vim'
 NeoBundleLazy 'rbtnn/puyo.vim'
 NeoBundleLazy 'thinca/vim-scouter'
@@ -3100,6 +3101,21 @@ if neobundle#tap('vim-markdown')
     call neobundle#untap()
 endif
 " }}}
+
+" dogrover/vim-pentadactyl {{{
+if neobundle#tap('vim-pentadactyl')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'pentadactyl',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    call neobundle#untap()
+endif
+"}}}
 
 " vim-jp/autofmt {{{
 if neobundle#tap('autofmt')
