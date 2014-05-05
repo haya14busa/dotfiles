@@ -351,6 +351,7 @@ set display=lastline "Display as much as possible of the last line
 set formatoptions-=r,o " Turn off Automatically comment out when line break
 set grepprg=internal "Program to use for the :grep command
 set helpheight=12 " Minimal initial height of the help window
+set helplang& helplang=en,ja " If true Vim master, use English help file
 set hidden "Display another buffer when current buffer isn't saved.
 set history=1024 "Amount of Command history
 set infercase "Ignore case on insert completion.
