@@ -348,9 +348,6 @@ endif
 set cmdheight=1 "Number of screen lines to use for the command-line
 set cmdwinheight=5 "Number of screen lines to use for the command-line window
 set display=lastline "Display as much as possible of the last line
-set encoding=utf-8 "Sets the character encoding used inside Vim
-set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis "A list of character encodings
-set fileformats=unix,dos,mac "This gives the end-of-line (<EOL>) formats
 set formatoptions-=r,o " Turn off Automatically comment out when line break
 set grepprg=internal "Program to use for the :grep command
 set helpheight=12 " Minimal initial height of the help window
@@ -378,6 +375,17 @@ set virtualedit=block "Cursor can be positioned virtually when Visual-block mode
 set whichwrap=b,s,h,l,[,],<,> "Allow specified keys to move to the previous/next line
 set wrap "Lines longer than the width of the window will wrap
 set wrapscan "Searches wrap around the end of the file
+
+" Encoding {{{
+set encoding=utf-8 "Sets the character encoding used inside Vim
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,cp932,euc-jp "A list of character encodings
+set fileformats=unix,dos,mac "This gives the end-of-line (<EOL>) formats
+command! -bang -complete=file -nargs=? Utf8 edit<bang> ++enc=utf-8 <args>
+command! -bang -complete=file -nargs=? Sjis edit<bang> ++enc=cp932 <args>
+command! -bang -complete=file -nargs=? Euc edit<bang> ++enc=eucjp <args>
+" }}}
 
 " Tab Basic Settings {{{
 set autoindent "Copy indent from current line when starting a new line
