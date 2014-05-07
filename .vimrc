@@ -413,14 +413,21 @@ set backupdir-=. "List of directories for the backup file
 
 " Swap Settings {{{
 set swapfile "Use a swapfile for the buffer
-set directory-=. "List of directory names for the swap file
+if ! isdirectory($HOME.'/.vim/swap')
+    call mkdir($HOME.'/.vim/swap', 'p')
+endif
+set directory=~/.vim/swap
 "}}}
 
 " Undo Basic {{{
 if has('persistent_undo')
+    if ! isdirectory($HOME.'/.vim/undo')
+        call mkdir($HOME.'/.vim/undo', 'p')
+    endif
     set undofile "Automatically saves undo history
     set undoreload=1000 "Save the whole buffer for undo when reloading it
-    let &undodir=&directory "List of directory names for undo files
+    set undodir=~/.vim/undo
+    set undofile
 endif
 "}}}
 
