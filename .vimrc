@@ -600,8 +600,7 @@ xnoremap <silent> Y :<C-u>call <SID>keepcursor_visual_wrapper('Y')<CR>
 
 " Spelling Keymaps {{{
 " Toggle spell checking
-nnoremap <Leader>sp :<C-u>set spell!
-                  \ \|    set spell?<CR>
+nnoremap <Leader>sp :<C-u>set spell! spell?<CR>
 " }}}
 
 " Get info"{{{
@@ -657,8 +656,7 @@ Autocmd InsertLeave * set nopaste
 " Show invisibles {{{
 
 " Shortcut to rapidly toggle `set list`
-nnoremap <silent> <Leader>l :<C-u>set list!
-                            \ \|  set list?<CR>
+nnoremap <silent> <Leader>l :<C-u>set list! list?<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 " set listchars=tab:▸\ ,eol:¬
