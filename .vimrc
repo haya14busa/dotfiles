@@ -1488,6 +1488,9 @@ if neobundle#tap('neocomplete.vim')
         " Set minimum keyword length.
         let g:neocomplete#min_keyword_length = 3
 
+        " Set neosnippet competion length.
+        call neocomplete#custom#source('neosnippet', 'min_pattern_length', 1)
+
         let g:neocomplete#disable_auto_select_buffer_name_pattern =
                     \ '\[Command Line\]'
 
@@ -1515,9 +1518,17 @@ if neobundle#tap('neocomplete.vim')
     " Use neocomplete.
     let g:neocomplete#enable_at_startup = 1
 
+    " Plugin key-mappings.
+    inoremap <expr><C-g>     neocomplete#undo_completion()
+    inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+    " <Tab>: completion
+    inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
     " <C-f>, <C-b>: page move.
-    inoremap <expr><C-f>  pumvisible() ? "\<PageDown>" : "\<Right>"
-    inoremap <expr><C-b>  pumvisible() ? "\<PageUp>"   : "\<Left>"
+    " inoremap <expr><C-f>  pumvisible() ? "\<PageDown>" : "\<Right>"
+    " inoremap <expr><C-b>  pumvisible() ? "\<PageUp>"   : "\<Left>"
     " <C-y>: paste.
     " inoremap <expr><C-y>  pumvisible() ? neocomplete#close_popup() :  "\<C-r>\""
     " <C-e>: close popup.
