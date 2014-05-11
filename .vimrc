@@ -208,7 +208,7 @@ NeoBundleLazy 'Shougo/vim-vcs', {
 
 " UI {{{
 NeoBundle 'itchyny/lightline.vim'
-NeoBundleLazy 'nathanaelkane/vim-indent-guides'
+NeoBundle 'Yggdroot/indentLine'
 NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selected word
 "TODO
 NeoBundleLazy 'osyo-manga/vim-automatic', {
@@ -2148,25 +2148,16 @@ if neobundle#tap('vim-anzu')
 endif
 "}}}
 
-" nathanaelkane/vim-indent-guides {{{
-if neobundle#tap('vim-indent-guides')
-    call neobundle#config({
-        \   'autoload' : {
-        \     'commands' : [
-        \       'IndentGuidesToggle',
-        \     ]},
-        \ })
+" Yggdroot/indentLine {{{
+if neobundle#tap('indentLine')
+    let g:indentLine_color_term = 239
     function! neobundle#tapped.hooks.on_source(bundle)
-        let g:indent_guides_enable_on_vim_startup = 0
-        let g:indent_guides_guide_size = 1
-        let g:indent_guides_auto_colors = 1
-        let g:indent_guides_color_change_percent = 20
-        let g:indent_guides_default_mapping = 0
+        Autocmd InsertEnter * IndentLinesDisable
+        Autocmd InsertLeave * IndentLinesEnable
     endfunction
-    nnoremap <Leader>i :<C-u>IndentGuidesToggle<CR>
     call neobundle#untap()
 endif
-"}}}
+" }}}
 
 " jedi-vim {{{
 if neobundle#tap('jedi-vim')
