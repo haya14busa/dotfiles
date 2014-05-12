@@ -1057,6 +1057,8 @@ Autocmd BufRead,BufNewFile *.sbt set filetype=sbt
 AutocmdFT scala setlocal foldmethod=syntax
 AutocmdFT scala setlocal sw=2 sts=2 ts=2 et
 
+Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/scala/.tags
+Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/playframework/.tags
 "}}}
 
 " end vim setup}}}
@@ -2854,6 +2856,12 @@ if neobundle#tap('vim-watchdogs')
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
         let g:watchdogs_check_BufWritePost_enable = 1
         let g:watchdogs_check_CursorHold_enable = 1
+        let g:watchdogs_check_BufWritePost_enables = {
+        \   "scala" : 0
+        \}
+        let g:watchdogs_check_CursorHold_enables = {
+        \   "scala" : 0
+        \}
         call watchdogs#setup(g:quickrun_config)
     endfunction "}}}
     augroup source-watchdogs
@@ -3097,6 +3105,26 @@ if neobundle#tap('vim-scaladoc')
     endfunction "}}}
     " Setting {{{
     "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" gre/play2vim {{{
+if neobundle#tap('play2vim')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' : 'derekwyatt/vim-scala',
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'scala', 'play2-html', 'play2-conf', 'play2-routes'
+                \     ],
+                \   }
+                \ })
+    " }}}
+    Autocmd BufRead,BufNewFile *.scala.html set filetype=html syntax=play2-html
+    Autocmd BufRead,BufNewFile */conf/\(*\|\)routes set filetype=play2-routes
+    Autocmd BufRead,BufNewFile */conf/*.conf setf play2-conf
+    Autocmd BufRead,BufNewFile plugins.sbt set filetype=scala
     call neobundle#untap()
 endif
 " }}}
