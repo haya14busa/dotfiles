@@ -108,6 +108,7 @@ NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pa
 NeoBundle 'deris/vim-visualinc'
 NeoBundleLazy 'h1mesuke/vim-alignta'
 NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
+NeoBundleLazy 'ujihisa/neco-look'
 "}}}
 
 " Development {{{
@@ -3169,6 +3170,29 @@ if neobundle#tap('autofmt')
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
 set formatexpr=autofmt#compat#formatexpr()
     endfunction "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" ujihisa/neco-look {{{
+if neobundle#tap('neco-look')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' : 'Shougo/neocomplete.vim',
+                \   'disabled': !executable('look'),
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'markdown',
+                \       'gitcommit',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    AutocmdFT gitcommit NeoBundleSource neco-look
+    function! neobundle#tapped.hooks.on_post_source(bundle)
+        "only show 5 candidates
+        call neocomplete#custom#source('look', 'max_candidates', 5)
+    endfunction
     call neobundle#untap()
 endif
 " }}}
