@@ -1445,6 +1445,9 @@ if neobundle#tap('neosnippet.vim')
         let g:neosnippet#enable_snipmate_compatibility = 1
         " Remove snippets marker automatically
         Autocmd InsertLeave * :NeoSnippetClearMarkers
+
+        "prioratise snippet
+        call neocomplete#custom#source('neosnippet', 'rank', 400)
     endfunction "}}}
 
     " haya14busa-snippets {{{
@@ -1529,8 +1532,8 @@ if neobundle#tap('neocomplete.vim')
     inoremap <expr><C-l>     neocomplete#complete_common_string()
 
     " <Tab>: completion
-    inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    " inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    " inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
     " <C-f>, <C-b>: page move.
     " inoremap <expr><C-f>  pumvisible() ? "\<PageDown>" : "\<Right>"
