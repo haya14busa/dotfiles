@@ -1726,7 +1726,7 @@ if neobundle#tap('vim-easymotion')
         " pseudo-migemo
         let g:EasyMotion_use_migemo = 1
         " Jump to first with enter & space
-        let g:EasyMotion_enter_jump_first = 1
+        " let g:EasyMotion_enter_jump_first = 1
         let g:EasyMotion_space_jump_first = 1
         " Prompt
         let g:EasyMotion_prompt = '{n}> '
@@ -1803,18 +1803,17 @@ if neobundle#tap('vim-easymotion')
     xmap <C-n> <Plug>(easymotion-next)
     xmap <C-p> <Plug>(easymotion-prev)
 
-    map <expr><Tab> EasyMotion#is_active() ?
+    nmap <expr><Tab> EasyMotion#is_active() ?
                 \ '<Plug>(easymotion-next)' : '<TAB>'
-    map <expr>' EasyMotion#is_active() ?
+    nmap <expr>' EasyMotion#is_active() ?
                 \ '<Plug>(easymotion-prev)' : "'"
 
     " Extene word motion
-    map  ;w  <Plug>(easymotion-bd-w)
-    map  ;e  <Plug>(easymotion-bd-e)
-    omap ;w  <Plug>(easymotion-wl)
-    omap ;b  <Plug>(easymotion-bl)
-    omap ;e  <Plug>(easymotion-el)
-    omap ;ge <Plug>(easymotion-gel)
+    map  ;w  <Plug>(easymotion-bd-wl)
+    map  ;e  <Plug>(easymotion-bd-el)
+    " omap ;b  <Plug>(easymotion-bl)
+    " omap ;e  <Plug>(easymotion-el)
+    " omap ;ge <Plug>(easymotion-gel)
 
     function! s:wrap_M()
         let current_line = getline('.')
