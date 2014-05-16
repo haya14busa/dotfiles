@@ -64,9 +64,10 @@ inoremap <C-v> <pass>
 "}}}
 
 " Zoop {{{
-nmap -builtin z0 zZ
-nmap -builtin zi ZI
-nmap -builtin zo ZO
+nmap -builtin z0 zz
+" nmap -builtin z0 zZ
+" nmap -builtin zi ZI
+" nmap -builtin zo ZO
 "}}}
 
 " Bookmarklet {{{
