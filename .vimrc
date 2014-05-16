@@ -3201,7 +3201,7 @@ endif
 
 " End plugins }}}
 
-" Misc {{{======================
+" Misc {{{=========================
 " " sticky_table {{{
 " let sticky_table_us = {
 "       \',' : '<', '.' : '>', '/' : '?',
@@ -3390,7 +3390,7 @@ onoremap <expr> m <SID>ToggleRelativeNumber() . <SID>norelativenumber()
 
 "}}}
 
-" Finally {{{ =====================
+" Finally {{{ ======================
 " Installation check.
 NeoBundleCheck
 if !has('vim_starting')
