@@ -1209,6 +1209,7 @@ if neobundle#tap('unite.vim')
     nnoremap <silent> [unite]C :<C-u>Unite -auto-preview colorscheme<CR>
     " Git repository
     nnoremap <silent> [unite]<Space> :<C-u>Unite file_rec/async:! -start-insert<CR>
+    nnoremap <silent> <Space><Space> :<C-u>Unite file_rec/git -start-insert<CR>
     "}}}
     "}}}
 
