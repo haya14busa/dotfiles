@@ -1140,6 +1140,22 @@ if neobundle#tap('unite.vim')
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
 
+        " Ignore pattens
+        call unite#custom#source(
+            \ 'file_rec,file_rec/async,file_rec/git,file_mru,file,buffer,grep',
+            \ 'ignore_pattern', join([
+            \ '\.swp', '\.swo', '\~$',
+            \ '\.git/', '\.svn/', '\.hg/',
+            \ '\.ropeproject/',
+            \ 'node_modules/', 'log/', 'tmp/', 'obj/',
+            \ '/vendor/gems/', '/vendor/cache/', '\.bundle/', '\.sass-cache/',
+            \ '/tmp/cache/assets/.*/sprockets/', '/tmp/cache/assets/.*/sass/',
+            \ '\.pyc$', '\.class$', '\.jar$',
+            \ '\.jpg$', '\.jpeg$', '\.bmp$', '\.png$', '\.gif$',
+            \ '\.o$', '\.out$', '\.obj$', '\.rbc$', '\.rbo$', '\.gem$',
+            \ '\.zip$', '\.tar\.gz$', '\.tar\.bz2$', '\.rar$', '\.tar\.xz$'
+            \ ], '\|'))
+
         AutocmdFT unite call s:unite_settings()
         function! s:unite_settings()
             imap <silent><buffer> <C-j> <Plug>(unite_select_next_line)
