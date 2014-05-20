@@ -1807,7 +1807,7 @@ if neobundle#tap('vim-easymotion')
     map ;l <Plug>(easymotion-lineforward)
 
     " Anywhere!
-    map <Space><Space> <Plug>(easymotion-jumptoanywhere)
+    " map <Space><Space> <Plug>(easymotion-jumptoanywhere)
 
     " Repeat last motion
     " map ;<Space> <Plug>(easymotion-repeat)
