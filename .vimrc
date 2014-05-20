@@ -378,6 +378,8 @@ set whichwrap=b,s,h,l,[,],<,> "Allow specified keys to move to the previous/next
 set wrap "Lines longer than the width of the window will wrap
 set wrapscan "Searches wrap around the end of the file
 
+language C "Set locale
+
 " Encoding {{{
 set encoding=utf-8 "Sets the character encoding used inside Vim
 set termencoding=utf-8
