@@ -276,3 +276,11 @@ export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
 source $HOME/nvm/nvm.sh
+
+# Scala
+export SCALA_HOME=/usr/local/scala
+export PATH=$PATH:$SCALA_HOME/bin
+
+# Play framework
+export PLAY_HOME=/usr/local/play
+export PATH=$PATH:$PLAY_HOME
