@@ -3406,6 +3406,7 @@ onoremap <expr> m <SID>ToggleRelativeNumber() . <SID>norelativenumber()
 
 "}}}
 
+command! Date :call setline('.', getline('.') . strftime('%Y/%m/%d (%a) %H:%M'))
 
 "}}}
 
