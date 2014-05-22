@@ -249,6 +249,8 @@ NeoBundleLazy 'davidhalter/jedi-vim'
 NeoBundleLazy 'heavenshell/vim-pydocstring'
 NeoBundleLazy 'tell-k/vim-autopep8'
 NeoBundleLazy 'hynek/vim-python-pep8-indent'
+NeoBundleLazy 'mkomitee/vim-gf-python'
+
 "}}}
 
 " JavaScript {{{
@@ -3217,6 +3219,22 @@ if neobundle#tap('neco-look')
     call neobundle#untap()
 endif
 " }}}
+
+" mkomitee/vim-gf-python {{{
+if neobundle#tap('vim-gf-python')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'python',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    call neobundle#untap()
+endif
+" }}}
+
 
 " End plugins }}}
 
