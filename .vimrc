@@ -236,6 +236,7 @@ NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, .
 "}}}
 
 " Filetype {{{
+NeoBundleLazy 'osyo-manga/vim-precious'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -3231,6 +3232,28 @@ if neobundle#tap('vim-gf-python')
                 \   }
                 \ })
     " }}}
+    call neobundle#untap()
+endif
+" }}}
+
+" osyo-manga/vim-precious {{{
+if neobundle#tap('vim-precious')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' : [
+                \       'Shougo/context_filetype.vim',
+                \       'kana/vim-textobj-user'
+                \   ],
+                \   'autoload' : {
+                \     'filetypes' : [
+                \       'markdown',
+                \     ]
+                \   }
+                \ })
+    " }}}
+    " precious quickrun
+    AutocmdFT markdown nmap <buffer> ;pqr <Plug>(precious-quickrun-op)
+    AutocmdFT markdown omap <buffer> q <Plug>(textobj-precious-i)
     call neobundle#untap()
 endif
 " }}}
