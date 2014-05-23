@@ -237,6 +237,19 @@ NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, .
 
 " Filetype {{{
 NeoBundleLazy 'osyo-manga/vim-precious'
+let g:markdown_fenced_languages = [
+\  'coffee',
+\  'css',
+\  'erb=eruby',
+\  'javascript',
+\  'js=javascript',
+\  'json=javascript',
+\  'ruby',
+\  'sass',
+\  'xml',
+\  'python',
+\  'vim',
+\]
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'hail2u/vim-css3-syntax'
