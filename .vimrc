@@ -178,6 +178,7 @@ NeoBundleLazy 'thinca/vim-textobj-between'        " af{char}, if{char}
 NeoBundleLazy 'mattn/vim-textobj-url'             " au, iu
 NeoBundleLazy 'osyo-manga/vim-textobj-multiblock' " ab, ib
 NeoBundleLazy 'lucapette/vim-textobj-underscore'  " a_, i_
+NeoBundleLazy 'haya14busa/vim-textobj-number'     " an, in
 " NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
 
 NeoBundle 'wellle/targets.vim'
@@ -2106,6 +2107,17 @@ if neobundle#tap('vim-textobj-underscore')
     call neobundle#untap()
 endif
 " }}}
+" vim-textobj-number {{{
+if neobundle#tap('vim-textobj-number')
+    call neobundle#config({
+        \ 'depends' : 'kana/vim-textobj-user',
+        \ 'autoload' : {
+        \       'mappings' : [['xo', 'an'], ['xo', 'in']]
+        \   }
+        \ })
+    call neobundle#untap()
+endif
+" }}}
 " textobj-wiw {{{
 if neobundle#tap('textobj-wiw')
     call neobundle#config({
@@ -2118,29 +2130,6 @@ if neobundle#tap('textobj-wiw')
 endif
 " }}}
 
-" Number Text Object {{{
-onoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
-" xnoremap n :<c-u>call <SID>NumberTextObject(0)<cr>
-onoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
-" xnoremap an :<c-u>call <SID>NumberTextObject(1)<cr>
-onoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
-" xnoremap in :<c-u>call <SID>NumberTextObject(1)<cr>
-
-function! s:NumberTextObject(whole)
-    normal! v
-
-    while getline('.')[col('.')] =~# '\v[0-9]'
-        normal! l
-    endwhile
-
-    if a:whole
-        normal! o
-
-        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
-            normal! h
-        endwhile
-    endif
-endfunction
 "}}}
 
 " kana/vim-operator-replace "{{{
