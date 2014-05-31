@@ -1077,8 +1077,11 @@ Autocmd BufRead,BufNewFile *.sbt set filetype=sbt
 AutocmdFT scala setlocal foldmethod=syntax
 AutocmdFT scala setlocal sw=2 sts=2 ts=2 et
 
+set tags+=.tags
 Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/scala/.tags
 Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/playframework/.tags
+Autocmd BufRead,BufNewFile *.scala.html setlocal tags+=~/tags/src/playframework/.tags
+Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/slick/.tags
 "}}}
 
 " end vim setup}}}
