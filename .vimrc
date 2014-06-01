@@ -1615,7 +1615,7 @@ if neobundle#tap('vim-quickrun')
                     \       "runner/vimproc/updatetime" : 60
                     \   },
                     \   "watchdogs_checker/_" : {
-                    \       "hook/close_quickfix/enable_exit" : 1,
+                    \       'outputter/quickfix/open_cmd' : '',
                     \   },
                     \}
         let g:quickrun_config.markdown = {
