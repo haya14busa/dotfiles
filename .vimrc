@@ -1162,6 +1162,10 @@ if neobundle#tap('unite.vim')
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
 
+        call unite#custom#source(
+                    \   'file_mru', 'matchers',
+                    \   ['matcher_project_files', 'matcher_fuzzy'])
+
         " Ignore pattens
         call unite#custom#source(
             \ 'file_rec,file_rec/async,file_rec/git,file_mru,file,buffer,grep',
