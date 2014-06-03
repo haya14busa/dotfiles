@@ -229,6 +229,7 @@ NeoBundleLazy 'tyru/open-browser-github.vim'
 
 " Application {{{
 NeoBundleLazy 'itchyny/calendar.vim' " A calendar application for Vim
+NeoBundleLazy 'itchyny/screensaver.vim'
 "}}}
 
 " Memo {{{
@@ -2253,6 +2254,7 @@ if neobundle#tap('open-browser.vim')
     call neobundle#untap()
 endif
 "}}}
+
 " tyru/open-browser-github {{{
 if neobundle#tap('open-browser-github.vim')
     " Config {{{
@@ -3268,6 +3270,21 @@ if neobundle#tap('vim-precious')
 endif
 " }}}
 
+" itchyny/screensaver.vim {{{
+if neobundle#tap('screensaver.vim')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'commands' : [
+                \       'ScreenSaver',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    call neobundle#untap()
+    AutocmdFT screensaver setlocal colorcolumn=0
+endif
+" }}}
 
 " End plugins }}}
 
