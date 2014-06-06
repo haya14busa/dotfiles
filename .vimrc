@@ -1194,6 +1194,8 @@ if neobundle#tap('unite.vim')
 
             nmap <buffer> <ESC> <Plug>(unite_exit)
             nmap <buffer> q <Plug>(unite_exit)
+
+            imap <buffer>  jj      <Plug>(unite_insert_leave)
         endfunction
     endfunction "}}}
 
