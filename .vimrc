@@ -1232,7 +1232,11 @@ if neobundle#tap('unite.vim')
     " Execute help.
     nnoremap <silent> [unite]gh  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
     " Outeline
-    nnoremap <silent> [unite]o :<C-u>Unite -silent outline -vertical -winwidth=40 -no-start-insert<CR>
+    " nnoremap <silent> [unite]o :<C-u>Unite -silent outline -vertical -winwidth=40 -no-start-insert<CR>
+    " Use outline like explorer
+    nnoremap <silent> [unite]o :<C-u>Unite
+                \ -no-quit -keep-focus -no-start-insert
+                \ -vertical -direction=botright -winwidth=40 outline<CR>
     " Fold
     nnoremap <silent> [unite]z :<C-u>Unite -silent fold -vertical -winwidth=40 -no-start-insert<CR>
     " Unite Beautiful Atack
