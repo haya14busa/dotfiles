@@ -4,8 +4,9 @@
 [color]
 	ui = true
 [core]
-	editor = /usr/local/bin/vim
+	editor = vim
 	quotepath = false
+	excludesfile = ~/.gitignore
 [alias]
 	co = checkout
 	st = status
@@ -30,7 +31,7 @@
 	d5 = diff HEAD~~~~~        # HEADから5つ前とdiff
 	d10 = diff HEAD~~~~~~~~~~  # HEADから10前とdiff
 [include]
-    path = .gitconfig.local
+	path = ~/.gitconfig.local
 [merge]
 	tool = myvimdiff
 [mergetool]
@@ -44,3 +45,4 @@
 	insteadOf = git://
 [push]
 	default = simple
+# vim: noexpandtab
