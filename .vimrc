@@ -1831,8 +1831,12 @@ if neobundle#tap('vim-easymotion')
     " smart f & F
     omap f <Plug>(easymotion-bd-fl)
     xmap f <Plug>(easymotion-bd-fl)
-    omap t <Plug>(easymotion-bd-tl)
-    xmap t <Plug>(easymotion-bd-tl)
+    omap F <Plug>(easymotion-Fl)
+    xmap F <Plug>(easymotion-Fl)
+    omap t <Plug>(easymotion-tl)
+    xmap t <Plug>(easymotion-tl)
+    omap T <Plug>(easymotion-Tl)
+    xmap T <Plug>(easymotion-Tl)
 
     " Extend hjkl
     map ;h <Plug>(easymotion-linebackward)
@@ -1862,9 +1866,9 @@ if neobundle#tap('vim-easymotion')
     " Extene word motion
     map  ;w  <Plug>(easymotion-bd-wl)
     map  ;e  <Plug>(easymotion-bd-el)
-    " omap ;b  <Plug>(easymotion-bl)
-    " omap ;e  <Plug>(easymotion-el)
+    omap ;b  <Plug>(easymotion-bl)
     " omap ;ge <Plug>(easymotion-gel)
+    map ;ge <Plug>(easymotion-gel)
 
     function! s:wrap_M()
         let current_line = getline('.')
