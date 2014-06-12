@@ -301,6 +301,7 @@ NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japa
 
 " ColorScheme {{{
 NeoBundle 'tomasr/molokai'
+NeoBundle 'sickill/vim-monokai'
 NeoBundle 'vim-scripts/Wombat'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -480,7 +481,7 @@ if has('vim_starting')
         colorscheme default
     else
         try
-            colorscheme molokai
+            colorscheme monokai
         catch
             colorscheme desert
         endtry
