@@ -2403,6 +2403,8 @@ endif
 
 " mhinz/vim-signify "{{{
 if neobundle#tap('vim-signify')
+    nmap ]c <plug>(signify-next-hunk)
+    nmap [c <plug>(signify-prev-hunk)
     call neobundle#untap()
 endif
 "}}}
