@@ -473,6 +473,8 @@ set foldlevel=100 "Folds with a higher level will be closed
 "}}}
 
 " Colorscheme {{{
+" Check color
+" :so $VIMRUNTIME/syntax/colortest.vim
 if has('vim_starting')
     syntax enable
     set background=dark
@@ -481,7 +483,7 @@ if has('vim_starting')
         colorscheme default
     else
         try
-            colorscheme monokai
+            colorscheme molokai
         catch
             colorscheme desert
         endtry
