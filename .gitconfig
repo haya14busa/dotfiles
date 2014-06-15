@@ -45,4 +45,6 @@
 	insteadOf = git://
 [push]
 	default = simple
+[ghq]
+	root = ~/src
 # vim: noexpandtab
