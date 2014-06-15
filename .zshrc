@@ -284,3 +284,11 @@ export PATH=$PATH:$SCALA_HOME/bin
 # Play framework
 export PLAY_HOME=/usr/local/play
 export PATH=$PATH:$PLAY_HOME
+
+# Go environment
+export GOROOT=$HOME/go
+export GOOS=linux
+# export GOARCH=amd64
+export GOARCH=386
+export GOBIN=$GOROOT/bin
+export PATH=$PATH:$GOBIN
