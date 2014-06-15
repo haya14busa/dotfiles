@@ -273,9 +273,9 @@ stty -ixon
 
 
 export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
-source $HOME/nvm/nvm.sh
+# source $HOME/nvm/nvm.sh
 
 # Scala
 export SCALA_HOME=/usr/local/scala
