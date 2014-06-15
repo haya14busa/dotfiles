@@ -57,13 +57,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 command! -nargs=1
 \   MyNeoBundle
 \   NeoBundle <args>, {
-\       "base" : "~/.vim/myplugin",
+\       "base" : "~/.vim/mybundle",
 \       "type" : "nosync",
 \   }
 command! -nargs=1
 \   MyNeoBundleLazy
 \   NeoBundle <args>, {
-\       "base" : "~/.vim/myplugin",
+\       "base" : "~/.vim/mybundle",
 \       "type" : "nosync",
 \       "lazy" : 1,
 \   }
@@ -159,9 +159,9 @@ NeoBundle 'vim-jp/autofmt'
 
 " Motion {{{
 MyNeoBundleLazy 'vim-easymotion'
-MyNeoBundleLazy 'vim-easyoperator-line'
-MyNeoBundleLazy 'vim-easyoperator-phrase'
-MyNeoBundleLazy 'vim-lazy-lines'
+" MyNeoBundleLazy 'vim-easyoperator-line'
+" MyNeoBundleLazy 'vim-easyoperator-phrase'
+" MyNeoBundleLazy 'vim-lazy-lines'
 NeoBundleLazy 'rhysd/clever-f.vim' " Extended f, F, t and T key mappings for Vim.
 NeoBundleLazy 'rhysd/accelerated-jk'
 "}}}
@@ -698,7 +698,7 @@ function! s:hl_trailing_spaces() "{{{
     syntax match TrailingSpaces containedin=ALL /\s\+$/
 endfunction "}}}
 function! s:hl_zenkaku() "{{{
-    highlight link ZenkakuSpace Error
+    highlight! link ZenkakuSpace Error
     syntax match ZenkakuSpace containedin=ALL /　/
 endfunction "}}}
 
@@ -3491,6 +3491,8 @@ onoremap <expr> m <SID>ToggleRelativeNumber() . <SID>norelativenumber()
 
 command! Date :call setline('.', getline('.') . strftime('%Y/%m/%d (%a) %H:%M'))
 
+Autocmd ColorScheme hi! default link MatchParen Title
+hi! default link MatchParen Title
 "}}}
 
 " Finally {{{ ======================
