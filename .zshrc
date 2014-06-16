@@ -322,5 +322,9 @@ if exists percol; then
 
     bindkey '^R' percol_select_history
     bindkey '^O' percol-src
+
+    # open git tracked files with vim
+    alias vimr='vim $(git ls-files | percol)'
+
 fi
 
