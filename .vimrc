@@ -225,7 +225,7 @@ NeoBundle 'thinca/vim-submode', {
       \ }
 NeoBundleLazy 'tyru/open-browser.vim'
 NeoBundleLazy 'tyru/open-browser-github.vim'
-"}}}
+NeoBundleLazy 'thinca/vim-qfreplace'
 
 " Application {{{
 NeoBundleLazy 'itchyny/calendar.vim' " A calendar application for Vim
@@ -1200,6 +1200,14 @@ if neobundle#tap('unite.vim')
             nmap <buffer> q <Plug>(unite_exit)
 
             imap <buffer>  jj      <Plug>(unite_insert_leave)
+
+            let unite = unite#get_current_unite()
+            if unite.profile_name ==# '^search'
+                nnoremap <silent><buffer><expr> r unite#do_action('replace')
+            else
+                nnoremap <silent><buffer><expr> r unite#do_action('rename')
+            endif
+
         endfunction
     endfunction "}}}
 
@@ -3299,6 +3307,21 @@ if neobundle#tap('screensaver.vim')
     " }}}
     call neobundle#untap()
     AutocmdFT screensaver setlocal colorcolumn=0
+endif
+" }}}
+
+" thinca/vim-qfreplace {{{
+if neobundle#tap('vim-qfreplace')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'filetypes' : [ 'unite', 'quickfix'],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    call neobundle#untap()
 endif
 " }}}
 
