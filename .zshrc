@@ -289,7 +289,7 @@ export PATH=$PATH:$PLAY_HOME
 export GOROOT=$HOME/go
 export GOOS=linux
 # export GOARCH=amd64
-export GOARCH=386
+# export GOARCH=386
 export GOBIN=$GOROOT/bin
 export PATH=$PATH:$GOBIN
 
