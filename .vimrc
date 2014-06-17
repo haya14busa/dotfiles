@@ -1184,7 +1184,8 @@ if neobundle#tap('unite.vim')
             \ '\.jpg$', '\.jpeg$', '\.bmp$', '\.png$', '\.gif$',
             \ '\.o$', '\.out$', '\.obj$', '\.rbc$', '\.rbo$', '\.gem$',
             \ '\.zip$', '\.tar\.gz$', '\.tar\.bz2$', '\.rar$', '\.tar\.xz$',
-            \ '\.doc$', '\.docx$'
+            \ '\.doc$', '\.docx$',
+            \ 'target/',
             \ ], '\|'))
 
         AutocmdFT unite call s:unite_settings()
