@@ -87,6 +87,8 @@ NeoBundleLazy 'moznion/unite-git-conflict.vim'
 NeoBundleLazy 'Shougo/unite-session'
 NeoBundleLazy 'osyo-manga/unite-vimpatches'
 NeoBundleLazy 'tsukkee/unite-tag'
+MyNeoBundleLazy 'unite-ghq'
+" NeoBundleLazy 'sorah/unite-ghq'
 "}}}
 NeoBundleLazy 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/vimshell.vim'
@@ -3322,6 +3324,19 @@ if neobundle#tap('vim-qfreplace')
     " }}}
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
     endfunction "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" haya14busa/unite-ghq {{{
+if neobundle#tap('unite-ghq')
+    call neobundle#config({
+                \   'autoload' : {
+                \     'unite_sources' : [
+                \       'unite-ghq',
+                \     ],
+                \   }
+                \ })
     call neobundle#untap()
 endif
 " }}}
