@@ -226,6 +226,7 @@ NeoBundle 'thinca/vim-submode', {
 NeoBundleLazy 'tyru/open-browser.vim'
 NeoBundleLazy 'tyru/open-browser-github.vim'
 NeoBundleLazy 'thinca/vim-qfreplace'
+"}}}
 
 " Application {{{
 NeoBundleLazy 'itchyny/calendar.vim' " A calendar application for Vim
