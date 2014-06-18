@@ -89,6 +89,7 @@ NeoBundleLazy 'osyo-manga/unite-vimpatches'
 NeoBundleLazy 'tsukkee/unite-tag'
 MyNeoBundleLazy 'unite-ghq'
 " NeoBundleLazy 'sorah/unite-ghq'
+MyNeoBundleLazy 'unite-action-vimfiler_lcd'
 "}}}
 NeoBundleLazy 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/vimshell.vim'
@@ -1168,6 +1169,9 @@ if neobundle#tap('unite.vim')
         " Fuzzy find
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
+
+        " call unite#custom#default_action('directory', 'narrow')
+        call unite#custom#default_action('directory', 'vimfiler_lcd')
 
         call unite#custom#source(
                     \   'file_mru', 'matchers',
@@ -3337,6 +3341,13 @@ if neobundle#tap('unite-ghq')
                 \     ],
                 \   }
                 \ })
+    call neobundle#untap()
+endif
+" }}}
+
+" haya14busa/unite-action-vimfiler_lcd {{{
+if neobundle#tap('unite-action-vimfiler_lcd')
+    call neobundle#config({'depends' : 'Shougo/unite.vim'})
     call neobundle#untap()
 endif
 " }}}
