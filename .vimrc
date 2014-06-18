@@ -2194,7 +2194,6 @@ if neobundle#tap('vim-operator-surround')
     call neobundle#untap()
 endif
 "}}}
-"}}}
 
 " osyo-manga/vim-anzu {{{
 if neobundle#tap('vim-anzu')
