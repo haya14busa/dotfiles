@@ -281,6 +281,10 @@ export PATH=$HOME/.rbenv/bin:$PATH
 export SCALA_HOME=/usr/local/scala
 export PATH=$PATH:$SCALA_HOME/bin
 
+# SBT
+export SBT_HOME=/usr/local/sbt
+export PATH=$PATH:$SBT_HOME/bin
+
 # Play framework
 export PLAY_HOME=/usr/local/play
 export PATH=$PATH:$PLAY_HOME
