@@ -89,7 +89,7 @@ NeoBundleLazy 'osyo-manga/unite-vimpatches'
 NeoBundleLazy 'tsukkee/unite-tag'
 MyNeoBundleLazy 'unite-ghq'
 " NeoBundleLazy 'sorah/unite-ghq'
-MyNeoBundleLazy 'unite-action-vimfiler_lcd'
+NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
 "}}}
 NeoBundleLazy 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/vimshell.vim'
@@ -1150,7 +1150,11 @@ if neobundle#tap('unite.vim')
         \       'UniteWithInput'
         \     ]
         \   }
-        \ })"}}}
+        \ }) "}}}
+
+    function! neobundle#tapped.hooks.on_post_source(bundle)
+        NeoBundleSource unite-action-vimfiler_lcd
+    endfunction
 
     " Settings"{{{
     function! neobundle#tapped.hooks.on_source(bundle)
