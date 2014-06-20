@@ -3336,10 +3336,11 @@ if neobundle#tap('unite-ghq')
     call neobundle#config({
                 \   'autoload' : {
                 \     'unite_sources' : [
-                \       'unite-ghq',
+                \       'ghq',
                 \     ],
                 \   }
                 \ })
+    nnoremap go :<C-u>Unite ghq<CR>
     call neobundle#untap()
 endif
 " }}}
