@@ -209,6 +209,8 @@ NeoBundleLazy 'Shougo/vim-vcs', {
       \ 'depends' : 'thinca/vim-openbuf',
       \ 'autoload' : {'commands' : 'Vcs'},
       \ }
+
+NeoBundle 'rhysd/committia.vim'
 "}}}
 
 " UI {{{
@@ -3352,6 +3354,14 @@ endif
 " haya14busa/unite-action-vimfiler_lcd {{{
 if neobundle#tap('unite-action-vimfiler_lcd')
     call neobundle#config({'depends' : 'Shougo/unite.vim'})
+    call neobundle#untap()
+endif
+" }}}
+
+" rhysd/committia {{{
+if neobundle#tap('committia.vim')
+    call neobundle#config({})
+    let g:committia_min_window_width = '140'
     call neobundle#untap()
 endif
 " }}}
