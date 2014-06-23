@@ -231,6 +231,7 @@ NeoBundle 'thinca/vim-submode', {
 NeoBundleLazy 'tyru/open-browser.vim'
 NeoBundleLazy 'tyru/open-browser-github.vim'
 NeoBundleLazy 'thinca/vim-qfreplace'
+NeoBundleLazy 'haya14busa/endtagcomment.vim'
 "}}}
 
 " Application {{{
@@ -724,66 +725,6 @@ command! RemoveTrailingWhiteSpaces call <SID>remove_trailing_white_spaces()
 " Restore last cursor position when open a file {{{
 Autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 "}}}
-
-" Add Endtagcomment function {{{
-
-" Description"{{{
-" Before
-" <div id="hoge" class="fuga">
-" ...
-" </div>
-"
-" After
-" <div id="hoge" class="fuga">
-" ...
-" </div><!-- /div#hoge.fuga -->
-"}}}
-
-function! Endtagcomment() "{{{
-    let reg_save = @@
-
-    try
-        silent normal! vaty
-    catch
-        execute "normal! \<Esc>"
-        echohl ErrorMsg
-        echo 'no match html tags'
-        echohl None
-        return
-    endtry
-
-    let html = @@
-
-    let start_tag = matchstr(html, '\v(\<.{-}\>)')
-    let tag_name  = matchstr(start_tag, '\v([a-zA-Z]+)')
-
-    let id = ''
-    let id_match = matchlist(start_tag, '\vid\=["'']([^"'']+)["'']')
-    if exists('id_match[1]')
-        let id = '#' . id_match[1]
-    endif
-
-    let class = ''
-    let class_match = matchlist(start_tag, '\vclass\=["'']([^"'']+)["'']')
-    if exists('class_match[1]')
-        let class = '.' . join(split(class_match[1], '\v\s+'), '.')
-    endif
-
-    execute "normal! `>va<\<Esc>`<"
-
-    let comment = s:endtagcommentFormat
-    let comment = substitute(comment, '{%tag_name}', tag_name, 'g')
-    let comment = substitute(comment, '{%id}', id, 'g')
-    let comment = substitute(comment, '{%class}', class, 'g')
-    let @@ = comment
-
-    normal! %""p
-
-    let @@ = reg_save
-endfunction "}}}
-
-let s:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
-nnoremap ,t :<C-u>call Endtagcomment()<CR>
 
 "}}}
 
@@ -3362,6 +3303,23 @@ endif
 if neobundle#tap('committia.vim')
     call neobundle#config({})
     let g:committia_min_window_width = '140'
+    call neobundle#untap()
+endif
+" }}}
+
+" haya14busa/endtagcomment.vim {{{
+if neobundle#tap('endtagcomment.vim')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'mappings' : ['<Plug>(endtagcomment)'],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        let g:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
+    endfunction "}}}
+    nmap ,t <Plug>(endtagcomment)
     call neobundle#untap()
 endif
 " }}}
