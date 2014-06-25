@@ -1606,7 +1606,7 @@ if neobundle#tap('vim-quickrun')
     call neobundle#config({
         \   'autoload' : {
         \     'commands' : 'QuickRun',
-        \     'mappings' : '[<Plug>(quickrun)]',
+        \     'mappings' : ['<Plug>(quickrun)'],
         \   }
         \ })
     function! neobundle#tapped.hooks.on_source(bundle)
