@@ -75,7 +75,6 @@ command! -nargs=1
 NeoBundleLazy 'Shougo/unite.vim'
 
 NeoBundle 'Shougo/neomru.vim'
-" NeoBundleLazy 'tsukkee/unite-help'
 NeoBundleLazy 'Shougo/unite-help'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'Shougo/unite-outline'
@@ -88,7 +87,9 @@ NeoBundleLazy 'Shougo/unite-session'
 NeoBundleLazy 'osyo-manga/unite-vimpatches'
 NeoBundleLazy 'tsukkee/unite-tag'
 MyNeoBundleLazy 'unite-ghq'
-" NeoBundleLazy 'sorah/unite-ghq'
+
+" action
+NeoBundleLazy 'osyo-manga/ref-lynx'
 NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
 "}}}
 NeoBundleLazy 'Shougo/vimfiler.vim'
@@ -137,7 +138,7 @@ NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'tokuhirom/jsref'
 NeoBundle 'mustardamus/jqapi'
 NeoBundle 'soh335/vim-ref-jquery'
-NeoBundle 'osyo-manga/ref-lynx'
+
 "}}}
 
 " Extend Basic Vim Commands {{{
@@ -724,8 +725,6 @@ command! RemoveTrailingWhiteSpaces call <SID>remove_trailing_white_spaces()
 
 " Restore last cursor position when open a file {{{
 Autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-"}}}
-
 "}}}
 
 " Fold {{{
@@ -1360,6 +1359,30 @@ if neobundle#tap('unite-tag')
                 \   }
                 \ })
     " }}}
+    call neobundle#untap()
+endif
+" }}}
+
+" action
+" osyo-manga/ref-lynx {{{
+if neobundle#tap('ref-lynx')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'unite_sources' : [
+                \       'ref-lynx',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    call unite#custom#default_action('uri', 'ref-lynx')
+
+    call neobundle#untap()
+endif
+" }}}
+" haya14busa/unite-action-vimfiler_lcd {{{
+if neobundle#tap('unite-action-vimfiler_lcd')
+    call neobundle#config({'depends' : 'Shougo/unite.vim'})
     call neobundle#untap()
 endif
 " }}}
@@ -3288,13 +3311,6 @@ if neobundle#tap('unite-ghq')
                 \   }
                 \ })
     nnoremap go :<C-u>Unite ghq<CR>
-    call neobundle#untap()
-endif
-" }}}
-
-" haya14busa/unite-action-vimfiler_lcd {{{
-if neobundle#tap('unite-action-vimfiler_lcd')
-    call neobundle#config({'depends' : 'Shougo/unite.vim'})
     call neobundle#untap()
 endif
 " }}}
