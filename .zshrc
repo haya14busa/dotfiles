@@ -329,6 +329,6 @@ if exists percol; then
 
     # open git tracked files with vim
     alias vimr='vim $(git ls-files | percol)'
-
+    alias -g P='| percol'
 fi
 
