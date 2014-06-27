@@ -3266,6 +3266,15 @@ if neobundle#tap('vim-precious')
     " precious quickrun
     AutocmdFT markdown nmap <buffer> ;pqr <Plug>(precious-quickrun-op)
     AutocmdFT markdown omap <buffer> q <Plug>(textobj-precious-i)
+
+    let g:precious_enable_switchers = {
+    \   "*" : {
+    \       "setfiletype" : 0
+    \   },
+    \   "markdown" : {
+    \       "setfiletype" : 1
+    \   },
+    \}
     call neobundle#untap()
 endif
 " }}}
