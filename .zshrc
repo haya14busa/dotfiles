@@ -298,6 +298,12 @@ export GOBIN=$GOROOT/bin
 export PATH=$PATH:$GOBIN
 
 
+# Anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+if exists anyenv; then
+    eval "$(anyenv init -)"
+fi
+
 
 function exists { which $1 &> /dev/null }
 
