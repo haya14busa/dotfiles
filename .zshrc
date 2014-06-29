@@ -1,21 +1,11 @@
-# 少し凝った zshrc
+# haya14busa's zshrc
+
+
+# Functions
+function exists { which $1 &> /dev/null }
 
 ########################################
-# 環境変数
-
-# export LC_ALL=C
-# export LANG=en_US.UTF-8
-# export LANG=ja_JP.UTF-8
-# export LC_MESSAGES=ja_JP.UTF-8
-# export LC_MESSAGES=en_US.UTF-8
-# export LC_IDENTIFICATION=ja_JP.UTF-8
-# export LC_COLLATE=ja_JP.UTF-8
-# export LANG=ja_JP.UTF-8
-# export LC_MEASUREMENT=ja_JP.UTF-8
-# export LC_CTYPE=ja_JP.UTF-8
-# export LC_TIME=ja_JP.UTF-8
-# export LC_NAME=ja_JP.UTF-8
-
+# Environments
 export LANG="ja_JP.UTF-8"
 export LC_CTYPE="ja_JP.UTF-8"
 export LC_NUMERIC="ja_JP.UTF-8"
@@ -30,11 +20,12 @@ export LC_TELEPHONE="ja_JP.UTF-8"
 export LC_MEASUREMENT="ja_JP.UTF-8"
 export LC_IDENTIFICATION="ja_JP.UTF-8"
 
-# 色を使用出来るようにする
+# Enable colors
 autoload -Uz colors
 colors
 
-# emacs 風キーバインドにする
+# emacs like keybindings
+# TODO: try vim mode
 bindkey -e
 
 # ヒストリの設定
@@ -297,15 +288,11 @@ export GOOS=linux
 export GOBIN=$GOROOT/bin
 export PATH=$PATH:$GOBIN
 
-
 # Anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 if exists anyenv; then
     eval "$(anyenv init -)"
 fi
-
-
-function exists { which $1 &> /dev/null }
 
 # percol
 if exists percol; then
