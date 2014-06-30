@@ -1021,6 +1021,7 @@ AutocmdFT scss setlocal sw=2 sts=2 ts=2 et
 AutocmdFT c   setlocal foldmethod=syntax
 AutocmdFT cpp setlocal foldmethod=syntax
 
+AutocmdFT ruby setlocal sw=2 sts=2 ts=2 et
 
 Autocmd BufRead,BufNewFile *.scala  set filetype=scala
 Autocmd BufRead,BufNewFile *.sbt set filetype=sbt
