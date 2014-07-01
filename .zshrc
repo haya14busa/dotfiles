@@ -325,3 +325,7 @@ if exists percol; then
     alias -g P='| percol'
 fi
 
+
+# zsh plugins
+[[ -f ~/src/github.com/rhysd/zsh-bundle-exec/zsh-bundle-exec.zsh ]] && source ~/src/github.com/rhysd/zsh-bundle-exec/zsh-bundle-exec.zsh
+
