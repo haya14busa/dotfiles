@@ -1117,8 +1117,8 @@ if neobundle#tap('unite.vim')
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
 
-        " call unite#custom#default_action('directory', 'narrow')
-        call unite#custom#default_action('directory', 'vimfiler_lcd')
+        call unite#custom#default_action('directory', 'vimshell')
+        call unite#custom#default_action('cdable', 'vimshell')
 
         call unite#custom#source(
                     \   'file_mru', 'matchers',
