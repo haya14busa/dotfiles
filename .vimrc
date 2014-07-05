@@ -1191,7 +1191,7 @@ if neobundle#tap('unite.vim')
     " Jump (mnemonic : <C-o> jump to Older cursor position)
     nnoremap <silent> [unite]<C-o> :<C-u>Unite -silent change jump<CR>
     " Grep
-    nnoremap <silent> [unite]gr :<C-u>Unite -silent -no-quit grep<CR>
+    nnoremap <silent> [unite]gr :<C-u>Unite -silent -no-quit grep:.<CR>
     " Line
     nnoremap <silent> g/ :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
     "-Unite Plugin Settings--------------"{{{
