@@ -3053,7 +3053,7 @@ if neobundle#tap('tern_for_vim')
     " Config {{{
     call neobundle#config({
                 \   'build' : {
-                \     'othres' : 'npm install'
+                \     'others' : 'npm install'
                 \   },
                 \   'autoload' : {
                 \       'functions' : ['tern#Complete', 'tern#Enable'],
