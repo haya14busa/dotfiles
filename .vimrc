@@ -86,7 +86,7 @@ NeoBundleLazy 'moznion/unite-git-conflict.vim'
 NeoBundleLazy 'Shougo/unite-session'
 NeoBundleLazy 'osyo-manga/unite-vimpatches'
 NeoBundleLazy 'tsukkee/unite-tag'
-MyNeoBundleLazy 'unite-ghq'
+NeoBundleLazy 'haya14busa/unite-ghq'
 
 " action
 NeoBundleLazy 'osyo-manga/ref-lynx'
