@@ -87,6 +87,7 @@ NeoBundleLazy 'Shougo/unite-session'
 NeoBundleLazy 'osyo-manga/unite-vimpatches'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'haya14busa/unite-ghq'
+NeoBundleLazy 'rhysd/unite-zsh-cdr.vim'
 
 " action
 NeoBundleLazy 'osyo-manga/ref-lynx'
@@ -3346,6 +3347,21 @@ if neobundle#tap('endtagcomment.vim')
         let g:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
     endfunction "}}}
     nmap ,t <Plug>(endtagcomment)
+    call neobundle#untap()
+endif
+" }}}
+
+" rhysd/unite-zsh-cdr.vim {{{
+if neobundle#tap('unite-zsh-cdr.vim')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'unite_sources' : [
+                \       'unite-zsh-cdr.vim',
+                \     ],
+                \   }
+                \ })
+    " }}}
     call neobundle#untap()
 endif
 " }}}
