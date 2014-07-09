@@ -2442,7 +2442,12 @@ if neobundle#tap('TweetVim')
     "}}}
 
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
-        let g:tweetvim_display_icon=1
+        let g:tweetvim_display_icon   = 1
+        let g:tweetvim_async_post = 1
+        let g:tweetvim_tweet_per_page = 200
+        let g:tweetvim_cache_size     = 200
+        let g:tweetvim_empty_separator = 1
+        setlocal colorcolumn=0
         AutocmdFT tweetvim setlocal nonumber
         AutocmdFT tweetvim nnoremap <buffer><Leader>s :<C-u>TweetVimSay<CR>
         AutocmdFT tweetvim     nmap <buffer>c         <Plug>(tweetvim_action_in_reply_to)
