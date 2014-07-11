@@ -1273,11 +1273,14 @@ if neobundle#tap('vim-unite-giti')
     call neobundle#config({
         \   'autoload' : {
         \     'unite_sources' : [
-        \       'giti'
+        \       'giti',
+        \       'giti/status'
         \     ],
         \   }
         \ })
     call neobundle#untap()
+    nnoremap <silent> [unite]gg :<C-u>Unite giti/status -winheight=10
+                \   -no-start-insert -no-quit<CR>
 endif
 "}}}
 " thinca/vim-unite-history {{{
