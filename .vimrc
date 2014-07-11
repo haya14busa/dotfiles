@@ -1493,7 +1493,7 @@ if neobundle#tap('neosnippet.vim')
     endfunction "}}}
 
     " haya14busa-snippets {{{
-    let g:neosnippet#snippets_directory=$HOME.'/.vim/myplugin/haya14busa-snippets/neosnippets'
+    let g:neosnippet#snippets_directory=$HOME.'/.vim/mybundle/haya14busa-snippets/neosnippets'
     "}}}
 
     " SuperTab like snippets behavior.
