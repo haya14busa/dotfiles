@@ -88,7 +88,7 @@ NeoBundleLazy 'osyo-manga/unite-vimpatches'
 NeoBundleLazy 'tsukkee/unite-tag'
 NeoBundleLazy 'haya14busa/unite-ghq'
 NeoBundleLazy 'rhysd/unite-zsh-cdr.vim'
-
+NeoBundleLazy 'haya14busa/unite-reading-vimrc'
 " action
 NeoBundleLazy 'osyo-manga/ref-lynx'
 NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
@@ -3377,6 +3377,23 @@ if neobundle#tap('unite-zsh-cdr.vim')
     call neobundle#untap()
 endif
 " }}}
+
+" haya14busa/unite-reading-vimrc {{{
+if neobundle#tap('unite-reading-vimrc')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'unite_sources' : [
+                \       'reading-vimrc',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    call neobundle#untap()
+endif
+" }}}
+
+
 
 " End plugins }}}
 
