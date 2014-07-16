@@ -3418,9 +3418,9 @@ function! Plog(msg) "{{{
     call vimproc#system('echo "' . PP(a:msg) . '" >> ~/vim.log')
     " call Plog(' kokomade OK')
     " tail -f ~/vim.log
-endfunction
-"}}}
-"
+endfunction "}}}
+
+
 command! -bar TimerStart let start_time = reltime()
 command! -bar TimerEnd echo reltimestr(reltime(start_time)) | unlet start_time
 
@@ -3506,7 +3506,7 @@ endfunction
 nnoremap <silent> gm :<C-u>call <SID>my_gm()<CR>
 
 command! -nargs=0 GetHighlightingGroup
-            \ echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '>trans<'
+            \ echom 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '>trans<'
             \ . synIDattr(synID(line('.'),col('.'),0),'name') . '>lo<'
             \ . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'
 
@@ -3546,7 +3546,7 @@ function! SplitAndGo(cmd)
   endif
 endfunction
 
-function! SAG_Complete(ArgLead, CmdLine, CursorPos)
+function! SAG_Complete()
   return ['split', 'vsplit']
 endfunction
 
@@ -3587,6 +3587,10 @@ command! Date :call setline('.', getline('.') . strftime('%Y/%m/%d (%a) %H:%M'))
 
 Autocmd ColorScheme hi! default link MatchParen Title
 hi! default link MatchParen Title
+
+" NOTE:
+"  nnoremap <buffer><nowait> ; ;
+"
 "}}}
 
 " Finally {{{ ======================
