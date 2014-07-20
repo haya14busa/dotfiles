@@ -335,6 +335,8 @@ NeoBundleLazy 'tyru/restart.vim' " Restart your gVim
 NeoBundleLazy 'thinca/vim-ft-help_fold', {
       \ 'filetypes' : 'help'
       \ }
+NeoBundleLazy 'syngan/vim-vimlint', {
+    \ 'depends' : 'ynkdir/vim-vimlparser'}
 "}}}
 
 " Others {{{
