@@ -47,10 +47,8 @@ if has('vim_starting')
     set nocompatible
     set runtimepath& runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+" call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle'))
 
 " NeoBundle Function {{{
 " MyNeoBundle {{{
@@ -70,290 +68,308 @@ command! -nargs=1
 "}}}
 "}}}
 
-" Synthesis {{{
-" Unite {{{
-NeoBundleLazy 'Shougo/unite.vim'
+function! s:load_bundles() "{{{
+    " Let NeoBundle manage NeoBundle
+    NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/neomru.vim'
-NeoBundleLazy 'Shougo/unite-help'
-NeoBundleLazy 'ujihisa/unite-colorscheme'
-NeoBundleLazy 'Shougo/unite-outline'
-NeoBundleLazy 'osyo-manga/unite-fold'
-NeoBundleLazy 'kmnk/vim-unite-giti'
-NeoBundleLazy 'thinca/vim-unite-history'
-NeoBundleLazy 'osyo-manga/unite-quickfix'
-NeoBundleLazy 'moznion/unite-git-conflict.vim'
-NeoBundleLazy 'Shougo/unite-session'
-NeoBundleLazy 'osyo-manga/unite-vimpatches'
-NeoBundleLazy 'tsukkee/unite-tag'
-NeoBundleLazy 'haya14busa/unite-ghq'
-NeoBundleLazy 'rhysd/unite-zsh-cdr.vim'
-NeoBundleLazy 'haya14busa/unite-reading-vimrc'
-" action
-NeoBundleLazy 'osyo-manga/ref-lynx'
-NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
-"}}}
-NeoBundleLazy 'Shougo/vimfiler.vim'
-NeoBundleLazy 'Shougo/vimshell.vim'
+    " Synthesis {{{
+    " Unite {{{
+    NeoBundleLazy 'Shougo/unite.vim'
 
-"}}}
+    NeoBundle 'Shougo/neomru.vim'
+    NeoBundleLazy 'Shougo/unite-help'
+    NeoBundleLazy 'ujihisa/unite-colorscheme'
+    NeoBundleLazy 'Shougo/unite-outline'
+    NeoBundleLazy 'osyo-manga/unite-fold'
+    NeoBundleLazy 'kmnk/vim-unite-giti'
+    NeoBundleLazy 'thinca/vim-unite-history'
+    NeoBundleLazy 'osyo-manga/unite-quickfix'
+    NeoBundleLazy 'moznion/unite-git-conflict.vim'
+    NeoBundleLazy 'Shougo/unite-session'
+    NeoBundleLazy 'osyo-manga/unite-vimpatches'
+    NeoBundleLazy 'tsukkee/unite-tag'
+    NeoBundleLazy 'haya14busa/unite-ghq'
+    NeoBundleLazy 'rhysd/unite-zsh-cdr.vim'
+    NeoBundleLazy 'haya14busa/unite-reading-vimrc'
+    NeoBundleLazy "osyo-manga/unite-vimmer"
+    " action
+    NeoBundleLazy 'osyo-manga/ref-lynx'
+    NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
+    "}}}
+    NeoBundleLazy 'Shougo/vimfiler.vim'
+    NeoBundleLazy 'Shougo/vimshell.vim'
 
-" Writing {{{
-" Shougo/neocomplete {{{
-if has('lua') && v:version >= 703
-    NeoBundleLazy 'Shougo/neocomplete.vim'
+    "}}}
+
+    " Writing {{{
+    " Shougo/neocomplete {{{
+    if has('lua') && v:version >= 703
+        NeoBundleLazy 'Shougo/neocomplete.vim'
+    else
+        NeoBundleLazy 'Shougo/neocomplcache.vim'
+    endif
+    "}}}
+    NeoBundleLazy 'Shougo/neosnippet.vim'
+    MyNeoBundle 'haya14busa-snippets'
+    NeoBundleLazy 'mattn/emmet-vim'
+    NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
+    NeoBundle 'deris/vim-visualinc'
+    NeoBundleLazy 'h1mesuke/vim-alignta'
+    NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
+    NeoBundleLazy 'ujihisa/neco-look'
+    "}}}
+
+    " Development {{{
+    NeoBundleLazy 'thinca/vim-quickrun'
+    " NeoBundleLazy 'scrooloose/syntastic'
+
+    NeoBundleLazy "osyo-manga/vim-watchdogs"
+
+    NeoBundleLazy 'koron/codic-vim' " Codic vim plugin
+    NeoBundleLazy 'rhysd/unite-codic.vim' " A unite.vim source for codic-vim.
+    "}}}
+
+    " Library {{{
+    NeoBundle 'Shougo/vimproc'
+    NeoBundle 'mattn/webapi-vim'
+    NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
+    NeoBundle 'osyo-manga/vital-over'
+    "}}}
+
+    " Document {{{
+    NeoBundleLazy 'thinca/vim-ref'
+    NeoBundle 'mojako/ref-sources.vim'
+    NeoBundle 'tokuhirom/jsref'
+    NeoBundle 'mustardamus/jqapi'
+    NeoBundle 'soh335/vim-ref-jquery'
+
+    "}}}
+
+    " Extend Basic Vim Commands {{{
+    " Matching
+    NeoBundle 'matchit.zip'
+    " Yank
+    NeoBundleLazy 'LeafCage/yankround.vim'
+    " Undo
+    NeoBundleLazy 'sjl/gundo.vim'
+    " Visual mode
+    NeoBundleLazy 'kana/vim-niceblock'
+    " Search
+    NeoBundleLazy 'thinca/vim-visualstar'
+    NeoBundleLazy 'osyo-manga/vim-anzu'
+    NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
+
+    NeoBundle 'tpope/vim-speeddating'
+
+    NeoBundle 'vim-jp/autofmt'
+
+    "}}}
+
+    " Motion {{{
+    MyNeoBundleLazy 'vim-easymotion'
+    " MyNeoBundleLazy 'vim-easyoperator-line'
+    " MyNeoBundleLazy 'vim-easyoperator-phrase'
+    " MyNeoBundleLazy 'vim-lazy-lines'
+    NeoBundleLazy 'rhysd/clever-f.vim' " Extended f, F, t and T key mappings for Vim.
+    NeoBundleLazy 'rhysd/accelerated-jk'
+    NeoBundleLazy 'saihoooooooo/glowshi-ft.vim'
+    "}}}
+
+    " Text Object {{{
+    NeoBundleLazy 'kana/vim-textobj-user'
+    NeoBundleLazy 'kana/vim-textobj-entire'           " ae, ie
+    NeoBundleLazy 'kana/vim-textobj-fold'             " az, iz
+    NeoBundleLazy 'kana/vim-textobj-indent'           " ai, ii
+    NeoBundleLazy 'kana/vim-textobj-line'             " al, il
+    NeoBundleLazy 'kana/vim-textobj-syntax'           " ay, iy
+    NeoBundleLazy 'kana/vim-textobj-django-template'  " adb, idb
+    NeoBundleLazy 'thinca/vim-textobj-between'        " af{char}, if{char}
+    NeoBundleLazy 'mattn/vim-textobj-url'             " au, iu
+    NeoBundleLazy 'osyo-manga/vim-textobj-multiblock' " ab, ib
+    NeoBundleLazy 'lucapette/vim-textobj-underscore'  " a_, i_
+    NeoBundleLazy 'haya14busa/vim-textobj-number'     " an, in
+    " NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
+
+    NeoBundle 'wellle/targets.vim'
+    " NeoBundle 'gcmt/wildfire.vim'
+
+    " to surround vim objects with a pair of identical chars
+    " TODO: Make it lazy or use vim-operator-surround
+    NeoBundle 'tpope/vim-surround'
+    NeoBundle 'tpope/vim-repeat'
+
+    " Operator
+    NeoBundleLazy 'kana/vim-operator-user'
+    NeoBundleLazy 'kana/vim-operator-replace'
+    "NeoBundle 'rhysd/vim-operator-surround'
+
+    "}}}
+
+    " Git {{{
+    NeoBundle 'tpope/vim-fugitive'
+    NeoBundleLazy 'gregsexton/gitv'
+    NeoBundle 'mhinz/vim-signify'
+
+    NeoBundleLazy 'thinca/vim-openbuf'
+    NeoBundleLazy 'Shougo/vim-vcs', {
+        \ 'depends' : 'thinca/vim-openbuf',
+        \ 'autoload' : {'commands' : 'Vcs'},
+        \ }
+
+    " NeoBundle 'rhysd/committia.vim'
+    "}}}
+
+    " UI {{{
+    NeoBundle 'itchyny/lightline.vim'
+    NeoBundle 'Yggdroot/indentLine'
+    NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selected word
+    "TODO
+    NeoBundleLazy 'osyo-manga/vim-automatic', {
+        \ 'depends' : [ 'osyo-manga/vim-gift', 'osyo-manga/vim-reunions' ] }
+    " }}}
+
+    " Utility {{{
+    " NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
+    NeoBundle 'thinca/vim-submode', {
+        \ 'rev' : 'my-master',
+        \ 'name' : 'vim-submode',
+        \ }
+    NeoBundleLazy 'tyru/open-browser.vim'
+    NeoBundleLazy 'tyru/open-browser-github.vim'
+    NeoBundleLazy 'thinca/vim-qfreplace'
+    NeoBundleLazy 'haya14busa/endtagcomment.vim'
+    "}}}
+
+    " Application {{{
+    NeoBundleLazy 'itchyny/calendar.vim' " A calendar application for Vim
+    NeoBundleLazy 'itchyny/screensaver.vim'
+    "}}}
+
+    " Memo {{{
+    NeoBundleLazy 'mattn/gist-vim'
+    NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
+    "}}}
+
+    " Filetype {{{
+    NeoBundleLazy 'osyo-manga/vim-precious'
+    let g:markdown_fenced_languages = [
+    \  'coffee',
+    \  'css',
+    \  'erb=eruby',
+    \  'javascript',
+    \  'js=javascript',
+    \  'json=javascript',
+    \  'ruby',
+    \  'sass',
+    \  'xml',
+    \  'python',
+    \  'vim',
+    \]
+    NeoBundle 'pangloss/vim-javascript'
+    NeoBundle 'wavded/vim-stylus'
+    NeoBundle 'hail2u/vim-css3-syntax'
+    NeoBundle 'kchmck/vim-coffee-script'
+    NeoBundle 'othree/html5.vim'
+    NeoBundle 'plasticboy/vim-markdown'
+    NeoBundleLazy 'kannokanno/previm'
+
+    " Python {{{
+    NeoBundleLazy 'davidhalter/jedi-vim'
+    NeoBundleLazy 'heavenshell/vim-pydocstring'
+    NeoBundleLazy 'tell-k/vim-autopep8'
+    NeoBundleLazy 'hynek/vim-python-pep8-indent'
+    NeoBundleLazy 'mkomitee/vim-gf-python'
+
+    "}}}
+
+    " JavaScript {{{
+    NeoBundleLazy 'marijnh/tern_for_vim'
+    NeoBundleLazy 'maksimr/vim-jsbeautify'
+    "}}}
+
+
+    " Scala {{{
+    NeoBundleLazy 'derekwyatt/vim-scala'
+    NeoBundleLazy 'derekwyatt/vim-sbt'
+    NeoBundleLazy 'mdreves/vim-scaladoc'
+    NeoBundleLazy 'gre/play2vim'
+    "}}}
+    " Scheme {{{
+    NeoBundleLazy 'aharisu/vim_goshrepl'
+    NeoBundleLazy 'kien/rainbow_parentheses.vim'
+    " }}}
+    "}}}
+
+    " Fold {{{
+    NeoBundle 'LeafCage/foldCC'
+    NeoBundleLazy 'tmhedberg/SimpylFold' "for Python
+    NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding'
+    "}}}
+
+    " Japanese {{{
+    " NeoBundleLazy 'haya14busa/vim-migemo' "use migemo of easymotion
+    NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
+    " NeoBundle 'tyru/skk.vim'
+    "}}}
+
+    " ColorScheme {{{
+    NeoBundle 'tomasr/molokai'
+    NeoBundle 'sickill/vim-monokai'
+    NeoBundle 'vim-scripts/Wombat'
+    NeoBundle 'altercation/vim-colors-solarized'
+    NeoBundle 'nanotech/jellybeans.vim'
+    NeoBundle 'w0ng/vim-hybrid'
+    NeoBundle 'vim-scripts/twilight'
+    NeoBundle 'jonathanfilip/vim-lucius'
+    NeoBundle 'jpo/vim-railscasts-theme'
+    NeoBundle 'vim-scripts/rdark'
+    NeoBundle 'djjcast/mirodark'
+    NeoBundle 'sjl/badwolf'
+    NeoBundle 'cocopon/iceberg.vim' " A dark color scheme for Vim, came from Antarctica
+    NeoBundle 'reedes/vim-colors-pencil'
+    "}}}
+
+    " Vim script {{{
+    NeoBundle 'mattn/learn-vimscript'
+    NeoBundleLazy 'thinca/vim-prettyprint'
+    NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
+    NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
+    NeoBundleLazy 'thinca/vim-editvar' " Edits vim variable in buffer.
+    NeoBundleLazy 'tyru/restart.vim' " Restart your gVim
+    NeoBundleLazy 'thinca/vim-ft-help_fold', {
+        \ 'filetypes' : 'help'
+        \ }
+    NeoBundleLazy 'syngan/vim-vimlint', {
+        \ 'depends' : 'ynkdir/vim-vimlparser'}
+    "}}}
+
+    " Others {{{
+    NeoBundleLazy 'pentie/VimRepress' "WordPress
+    NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
+    NeoBundleLazy 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
+    NeoBundleLazy 'basyura/J6uil.vim'
+    NeoBundle 'bohrshaw/vim-vimperator-syntax'
+    NeoBundleLazy 'dogrover/vim-pentadactyl'
+    NeoBundleLazy 'supermomonga/thingspast.vim'
+    NeoBundleLazy 'rbtnn/puyo.vim'
+    NeoBundleLazy 'thinca/vim-scouter'
+
+    NeoBundleLazy 'thinca/vim-threes'
+    " NeoBundle 'tpope/vim-rake'
+    NeoBundleLazy 'mattn/flappyvird-vim'
+    NeoBundleLazy 'mattn/yamada2-vim'
+    "}}}
+endfunction "}}}
+
+" if neobundle#has_cache()
+if neobundle#has_fresh_cache()
+    NeoBundleLoadCache
 else
-    NeoBundleLazy 'Shougo/neocomplcache.vim'
+    call s:load_bundles()
+    NeoBundleSaveCache
 endif
-"}}}
-NeoBundleLazy 'Shougo/neosnippet.vim'
-MyNeoBundle 'haya14busa-snippets'
-NeoBundleLazy 'mattn/emmet-vim'
-NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
-NeoBundle 'deris/vim-visualinc'
-NeoBundleLazy 'h1mesuke/vim-alignta'
-NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
-NeoBundleLazy 'ujihisa/neco-look'
-"}}}
 
-" Development {{{
-NeoBundleLazy 'thinca/vim-quickrun'
-" NeoBundleLazy 'scrooloose/syntastic'
-
-NeoBundleLazy "osyo-manga/vim-watchdogs"
-
-NeoBundleLazy 'koron/codic-vim' " Codic vim plugin
-NeoBundleLazy 'rhysd/unite-codic.vim' " A unite.vim source for codic-vim.
-"}}}
-
-" Library {{{
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'mattn/webapi-vim'
-NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
-NeoBundle 'osyo-manga/vital-over'
-"}}}
-
-" Document {{{
-NeoBundleLazy 'thinca/vim-ref'
-NeoBundle 'mojako/ref-sources.vim'
-NeoBundle 'tokuhirom/jsref'
-NeoBundle 'mustardamus/jqapi'
-NeoBundle 'soh335/vim-ref-jquery'
-
-"}}}
-
-" Extend Basic Vim Commands {{{
-" Matching
-NeoBundle 'matchit.zip'
-" Yank
-NeoBundleLazy 'LeafCage/yankround.vim'
-" Undo
-NeoBundleLazy 'sjl/gundo.vim'
-" Visual mode
-NeoBundleLazy 'kana/vim-niceblock'
-" Search
-NeoBundleLazy 'thinca/vim-visualstar'
-NeoBundleLazy 'osyo-manga/vim-anzu'
-NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
-
-NeoBundle 'tpope/vim-speeddating'
-
-NeoBundle 'vim-jp/autofmt'
-
-"}}}
-
-" Motion {{{
-MyNeoBundleLazy 'vim-easymotion'
-" MyNeoBundleLazy 'vim-easyoperator-line'
-" MyNeoBundleLazy 'vim-easyoperator-phrase'
-" MyNeoBundleLazy 'vim-lazy-lines'
-NeoBundleLazy 'rhysd/clever-f.vim' " Extended f, F, t and T key mappings for Vim.
-NeoBundleLazy 'rhysd/accelerated-jk'
-"}}}
-
-" Text Object {{{
-NeoBundleLazy 'kana/vim-textobj-user'
-NeoBundleLazy 'kana/vim-textobj-entire'           " ae, ie
-NeoBundleLazy 'kana/vim-textobj-fold'             " az, iz
-NeoBundleLazy 'kana/vim-textobj-indent'           " ai, ii
-NeoBundleLazy 'kana/vim-textobj-line'             " al, il
-NeoBundleLazy 'kana/vim-textobj-syntax'           " ay, iy
-NeoBundleLazy 'kana/vim-textobj-django-template'  " adb, idb
-NeoBundleLazy 'thinca/vim-textobj-between'        " af{char}, if{char}
-NeoBundleLazy 'mattn/vim-textobj-url'             " au, iu
-NeoBundleLazy 'osyo-manga/vim-textobj-multiblock' " ab, ib
-NeoBundleLazy 'lucapette/vim-textobj-underscore'  " a_, i_
-NeoBundleLazy 'haya14busa/vim-textobj-number'     " an, in
-" NeoBundleLazy 'h1mesuke/textobj-wiw'              " a,w a,e
-
-NeoBundle 'wellle/targets.vim'
-" NeoBundle 'gcmt/wildfire.vim'
-
-" to surround vim objects with a pair of identical chars
-" TODO: Make it lazy or use vim-operator-surround
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-
-" Operator
-NeoBundleLazy 'kana/vim-operator-user'
-NeoBundleLazy 'kana/vim-operator-replace'
-"NeoBundle 'rhysd/vim-operator-surround'
-
-"}}}
-
-" Git {{{
-NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'gregsexton/gitv'
-NeoBundle 'mhinz/vim-signify'
-
-NeoBundleLazy 'thinca/vim-openbuf'
-NeoBundleLazy 'Shougo/vim-vcs', {
-      \ 'depends' : 'thinca/vim-openbuf',
-      \ 'autoload' : {'commands' : 'Vcs'},
-      \ }
-
-NeoBundle 'rhysd/committia.vim'
-"}}}
-
-" UI {{{
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selected word
-"TODO
-NeoBundleLazy 'osyo-manga/vim-automatic', {
-    \ 'depends' : [ 'osyo-manga/vim-gift', 'osyo-manga/vim-reunions' ] }
-" }}}
-
-" Utility {{{
-" NeoBundle 'kana/vim-submode' " Vim plugin: Create your own submodes
-NeoBundle 'thinca/vim-submode', {
-      \ 'rev' : 'my-master',
-      \ 'name' : 'vim-submode',
-      \ }
-NeoBundleLazy 'tyru/open-browser.vim'
-NeoBundleLazy 'tyru/open-browser-github.vim'
-NeoBundleLazy 'thinca/vim-qfreplace'
-NeoBundleLazy 'haya14busa/endtagcomment.vim'
-"}}}
-
-" Application {{{
-NeoBundleLazy 'itchyny/calendar.vim' " A calendar application for Vim
-NeoBundleLazy 'itchyny/screensaver.vim'
-"}}}
-
-" Memo {{{
-NeoBundleLazy 'mattn/gist-vim'
-NeoBundleLazy 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
-"}}}
-
-" Filetype {{{
-NeoBundleLazy 'osyo-manga/vim-precious'
-let g:markdown_fenced_languages = [
-\  'coffee',
-\  'css',
-\  'erb=eruby',
-\  'javascript',
-\  'js=javascript',
-\  'json=javascript',
-\  'ruby',
-\  'sass',
-\  'xml',
-\  'python',
-\  'vim',
-\]
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'wavded/vim-stylus'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundleLazy 'kannokanno/previm'
-
-" Python {{{
-NeoBundleLazy 'davidhalter/jedi-vim'
-NeoBundleLazy 'heavenshell/vim-pydocstring'
-NeoBundleLazy 'tell-k/vim-autopep8'
-NeoBundleLazy 'hynek/vim-python-pep8-indent'
-NeoBundleLazy 'mkomitee/vim-gf-python'
-
-"}}}
-
-" JavaScript {{{
-NeoBundleLazy 'marijnh/tern_for_vim'
-NeoBundleLazy 'maksimr/vim-jsbeautify'
-"}}}
-
-
-" Scala {{{
-NeoBundleLazy 'derekwyatt/vim-scala'
-NeoBundleLazy 'derekwyatt/vim-sbt'
-NeoBundleLazy 'mdreves/vim-scaladoc'
-NeoBundleLazy 'gre/play2vim'
-"}}}
-" Scheme {{{
-NeoBundleLazy 'aharisu/vim_goshrepl'
-NeoBundleLazy 'kien/rainbow_parentheses.vim'
-" }}}
-"}}}
-
-" Fold {{{
-NeoBundle 'LeafCage/foldCC'
-NeoBundleLazy 'tmhedberg/SimpylFold' "for Python
-NeoBundleLazy 'vim-scripts/CSS-one-line--multi-line-folding'
-"}}}
-
-" Japanese {{{
-" NeoBundleLazy 'haya14busa/vim-migemo' "use migemo of easymotion
-NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
-" NeoBundle 'tyru/skk.vim'
-"}}}
-
-" ColorScheme {{{
-NeoBundle 'tomasr/molokai'
-NeoBundle 'sickill/vim-monokai'
-NeoBundle 'vim-scripts/Wombat'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'vim-scripts/twilight'
-NeoBundle 'jonathanfilip/vim-lucius'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'vim-scripts/rdark'
-NeoBundle 'djjcast/mirodark'
-NeoBundle 'sjl/badwolf'
-NeoBundle 'cocopon/iceberg.vim' " A dark color scheme for Vim, came from Antarctica
-NeoBundle 'reedes/vim-colors-pencil'
-"}}}
-
-" Vim script {{{
-NeoBundle 'mattn/learn-vimscript'
-NeoBundleLazy 'thinca/vim-prettyprint'
-NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
-NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
-NeoBundleLazy 'thinca/vim-editvar' " Edits vim variable in buffer.
-NeoBundleLazy 'tyru/restart.vim' " Restart your gVim
-NeoBundleLazy 'thinca/vim-ft-help_fold', {
-      \ 'filetypes' : 'help'
-      \ }
-NeoBundleLazy 'syngan/vim-vimlint', {
-    \ 'depends' : 'ynkdir/vim-vimlparser'}
-"}}}
-
-" Others {{{
-NeoBundleLazy 'pentie/VimRepress' "WordPress
-NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
-NeoBundleLazy 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
-NeoBundleLazy 'basyura/J6uil.vim'
-NeoBundle 'bohrshaw/vim-vimperator-syntax'
-NeoBundleLazy 'dogrover/vim-pentadactyl'
-NeoBundleLazy 'supermomonga/thingspast.vim'
-NeoBundleLazy 'rbtnn/puyo.vim'
-NeoBundleLazy 'thinca/vim-scouter'
-
-NeoBundleLazy 'thinca/vim-threes'
-" NeoBundle 'tpope/vim-rake'
-"}}}
-
+call neobundle#end()
 filetype plugin indent on
 
 " END NeoBundle}}}
