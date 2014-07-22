@@ -91,7 +91,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'haya14busa/unite-ghq'
     NeoBundleLazy 'rhysd/unite-zsh-cdr.vim'
     NeoBundleLazy 'haya14busa/unite-reading-vimrc'
-    NeoBundleLazy "osyo-manga/unite-vimmer"
+    NeoBundleLazy 'osyo-manga/unite-vimmer'
     " action
     NeoBundleLazy 'osyo-manga/ref-lynx'
     NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
@@ -158,8 +158,6 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'thinca/vim-visualstar'
     NeoBundleLazy 'osyo-manga/vim-anzu'
     NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
-
-    NeoBundle 'tpope/vim-speeddating'
 
     NeoBundle 'vim-jp/autofmt'
 
@@ -361,8 +359,8 @@ function! s:load_bundles() "{{{
     "}}}
 endfunction "}}}
 
-" if neobundle#has_cache()
-if neobundle#has_fresh_cache()
+if neobundle#has_cache()
+" if neobundle#has_fresh_cache()
     NeoBundleLoadCache
 else
     call s:load_bundles()
@@ -524,7 +522,7 @@ endif
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 command! SoVimrc source $MYVIMRC
-Autocmd BufWritePost *vimrc source $MYVIMRC
+Autocmd BufWritePost *vimrc NeoBundleClearCache | source $MYVIMRC
 Autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 "}}}
 
@@ -747,7 +745,6 @@ Autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 "}}}
 
 " Fold {{{
-
 " Change Keymap for Fold {{{
 noremap [fold] <nop>
 nmap <Space> [fold]
@@ -771,18 +768,6 @@ nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
 
 nnoremap  [fold][     :<C-u>call <SID>put_foldmarker(0)<CR>
 nnoremap  [fold]]     :<C-u>call <SID>put_foldmarker(1)<CR>
-"}}}
-
-" Leafcage/foldCC {{{
-if neobundle#tap('foldCC')
-    call neobundle#config({})
-    set foldmethod=marker
-    set foldtext=FoldCCtext()
-    set foldcolumn=0
-    set fillchars=vert:\|
-    noremap [fold]g :<C-u>echo FoldCCnavi()<CR>
-    call neobundle#untap()
-endif " }}}
 "}}}
 
 " smart_foldcloser {{{
@@ -817,6 +802,8 @@ function! s:put_foldmarker(foldclose_p)
     let fmr = split(&fmr, ',')[a:foldclose_p]. (v:count ? v:count : '')
     exe 'norm! A'. padding. cms_start. fmr. cms_end
 endfunction
+"}}}
+
 "}}}
 
 " Tab {{{
@@ -926,8 +913,6 @@ vnoremap : q:
 Autocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() "{{{
     silent! 1,$-20 delete _ | call cursor('$', 0)
-
-    let b:neocomplete_sources_list = ['vim_complete']
 
     nnoremap <silent><buffer>q          :<C-u>quit<CR>
     nnoremap <silent><buffer><CR>       <CR>
@@ -1120,6 +1105,9 @@ if neobundle#tap('unite.vim')
 
     " Settings"{{{
     function! neobundle#tapped.hooks.on_source(bundle)
+        " Disable
+        let g:unite_source_history_yank_enable = 0
+
         let g:unite_kind_jump_list_after_jump_scroll=0
         let g:unite_enable_start_insert = 1
         let g:unite_source_rec_min_cache_files = 1000
@@ -3411,6 +3399,16 @@ if neobundle#tap('unite-reading-vimrc')
 endif
 " }}}
 
+" Leafcage/foldCC {{{
+if neobundle#tap('foldCC')
+    call neobundle#config({})
+    set foldmethod=marker
+    set foldtext=FoldCCtext()
+    set foldcolumn=0
+    set fillchars=vert:\|
+    noremap [fold]g :<C-u>echo FoldCCnavi()<CR>
+    call neobundle#untap()
+endif " }}}
 
 
 " End plugins }}}
