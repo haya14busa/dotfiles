@@ -92,6 +92,8 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'rhysd/unite-zsh-cdr.vim'
     NeoBundleLazy 'haya14busa/unite-reading-vimrc'
     NeoBundleLazy 'osyo-manga/unite-vimmer'
+    NeoBundleLazy 'unite-historia'
+    " }}}
     " action
     NeoBundleLazy 'osyo-manga/ref-lynx'
     NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
@@ -398,7 +400,8 @@ set grepprg=internal "Program to use for the :grep command
 set helpheight=12 " Minimal initial height of the help window
 set helplang& helplang=en,ja " If true Vim master, use English help file
 set hidden "Display another buffer when current buffer isn't saved.
-set history=1024 "Amount of Command history
+" set history=1024 "Amount of Command history
+set history=100 "Amount of Command history
 set infercase "Ignore case on insert completion.
 set keywordprg=:help " Open Vim internal help by K command
 set laststatus=2 "Always display statusline
@@ -3410,6 +3413,24 @@ if neobundle#tap('foldCC')
     call neobundle#untap()
 endif " }}}
 
+" haya14busa/unite-historia {{{
+if neobundle#tap('unite-historia')
+    " Config {{{
+    call neobundle#config({
+                \   'depends' : ['Shougo/unite.vim'],
+                \   'autoload' : {
+                \     'unite_sources' : [
+                \       'historia/',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    nnoremap <silent> ;<C-r> :<C-u>Unite command/new historia/command
+                \   -direction=botright
+                \   -hide-source-names<CR>
+    call neobundle#untap()
+endif
+" }}}
 
 " End plugins }}}
 
