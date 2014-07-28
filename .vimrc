@@ -216,7 +216,7 @@ function! s:load_bundles() "{{{
         \ 'autoload' : {'commands' : 'Vcs'},
         \ }
 
-    " NeoBundle 'rhysd/committia.vim'
+    NeoBundle 'rhysd/committia.vim'
     "}}}
 
     " UI {{{
