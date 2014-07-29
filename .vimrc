@@ -3420,12 +3420,12 @@ if neobundle#tap('unite-historia')
                 \   'depends' : ['Shougo/unite.vim'],
                 \   'autoload' : {
                 \     'unite_sources' : [
-                \       'historia/',
+                \       'historia/', 'historia/new'
                 \     ],
                 \   }
                 \ })
     " }}}
-    nnoremap <silent> ;<C-r> :<C-u>Unite command/new historia/command
+    nnoremap <silent> ;<C-r> :<C-u>Unite historia/new historia/command
                 \   -direction=botright
                 \   -hide-source-names<CR>
     call neobundle#untap()
