@@ -92,7 +92,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'rhysd/unite-zsh-cdr.vim'
     NeoBundleLazy 'haya14busa/unite-reading-vimrc'
     NeoBundleLazy 'osyo-manga/unite-vimmer'
-    NeoBundleLazy 'unite-historia'
+    NeoBundleLazy 'haya14busa/unite-historia'
     " }}}
     " action
     NeoBundleLazy 'osyo-manga/ref-lynx'
