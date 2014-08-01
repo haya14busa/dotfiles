@@ -93,7 +93,6 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'haya14busa/unite-reading-vimrc'
     NeoBundleLazy 'osyo-manga/unite-vimmer'
     NeoBundleLazy 'haya14busa/unite-historia'
-    " }}}
     " action
     NeoBundleLazy 'osyo-manga/ref-lynx'
     NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
@@ -222,6 +221,7 @@ function! s:load_bundles() "{{{
     " UI {{{
     NeoBundle 'itchyny/lightline.vim'
     NeoBundle 'Yggdroot/indentLine'
+    NeoBundleLazy 'osyo-manga/vim-brightest'
     NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selected word
     "TODO
     NeoBundleLazy 'osyo-manga/vim-automatic', {
@@ -3428,6 +3428,34 @@ if neobundle#tap('unite-historia')
     nnoremap <silent> ;<C-r> :<C-u>Unite historia/new historia/command
                 \   -direction=botright
                 \   -hide-source-names<CR>
+    call neobundle#untap()
+endif
+" }}}
+
+" osyo-manga/vim-brightest {{{
+if neobundle#tap('vim-brightest')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'commands' : ['BrightestEnable'],
+                \   }
+                \ })
+    " }}}
+
+    augroup load_brightest
+        autocmd!
+        autocmd CursorMoved * NeoBundleSource vim-brightest
+        autocmd CursorMoved * autocmd! load_brightest *
+    augroup END
+
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        let g:brightest#highlight = {
+        \   "group" : "BrightestUnderline",
+        \   "priority" : -1
+        \}
+        let g:brightest#pattern = '\w\+'
+    endfunction "}}}
+
     call neobundle#untap()
 endif
 " }}}
