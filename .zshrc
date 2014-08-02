@@ -162,6 +162,9 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
 
+# `-` to cd to the previous directory
+-(){cd -}
+
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
 if which pbcopy >/dev/null 2>&1 ; then
