@@ -223,6 +223,7 @@ function! s:load_bundles() "{{{
     NeoBundle 'Yggdroot/indentLine'
     NeoBundleLazy 'osyo-manga/vim-brightest'
     NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selected word
+    NeoBundleLazy 'mattn/disableitalic-vim'
     "TODO
     NeoBundleLazy 'osyo-manga/vim-automatic', {
         \ 'depends' : [ 'osyo-manga/vim-gift', 'osyo-manga/vim-reunions' ] }
@@ -3456,6 +3457,24 @@ if neobundle#tap('vim-brightest')
         let g:brightest#pattern = '\w\+'
     endfunction "}}}
 
+    call neobundle#untap()
+endif
+" }}}
+
+" mattn/disableitalic-vim {{{
+if neobundle#tap('disableitalic-vim')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'commands' : [
+                \       'DisableItalic',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        " TODO: autocmd for Colorscheme if it's gVim
+    endfunction "}}}
     call neobundle#untap()
 endif
 " }}}
