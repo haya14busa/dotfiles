@@ -3283,6 +3283,9 @@ if neobundle#tap('vim-precious')
                 \   'autoload' : {
                 \     'filetypes' : [
                 \       'markdown',
+                \     ],
+                \     'commands' : [
+                \       'PreciousSwitch', 'PreciousReset'
                 \     ]
                 \   }
                 \ })
@@ -3299,6 +3302,20 @@ if neobundle#tap('vim-precious')
     \       "setfiletype" : 1
     \   },
     \}
+
+    let g:precious_enable_switch_CursorMoved = {
+    \   "*" : 0
+    \}
+    let g:precious_enable_switch_CursorMoved_i = {
+    \   "*" : 0
+    \}
+
+    augroup precious_insert
+        autocmd!
+        autocmd InsertEnter * :PreciousSwitch
+        autocmd InsertLeave * :PreciousReset
+    augroup END
+
     call neobundle#untap()
 endif
 " }}}
