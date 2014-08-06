@@ -740,6 +740,7 @@ function! s:remove_trailing_white_spaces()
     call winrestview(pos)
 endfunction
 command! RemoveTrailingWhiteSpaces call <SID>remove_trailing_white_spaces()
+command! -range=% TrimSpace  <line1>,<line2>s!\s*$!!g | nohlsearch
 "}}}
 
 "}}}
