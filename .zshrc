@@ -289,6 +289,7 @@ export GOOS=linux
 # export GOARCH=amd64
 # export GOARCH=386
 export GOBIN=$GOROOT/bin
+export GOPATH=$HOME
 export PATH=$PATH:$GOBIN
 
 # Anyenv
