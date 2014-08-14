@@ -135,6 +135,8 @@ function! s:load_bundles() "{{{
     NeoBundle 'mattn/webapi-vim'
     NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
     NeoBundle 'osyo-manga/vital-over'
+    NeoBundle 'osyo-manga/vital-reunions'
+    NeoBundle 'osyo-manga/vital-coaster'
     "}}}
 
     " Document {{{
