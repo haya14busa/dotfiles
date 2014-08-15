@@ -3715,6 +3715,8 @@ command! -bang -bar -complete=file -nargs=? Dos
 \   edit<bang> ++fileformat=dos <args>
 " }}}
 
+" format JSON
+command! -range FormatJson <line1>,<line2>!python -m json.tool
 
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
