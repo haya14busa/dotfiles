@@ -118,6 +118,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'h1mesuke/vim-alignta'
     NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
     NeoBundleLazy 'ujihisa/neco-look'
+    NeoBundleLazy 'rhysd/vim-grammarous'
     "}}}
 
     " Development {{{
@@ -3496,6 +3497,27 @@ if neobundle#tap('disableitalic-vim')
     " }}}
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
         " TODO: autocmd for Colorscheme if it's gVim
+    endfunction "}}}
+    call neobundle#untap()
+endif
+" }}}
+
+" rhysd/vim-grammarous {{{
+if neobundle#tap('vim-grammarous')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'commands' : [
+                \       'GrammarousCheck',
+                \     ],
+                \     'mappings' : [
+                \       '<Plug>',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        let g:grammarous#enable_spell_check = 1
     endfunction "}}}
     call neobundle#untap()
 endif
