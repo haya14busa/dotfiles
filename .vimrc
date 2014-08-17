@@ -209,7 +209,7 @@ function! s:load_bundles() "{{{
 
     " Git {{{
     NeoBundle 'tpope/vim-fugitive'
-    NeoBundleLazy 'gregsexton/gitv'
+    NeoBundleLazy 'cohama/agit.vim'
     NeoBundle 'mhinz/vim-signify'
 
     NeoBundleLazy 'thinca/vim-openbuf'
@@ -1701,12 +1701,12 @@ if neobundle#tap('vim-ref')
 endif
 "}}}
 
-" gregsexton/gitv {{{
-if neobundle#tap('gitv')
+" cohama/agit.vim {{{
+if neobundle#tap('agit.vim')
     call neobundle#config({
     \ 'depends': ['tpope/vim-fugitive'],
     \ 'autoload': {
-    \   'commands' : ['Gitv']
+    \   'commands' : ['Agit']
     \   }
     \ })
     call neobundle#untap()
