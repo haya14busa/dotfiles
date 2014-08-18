@@ -750,6 +750,10 @@ command! -range=% RemoveTrailM  <line1>,<line2>s!\r$!!g | nohlsearch
 
 "}}}
 
+" Resize splits when the window is resized {{{
+Autocmd VimResized * :wincmd =
+"}}}
+
 " Restore last cursor position when open a file {{{
 Autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 "}}}
