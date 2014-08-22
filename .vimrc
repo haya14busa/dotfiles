@@ -1516,6 +1516,8 @@ if neobundle#tap('neosnippet.vim')
 
         "prioratise snippet
         call neocomplete#custom#source('neosnippet', 'rank', 400)
+
+        snoremap <Esc> <Esc>:NeoSnippetClearMarkers<CR>
     endfunction "}}}
 
     " haya14busa-snippets {{{
