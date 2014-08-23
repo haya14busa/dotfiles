@@ -3056,7 +3056,8 @@ if neobundle#tap('targets.vim')
     " }}}
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
     endfunction "}}}
-    " Disable `n` & `l` targets for line object
+    " Disable `n` , `l` , `A`
+    let g:targets_aiAI = 'ai I'
     let g:targets_nlNL = '  NL'
     call neobundle#untap()
 endif
