@@ -600,11 +600,6 @@ nnoremap <C-y> <C-y>k
 nnoremap <C-f> <C-f>zz
 nnoremap <C-b> <C-b>zz
 
-nnoremap <Down> <C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e>
-nnoremap <Up>   <C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y>
-vnoremap <Down> <C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e><C-e>
-vnoremap <Up>   <C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y><C-y>
-
 nnoremap <Space>j <C-f>zz
 nnoremap <Space>k <C-b>zz
 vnoremap <Space>j <C-f>zz
