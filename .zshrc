@@ -292,6 +292,10 @@ export GOBIN=$GOROOT/bin
 export GOPATH=$HOME
 export PATH=$PATH:$GOBIN
 
+# themis
+export THEMIS_HOME=${HOME}/.vim/bundle/vim-themis
+export PATH=${THEMIS_HOME}/bin/:$PATH
+
 # Anyenv
 if [ -d ${HOME}/.anyenv ] ; then
     export PATH="$HOME/.anyenv/bin:$PATH"

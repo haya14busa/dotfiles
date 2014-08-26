@@ -338,6 +338,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'thinca/vim-prettyprint'
     NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
     NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
+    NeoBundleLazy 'thinca/vim-themis'
     NeoBundleLazy 'thinca/vim-editvar' " Edits vim variable in buffer.
     NeoBundleLazy 'tyru/restart.vim' " Restart your gVim
     NeoBundleLazy 'thinca/vim-ft-help_fold', {
@@ -450,7 +451,6 @@ set shiftwidth=4 "Number of spaces to use for each step of (auto)indent
 set softtabstop=4 "Number of spaces that a <Tab> counts for while editing operations
 set tabstop=4 "Number of spaces that a <Tab> in the file counts for
 "}}}
-
 " Search Basic Settings {{{
 set incsearch "Incremental searching
 set ignorecase "Ignore case in search patterns
@@ -710,7 +710,6 @@ Autocmd InsertLeave * set nopaste
 nnoremap <silent> <Leader>l :<C-u>set list! list?<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
-" set listchars=tab:▸\ ,eol:¬
 set listchars=tab:▸\ ,
 set list
 
