@@ -276,6 +276,7 @@ function! s:load_bundles() "{{{
     NeoBundle 'othree/html5.vim'
     NeoBundle 'plasticboy/vim-markdown'
     NeoBundleLazy 'kannokanno/previm'
+    NeoBundle 'groenewege/vim-less'
 
     " Python {{{
     NeoBundleLazy 'davidhalter/jedi-vim'
