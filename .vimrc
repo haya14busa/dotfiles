@@ -3378,8 +3378,17 @@ endif
 
 " rhysd/committia {{{
 if neobundle#tap('committia.vim')
-    call neobundle#config({})
     let g:committia_min_window_width = '140'
+    let g:committia_hooks = {}
+    function! g:committia_hooks.edit_open(info)
+        setlocal spell
+        " If no commit message, start with insert mode
+        if getline(1) ==# ''
+            startinsert
+        end
+        imap <buffer><C-j> <Plug>(committia-scroll-diff-down-half)
+        imap <buffer><C-k> <Plug>(committia-scroll-diff-up-half)
+    endfunction
     call neobundle#untap()
 endif
 " }}}
