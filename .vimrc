@@ -123,7 +123,6 @@ function! s:load_bundles() "{{{
 
     " Development {{{
     NeoBundleLazy 'thinca/vim-quickrun'
-    " NeoBundleLazy 'scrooloose/syntastic'
 
     NeoBundleLazy "osyo-manga/vim-watchdogs"
 
@@ -2325,7 +2324,6 @@ if neobundle#tap('lightline.vim')
         \       [ 'filename','fugitive','anzu'],
         \   ],
         \   'right': [
-        \       [ 'lineinfo', 'syntastic' ],
         \       [ 'percent' ],
         \       [ 'filetype'],
         \   ]
@@ -2339,7 +2337,6 @@ if neobundle#tap('lightline.vim')
         \   'filetype': 'MyFiletype',
         \   'fileencoding': 'MyFileencoding',
         \   'mode': 'MyMode',
-        \   'syntastic': 'SyntasticStatuslineFlag',
         \   'anzu': 'anzu#search_status',
         \ }
         \ }
@@ -2867,45 +2864,6 @@ if neobundle#tap('calendar.vim')
             nmap <buffer>e <Plug>(calendar_event)
             highlight clear TrailingSpaces
         endfunction "}}}
-    endfunction "}}}
-    call neobundle#untap()
-endif
-" }}}
-
-" scrooloose/syntastic {{{
-if neobundle#tap('syntastic')
-    " Config {{{
-    call neobundle#config({
-        \   'autoload' : {
-        \     'insert' : 1,
-        \   }
-        \ })
-    " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-        let g:syntastic_python_checkers=['flake8', 'python']
-        " let g:syntastic_python_checkers=['pyflakes','flake8','pep8']
-        " https://github.com/mitsuhiko/dotfiles/blob/master/vim/vimrc
-        " Don't warn on
-        " " E121 continuation line indentation is not a multiple of four
-        " " E128 continuation line under-indented for visual indent
-        " " E711 comparison to None should be 'if cond is not None:'
-        " " E301 expected 1 blank line, found 0
-        " " E261 at least two spaces before inline comment
-        " " E241 multiple spaces after ':'
-        " " E124 closing bracket does not match visual indentation
-        " " E126 continuation line over-indented for hanging indent
-        " " E721 do not compare types, use 'isinstance()'
-        " let g:syntastic_python_flake8_args =
-        "             \ '--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
-        "             \ --max-line-length=84'
-
-        " E712 - Fix comparison with boolean.
-        " do not compare types, use ‘isinstance()’
-        let g:syntastic_python_flake8_args = '--ignore=E712'
-
-
-        " JavaScript
-        let g:syntastic_javascript_checkers=['jshint']
     endfunction "}}}
     call neobundle#untap()
 endif
