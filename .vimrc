@@ -134,6 +134,7 @@ function! s:load_bundles() "{{{
     NeoBundle 'Shougo/vimproc'
     NeoBundle 'mattn/webapi-vim'
     NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
+    NeoBundleLazy 'osyo-manga/unite-vital-module'
     NeoBundle 'osyo-manga/vital-over'
     NeoBundle 'osyo-manga/vital-reunions'
     NeoBundle 'osyo-manga/vital-coaster'
@@ -1405,6 +1406,20 @@ endif
 " haya14busa/unite-action-vimfiler_lcd {{{
 if neobundle#tap('unite-action-vimfiler_lcd')
     call neobundle#config({'depends' : 'Shougo/unite.vim'})
+    call neobundle#untap()
+endif
+" }}}
+" osyo-manga/unite-vital-module {{{
+if neobundle#tap('unite-vital-module')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'unite_sources' : [
+                \       'vital-module',
+                \     ],
+                \   }
+                \ })
+    " }}}
     call neobundle#untap()
 endif
 " }}}
