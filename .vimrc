@@ -453,6 +453,7 @@ set shiftwidth=4 "Number of spaces to use for each step of (auto)indent
 set softtabstop=4 "Number of spaces that a <Tab> counts for while editing operations
 set tabstop=4 "Number of spaces that a <Tab> in the file counts for
 "}}}
+
 " Search Basic Settings {{{
 set incsearch "Incremental searching
 set ignorecase "Ignore case in search patterns
@@ -2921,7 +2922,6 @@ endif
 " kana/vim-vspec {{{
 if neobundle#tap('vim-vspec')
     Autocmd BufRead,BufNew,BufNewFile *_spec.vim NeoBundleSource vim-vspec
-    "
     call neobundle#untap()
 endif
 " }}}
@@ -2937,10 +2937,6 @@ if neobundle#tap('vim-over')
         \   }
         \ })
     " }}}
-    " Setting {{{
-    nnoremap <Leader>S :OverCommandLine<CR>%s/
-    xnoremap <Leader>S :OverCommandLine<CR>s/
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -2955,10 +2951,6 @@ if neobundle#tap('vital.vim')
                 \   }
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -2991,10 +2983,6 @@ if neobundle#tap('vim-editvar')
                 \   }
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -3010,21 +2998,12 @@ if neobundle#tap('vim-threes')
                 \   }
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
 
 " welle/targets.vim {{{
 if neobundle#tap('targets.vim')
-    " Config {{{
-    call neobundle#config({})
-    " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
     " Disable `n` , `l` , `A`
     let g:targets_aiAI = 'ai I'
     let g:targets_nlNL = '  NL'
@@ -3047,10 +3026,6 @@ if neobundle#tap('previm')
                 \   }
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -3070,10 +3045,6 @@ if neobundle#tap('tern_for_vim')
                 \                 'TernRefs', 'TernRename'],
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -3089,10 +3060,6 @@ if neobundle#tap('vim-jsbeautify')
                 \   }
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -3108,10 +3075,6 @@ if neobundle#tap('vim-scala')
                 \   }
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -3127,10 +3090,6 @@ if neobundle#tap('vim-sbt')
                 \   }
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -3149,8 +3108,6 @@ if neobundle#tap('vim-scaladoc')
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
         AutocmdFT scala nnoremap <buffer> K :<C-u>call scaladoc#Search(expand("<cword>"))<CR>
     endfunction "}}}
-    " Setting {{{
-    "}}}
     call neobundle#untap()
 endif
 " }}}
@@ -3213,7 +3170,7 @@ endif
 " vim-jp/autofmt {{{
 if neobundle#tap('autofmt')
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
-set formatexpr=autofmt#compat#formatexpr()
+        set formatexpr=autofmt#compat#formatexpr()
     endfunction "}}}
     call neobundle#untap()
 endif
@@ -3316,8 +3273,8 @@ if neobundle#tap('screensaver.vim')
                 \   }
                 \ })
     " }}}
-    call neobundle#untap()
     AutocmdFT screensaver setlocal colorcolumn=0
+    call neobundle#untap()
 endif
 " }}}
 
@@ -3330,8 +3287,6 @@ if neobundle#tap('vim-qfreplace')
                 \   }
                 \ })
     " }}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
     call neobundle#untap()
 endif
 " }}}
