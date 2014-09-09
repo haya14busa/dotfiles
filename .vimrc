@@ -1161,6 +1161,30 @@ if neobundle#tap('unite.vim')
             \ 'target/',
             \ ], '\|'))
 
+        " Grep
+        if executable('ag')
+            " Use ag in unite grep source.
+            let g:unite_source_grep_command = 'ag'
+            let g:unite_source_grep_default_opts =
+                        \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+                        \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+            let g:unite_source_grep_recursive_opt = ''
+        elseif executable('pt')
+            let g:unite_source_grep_command = 'pt'
+            let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+            let g:unite_source_grep_recursive_opt = ''
+        elseif executable('jvgrep')
+            " For jvgrep.
+            let g:unite_source_grep_command = 'jvgrep'
+            let g:unite_source_grep_default_opts = '--exclude ''\.(git|svn|hg|bzr)'''
+            let g:unite_source_grep_recursive_opt = '-R'
+        elseif executable('ack-grep')
+            " For ack.
+            let g:unite_source_grep_command = 'ack-grep'
+            let g:unite_source_grep_default_opts = '--no-heading --no-color -a'
+            let g:unite_source_grep_recursive_opt = ''
+        endif
+
         AutocmdFT unite call s:unite_settings()
         function! s:unite_settings()
             imap <silent><buffer> <C-j> <Plug>(unite_select_next_line)
