@@ -350,11 +350,9 @@ function! s:load_bundles() "{{{
     "}}}
 
     " Others {{{
-    NeoBundleLazy 'pentie/VimRepress' "WordPress
     NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
     NeoBundleLazy 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
     NeoBundleLazy 'basyura/J6uil.vim'
-    NeoBundle 'bohrshaw/vim-vimperator-syntax'
     NeoBundleLazy 'dogrover/vim-pentadactyl'
     NeoBundleLazy 'supermomonga/thingspast.vim'
     NeoBundleLazy 'rbtnn/puyo.vim'
@@ -2519,19 +2517,6 @@ if neobundle#tap('TweetVim')
 endif
 "}}}
 
-" pentie/VimRepress {{{
-if neobundle#tap('VimRepress')
-    call neobundle#config({
-        \   'autoload' : {
-        \     'commands' : [
-        \       'BlogNew','BlogList'
-        \     ],
-        \   }
-        \ })
-    call neobundle#untap()
-endif
-"}}}
-
 " thinca/vim-scouter {{{
 if neobundle#tap('vim-scouter')
     call neobundle#config({
@@ -3175,21 +3160,6 @@ if neobundle#tap('vim-markdown')
     call neobundle#untap()
 endif
 " }}}
-
-" dogrover/vim-pentadactyl {{{
-if neobundle#tap('vim-pentadactyl')
-    " Config {{{
-    call neobundle#config({
-                \   'autoload' : {
-                \     'filetypes' : [
-                \       'pentadactyl',
-                \     ],
-                \   }
-                \ })
-    " }}}
-    call neobundle#untap()
-endif
-"}}}
 
 " vim-jp/autofmt {{{
 if neobundle#tap('autofmt')
