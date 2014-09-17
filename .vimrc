@@ -952,18 +952,24 @@ endfunction  " }}}
 "}}}
 
 " Git Setting {{{
-" for git mergetool
-if &diff
-    noremap <Leader>1 :diffget LOCAL<CR>
-    noremap <Leader>2 :diffget BASE<CR>
-    noremap <Leader>3 :diffget REMOTE<CR>
-    noremap <Leader>u :<C-u>diffupdate<CR>
-    noremap u u:<C-u>diffupdate<CR>
-
+" key mapping in vimdiff
+function! s:config_in_diff_mode()
+    if !&diff
+        return
+    endif
+    " for git mergetool
+    nnoremap <buffer> <Leader>1 :diffget LOCAL<CR>
+    nnoremap <buffer> <Leader>2 :diffget BASE<CR>
+    nnoremap <buffer> <Leader>3 :diffget REMOTE<CR>
+    nnoremap <buffer> <Leader>u :<C-u>diffupdate<CR>
+    nnoremap <buffer> u u:<C-u>diffupdate<CR>
     " same bindings for merging diffs as in normal mode
-    xnoremap <Leader>dp :diffput<cr>
-    xnoremap <Leader>do :diffget<cr>
-endif
+    xnoremap <buffer> dp :diffput<cr>
+    xnoremap <buffer> do :diffget<cr>
+endfunction
+
+Autocmd FilterWritePre * call s:config_in_diff_mode()
+
 
 " Update diff
 Autocmd InsertLeave * if &l:diff | diffupdate | endif
