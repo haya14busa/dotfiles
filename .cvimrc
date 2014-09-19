@@ -1,19 +1,22 @@
 " Settings
 set nohud
-set nosmoothscroll
+" set nosmoothscroll
 " set noautofocus "The opposite of autofocus; this setting stops sites from focusing on an input box when they load
 set typelinkhints
+set cncpcompletion
 
 let searchlimit = 30
 let scrollstep = 70
 let barposition = "bottom"
-let locale = "jp" " or uk
-let hintcharacters = "abc123"
+let locale = "jp"
+
+" let hintcharacters = ";HKLYUIONM,WERTXCVBASDGJF"
+let hintcharacters = "hklyuionmwertxcvbasdgjf"
 
 let completionengines = ["google", "amazon", "imdb", "dogpile"]
 let searchalias g = "google" "Create a shortcut for search engines. For example, typing ':tabnew g example' would act the same way as ':tabnew google example'
 let qmark a = ["http://www.reddit.com", "http://www.google.com", "http://twitter.com"]  "Open all of these in a tab with `gnb` or open one of these with <N>goa where <N>
-let blacklists = ["https://mail.google.com/*", "*://*.reddit.com/*"]
+" let blacklists = ["https://mail.google.com/*", "*://*.reddit.com/*"]
 let mapleader = ","
 
 " Mappings
@@ -21,18 +24,30 @@ let mapleader = ","
 map <Leader>r reloadTabUncached
 map <Leader>x :restore<Space>
 
-map j scrollUp "This remaps the default 'j' mapping
-map gb :buffer<Space> "You can use <Space>, which is interpreted as a literal " " character, to enter buffer completion mode
-unmap k "The unmaps the default 'k' mapping
+map gb :buffer<Space>
 
-map f F "This remaps the default 'f' mapping to the current 'F' mapping
-
-map <C-h> :set hud!<CR> "Toggle the current HUD display value
-map <C-i> :set numerichints!<CR> "Switch between alphabetical hint characters and numeric hints
+map <C-h> :set hud!<CR>
+map <C-i> :set numerichints!<CR>
 map <C-u> rootFrame
-map <M-h> previousTab
-map <C-d> scrollPageDown
-map <C-e> scrollPageUp
-iunmap <C-y>
-imap <C-m> deleteWord
-map X :execute gTx<CR> "Close the current tab and move to the one before it
+
+map d x
+
+unmap t
+map tt :tabnew<Space>
+map tl gt
+map th gT
+
+" Insert mode
+imap <C-a> beginningOfLine
+imap <C-e> endOfLine
+imap <C-u> deleteToBeginning
+imap <C-k> deleteToEnd
+imap <C-w> deleteWord
+imap <C-f> forwardChar
+imap <C-b> backwardChar
+
+map <C-n> nextCompletionResult
+imap <C-n> nextCompletionResult
+cmap <C-n> nextCompletionResult
+
+map u lastClosedTab
