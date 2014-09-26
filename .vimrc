@@ -681,7 +681,7 @@ nnoremap <silent><Esc><Esc>
       \ :<C-u>nohlsearch<CR>
 
 " Automatically escape '/'
-cnoremap <expr>/ getcmdtype() == '/' ? '\/' : '/'
+" cnoremap <expr>/ getcmdtype() == '/' ? '\/' : '/'
 
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
