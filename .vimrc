@@ -834,9 +834,10 @@ nnoremap <silent> tL :<C-u>buffers<CR>
 "}}}
 
 " Tab jump {{{
-for n in range(1, 9)
-    execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
+for s:n in range(1, 9)
+    execute 'nnoremap <silent> t'.s:n  ':<C-u>tabnext'.s:n.'<CR>'
 endfor
+unlet s:n
 "}}}
 
 " MoveToNewTab {{{
