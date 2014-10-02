@@ -456,7 +456,8 @@ set tabstop=4 "Number of spaces that a <Tab> in the file counts for
 set incsearch "Incremental searching
 set ignorecase "Ignore case in search patterns
 set smartcase "Override the ignorecase option if the pattern contains upper case
-set hlsearch | nohlsearch "Highlight search patterns, support reloading
+" set hlsearch | nohlsearch "Highlight search patterns, support reloading
+set nohlsearch
 "}}}
 
 " Backup Settings {{{
@@ -673,12 +674,14 @@ vnoremap @q :normal @q<CR>
 
 " Search {{{
 " always 'very magic'
-nnoremap / /\v
+" nnoremap / /\v
 " search within visual block
-vnoremap / <esc>/\v%V
+" vnoremap / <esc>/\v%V
 " clear status
+" nnoremap <silent><Esc><Esc>
+"       \ :<C-u>nohlsearch<CR>
 nnoremap <silent><Esc><Esc>
-      \ :<C-u>nohlsearch<CR>
+      \ :<C-u>set hlsearch! hlsearch?<CR>
 
 " Automatically escape '/'
 " cnoremap <expr>/ getcmdtype() == '/' ? '\/' : '/'
