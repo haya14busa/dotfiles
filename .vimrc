@@ -175,6 +175,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'rhysd/clever-f.vim' " Extended f, F, t and T key mappings for Vim.
     NeoBundleLazy 'rhysd/accelerated-jk'
     NeoBundleLazy 'saihoooooooo/glowshi-ft.vim'
+    NeoBundleLazy 'haya14busa/incsearch.vim'
     "}}}
 
     " Text Object {{{
@@ -1882,8 +1883,8 @@ if neobundle#tap('vim-easymotion')
     xmap / <Esc><Plug>(easymotion-sn)\v%V
     omap / <Plug>(easymotion-tn)
     noremap  ;/ /
-    nmap ;n <Plug>(easymotion-sn)<C-p>
-    map ;N <Plug>(easymotion-bd-n)
+    " nmap ;n <Plug>(easymotion-sn)<C-p>
+    " map ;N <Plug>(easymotion-bd-n)
 
     set nohlsearch " use EasyMotion highlight
     nmap n <Plug>(easymotion-next)<Plug>(anzu-update-search-status)zv
@@ -2249,7 +2250,7 @@ if neobundle#tap('vim-anzu')
         \ })
     " nmap n <Plug>(anzu-n)zzzv
     " nmap N <Plug>(anzu-N)zzzv
-    nmap * <Plug>(anzu-star-with-echo);n
+    nmap * <Plug>(anzu-star-with-echo)
     " nmap # <Plug>(anzu-sharp-with-echo)
 
     " Clear hit count when nokeyinput, move window, or move tab
@@ -3469,6 +3470,64 @@ if neobundle#tap('vim-grammarous')
     call neobundle#untap()
 endif
 " }}}
+
+" haya14busa/incsearch.vim {{{
+if neobundle#tap('incsearch.vim')
+    " Config {{{
+    call neobundle#config({
+                \   'autoload' : {
+                \     'mappings' : [
+                \       '<Plug>(incsearch-',
+                \     ],
+                \   }
+                \ })
+    " }}}
+    function! NormalZZ()
+        try
+            normal! zz
+        catch /E523:/
+        endtry
+        let h = winheight(0)
+        call winrestview({'topline': line('.') - h / 2})
+    endfunction
+    function! neobundle#tapped.hooks.on_post_source(bundle) "{{{
+        " IncSearchNoreMap <Tab> <Over>(incsearch-next)
+        " IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
+        " IncSearchNoreMap <C-l> <Over>(buffer-complete)
+        augroup incsearch
+            autocmd!
+            autocmd User IncSearchEnter BrightestDisable
+            autocmd User IncSearchLeave BrightestEnable
+            " autocmd User IncSearchExecute echom 'exit'
+            " autocmd User IncSearchExecutePre echom 'exit'
+            " autocmd User IncSearchChar call Plog("called on char")
+            " autocmd User IncSearchChar call NormalZZ()
+        augroup END
+    endfunction "}}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+    endfunction "}}}
+    " Setting {{{
+    let g:incsearch#emacs_like_keymap = 1
+    " let g:incsearch#highlight = {
+    " \   'match' : {
+    " \       'group' : 'IncSearchUnderline'
+    " \   }
+    " \ }
+    map / <Plug>(incsearch-forward)
+    map ? <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
+    highlight IncSearchCursor ctermfg=0 ctermbg=9 guifg=#000000 guibg=#FF0000
+    " highlight IncSearchOnCursor term=reverse ctermbg=236 guibg=#232526
+    " Autocmd VimEnter IncSearchNoreMap <Tab> <Over>(incsearch-next)
+
+    noremap n n
+    noremap N N
+    noremap ;? ?
+    "}}}
+    call neobundle#untap()
+endif
+" }}}
+
 
 " End plugins }}}
 
