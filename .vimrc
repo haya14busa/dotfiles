@@ -418,7 +418,6 @@ set nrformats-=octal "Bases Vim will consider for numbers(Ctrl-a,Ctrl-x)
 set number "Print the line number in front of each line
 set ruler "Show the line and column number of the cursor position
 set shortmess& shortmess+=I "Don't give the message when starting Vim :intro
-" let &showbreak = '> '
 set showcmd "Show (partial) command in the last line of the screen
 set showmatch "Briefly jump to the matching one
 set spelllang=en,cjk "Spell checking language
@@ -438,9 +437,6 @@ set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp "A list of character encodings
 set fileformats=unix,dos,mac "This gives the end-of-line (<EOL>) formats
-command! -bang -complete=file -nargs=? Utf8 edit<bang> ++enc=utf-8 <args>
-command! -bang -complete=file -nargs=? Sjis edit<bang> ++enc=cp932 <args>
-command! -bang -complete=file -nargs=? Euc edit<bang> ++enc=eucjp <args>
 " }}}
 
 " Tab Basic Settings {{{
@@ -545,7 +541,6 @@ AutocmdFT help nnoremap <buffer> Q q
 
 " Escape Keymaps {{{
 inoremap <silent> jj <ESC>
-inoremap <silent> <C-c> <ESC>
 "}}}
 
 " Breakline with Enter {{{
@@ -619,9 +614,6 @@ cnoremap <C-y><C-y> <C-r>+
 vnoremap <C-p> I<C-r>+<ESC><ESC>
 "}}}
 
-" Select pasted text {{{
-nnoremap <expr>gp '`['.strpart(getregtype(),0,1).'`]'
-"}}}
 
 " Command line History {{{
 cnoremap <C-p> <Up>
@@ -692,6 +684,9 @@ xnoremap & :&&<CR>
 
 " select last inserted text
 nnoremap gV `[v`]
+
+" Select pasted text
+nnoremap <expr>gp '`['.strpart(getregtype(),0,1).'`]'
 
 " Don't use register by x
 nnoremap x "_x
