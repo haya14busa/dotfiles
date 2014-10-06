@@ -3519,9 +3519,16 @@ if neobundle#tap('incsearch.vim')
     " highlight IncSearchOnCursor term=reverse ctermbg=236 guibg=#232526
     " Autocmd VimEnter IncSearchNoreMap <Tab> <Over>(incsearch-next)
 
-    noremap n n
-    noremap N N
-    noremap ;? ?
+    set hlsearch
+    let g:incsearch#auto_nohlsearch = 1
+    let g:incsearch#consistent_n_direction = 1
+    map  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+    map  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+    " TODO: work with nohl
+    vmap * <Plug>(visualstar-*)
+    map  * <Plug>(anzu-star-with-echo)<Plug>(incsearch-nohl)N
+    map g* <Plug>(incsearch-nohl-g*)
+
     "}}}
     call neobundle#untap()
 endif
