@@ -732,7 +732,7 @@ Autocmd BufWinEnter,ColorScheme * call s:hl_zenkaku()
 
 function! s:remove_trailing_white_spaces()
     let pos = winsaveview()
-    execute '%s/\s\+$//g'
+    silent! execute '%s/\s\+$//g'
     call winrestview(pos)
 endfunction
 command! RemoveTrailingWhiteSpaces call <SID>remove_trailing_white_spaces()
