@@ -1258,6 +1258,9 @@ if neobundle#tap('unite.vim')
     nnoremap <silent> <Space><Space> :<C-u>Unite file_rec/git -start-insert<CR>
     " runtimepath
     nnoremap <silent> [unite]v :<C-u>Unite runtimepath -start-insert -default-action=vimshell<CR>
+    " neobundle
+    nnoremap <silent> [unite]n :<C-u>Unite neobundle -start-insert -default-action=vimshell<CR>
+    " nnoremap <silent> [unite]n :<C-u>Unite neobundle -start-insert -default-action=rec_project/async<CR>
     "}}}
     "}}}
 
