@@ -712,10 +712,6 @@ nnoremap <silent> <Leader>l :<C-u>set list! list?<CR>
 set listchars=tab:▸\ ,
 set list
 
-"Invisible character colors
-hi NonText guifg=#4a4a59
-hi SpecialKey guifg=#4a4a59
-
 " Highlight End-of-Line & Zenkaku Whitespace {{{
 function! s:hl_trailing_spaces() "{{{
     " Test   
