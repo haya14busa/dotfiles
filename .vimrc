@@ -852,8 +852,6 @@ endfunction
 "}}}
 
 " Tab Help {{{
-command! -nargs=? Ht  tab help <args>
-command! -nargs=? Hv  vertical belowright help <args>
 nnoremap <Space>t :<C-u>tab help<Space>
 nnoremap <Space>v :<C-u>vertical belowright help<Space>
 "}}}
