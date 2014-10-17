@@ -3547,7 +3547,11 @@ endif
 " "}}}
 
 function! Plog(msg) "{{{
-    call vimproc#system('echo "' . PP(a:msg) . '" >> ~/vim.log')
+    try
+        call vimproc#system('echo "' . strtrans(PP(a:msg)) . '" >> ~/vim.log')
+    catch
+        call vimproc#system("echo '" . strtrans(a:msg) . "' >> ~/vim.log")
+    endtry
     " call Plog(' kokomade OK')
     " tail -f ~/vim.log
 endfunction "}}}
