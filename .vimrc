@@ -576,6 +576,7 @@ nnoremap - $
 "}}}
 
 " Insert & Comandline Mode "{{{
+" TODO: use noremap!
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-a> <Home>
