@@ -3515,6 +3515,7 @@ if neobundle#tap('incsearch.vim')
     set hlsearch
     let g:incsearch#auto_nohlsearch = 1
     let g:incsearch#consistent_n_direction = 1
+    let g:incsearch#do_not_save_error_message_history = 1
     map  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
     map  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
     " TODO: work with nohl
