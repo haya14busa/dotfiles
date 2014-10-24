@@ -48,3 +48,5 @@
 [ghq]
 	root = ~/src
 # vim: noexpandtab
+[diff]
+	algorithm = patience
