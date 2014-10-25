@@ -178,6 +178,9 @@ elif which putclip >/dev/null 2>&1 ; then
     alias -g C='| putclip'
 fi
 
+# vimlint
+alias vimlint='$HOME/.vim/bundle/vim-vimlint/bin/vimlint.sh -l $HOME/.vim/bundle/vim-vimlint -p $HOME/.vim/bundle/vim-vimlparser -e EVL103=1 -e EVL102.l:_=1 autoload'
+
 
 
 ########################################
