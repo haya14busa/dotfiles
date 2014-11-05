@@ -453,7 +453,6 @@ set incsearch "Incremental searching
 set ignorecase "Ignore case in search patterns
 set smartcase "Override the ignorecase option if the pattern contains upper case
 " set hlsearch | nohlsearch "Highlight search patterns, support reloading
-set nohlsearch
 "}}}
 
 " Backup Settings {{{
