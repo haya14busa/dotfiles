@@ -670,10 +670,10 @@ vnoremap @q :normal @q<CR>
 " search within visual block
 " vnoremap / <esc>/\v%V
 " clear status
-" nnoremap <silent><Esc><Esc>
-"       \ :<C-u>nohlsearch<CR>
 nnoremap <silent><Esc><Esc>
-      \ :<C-u>set hlsearch! hlsearch?<CR>
+      \ :<C-u>nohlsearch<CR>
+" nnoremap <silent><Esc><Esc>
+"       \ :<C-u>set hlsearch! hlsearch?<CR>
 
 " Automatically escape '/'
 " cnoremap <expr>/ getcmdtype() == '/' ? '\/' : '/'
