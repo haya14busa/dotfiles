@@ -3766,6 +3766,10 @@ function! PluginTest(is_gui, extraCommand)
     redraw!
 endfunction
 
+nnoremap <C-j> <C-f>nzzzv
+nnoremap <C-k> <C-b>Nzzzv
+
+
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
