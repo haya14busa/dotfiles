@@ -552,6 +552,7 @@ AutocmdFT help nnoremap <buffer> Q q
 
 " Escape Keymaps {{{
 inoremap <silent> jj <ESC>
+inoremap <C-j> j
 "}}}
 
 " Breakline with Enter {{{
