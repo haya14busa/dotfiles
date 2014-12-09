@@ -147,6 +147,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
     NeoBundleLazy 'osyo-manga/unite-vital-module'
     NeoBundle 'osyo-manga/vital-over'
+    NeoBundle 'osyo-manga/vital-palette'
     NeoBundle 'osyo-manga/vital-reunions'
     NeoBundle 'osyo-manga/vital-coaster'
     "}}}
