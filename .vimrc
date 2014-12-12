@@ -2268,10 +2268,8 @@ endif
 " Yggdroot/indentLine {{{
 if neobundle#tap('indentLine')
     let g:indentLine_color_term = 239
-    function! neobundle#tapped.hooks.on_source(bundle)
-        Autocmd InsertEnter * IndentLinesDisable
-        Autocmd InsertLeave * IndentLinesEnable
-    endfunction
+    Autocmd InsertEnter * IndentLinesDisable
+    Autocmd InsertLeave * IndentLinesEnable
     call neobundle#untap()
 endif
 " }}}
