@@ -188,6 +188,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'rhysd/accelerated-jk'
     NeoBundleLazy 'saihoooooooo/glowshi-ft.vim'
     NeoBundleLazy 'haya14busa/incsearch.vim'
+    NeoBundle 'haya14busa/vim-asterisk'
     "}}}
 
     " Text Object {{{
@@ -3545,7 +3546,20 @@ if neobundle#tap('incsearch.vim')
 endif
 " }}}
 
+" haya14busa/vim-asterisk {{{
+if neobundle#tap('vim-asterisk')
+    call neobundle#untap()
+    map *  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+    map g* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+    map #  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+    map g# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
 
+    map z*  <Plug>(incsearch-nohl)<Plug>(asterisk-*)
+    map zg* <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
+    map z#  <Plug>(incsearch-nohl)<Plug>(asterisk-#)
+    map zg# <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
+endif
+" }}}
 " End plugins }}}
 
 " Misc {{{=========================
