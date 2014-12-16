@@ -326,3 +326,9 @@ then
   zstyle ':chpwd:*' recent-dirs-default yes
   zstyle ':completion:*' recent-dirs-insert both
 fi
+
+# http://qiita.com/mollifier/items/7b1cfe609a7911a69706
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+EDITOR='/usr/local/bin/vim'
