@@ -362,6 +362,9 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'syngan/vim-vimlint', {
         \ 'depends' : 'ynkdir/vim-vimlparser'}
     NeoBundle 'thinca/vim-localrc'
+
+    NeoBundle 'kana/vim-gf-user'
+    NeoBundle 'hujo/gf-user-vimfn'
     "}}}
 
     " Others {{{
