@@ -2233,7 +2233,8 @@ if neobundle#tap('vim-operator-replace')
         \     'mappings' : '<Plug>(operator-replace)'
         \   }
         \ })
-    map ;R  <Plug>(operator-replace)
+    nmap ;R  <Plug>(operator-replace)
+    vmap p <Plug>(operator-replace)
     call neobundle#untap()
 endif
 " }}}
