@@ -3536,14 +3536,8 @@ if neobundle#tap('incsearch.vim')
     map  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
     map  n <Plug>(incsearch-nohl-n)
     map  N <Plug>(incsearch-nohl-N)
-    nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-    nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
-    " map <silent> n <Plug>(incsearch-nohl)<Plug>(anzu-n)
-    " map <silent> N <Plug>(incsearch-nohl)<Plug>(anzu-N)
-    " TODO: work with nohl
-    vmap * <Plug>(visualstar-*)
-    map  * <Plug>(anzu-star-with-echo)<Plug>(incsearch-nohl)N
-    map g* <Plug>(incsearch-nohl-g*)
+    nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+    nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
     "}}}
     call neobundle#untap()
