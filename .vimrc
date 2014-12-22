@@ -15,6 +15,7 @@
 " Startup {{{======================
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
+if !&compatible | set nocompatible | endif
 
 " release autogroup in MyVimrc {{{
 augroup MyVimrc
@@ -55,7 +56,6 @@ if ! isdirectory(expand('~/.vim/bundle'))
 endif
 
 if has('vim_starting')
-    set nocompatible
     set runtimepath& runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 " call neobundle#rc(expand('~/.vim/bundle/'))
