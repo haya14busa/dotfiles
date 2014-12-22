@@ -45,12 +45,12 @@ endif
 " NeoBundle {{{====================
 
 if ! isdirectory(expand('~/.vim/bundle'))
-    echon "Installing neobundle.vim..."
+    echon 'Installing neobundle.vim...'
     silent call mkdir(expand('~/.vim/bundle'), 'p')
     silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
-    echo "done."
+    echo 'done.'
     if v:shell_error
-        echoerr "neobundle.vim installation has failed!"
+        echoerr 'neobundle.vim installation has failed!'
         finish
     endif
 endif
