@@ -639,7 +639,7 @@ cnoremap <C-n> <Down>
 "}}}
 
 " Save as root"{{{
-cnoremap w!! w !sudo tee > /dev/null %
+cnoreabbrev w!! w !sudo tee > /dev/null %
 "}}}
 
 " From the cursor to the end of line {{{
