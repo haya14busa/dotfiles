@@ -929,6 +929,8 @@ endfunction "}}}
 " Use command-line window {{{
 nnoremap : q:
 vnoremap : q:
+nnoremap ;: :
+vnoremap ;: :
 
 Autocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() "{{{
