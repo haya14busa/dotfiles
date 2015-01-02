@@ -186,7 +186,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'rhysd/clever-f.vim' " Extended f, F, t and T key mappings for Vim.
     NeoBundleLazy 'rhysd/accelerated-jk'
     NeoBundleLazy 'saihoooooooo/glowshi-ft.vim'
-    NeoBundleLazy 'haya14busa/incsearch.vim'
+    NeoBundle 'haya14busa/incsearch.vim'
     NeoBundle 'haya14busa/vim-asterisk'
     "}}}
 
@@ -3482,41 +3482,14 @@ endif
 
 " haya14busa/incsearch.vim {{{
 if neobundle#tap('incsearch.vim')
-    " Config {{{
-    call neobundle#config({
-                \   'autoload' : {
-                \     'mappings' : [
-                \       '<Plug>(incsearch-',
-                \     ],
-                \   }
-                \ })
-    " }}}
-    function! NormalZZ()
-        try
-            normal! zz
-        catch /E523:/
-        endtry
-        let h = winheight(0)
-        call winrestview({'topline': line('.') - h / 2})
-    endfunction
     function! neobundle#tapped.hooks.on_post_source(bundle) "{{{
-        " IncSearchNoreMap <Tab> <Over>(incsearch-next)
-        " IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
-        " IncSearchNoreMap <C-l> <Over>(buffer-complete)
         augroup incsearch
             autocmd!
             autocmd User IncSearchEnter BrightestDisable
             autocmd User IncSearchLeave BrightestEnable
-            " autocmd User IncSearchExecute echom 'exit'
-            " autocmd User IncSearchExecutePre echom 'exit'
-            " autocmd User IncSearchChar call Plog("called on char")
-            " autocmd User IncSearchChar call NormalZZ()
         augroup END
     endfunction "}}}
-    function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    endfunction "}}}
     " Setting {{{
-    " let g:incsearch#emacs_like_keymap = 1
     " let g:incsearch#highlight = {
     " \   'match' : {
     " \       'group' : 'IncSearchUnderline'
@@ -3526,10 +3499,7 @@ if neobundle#tap('incsearch.vim')
     map ? <Plug>(incsearch-backward)
     map g/ <Plug>(incsearch-stay)
     highlight IncSearchCursor ctermfg=0 ctermbg=9 guifg=#000000 guibg=#FF0000
-    " highlight IncSearchOnCursor term=reverse ctermbg=236 guibg=#232526
-    " Autocmd VimEnter IncSearchNoreMap <Tab> <Over>(incsearch-next)
 
-    set hlsearch | nohlsearch
     let g:incsearch#auto_nohlsearch = 1
     let g:incsearch#consistent_n_direction = 1
     let g:incsearch#do_not_save_error_message_history = 1
