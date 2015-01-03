@@ -472,17 +472,21 @@ set smartcase "Override the ignorecase option if the pattern contains upper case
 "}}}
 
 " Backup Settings {{{
-"Don't create backup
-set nobackup "Don't make a backup before overwriting a file
-set nowritebackup "Don't make a backup before overwriting a file
-set backupdir-=. "List of directories for the backup file
+if ! isdirectory($HOME.'/.vim/backup')
+    call mkdir($HOME.'/.vim/backup', 'p')
+endif
+set backup "Make a backup before overwriting a file
+set writebackup "Make a backup before overwriting a file
+set backupdir=~/.vim/backup "List of directories for the backup file
+" Make backup files like you are millionaire (in terms disk usage resourses)
+Autocmd BufWritePre * let &backupext = '_' . strftime('%Y%m%d_%X') . '~'
 "}}}
 
 " Swap Settings {{{
-set swapfile "Use a swapfile for the buffer
 if ! isdirectory($HOME.'/.vim/swap')
     call mkdir($HOME.'/.vim/swap', 'p')
 endif
+set swapfile "Use a swapfile for the buffer
 set directory=~/.vim/swap
 "}}}
 
