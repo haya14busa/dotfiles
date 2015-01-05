@@ -468,7 +468,7 @@ set tabstop=4 "Number of spaces that a <Tab> in the file counts for
 set incsearch "Incremental searching
 set ignorecase "Ignore case in search patterns
 set smartcase "Override the ignorecase option if the pattern contains upper case
-" set hlsearch | nohlsearch "Highlight search patterns, support reloading
+set hlsearch | nohlsearch "Highlight search patterns, support reloading
 "}}}
 
 " Backup Settings {{{
