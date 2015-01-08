@@ -426,7 +426,7 @@ set infercase "Ignore case on insert completion.
 set keywordprg=:help " Open Vim internal help by K command
 set laststatus=2 "Always display statusline
 set matchpairs& matchpairs+=<:> "Characters that form pairs
-set matchtime=3 "Tenths of a second to show the matching paren
+set matchtime=1 "Tenths of a second to show the matching paren
 set modeline "Set Vim local buffer option to specific file
 set noerrorbells "Don't ring the bell for error messages
 set novisualbell "Don't use visual bell instead of beeping
