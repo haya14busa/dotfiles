@@ -6,19 +6,19 @@ function exists { which $1 &> /dev/null }
 
 ########################################
 # Environments
-export LANG="ja_JP.UTF-8"
-export LC_CTYPE="ja_JP.UTF-8"
-export LC_NUMERIC="ja_JP.UTF-8"
-export LC_TIME="ja_JP.UTF-8"
-export LC_COLLATE="ja_JP.UTF-8"
-export LC_MONETARY="ja_JP.UTF-8"
-export LC_MESSAGES="ja_JP.UTF-8"
-export LC_PAPER="ja_JP.UTF-8"
-export LC_NAME="ja_JP.UTF-8"
-export LC_ADDRESS="ja_JP.UTF-8"
-export LC_TELEPHONE="ja_JP.UTF-8"
-export LC_MEASUREMENT="ja_JP.UTF-8"
-export LC_IDENTIFICATION="ja_JP.UTF-8"
+export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_PAPER="en_US.UTF-8"
+export LC_NAME="en_US.UTF-8"
+export LC_ADDRESS="en_US.UTF-8"
+export LC_TELEPHONE="en_US.UTF-8"
+export LC_MEASUREMENT="en_US.UTF-8"
+export LC_IDENTIFICATION="en_US.UTF-8"
 
 # Enable colors
 autoload -Uz colors
@@ -83,8 +83,8 @@ zstyle ':vcs_info:*' formats '(%s)-[%b]'
 zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
 precmd () {
     psvar=()
-    #LANG=en_US.UTF-8 vcs_info
-	LANG=ja_JP.UTF-8 vcs_info
+    LANG=en_US.UTF-8 vcs_info
+    # LANG=ja_JP.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 RPROMPT="%1(v|%F{green}%1v%f|)"
