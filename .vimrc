@@ -3670,10 +3670,6 @@ function! s:ChangeCurrentDir(directory, bang) "{{{
     endif
 endfunction "}}}
 
-" nmap <expr> f v:count > 0 ? 'f' : '<Plug>(easymotion-fl)'
-" set wildignore=*.tmp,*.swp,*.bak,*.class,*.pyc,*.o,*.exe,*.dll,*.so " ignore some files when auto-completing file names
-" hi link EasyMotionMoveHL Search
-
 " SplitAndGo {{{
 command! -count=1 -nargs=1 -complete=customlist,SAG_Complete SplitAndGo call SplitAndGo(<q-args>)
 
