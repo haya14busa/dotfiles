@@ -3763,6 +3763,8 @@ endfunction
 nnoremap <C-j> <C-f>nzzzv
 nnoremap <C-k> <C-b>Nzzzv
 
+let g:vim_indent_cont = 0
+
 
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
