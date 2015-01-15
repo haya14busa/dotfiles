@@ -1256,7 +1256,7 @@ if neobundle#tap('unite.vim')
     " Grep
     nnoremap <silent> [unite]gr :<C-u>Unite -silent -no-quit grep:.<CR>
     " Line
-    nnoremap <silent> g/ :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
+    nnoremap <silent> z/ :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
     "-Unite Plugin Settings--------------"{{{
     " Execute help.
     nnoremap <silent> [unite]gh  :<C-u>Unite -silent -start-insert -buffer-name=help help<CR>
