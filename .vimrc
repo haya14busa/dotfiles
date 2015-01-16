@@ -3492,6 +3492,27 @@ if neobundle#tap('incsearch.vim')
             autocmd User IncSearchLeave BrightestEnable
         augroup END
     endfunction "}}}
+
+    augroup incsearch-easymotion
+        autocmd!
+        autocmd User IncSearchEnter autocmd! incsearch-easymotion-impl
+    augroup END
+    augroup incsearch-easymotion-impl
+        autocmd!
+    augroup END
+
+    function! IncsearchEasyMotion() abort
+        autocmd incsearch-easymotion-impl User IncSearchExecute :silent! call EasyMotion#Search(0, 2, 0)
+        return "\<CR>"
+    endfunction
+    let g:incsearch_cli_key_mappings = {
+    \   "\<C-q>": {
+    \       'key': 'IncsearchEasyMotion()',
+    \       'noremap': 1,
+    \       'expr': 1
+    \   }
+    \ }
+
     " Setting {{{
     " let g:incsearch#highlight = {
     " \   'match' : {
