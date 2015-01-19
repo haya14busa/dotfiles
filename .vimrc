@@ -3786,6 +3786,15 @@ nnoremap <C-k> <C-b>Nzzzv
 
 let g:vim_indent_cont = 0
 
+" Remove small delay between pressing Esc and entering Normal mode.
+set timeout ttimeout ttimeoutlen=-1
+augroup FastEscape
+    autocmd!
+    autocmd InsertEnter * set timeoutlen=0
+    autocmd InsertLeave * set timeoutlen=1000
+augroup END
+
+
 
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
