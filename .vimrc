@@ -937,6 +937,7 @@ vnoremap ;: :
 
 Autocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() "{{{
+    setlocal nonumber
     silent! 1,$-20 delete _ | call cursor('$', 0)
 
     nnoremap <silent><buffer>q          :<C-u>quit<CR>
