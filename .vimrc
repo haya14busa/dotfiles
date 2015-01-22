@@ -1046,6 +1046,7 @@ endfunction
 " Markdown {{{
 Autocmd BufRead,BufNewFile *.md  set filetype=markdown
 AutocmdFT markdown setlocal sw=2 sts=2 ts=2 et
+Autocmd Syntax markdown syntax sync fromstart
 
 AutocmdFT markdown nnoremap <buffer><silent><Leader>= :<C-u>call append('.', repeat('=', strdisplaywidth(getline('.'))))<CR>
 AutocmdFT markdown nnoremap <buffer><silent><Leader>- :<C-u>call append('.', repeat('-', strdisplaywidth(getline('.'))))<CR>
