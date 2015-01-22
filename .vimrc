@@ -1148,8 +1148,14 @@ if neobundle#tap('unite.vim')
         let g:unite_source_file_mru_long_limit = 6000
         let g:unite_source_file_mru_limit = 500
         let g:unite_source_directory_mru_long_limit = 6000
-        let g:unite_prompt = '❯ '
         let g:unite_winheight = 25
+
+        " Default configuration.
+        " Prompt choices.
+        call unite#custom#profile('default', 'context', {
+        \   'prompt' : '❯ ',
+        \ })
+
         " Open plugin directory by t
         call unite#custom#alias('directory', 'tabopen', 'tabvimfiler')
 
