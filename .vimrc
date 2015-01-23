@@ -352,6 +352,7 @@ function! s:load_bundles() "{{{
     NeoBundleLazy 'thinca/vim-prettyprint'
     NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
     NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
+    NeoBundleLazy 'osyo-manga/vim-owl'
     NeoBundle 'thinca/vim-themis'
     NeoBundleLazy 'thinca/vim-editvar' " Edits vim variable in buffer.
     NeoBundleLazy 'tyru/restart.vim' " Restart your gVim
