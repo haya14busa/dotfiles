@@ -3299,7 +3299,6 @@ if neobundle#tap('screensaver.vim')
                 \   }
                 \ })
     " }}}
-    AutocmdFT screensaver setlocal colorcolumn=0
     call neobundle#untap()
 endif
 " }}}
