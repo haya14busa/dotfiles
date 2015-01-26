@@ -418,6 +418,11 @@ set cmdheight=1 "Number of screen lines to use for the command-line
 set cmdwinheight=5 "Number of screen lines to use for the command-line window
 set display=lastline "Display as much as possible of the last line
 set formatoptions-=r,o " Turn off Automatically comment out when line break
+" If we have Vim 7.4, add j to the format options to get rid of comment
+" leaders when joining lines
+if v:version >= 704
+  set formatoptions+=j
+endif
 set grepprg=internal "Program to use for the :grep command
 set helpheight=12 " Minimal initial height of the help window
 set helplang& helplang=en,ja " If true Vim master, use English help file
