@@ -3651,9 +3651,6 @@ endfunction "}}}
 " Toggle 0, ^, $
 " nnoremap <silent> 0 :<C-u>call <SID>smart_move('g0')<CR>
 
-" Backspace: Act like normal backspace
-noremap <BS>  "_X
-
 function! s:my_HL(motion) "{{{
     let current_line = line('.')
     let flag_line = a:motion == 'H' ? line('w0') : line('w$')
