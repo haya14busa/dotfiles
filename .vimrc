@@ -149,6 +149,7 @@ function! s:load_bundles() "{{{
     NeoBundle 'osyo-manga/vital-palette'
     NeoBundle 'osyo-manga/vital-reunions'
     NeoBundle 'osyo-manga/vital-coaster'
+    NeoBundle 'haya14busa/vital-string-interpolation'
     "}}}
 
     " Document {{{
