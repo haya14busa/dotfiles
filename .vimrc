@@ -1903,22 +1903,6 @@ if neobundle#tap('vim-easymotion')
     nmap s <Plug>(easymotion-s2)
     vmap s <Plug>(easymotion-s2)
     omap z <Plug>(easymotion-s2)
-    nmap ;s <Plug>(easymotion-s)
-    vmap ;s <Plug>(easymotion-s)
-    omap ;z <Plug>(easymotion-s)
-
-    " Extend search
-    map  / <Plug>(easymotion-sn)
-    xmap / <Esc><Plug>(easymotion-sn)\v%V
-    omap / <Plug>(easymotion-tn)
-    noremap  ;/ /
-    " nmap ;n <Plug>(easymotion-sn)<C-p>
-    " map ;N <Plug>(easymotion-bd-n)
-
-    nmap n <Plug>(easymotion-next)<Plug>(anzu-update-search-status)zv
-    nmap N <Plug>(easymotion-prev)<Plug>(anzu-update-search-status)zv
-    xmap n <Plug>(easymotion-next)zv
-    xmap N <Plug>(easymotion-prev)zv
 
     " Replace defaut
     " smart f & F
