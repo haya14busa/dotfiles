@@ -1840,9 +1840,6 @@ if neobundle#tap('vim-easymotion')
           \     ],
           \   }
           \ })
-    " map  ; <Plug>(easymotion-prefix)
-    " omap ; <Plug>(easymotion-prefix)
-    " vmap ; <Plug>(easymotion-prefix)
     function! neobundle#tapped.hooks.on_post_source(bundle) "{{{
         EMCommandLineNoreMap <Space> <CR>
         EMCommandLineNoreMap <C-j> <Space>
@@ -1921,12 +1918,6 @@ if neobundle#tap('vim-easymotion')
     map ;k <Plug>(easymotion-k)
     map ;l <Plug>(easymotion-lineforward)
 
-    " Anywhere!
-    " map <Space><Space> <Plug>(easymotion-jumptoanywhere)
-
-    " Repeat last motion
-    " map ;<Space> <Plug>(easymotion-repeat)
-
     " move to next/previous last motion match
     nmap <expr> <C-n> yankround#is_active() ?
                 \ '<Plug>(yankround-next)' : '<Plug>(easymotion-next)'
@@ -1940,7 +1931,7 @@ if neobundle#tap('vim-easymotion')
     nmap <expr>' EasyMotion#is_active() ?
                 \ '<Plug>(easymotion-prev)' : "'"
 
-    " Extene word motion
+    " Extened word motion
     map  ;w  <Plug>(easymotion-bd-wl)
     map  ;e  <Plug>(easymotion-bd-el)
     omap ;b  <Plug>(easymotion-bl)
@@ -1956,33 +1947,6 @@ if neobundle#tap('vim-easymotion')
         endif
     endfunction
     nnoremap <silent> M :<C-u>call <SID>wrap_M()<CR>
-    "}}}
-
-    " EasyMotion User {{{
-    " EasyMotion#User(pattern, is_visual, direction, is_inclusive)
-    noremap  <silent><expr>;c
-                \ ':<C-u>call EasyMotion#User(' .
-                \ '"\\<' . expand('<cword>') . '\\>", 0, 2, 1)<CR>'
-    xnoremap  <silent><expr>;c
-                \ '<ESC>:<C-u>call EasyMotion#User(' .
-                \ '"\\<' . expand('<cword>') . '\\>", 1, 2, 1)<CR>'
-
-    let g:empattern = {}
-    let g:empattern['syntax'] = '\v'
-                \ . 'function|endfunction|return|call'
-                \ . '|if|elseif|else|endif'
-                \ . '|for|endfor'
-                \ . '|while|endwhile'
-                \ . '|break|continue'
-                \ . '|let|unlet'
-                \ . '|noremap|map|expr|silent'
-                \ . '|g:|s:|b:|w:'
-                \ . '|autoload|#|plugin'
-
-    noremap  <silent>;1
-                \ :<C-u>call EasyMotion#User(g:empattern.syntax , 0, 2, 1)<CR>
-    xnoremap <silent>;1
-                \ :<C-u>call EasyMotion#User(g:empattern.syntax , 1, 2, 1)<CR>
     "}}}
 
     function! EasyMotionMigemoToggle() "{{{
