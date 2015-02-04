@@ -3396,8 +3396,8 @@ if neobundle#tap('vim-brightest')
 
     function! neobundle#tapped.hooks.on_source(bundle) "{{{
         let g:brightest#highlight = {
-        \   "group" : "BrightestUnderline",
-        \   "priority" : -1
+        \   'group' : 'BrightestUnderline',
+        \   'priority' : -1
         \}
         let g:brightest#pattern = '\w\+'
     endfunction "}}}
