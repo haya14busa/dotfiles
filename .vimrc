@@ -3372,8 +3372,8 @@ if neobundle#tap('unite-historia')
                 \ })
     " }}}
     nnoremap <silent> ;<C-r> :<C-u>Unite historia/new historia/command
-                \   -direction=botright
-                \   -hide-source-names<CR>
+    \   -direction=botright
+    \   -hide-source-names<CR>
     call neobundle#untap()
 endif
 " }}}
@@ -3515,6 +3515,7 @@ if neobundle#tap('vim-asterisk')
     map zg# <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
 endif
 " }}}
+
 " End plugins }}}
 
 " Misc {{{=========================
@@ -3690,7 +3691,6 @@ function! s:ToggleRelativeNumber()
         set relativenumber
     endif
     redraw! " these two lines required for omap
-
     return ''
 endfunction
 
