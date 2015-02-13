@@ -3779,4 +3779,4 @@ endif
 set secure
 "}}}
 "------------------------------------
-" vim: expandtab softtabstop=4 shiftwidth=4 foldmethod=marker
+" vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
