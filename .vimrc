@@ -381,6 +381,9 @@ function! s:load_bundles() "{{{
     " NeoBundle 'tpope/vim-rake'
     NeoBundleLazy 'mattn/flappyvird-vim'
     NeoBundleLazy 'mattn/yamada2-vim'
+
+    NeoBundleLazy 'haya14busa/vim-checklinks', {
+    \ 'autoload': {'commands': 'CheckLinks'}}
     "}}}
 endfunction "}}}
 
