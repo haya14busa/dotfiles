@@ -302,7 +302,6 @@ function! s:load_bundles() "{{{
   "}}}
 
   " JavaScript {{{
-  NeoBundleLazy 'marijnh/tern_for_vim'
   NeoBundleLazy 'maksimr/vim-jsbeautify'
   "}}}
 
@@ -1659,8 +1658,7 @@ if neobundle#tap('neocomplete.vim')
     " Enable omni completion.
     AutocmdFT css setlocal omnifunc=csscomplete#CompleteCSS
     AutocmdFT html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    " AutocmdFT javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    AutocmdFT javascript setlocal omnifunc=tern#Complete
+    AutocmdFT javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     AutocmdFT coffee setlocal omnifunc=javascriptcomplete#CompleteJS
     AutocmdFT xml setlocal omnifunc=xmlcomplete#CompleteTags
     AutocmdFT python setlocal omnifunc=jedi#completions
@@ -3029,25 +3027,6 @@ if neobundle#tap('previm')
   \       'PrevimOpen',
   \     ],
   \   }
-  \ })
-  " }}}
-  call neobundle#untap()
-endif
-" }}}
-
-" marijnh/tern_for_vim {{{
-if neobundle#tap('tern_for_vim')
-  " Config {{{
-  call neobundle#config({
-  \   'build' : {
-  \     'others' : 'npm install'
-  \   },
-  \   'autoload' : {
-  \       'functions' : ['tern#Complete', 'tern#Enable'],
-  \       'filetypes' : ['javascript']
-  \     },
-  \   'commands' : ['TernDef', 'TernDoc', 'TernType',
-  \                 'TernRefs', 'TernRename'],
   \ })
   " }}}
   call neobundle#untap()
