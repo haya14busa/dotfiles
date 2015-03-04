@@ -299,6 +299,10 @@ export PATH=$PATH:$GOBIN
 export THEMIS_HOME=${HOME}/.vim/bundle/vim-themis
 export PATH=${THEMIS_HOME}/bin/:$PATH
 
+if exists npm; then
+  export PATH=$PATH:`npm bin -g`
+fi
+
 # Anyenv
 if [ -d ${HOME}/.anyenv ] ; then
     export PATH="$HOME/.anyenv/bin:$PATH"
