@@ -30,6 +30,8 @@
 	d4 = diff HEAD~~~~         # HEADから4つ前とdiff
 	d5 = diff HEAD~~~~~        # HEADから5つ前とdiff
 	d10 = diff HEAD~~~~~~~~~~  # HEADから10前とdiff
+	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+	delete-merged-branches-remote = !git branch -a --merged | grep -v master | grep remotes/origin| sed -e 's% *remotes/origin/%%' | xargs -I% git push origin :%
 [include]
 	path = ~/.gitconfig.local
 [merge]
