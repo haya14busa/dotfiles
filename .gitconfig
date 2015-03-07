@@ -46,7 +46,7 @@
 [url "https://"]
 	insteadOf = git://
 [push]
-	default = simple
+	default = current
 [ghq]
 	root = ~/src
 # vim: noexpandtab
