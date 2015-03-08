@@ -365,6 +365,7 @@ function! s:load_bundles() "{{{
 
   NeoBundle 'kana/vim-gf-user'
   NeoBundle 'hujo/gf-user-vimfn'
+  NeoBundle 'haya14busa/vim-snoopy'
   "}}}
 
   " Others {{{
