@@ -426,7 +426,7 @@ set formatoptions-=r,o " Turn off Automatically comment out when line break
 " If we have Vim 7.4, add j to the format options to get rid of comment
 " leaders when joining lines
 if v:version >= 704
-  set formatoptions+=j
+    set formatoptions+=j
 endif
 set grepprg=internal "Program to use for the :grep command
 set helpheight=12 " Minimal initial height of the help window
