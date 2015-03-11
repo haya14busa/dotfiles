@@ -225,6 +225,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'tpope/vim-fugitive'
   NeoBundleLazy 'cohama/agit.vim'
   NeoBundle 'mhinz/vim-signify'
+  NeoBundle 'chrisbra/vim-diff-enhanced'
 
   NeoBundleLazy 'thinca/vim-openbuf'
   NeoBundleLazy 'Shougo/vim-vcs', {
