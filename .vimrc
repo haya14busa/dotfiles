@@ -385,6 +385,7 @@ function! s:load_bundles() "{{{
 
   NeoBundleLazy 'haya14busa/vim-checklinks', {
   \ 'autoload': {'commands': 'CheckLinks'}}
+  NeoBundleLazy 'haya14busa/vim-rot47'
   "}}}
 endfunction "}}}
 
@@ -3504,6 +3505,22 @@ if neobundle#tap('vim-asterisk')
   map zg* <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
   map z#  <Plug>(incsearch-nohl)<Plug>(asterisk-#)
   map zg# <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
+endif
+" }}}
+
+" haya14busa/vim-rot47 {{{
+if neobundle#tap('vim-rot47')
+  call neobundle#config({
+  \   'depends' : 'kana/vim-operator-user',
+  \   'autoload' : {
+  \     'mappings' : [
+  \       '<Plug>(operator-rot47)',
+  \     ],
+  \   }
+  \ })
+  map g? <Plug>(operator-rot47)
+  nmap g?? <Plug>(operator-rot47)<Plug>(textobj-line-i)
+  call neobundle#untap()
 endif
 " }}}
 
