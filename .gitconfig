@@ -9,7 +9,8 @@
 	excludesfile = ~/.gitignore
 [alias]
 	co = checkout
-	st = status
+	# st = status
+	st = status --short --branch
 	br = branch
 	sh = show
 	so = remote show origin
