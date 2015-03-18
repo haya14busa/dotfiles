@@ -3848,11 +3848,7 @@ endfunction
 let g:root_patterns = ['.git/HEAD', '.git/objects/', '.git/']
 
 function! g:ProjectRoot(...) abort
-  if len(a:000) > 0
-    return s:project_root(g:root_patterns, a:1)
-  else
-    return s:project_root_from_cwd(g:root_patterns)
-  endif
+  return s:project_root(g:root_patterns, get(a:, 1, resolve(expand('%:p'))))
 endfunction
 
 " /PR
