@@ -285,6 +285,7 @@ function! s:load_bundles() "{{{
   \  'vim',
   \]
   NeoBundle 'pangloss/vim-javascript'
+  NeoBundle 'mxw/vim-jsx'
   NeoBundle 'wavded/vim-stylus'
   NeoBundle 'hail2u/vim-css3-syntax'
   NeoBundle 'kchmck/vim-coffee-script'
