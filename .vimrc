@@ -1734,6 +1734,11 @@ if neobundle#tap('vim-quickrun')
     \   "watchdogs_checker/_" : {
     \       'outputter/quickfix/open_cmd' : '',
     \   },
+    \ 'vimspec' : {
+    \   'command' : 'themis',
+    \   'cmdopt'  : '--runtimepath ".."',
+    \   'exec'    : '%c %o %s:p | tr -d "\r"'
+    \ }
     \}
     " \       "runner/vimproc/updatetime" : 60
     let g:quickrun_config.markdown = {
