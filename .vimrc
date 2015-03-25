@@ -61,21 +61,37 @@ endif
 call neobundle#begin(expand('~/.vim/bundle'))
 
 " NeoBundle Function {{{
-" MyNeoBundle {{{
-command! -nargs=1
-\   MyNeoBundle
-\   NeoBundle <args>, {
-\       "base" : "~/.vim/mybundle",
-\       "type" : "nosync",
-\   }
-command! -nargs=1
-\   MyNeoBundleLazy
-\   NeoBundle <args>, {
-\       "base" : "~/.vim/mybundle",
-\       "type" : "nosync",
-\       "lazy" : 1,
-\   }
-"}}}
+" NOTE: plugins installed with MyNeoBundle doesn't update with :NeoBundleUpdate
+let s:MyNeoBundle = {}
+let s:MyNeoBundle.base = expand('~/.vim/mybundle')
+let s:MyNeoBundle.user = 'haya14busa'
+if ! isdirectory(s:MyNeoBundle.base)
+  call mkdir(expand(s:MyNeoBundle.base), 'p')
+endif
+
+function! s:MyNeoBundle(is_lazy, ...)
+  let repository = get(a:, 1, '')
+  if repository is# ''
+    echo '[MyNeoBundle] error occurs with ' . string(a:000)
+    return 1
+  endif
+  let [author, reponame] = split(repository, '/')
+  let todir = s:MyNeoBundle.base . '/' . reponame
+  if ! isdirectory(todir)
+    let giturl = 'git@github.com:' . repository . '.git'
+    echo 'Installing ' . repository . '...'
+    call system('git clone ' . giturl . ' ' . todir)
+  endif
+  let config = {
+  \ 'base': s:MyNeoBundle.base,
+  \ 'type': 'nosync',
+  \ 'lazy': a:is_lazy
+  \}
+  execute ':NeoBundle' string(reponame) ',' string(config)
+endfunction
+
+command! -nargs=1 MyNeoBundle     call s:MyNeoBundle(0, <args>)
+command! -nargs=1 MyNeoBundleLazy call s:MyNeoBundle(1, <args>)
 "}}}
 
 function! s:load_bundles() "{{{
@@ -121,7 +137,7 @@ function! s:load_bundles() "{{{
   endif
   "}}}
   NeoBundleLazy 'Shougo/neosnippet.vim'
-  MyNeoBundle 'haya14busa-snippets'
+  MyNeoBundle 'haya14busa/haya14busa-snippets'
   NeoBundleLazy 'mattn/emmet-vim'
   NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
   NeoBundle 'deris/vim-visualinc'
@@ -180,7 +196,7 @@ function! s:load_bundles() "{{{
   "}}}
 
   " Motion {{{
-  MyNeoBundleLazy 'vim-easymotion'
+  MyNeoBundleLazy 'Lokaltog/vim-easymotion'
   " MyNeoBundleLazy 'vim-easyoperator-line'
   " MyNeoBundleLazy 'vim-easyoperator-phrase'
   " MyNeoBundleLazy 'vim-lazy-lines'
