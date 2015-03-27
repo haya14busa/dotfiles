@@ -311,10 +311,9 @@ if [ -d ${HOME}/.anyenv ] ; then
     fi
 fi
 
-
-# percol
-if [ -f ~/.percol.d/zsh/percol.zsh ] && exists percol; then
-    source ~/.percol.d/zsh/percol.zsh
+# peco
+if [ -f ~/.peco/zsh/peco.zsh ] && exists peco; then
+  source ~/.peco/zsh/peco.zsh
 fi
 
 # zsh plugins
