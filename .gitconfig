@@ -54,3 +54,5 @@
 # vim: noexpandtab
 [diff]
 	algorithm = patience
+[github]
+	user = haya14busa
