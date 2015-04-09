@@ -79,6 +79,7 @@ function! s:MyNeoBundle(is_lazy, ...)
   let todir = s:MyNeoBundle.base . '/' . reponame
   if ! isdirectory(todir)
     let giturl = 'git@github.com:' . repository . '.git'
+    echo giturl
     echo 'Installing ' . repository . '...'
     call system('git clone ' . giturl . ' ' . todir)
   endif
