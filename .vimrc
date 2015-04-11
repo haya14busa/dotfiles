@@ -331,10 +331,16 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'mdreves/vim-scaladoc'
   NeoBundleLazy 'gre/play2vim'
   "}}}
+
   " Scheme {{{
   NeoBundleLazy 'aharisu/vim_goshrepl'
   NeoBundleLazy 'kien/rainbow_parentheses.vim'
   " }}}
+
+  NeoBundleLazy 'osyo-manga/vim-monster', {
+  \   'autoload' : {'filetypes': 'ruby'}
+  \ }
+
   "}}}
 
   " Fold {{{
@@ -1689,8 +1695,13 @@ if neobundle#tap('neocomplete.vim')
       let g:neocomplete#force_omni_input_patterns = {}
     endif
     let g:jedi#auto_vim_configuration = 0
-    let g:neocomplete#force_omni_input_patterns.python =
-    \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+    let g:neocomplete#sources#omni#input_patterns = {
+    \ 'ruby' : '[^. *\t]\.\w*\|\h\w*::',
+    \}
+    let g:neocomplete#force_omni_input_patterns = {
+    \ 'python': '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+    \}
+    " \ 'ruby' : '[^. *\t]\.\|\h\w*::',
     let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
@@ -3544,6 +3555,18 @@ if neobundle#tap('vim-rot47')
   \ })
   map g? <Plug>(operator-rot47)
   nmap g?? <Plug>(operator-rot47)<Plug>(textobj-line-i)
+  call neobundle#untap()
+endif
+" }}}
+
+" osyo-manage/vim-monster {{{
+if neobundle#tap('vim-monster')
+  call neobundle#config({
+  \   'autoload' : {
+  \     'filetypes' : ['ruby'],
+  \   }
+  \ })
+  " let g:monster#completion#rcodetools#backend = 'async_rct_complete'
   call neobundle#untap()
 endif
 " }}}
