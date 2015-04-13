@@ -447,6 +447,7 @@ else
 endif
 set cmdheight=1 "Number of screen lines to use for the command-line
 set cmdwinheight=5 "Number of screen lines to use for the command-line window
+set completeopt-=preview "Do not use preview window
 set display=lastline "Display as much as possible of the last line
 set diffopt+=iwhite
 set formatoptions-=r,o " Turn off Automatically comment out when line break
