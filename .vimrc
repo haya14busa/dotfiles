@@ -1766,7 +1766,7 @@ if neobundle#tap('vim-quickrun')
     \   },
     \ 'vimspec' : {
     \   'command' : 'themis',
-    \   'cmdopt'  : '--runtimepath ".."',
+    \   'cmdopt'  : '--runtimepath ".." --runtimepath ~/.vim/bundle/vital.vim',
     \   'exec'    : '%c %o %s:p | tr -d "\r"'
     \ }
     \}
