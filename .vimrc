@@ -3381,7 +3381,7 @@ endif
 if neobundle#tap('foldCC')
   call neobundle#config({})
   set foldmethod=marker
-  set foldtext=foldCC#foldtext()
+  set foldtext=FoldCCtext()
   set foldcolumn=0
   set fillchars=vert:\|
   noremap [fold]g :<C-u>echo foldCC#navi()<CR>
