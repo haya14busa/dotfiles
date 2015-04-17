@@ -3535,10 +3535,13 @@ endif
 " haya14busa/vim-asterisk {{{
 if neobundle#tap('vim-asterisk')
   call neobundle#untap()
-  map *  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
-  map g* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
-  map #  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
-  map g# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+  let g:asterisk#keeppos = 1
+
+  " map *  <Plug>(incsearch-nohl4)<Plug>(asterisk-z*)
+  map *  <Plug>(asterisk-z*)
+  map g* <Plug>(incsearch-nohl2)<Plug>(asterisk-gz*)
+  map #  <Plug>(incsearch-nohl2)<Plug>(asterisk-z#)
+  map g# <Plug>(incsearch-nohl2)<Plug>(asterisk-gz#)
 
   map z*  <Plug>(incsearch-nohl)<Plug>(asterisk-*)
   map zg* <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
