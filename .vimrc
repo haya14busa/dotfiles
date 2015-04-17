@@ -3513,6 +3513,8 @@ if neobundle#tap('incsearch.vim')
   map / <Plug>(incsearch-forward)
   map ? <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
+  noremap ;/ /
+  noremap ;? ?
   highlight IncSearchCursor ctermfg=0 ctermbg=9 guifg=#000000 guibg=#FF0000
 
   let g:incsearch#auto_nohlsearch = 1
