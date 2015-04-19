@@ -782,15 +782,17 @@ function! s:hl_zenkaku() "{{{
   highlight! link ZenkakuSpace Error
   syntax match ZenkakuSpace containedin=ALL /　/
 endfunction "}}}
-function! s:hl_difftext_for_molokai()
+function! s:hl_colorscheme_modify_molokai()
   hi! DiffText term=reverse cterm=bold ctermbg=239 gui=bold,italic guibg=#4C4745
   hi! DiffDelete term=bold ctermfg=180 ctermbg=0 gui=bold guifg=#960050 guibg=#1E0010
   hi! DiffAdd term=bold ctermbg=0 guibg=#13354A
+  hi! Visual ctermfg=236 ctermbg=119 guifg=#353535 guibg=#95e454
+  hi! default link MatchParen Title
 endfunction
 
 Autocmd BufWinEnter,ColorScheme * call s:hl_trailing_spaces()
 Autocmd BufWinEnter,ColorScheme * call s:hl_zenkaku()
-Autocmd BufWinEnter,ColorScheme * call s:hl_difftext_for_molokai()
+Autocmd BufWinEnter,ColorScheme * call s:hl_colorscheme_modify_molokai()
 
 function! s:remove_trailing_white_spaces()
   let pos = winsaveview()
@@ -3763,9 +3765,6 @@ onoremap <expr> m <SID>ToggleRelativeNumber() . <SID>norelativenumber()
 "}}}
 
 command! Date :call setline('.', getline('.') . strftime('%Y/%m/%d (%a) %H:%M'))
-
-Autocmd ColorScheme hi! default link MatchParen Title
-hi! default link MatchParen Title
 
 " file encoding & line feed code {{{
 command! -bang -bar -complete=file -nargs=? Utf8
