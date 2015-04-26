@@ -1778,6 +1778,9 @@ if neobundle#tap('vim-quickrun')
     \ 'cmdopt': '-s',
     \ 'outputter': 'browser'
     \ }
+    let g:quickrun_config['python/watchdogs_checker'] = {
+    \ 'type' : 'watchdogs_checker/flake8',
+    \}
   endfunction
   nnoremap <Leader>q  <Nop>
   nnoremap <silent><Leader>qr :<C-u>QuickRun<CR>
