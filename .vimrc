@@ -241,6 +241,7 @@ function! s:load_bundles() "{{{
 
   " Git {{{
   NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'lambdalisue/vim-gita'
   NeoBundleLazy 'cohama/agit.vim'
   NeoBundle 'mhinz/vim-signify'
   NeoBundle 'chrisbra/vim-diff-enhanced'
