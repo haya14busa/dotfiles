@@ -3536,6 +3536,9 @@ if neobundle#tap('incsearch.vim')
   nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
   nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
+  noremap <expr> ;<Tab>   incsearch#go({'command': '/', 'pattern': histget('/', -1)})
+  noremap <expr> ;<S-Tab> incsearch#go({'command': '?', 'pattern': histget('/', -1)})
+
   "}}}
   call neobundle#untap()
 endif
