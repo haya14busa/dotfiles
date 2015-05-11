@@ -358,6 +358,8 @@ function! s:load_bundles() "{{{
   " NeoBundle 'tyru/skk.vim'
   "}}}
 
+  NeoBundle 'miyakogi/seiya.vim'
+
   " ColorScheme {{{
   NeoBundle 'tomasr/molokai'
   NeoBundle 'sickill/vim-monokai'
