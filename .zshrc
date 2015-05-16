@@ -335,6 +335,9 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 EDITOR='/usr/local/bin/vim'
+if exists vim; then
+  EDITOR=$(which vim)
+fi
 
 if exists xmodmap; then
   xmodmap $HOME/.Xmodmap 2> /dev/null
