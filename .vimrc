@@ -420,10 +420,7 @@ function! s:load_bundles() "{{{
   "}}}
 endfunction "}}}
 
-if neobundle#has_cache()
-  " if neobundle#has_fresh_cache()
-  NeoBundleLoadCache
-else
+if neobundle#load_cache()
   call s:load_bundles()
   NeoBundleSaveCache
 endif
