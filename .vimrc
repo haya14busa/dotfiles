@@ -1276,7 +1276,7 @@ if neobundle#tap('unite.vim')
       nmap <buffer> <ESC> <Plug>(unite_exit)
       nmap <buffer> q <Plug>(unite_exit)
 
-      imap <buffer>  jj      <Plug>(unite_insert_leave)
+      imap <silent><buffer> <C-w> <Plug>(unite_delete_backward_path)
 
       let unite = unite#get_current_unite()
       if unite.profile_name ==# '^search'
