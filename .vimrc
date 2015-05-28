@@ -1788,6 +1788,7 @@ if neobundle#tap('vim-quickrun')
   nnoremap <Leader>q  <Nop>
   nnoremap <silent><Leader>qr :<C-u>QuickRun<CR>
   vnoremap <silent><Leader>qr :QuickRun<CR>
+  nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
   call neobundle#untap()
 endif
