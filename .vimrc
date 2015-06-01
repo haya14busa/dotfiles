@@ -3078,6 +3078,7 @@ if neobundle#tap('previm')
   \   }
   \ })
   " }}}
+  let g:previm_custom_css_path = '~/.config/vim/previm/style.css'
   call neobundle#untap()
 endif
 " }}}
