@@ -169,6 +169,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'osyo-manga/vital-gift'
   NeoBundle 'haya14busa/vital-string-interpolation'
   NeoBundle 'haya14busa/underscore.vim'
+  MyNeoBundle 'haya14busa/vital-projectfinder'
   "}}}
 
   " Document {{{
