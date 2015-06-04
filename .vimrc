@@ -910,6 +910,7 @@ unlet s:n
 " MoveToNewTab {{{
 " http://www.sopht.jp/blog/index.php?/archives/445-vim.html
 nnoremap <silent> tm :<C-u>call <SID>MoveToNewTab()<CR>
+command! OpenAsNewTab call s:MoveToNewTab()
 function! s:MoveToNewTab()
   tab split
   tabprevious
