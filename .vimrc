@@ -468,6 +468,7 @@ set history=1024 "Amount of Command history
 set infercase "Ignore case on insert completion.
 set keywordprg=:help " Open Vim internal help by K command
 set laststatus=2 "Always display statusline
+set lazyredraw "Do not redraw while executing macros
 set matchpairs& matchpairs+=<:> "Characters that form pairs
 set matchtime=1 "Tenths of a second to show the matching paren
 set modeline "Set Vim local buffer option to specific file
