@@ -3005,7 +3005,15 @@ if neobundle#tap('vital.vim')
   \     'functions' : ['vital#of', 'vital'],
   \   }
   \ })
-  " }}}
+
+  function! g:Vital() abort
+    if exists('s:Vital')
+      return s:Vital
+    endif
+    let s:Vital = vital#of('vital')
+    return s:Vital
+  endfunction
+
   call neobundle#untap()
 endif
 " }}}
