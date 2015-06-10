@@ -3849,81 +3849,33 @@ if has('vim_starting') && !has('gui_running') && has('vertsplit')
   let &t_RV .= "\e[?6;69h\e[1;3s\e[3;9H\e[6n\e[0;0s\e[?6;69l"
 endif
 
-" PR/
-" Project root
-" -- utilities
-
-" empty('') is undocumented :h empty()
-function! s:empty(expr) abort
-  return type(a:expr) is# type('') ? a:expr is# '' : empty(a:expr)
-endfunction
-
-function! s:lcd(path) abort
-  execute 'lcd' fnameescape(a:path)
-endfunction
-
-function! s:is_winshell() abort
-  return &shell =~? 'cmd' || exists('+shellslash') && !&shellslash
-endfunction
-
-" @return normalized path which substitute backslash to slash if on windows
-function! s:shellslash(path) abort
-  return s:is_winshell() ? substitute(a:path, '\\', '/', 'g') : a:path
-endfunction
-
-" is directory pattrn expression like `xxx/` not like 'xxx.txt'?
-function! s:is_dir_pattern(pattern) abort
-  return a:pattern[len(a:pattern) - 1] is# '/'
-endfunction
-
-function! s:cnt_char(str, char) abort
-  " NOTE: are there any more efficient way?
-  return len(filter(split(a:str, '\zs'), 'v:val is# a:char'))
-endfunction
-
-" -- main
-
-" cwd: current working directory
-" @rps root patterns
-" @return empty string if not found
-function! s:project_root_from_cwd(rps) abort
-  " rp: normalized root pattern
-  for rp in map(copy(a:rps), 's:shellslash(v:val)')
-    let level_to_root = 1 + s:cnt_char(rp, '/')
-    let Find = s:is_dir_pattern(rp) ? function('finddir') : function('findfile')
-    let target = call(Find, [rp, ';'])
-    if !s:empty(target)
-      return fnamemodify(target, ':p' . repeat(':h', level_to_root))
-    endif
-  endfor
-  return ''
-endfunction
-
-
-" @rps root patterns
-" @from directory or file path searching root from (absolute/relative)
-" @return project root directory, otherwise empty string if not found
-function! s:project_root(rps, from) abort
-  let default = '' " for not found
-  let dir = isdirectory(a:from) ? a:from : fnamemodify(a:from, ':p:h')
-  if !isdirectory(dir) | return default | endif
-  let cwd_save = getcwd()
-  try
-    call s:lcd(dir)
-    return s:project_root_from_cwd(a:rps)
-  finally
-    call s:lcd(cwd_save)
-  endtry
-  return default
-endfunction
-
-" -- public
-
 " rps
-let g:root_patterns = ['.git/HEAD', '.git/objects/', '.git/']
+let s:root_patterns = ['.git/HEAD', '.git/objects/', '.git/']
 
 function! g:ProjectRoot(...) abort
-  return s:project_root(g:root_patterns, get(a:, 1, resolve(expand('%:p'))))
+  let V = g:Vital()
+  call V.load('ProjectFinder')
+  let args = [s:root_patterns] + (a:0 > 0 ? [a:1] : [])
+  return call(V.ProjectFinder.project_root, args)
+endfunction
+
+function! g:IsGitProject(...) abort
+  let V = g:Vital()
+  call V.load('ProjectFinder')
+  let base = (a:0 > 0 ? [a:1] : [])
+  let args = [['.git/HEAD', '.git/objects/']] + base
+  return call(V.ProjectFinder.project_root, args) isnot# ''
+endfunction
+
+function! s:lcd_to_project_root(...) abort
+  let args = a:0 > 0 ? [expand(a:1)] : []
+  let root = call(function('g:ProjectRoot'), args)
+  if root isnot# ''
+    execute 'lcd' root
+    echo root
+  else
+    echom 'Project Root Not Found'
+  endif
 endfunction
 
 " /PR
