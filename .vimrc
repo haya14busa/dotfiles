@@ -3878,6 +3878,8 @@ function! s:lcd_to_project_root(...) abort
   endif
 endfunction
 
+command! -nargs=? Plcd call s:lcd_to_project_root('<args>')
+
 " /PR
 
 " NOTE:
