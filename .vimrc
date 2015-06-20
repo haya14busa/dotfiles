@@ -1080,7 +1080,6 @@ AutocmdFT sass     setlocal sw=2 sts=2 ts=2 et
 " CoffeeScript {{{
 Autocmd BufRead,BufNewFile,BufReadPre *.coffee   setlocal filetype=coffee
 AutocmdFT coffee     setlocal sw=2 sts=2 ts=2 et
-Autocmd BufWritePost,FileWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
 "}}}
 
 " Sass {{{
