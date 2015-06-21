@@ -1317,7 +1317,14 @@ if neobundle#tap('unite.vim')
   " Jump (mnemonic : <C-o> jump to Older cursor position)
   nnoremap <silent> [unite]<C-o> :<C-u>Unite -silent change jump<CR>
   " Grep
-  nnoremap <silent> [unite]gr :<C-u>Unite -silent -no-quit grep:.<CR>
+  function! s:unite_grep() abort
+    if g:IsGitProject(getcwd()) && neobundle#tap('unite-grep-vcs')
+      Unite -silent -no-quit grep/git:.
+    else
+      Unite -silent -no-quit grep:.
+    endif
+  endfunction
+  nnoremap <silent> [unite]gr :<C-u>call <SID>unite_grep()<CR>
   " Line
   nnoremap <silent> z/ :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
   "-Unite Plugin Settings--------------"{{{
