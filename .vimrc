@@ -201,7 +201,7 @@ function! s:load_bundles() "{{{
   "}}}
 
   " Motion {{{
-  MyNeoBundleLazy 'Lokaltog/vim-easymotion'
+  MyNeoBundleLazy 'easymotion/vim-easymotion'
   " MyNeoBundleLazy 'vim-easyoperator-line'
   " MyNeoBundleLazy 'vim-easyoperator-phrase'
   " MyNeoBundleLazy 'vim-lazy-lines'
