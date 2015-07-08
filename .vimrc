@@ -424,6 +424,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'haya14busa/vim-checklinks', {
   \ 'autoload': {'commands': 'CheckLinks'}}
   NeoBundleLazy 'haya14busa/vim-rot47'
+  MyNeoBundle 'haya14busa/niconicomment.vim'
   "}}}
 endfunction "}}}
 
