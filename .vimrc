@@ -320,6 +320,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'tpope/vim-markdown'
   NeoBundleLazy 'kannokanno/previm'
   NeoBundle 'groenewege/vim-less'
+  NeoBundle 'elzr/vim-json'
 
   " Python {{{
   NeoBundleLazy 'davidhalter/jedi-vim'
@@ -3615,6 +3616,12 @@ if neobundle#tap('vim-monster')
 endif
 " }}}
 
+" elzr/vim-json {{{
+if neobundle#tap('vim-json')
+  let g:vim_json_syntax_conceal = 0
+  call neobundle#untap()
+endif
+" }}}
 " End plugins }}}
 
 " Misc {{{=========================
