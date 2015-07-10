@@ -487,6 +487,7 @@ set number "Print the line number in front of each line
 set ruler "Show the line and column number of the cursor position
 set shortmess& shortmess+=I "Don't give the message when starting Vim :intro
 set showcmd "Show (partial) command in the last line of the screen
+set showfulltag
 set showmatch "Briefly jump to the matching one
 set spelllang=en,cjk "Spell checking language
 set textwidth=0 "Maximum width of text that is being inserted
