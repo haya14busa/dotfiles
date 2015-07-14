@@ -369,6 +369,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'miyakogi/seiya.vim'
 
   " ColorScheme {{{
+  NeoBundleLazy 'rhysd/try-colorscheme.vim'
   NeoBundle 'tomasr/molokai'
   NeoBundle 'sickill/vim-monokai'
   NeoBundle 'vim-scripts/Wombat'
@@ -3621,6 +3622,19 @@ endif
 " elzr/vim-json {{{
 if neobundle#tap('vim-json')
   let g:vim_json_syntax_conceal = 0
+  call neobundle#untap()
+endif
+" }}}
+
+" rhysd/try-colorscheme {{{
+if neobundle#tap('try-colorscheme')
+  call neobundle#config({
+  \   'autoload' : {
+  \     'commands' : [
+  \       'TryColorscheme',
+  \     ],
+  \   }
+  \ })
   call neobundle#untap()
 endif
 " }}}
