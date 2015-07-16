@@ -553,7 +553,6 @@ if has('persistent_undo')
   set undofile "Automatically saves undo history
   set undoreload=1000 "Save the whole buffer for undo when reloading it
   set undodir=~/.vim/undo
-  set undofile
 endif
 "}}}
 
