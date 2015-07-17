@@ -1910,6 +1910,7 @@ if neobundle#tap('vim-easymotion')
   \   'autoload' : {
   \     'mappings' : [['sxno', '<Plug>(easymotion-']],
   \     'functions' : [
+  \       'EasyMotion#go',
   \       'EasyMotion#User',
   \       'EasyMotion#JK',
   \       'EasyMotion#is_active',
