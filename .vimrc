@@ -3918,6 +3918,8 @@ command! -nargs=? Plcd call s:lcd_to_project_root('<args>')
 
 " /PR
 
+let g:seiya_auto_enable = !has('gui_running')
+
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
