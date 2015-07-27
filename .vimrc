@@ -423,6 +423,7 @@ function! s:load_bundles() "{{{
   " NeoBundle 'tpope/vim-rake'
   NeoBundleLazy 'mattn/flappyvird-vim'
   NeoBundleLazy 'mattn/yamada2-vim'
+  NeoBundleLazy 'junegunn/vim-emoji'
 
   NeoBundleLazy 'haya14busa/vim-checklinks', {
   \ 'autoload': {'commands': 'CheckLinks'}}
@@ -3654,6 +3655,23 @@ if neobundle#tap('vital-exe-assert')
   function! neobundle#tapped.hooks.on_source(bundle)
     let g:assert = g:Vital().import('ExeAssert').make()
   endfunction
+  call neobundle#untap()
+endif
+" }}}
+
+" junnegun/vim-emoji {{{
+if neobundle#tap('vim-emoji')
+  call neobundle#config({
+  \   'autoload' : {
+  \     'filetypes' : ['markdown'],
+  \     'functions' : ['emoji#complete', 'emoji#for', 'emoji'],
+  \     'commands' : ['ReplaceEmoji']
+  \   }
+  \ })
+  function! neobundle#tapped.hooks.on_source(bundle)
+    AutocmdFT markdown setlocal completefunc=emoji#complete
+  endfunction
+  command! ReplaceEmoji %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
   call neobundle#untap()
 endif
 " }}}
