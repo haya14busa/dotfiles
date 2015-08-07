@@ -299,6 +299,9 @@ export PATH=$PATH:$GOBIN
 export THEMIS_HOME=${HOME}/.vim/bundle/vim-themis
 export PATH=${THEMIS_HOME}/bin/:$PATH
 
+# activator
+export PATH=${HOME}/Application/activator-1.3.4/:$PATH
+
 # Anyenv
 if [ -d ${HOME}/.anyenv ] ; then
     export PATH="$HOME/.anyenv/bin:$PATH"
