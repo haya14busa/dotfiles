@@ -144,6 +144,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
   NeoBundle 'deris/vim-visualinc'
   NeoBundleLazy 'h1mesuke/vim-alignta'
+  NeoBundleLazy 'mattn/vim-maketable'
   NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
   NeoBundleLazy 'ujihisa/neco-look'
   NeoBundleLazy 'rhysd/vim-grammarous'
@@ -3676,6 +3677,21 @@ if neobundle#tap('vim-emoji')
   call neobundle#untap()
 endif
 " }}}
+
+" mattn/vim-maketable {{{
+if neobundle#tap('vim-maketable')
+  call neobundle#config({
+  \   'autoload' : {
+  \     'commands' : [
+  \       'MakeTable',
+  \     ],
+  \   }
+  \ })
+  call neobundle#untap()
+
+endif
+" }}}
+
 " End plugins }}}
 
 " Misc {{{=========================
