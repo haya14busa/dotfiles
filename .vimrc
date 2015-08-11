@@ -323,6 +323,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'kannokanno/previm'
   NeoBundle 'groenewege/vim-less'
   NeoBundle 'elzr/vim-json'
+  NeoBundle 'leafgarland/typescript-vim'
 
   " Python {{{
   NeoBundleLazy 'davidhalter/jedi-vim'
