@@ -1556,6 +1556,17 @@ if neobundle#tap('unite-vital-module')
 endif
 " }}}
 
+if neobundle#tap('unite-grep-vcs')
+  call neobundle#config({
+  \   'autoload' : {
+  \     'unite_sources' : [
+  \       'grep/git', 'grep/hg'
+  \     ],
+  \   }
+  \ })
+  call neobundle#untap()
+endif
+
 " End unite-sources }}}
 
 " Shougo/VimFiler {{{
