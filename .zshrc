@@ -345,3 +345,7 @@ fi
 if exists xmodmap; then
   xmodmap $HOME/.Xmodmap 2> /dev/null
 fi
+
+if exists direnv; then
+  eval "$(direnv hook zsh)"
+fi
