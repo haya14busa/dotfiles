@@ -175,6 +175,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'haya14busa/underscore.vim'
   MyNeoBundle 'haya14busa/vital-projectfinder'
   MyNeoBundleLazy 'haya14busa/vital-exe-assert'
+  MyNeoBundle 'haya14busa/vital-vimlcompiler'
   "}}}
 
   " Document {{{
