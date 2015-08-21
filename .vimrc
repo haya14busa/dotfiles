@@ -173,9 +173,9 @@ function! s:load_bundles() "{{{
   NeoBundle 'osyo-manga/vital-unlocker'
   NeoBundle 'haya14busa/vital-string-interpolation'
   NeoBundle 'haya14busa/underscore.vim'
+  NeoBundle 'haya14busa/vital-vimlcompiler'
   MyNeoBundle 'haya14busa/vital-projectfinder'
   MyNeoBundleLazy 'haya14busa/vital-exe-assert'
-  MyNeoBundle 'haya14busa/vital-vimlcompiler'
   MyNeoBundle 'haya14busa/vital-string-converter'
   "}}}
 
