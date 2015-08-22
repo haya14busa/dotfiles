@@ -177,6 +177,7 @@ function! s:load_bundles() "{{{
   MyNeoBundle 'haya14busa/vital-projectfinder'
   MyNeoBundleLazy 'haya14busa/vital-exe-assert'
   MyNeoBundle 'haya14busa/vital-string-converter'
+  MyNeoBundle 'haya14busa/vital-power-assert'
   "}}}
 
   " Document {{{
