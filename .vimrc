@@ -414,6 +414,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'hujo/gf-user-vimfn'
   NeoBundle 'haya14busa/vim-snoopy'
   NeoBundle 'Rykka/doctest.vim'
+  NeoBundleFetch 'koron/translua-vim'
   "}}}
 
   " Others {{{
