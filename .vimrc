@@ -327,6 +327,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'groenewege/vim-less'
   NeoBundle 'elzr/vim-json'
   NeoBundle 'leafgarland/typescript-vim'
+  NeoBundle 'fatih/vim-go'
 
   " Python {{{
   NeoBundleLazy 'davidhalter/jedi-vim'
@@ -1743,11 +1744,11 @@ if neobundle#tap('neocomplete.vim')
     let g:jedi#auto_vim_configuration = 0
     let g:neocomplete#sources#omni#input_patterns = {
     \ 'ruby' : '[^. *\t]\.\w*\|\h\w*::',
+    \ 'go': '\h\w*\.\?'
     \}
     let g:neocomplete#force_omni_input_patterns = {
     \ 'python': '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
     \}
-    " \ 'ruby' : '[^. *\t]\.\|\h\w*::',
     let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
@@ -3707,6 +3708,18 @@ if neobundle#tap('vim-maketable')
 
 endif
 " }}}
+
+" fatih/vim-go {{{
+if neobundle#tap('vim-go')
+  let g:go_bin_path = expand('~/.go/bin')
+  let g:go_fmt_experimental = 1
+  " let g:go#use_vimproc = 1
+  let g:go_fmt_fail_silently = 1
+  " let g:go_autodetect_gopath = 0
+  call neobundle#untap()
+endif
+" }}}
+
 
 " End plugins }}}
 
