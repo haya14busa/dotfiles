@@ -328,6 +328,12 @@ function! s:load_bundles() "{{{
   NeoBundle 'elzr/vim-json'
   NeoBundle 'leafgarland/typescript-vim'
   NeoBundle 'fatih/vim-go'
+  NeoBundleLazy 'rhysd/unite-go-import.vim', {
+  \ 'autoload' : {
+  \     'depends' : 'Shougo/unite.vim',
+  \     'unite_sources' : 'go/import',
+  \   }
+  \ }
 
   " Python {{{
   NeoBundleLazy 'davidhalter/jedi-vim'
