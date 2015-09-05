@@ -1817,7 +1817,7 @@ if neobundle#tap('vim-quickrun')
     \   },
     \ 'vimspec' : {
     \   'command' : 'themis',
-    \   'cmdopt'  : '--runtimepath ".." --runtimepath ~/.vim/bundle/vital.vim --reporter dot',
+    \   'cmdopt'  : '--runtimepath ".." --runtimepath ~/.vim/bundle/vital.vim --runtimepath ~/.vim/bundle/vital-vimlcompiler --runtimepath ~/.vim/mybundle/vital-power-assert --reporter dot',
     \   'exec'    : '%c %o %s:p | tr -d "\r"'
     \ }
     \}
