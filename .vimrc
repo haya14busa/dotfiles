@@ -2450,7 +2450,7 @@ if neobundle#tap('lightline.vim')
   \ 'active': {
   \   'left': [
   \       [ 'mode', 'paste' ],
-  \       [ 'filename','fugitive','anzu'],
+  \       [ 'filename','fugitive','anzu', 'relativepath'],
   \   ],
   \   'right': [
   \       [ 'percent' ],
