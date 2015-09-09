@@ -42,4 +42,4 @@ envinstall rbenv 2.2.1
 envinstall pyenv 3.4.3
 envinstall ndenv v0.12.1
 # jenv doesn't support install
-envinstall goenv 1.4
+envinstall goenv 1.5
