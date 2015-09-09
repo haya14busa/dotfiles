@@ -39,7 +39,15 @@ cmdinstall jenv
 cmdinstall goenv
 
 envinstall rbenv 2.2.1
-envinstall pyenv 3.4.3
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  brew install lzlib
+  # for Mac
+  CFLAGS="-I$(brew --prefix openssl)/include" \
+  LDFLAGS="-L$(brew --prefix openssl)/lib" \
+  envinstall pyenv 3.4.3
+else
+  envinstall pyenv 3.4.3
+fi
 envinstall ndenv v0.12.1
 # jenv doesn't support install
 envinstall goenv 1.5
