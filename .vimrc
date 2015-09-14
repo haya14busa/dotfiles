@@ -2972,6 +2972,7 @@ if neobundle#tap('calendar.vim')
     let g:calendar_google_calendar = 1
     let g:calendar_google_task = 1
     let g:calendar_date_endian = 'big'
+    let g:calendar_frame = 'default'
 
     AutocmdFT calendar call s:init_calendar()
     function! s:init_calendar() "{{{
