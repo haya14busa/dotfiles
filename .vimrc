@@ -162,7 +162,7 @@ function! s:load_bundles() "{{{
   " Library {{{
   NeoBundle 'Shougo/vimproc'
   NeoBundle 'mattn/webapi-vim'
-  NeoBundleLazy 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
+  NeoBundle 'vim-jp/vital.vim' " A comprehensive Vim utility functions for Vim plugins
   NeoBundleLazy 'osyo-manga/unite-vital-module'
   NeoBundle 'osyo-manga/vital-over'
   NeoBundle 'osyo-manga/vital-palette'
@@ -3043,14 +3043,6 @@ endif
 
 " vim-jp/vital.vim {{{
 if neobundle#tap('vital.vim')
-  " Config {{{
-  call neobundle#config({
-  \   'autoload' : {
-  \     'commands' : ['Vitalize'],
-  \     'functions' : ['vital#of', 'vital'],
-  \   }
-  \ })
-
   function! g:Vital() abort
     if exists('s:Vital')
       return s:Vital
@@ -3058,7 +3050,6 @@ if neobundle#tap('vital.vim')
     let s:Vital = vital#of('vital')
     return s:Vital
   endfunction
-
   call neobundle#untap()
 endif
 " }}}
