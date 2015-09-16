@@ -3719,6 +3719,36 @@ endif
 " }}}
 
 
+" haya14busa/incsearch-easymotion.vim {{{
+if neobundle#tap('incsearch-easymotion.vim')
+  call neobundle#config({
+  \   'depends' : ['easymotion/vim-easymotion'],
+  \   'autoload' : {
+  \     'mappings' : [
+  \       '<Plug>(incsearch-easymotion',
+  \     ],
+  \     'functions' : [
+  \       'incsearch#config#easymotion#make',
+  \       'incsearch#config#easymotion#module'
+  \     ]
+  \   }
+  \ })
+  function! s:config_easyfuzzymotion(...) abort
+    return extend(copy({
+    \   'converters': [
+    \     incsearch#config#fuzzy#converter(),
+    \   ],
+    \   'modules': [incsearch#config#easymotion#module()],
+    \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+    \   'is_expr': 0,
+    \   'is_stay': 1
+    \ }), get(a:, 1, {}))
+  endfunction
+  noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+  call neobundle#untap()
+endif
+" }}}
+
 " End plugins }}}
 
 " Misc {{{=========================
