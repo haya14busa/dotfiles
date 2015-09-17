@@ -349,3 +349,7 @@ fi
 if exists direnv; then
   eval "$(direnv hook zsh)"
 fi
+
+if [ -f $HOME/.zshrc_local ] ; then
+  source $HOME/.zshrc_local
+fi
