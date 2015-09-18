@@ -334,6 +334,7 @@ function! s:load_bundles() "{{{
   \     'unite_sources' : 'go/import',
   \   }
   \ }
+  NeoBundle 'ToQoz/unite-go-doc'
 
   " Python {{{
   NeoBundleLazy 'davidhalter/jedi-vim'
