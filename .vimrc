@@ -398,6 +398,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'cocopon/iceberg.vim' " A dark color scheme for Vim, came from Antarctica
   NeoBundle 'reedes/vim-colors-pencil'
   NeoBundle 'freeo/vim-kalisi'
+  NeoBundle 'rhysd/vim-color-splatoon'
   "}}}
 
   " Vim script {{{
