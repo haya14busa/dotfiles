@@ -4032,6 +4032,15 @@ command! -nargs=? Plcd call s:lcd_to_project_root('<args>')
 
 let g:seiya_auto_enable = !has('gui_running')
 
+" Check Vim version
+function! s:has_patch(major, minor, patch)
+  let l:version = (a:major * 100 + a:minor)
+  return has('patch-' . a:major . '.' . a:minor . '.' . a:patch) ||
+    \ (v:version > l:version) ||
+    \ (v:version == l:version && 'patch' . a:patch)
+endfunction
+
+
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
