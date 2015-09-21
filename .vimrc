@@ -4040,6 +4040,12 @@ function! s:has_patch(major, minor, patch)
     \ (v:version == l:version && 'patch' . a:patch)
 endfunction
 
+command! -bar -nargs=1 TabIndent
+\ setlocal noexpandtab softtabstop< tabstop=<args> shiftwidth=<args>
+
+command! -bar -nargs=1 SpaceIndent
+\ setlocal expandtab tabstop< softtabstop=<args> shiftwidth=<args>
+
 
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
