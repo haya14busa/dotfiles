@@ -3750,6 +3750,17 @@ if neobundle#tap('incsearch-easymotion.vim')
 endif
 " }}}
 
+" haya14busa/vital-power-assert {{{
+if neobundle#tap('vital-power-assert')
+  let g:__vital_power_assert_config = {
+  \   '__debug__': 1,
+  \   '__max_length__': 50
+  \ }
+  call neobundle#untap()
+endif
+" }}}
+
+
 " End plugins }}}
 
 " Misc {{{=========================
