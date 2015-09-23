@@ -3760,6 +3760,14 @@ if neobundle#tap('vital-power-assert')
 endif
 " }}}
 
+" haya14busa/niconicomment.vim {{{
+if neobundle#tap('niconicomment.vim')
+let g:niconicomment_auto = 0
+let g:niconicomment_loop = 0
+  call neobundle#untap()
+endif
+" }}}
+
 
 " End plugins }}}
 
