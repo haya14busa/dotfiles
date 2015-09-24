@@ -1154,6 +1154,8 @@ Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/scala/.tags
 Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/playframework/.tags
 Autocmd BufRead,BufNewFile *.scala.html setlocal tags+=~/tags/src/playframework/.tags
 Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/slick/.tags
+
+AutocmdFT go setlocal sw=2 sts=2 ts=2 noet
 "}}}
 
 " end vim setup}}}
