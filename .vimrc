@@ -4052,6 +4052,9 @@ command! -nargs=? Plcd call s:lcd_to_project_root('<args>')
 
 " /PR
 
+" Automatically set expandtab
+" AutocmdFT * execute 'setlocal ' . (search('^\t.*\n\t.*\n\t', 'n') ? 'no' : '') . 'expandtab'
+
 let g:seiya_auto_enable = !has('gui_running')
 
 " Check Vim version
