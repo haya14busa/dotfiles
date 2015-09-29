@@ -323,6 +323,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'othree/html5.vim'
   NeoBundle 'tpope/vim-markdown'
+  NeoBundle 'rhysd/github-complete.vim'
   NeoBundleLazy 'kannokanno/previm'
   NeoBundle 'groenewege/vim-less'
   NeoBundle 'elzr/vim-json'
