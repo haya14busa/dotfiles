@@ -353,3 +353,6 @@ fi
 if [ -f $HOME/.zshrc_local ] ; then
   source $HOME/.zshrc_local
 fi
+
+# added by travis gem
+[ -f /home/haya14busa/.travis/travis.sh ] && source /home/haya14busa/.travis/travis.sh
