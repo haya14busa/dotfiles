@@ -148,6 +148,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
   NeoBundleLazy 'ujihisa/neco-look'
   NeoBundleLazy 'rhysd/vim-grammarous'
+  NeoBundle 'thinca/vim-partedit'
   "}}}
 
   " Development {{{
