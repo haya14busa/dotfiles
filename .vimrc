@@ -3774,6 +3774,13 @@ let g:niconicomment_loop = 0
 endif
 " }}}
 
+" thinca/partedit.vim {{{
+if neobundle#tap('partedit.vim')
+  let g:partedit#opener = 'vsplit'
+  call neobundle#untap()
+endif
+" }}}
+
 
 " End plugins }}}
 
