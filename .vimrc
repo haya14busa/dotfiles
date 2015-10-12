@@ -3756,6 +3756,23 @@ if neobundle#tap('incsearch-easymotion.vim')
 endif
 " }}}
 
+" haya14busa/incsearch-migemo.vim {{{
+if neobundle#tap('incsearch-migemo.vim')
+  call neobundle#config({
+  \   'depends' : ['haya14busa/incsearch.vim'],
+  \   'autoload' : {
+  \     'mappings' : [
+  \       '<Plug>(incsearch-migemo',
+  \     ],
+  \   }
+  \ })
+  map m/ <Plug>(incsearch-migemo-/)
+  map m? <Plug>(incsearch-migemo-?)
+  map mg/ <Plug>(incsearch-migemo-stay)
+  call neobundle#untap()
+endif
+" }}}
+
 " haya14busa/vital-power-assert {{{
 if neobundle#tap('vital-power-assert')
   let g:__vital_power_assert_config = {
