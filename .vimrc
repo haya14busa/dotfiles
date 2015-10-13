@@ -3773,6 +3773,28 @@ if neobundle#tap('incsearch-migemo.vim')
 endif
 " }}}
 
+" haya14busa/incsearch-fuzzy.vim {{{
+if neobundle#tap('incsearch-fuzzy.vim')
+  call neobundle#config({
+  \   'depends' : ['haya14busa/incsearch.vim'],
+  \   'autoload' : {
+  \     'mappings' : [
+  \       '<Plug>(incsearch-fuzzy',
+  \     ],
+  \   }
+  \ })
+  map z/ <Plug>(incsearch-fuzzy-/)
+  map z? <Plug>(incsearch-fuzzy-?)
+  map zg/ <Plug>(incsearch-fuzzy-stay)
+
+  map z/ <Plug>(incsearch-fuzzyspell-/)
+  map z? <Plug>(incsearch-fuzzyspell-?)
+  map zg/ <Plug>(incsearch-fuzzyspell-stay)
+  call neobundle#untap()
+endif
+" }}}
+
+
 " haya14busa/vital-power-assert {{{
 if neobundle#tap('vital-power-assert')
   let g:__vital_power_assert_config = {
