@@ -205,6 +205,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 
   NeoBundle 'vim-jp/autofmt'
+  NeoBundle 'osyo-manga/vim-trip'
 
   "}}}
 
