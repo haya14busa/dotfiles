@@ -3821,6 +3821,20 @@ if neobundle#tap('partedit.vim')
 endif
 " }}}
 
+" osyo-manga/vim-trip {{{
+if neobundle#tap('vim-trip')
+  call neobundle#config({
+  \   'autoload' : {
+  \     'mappings' : [
+  \       '<Plug>(trip-',
+  \     ],
+  \   }
+  \ })
+  nmap <C-a> <Plug>(trip-increment)
+  nmap <C-x> <Plug>(trip-decrement)
+  call neobundle#untap()
+endif
+" }}}
 
 " End plugins }}}
 
