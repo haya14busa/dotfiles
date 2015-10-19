@@ -4136,6 +4136,8 @@ command! -bar -nargs=1 SpaceIndent
 \ setlocal expandtab tabstop< softtabstop=<args> shiftwidth=<args>
 
 
+command! ProfileStart :execute 'profile start ~/.vim/profile/' . strftime('%Y%m%d_%X') . ' | profile func *'
+
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
