@@ -221,6 +221,7 @@ function! s:load_bundles() "{{{
   MyNeoBundle 'haya14busa/incsearch-easymotion.vim'
   MyNeoBundle 'haya14busa/incsearch-migemo.vim'
   MyNeoBundle 'haya14busa/incsearch-fuzzy.vim'
+  NeoBundle 'haya14busa/incsearch-index.vim'
   NeoBundle 'haya14busa/vim-asterisk'
   "}}}
 
