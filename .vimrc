@@ -4058,9 +4058,6 @@ function! PluginTest(is_gui, extraCommand)
   redraw!
 endfunction
 
-nnoremap <C-j> <C-f>nzzzv
-nnoremap <C-k> <C-b>Nzzzv
-
 let g:vim_indent_cont = 0
 
 "" Fast vertical scroll
