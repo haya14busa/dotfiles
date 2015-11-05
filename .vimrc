@@ -153,11 +153,7 @@ function! s:load_bundles() "{{{
 
   " Development {{{
   NeoBundleLazy 'thinca/vim-quickrun'
-
   NeoBundleLazy "osyo-manga/vim-watchdogs"
-
-  NeoBundleLazy 'koron/codic-vim' " Codic vim plugin
-  NeoBundleLazy 'rhysd/unite-codic.vim' " A unite.vim source for codic-vim.
   "}}}
 
   " Library {{{
