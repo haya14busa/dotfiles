@@ -8,3 +8,4 @@ ln -s ~/dotfiles/.tmux.conf .tmux.conf
 ln -s ~/dotfiles/.vimrc .vimrc
 ln -s ~/dotfiles/.zshrc .zshrc
 ln -s ~/dotfiles/.ctags .ctags
+ln -s ~/dotfiles/.git_commit_msg.txt .git_commit_msg.txt

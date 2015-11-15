@@ -60,3 +60,5 @@
 	algorithm = patience
 [github]
 	user = haya14busa
+[commit]
+	template = /home/haya14busa/.git_commit_msg.txt
