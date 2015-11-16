@@ -175,6 +175,7 @@ function! s:load_bundles() "{{{
   MyNeoBundleLazy 'haya14busa/vital-exe-assert'
   MyNeoBundle 'haya14busa/vital-string-converter'
   MyNeoBundle 'haya14busa/vital-power-assert'
+  MyNeoBundle 'haya14busa/vim-algorithms-and-data-structures'
   "}}}
 
   " Document {{{
