@@ -448,6 +448,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'haya14busa/vim-rot47'
   MyNeoBundle 'haya14busa/niconicomment.vim'
   MyNeoBundle 'haya14busa/vim-undoreplay'
+  NeoBundle 'thinca/vim-ikaring'
   "}}}
 endfunction "}}}
 
