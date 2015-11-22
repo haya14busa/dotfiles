@@ -4135,6 +4135,14 @@ command! -bar -nargs=1 SpaceIndent
 
 command! ProfileStart :execute 'profile start ~/.vim/profile/' . strftime('%Y%m%d_%X') . ' | profile func *'
 
+function! s:on_FileType_quickfix()
+  setlocal nowrap colorcolumn=
+  nnoremap <buffer> <CR>  <CR>
+  nnoremap <buffer> <C-p>  :<C-u>colder<CR>
+  nnoremap <buffer> <C-n>  :<C-u>cnewer<CR>
+endfunction
+
+AutocmdFT qf call s:on_FileType_quickfix()
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
