@@ -145,6 +145,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'deris/vim-visualinc'
   NeoBundleLazy 'h1mesuke/vim-alignta'
   NeoBundleLazy 'mattn/vim-maketable'
+  NeoBundle 'dhruvasagar/vim-table-mode'
   NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
   NeoBundleLazy 'ujihisa/neco-look'
   NeoBundleLazy 'rhysd/vim-grammarous'
