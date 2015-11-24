@@ -144,7 +144,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
   NeoBundle 'deris/vim-visualinc'
   NeoBundleLazy 'h1mesuke/vim-alignta'
-  NeoBundleLazy 'mattn/vim-maketable'
   NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
   NeoBundleLazy 'ujihisa/neco-look'
   NeoBundleLazy 'rhysd/vim-grammarous'
