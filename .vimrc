@@ -4142,6 +4142,9 @@ function! s:on_FileType_quickfix()
 endfunction
 
 AutocmdFT qf call s:on_FileType_quickfix()
+
+map z/ <Plug>(incsearch-index-/)
+
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
