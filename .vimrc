@@ -219,6 +219,7 @@ function! s:load_bundles() "{{{
   MyNeoBundle 'haya14busa/incsearch-fuzzy.vim'
   NeoBundle 'haya14busa/incsearch-index.vim'
   NeoBundle 'haya14busa/vim-asterisk'
+  NeoBundle 'AndrewRadev/sideways.vim'
   "}}}
 
   " Text Object {{{
