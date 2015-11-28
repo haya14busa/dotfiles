@@ -144,7 +144,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'deris/vim-rengbang' " vim plugin for sequencial numbering with pattern
   NeoBundle 'deris/vim-visualinc'
   NeoBundleLazy 'h1mesuke/vim-alignta'
-  NeoBundleLazy 'mattn/vim-maketable'
   NeoBundle 'dhruvasagar/vim-table-mode'
   NeoBundleLazy 'tyru/caw.vim' " sophisticated comment plugin
   NeoBundleLazy 'ujihisa/neco-look'
@@ -221,6 +220,7 @@ function! s:load_bundles() "{{{
   MyNeoBundle 'haya14busa/incsearch-fuzzy.vim'
   NeoBundle 'haya14busa/incsearch-index.vim'
   NeoBundle 'haya14busa/vim-asterisk'
+  NeoBundle 'AndrewRadev/sideways.vim'
   "}}}
 
   " Text Object {{{
@@ -4144,6 +4144,9 @@ function! s:on_FileType_quickfix()
 endfunction
 
 AutocmdFT qf call s:on_FileType_quickfix()
+
+map z/ <Plug>(incsearch-index-/)
+
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
