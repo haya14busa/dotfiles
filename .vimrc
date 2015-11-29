@@ -3837,6 +3837,22 @@ if neobundle#tap('vim-trip')
 endif
 " }}}
 
+" AndrewRadev/sideways.vim {{{
+if neobundle#tap('sideways.vim')
+  call neobundle#config({
+  \   'autoload' : {
+  \     'commands' : [
+  \       'SidewaysLeft',
+  \       'SidewaysRight',
+  \     ],
+  \   }
+  \ })
+  nnoremap <C-h> :<C-u>SidewaysLeft<CR>
+  nnoremap <C-l> :<C-u>SidewaysRight<CR>
+  call neobundle#untap()
+endif
+" }}}
+
 " End plugins }}}
 
 " Misc {{{=========================
