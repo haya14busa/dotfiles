@@ -4166,6 +4166,30 @@ map z/ <Plug>(incsearch-index-/)
 nnoremap <C-h> :SidewaysLeft<CR>
 nnoremap <C-l> :SidewaysRight<CR>
 
+nmap <Space>q  [quickfix]
+nnoremap [quickfix]  <Nop>
+nnoremap <silent> [quickfix]r   :<C-u>execute 'crewind ' . v:count1<CR>
+nnoremap <silent> [quickfix]j   :<C-u>cnext<CR>
+nnoremap <silent> [quickfix]k   :<C-u>cprevious<CR>
+nnoremap <silent> [quickfix]J   :<C-u>cnfile<CR>
+nnoremap <silent> [quickfix]K   :<C-u>cpfile<CR>
+nnoremap <silent> [quickfix]gg  :<C-u>cfirst<CR>
+nnoremap <silent> [quickfix]G   :<C-u>clast<CR>
+nnoremap <silent> [quickfix]o   :<C-u>botright copen<CR>
+nnoremap <silent> [quickfix]c   :<C-u>cclose<CR>
+nnoremap <silent> [quickfix]p   :<C-u>colder<CR>
+nnoremap <silent> [quickfix]n   :<C-u>cnewer<CR>
+
+nnoremap [quickfix]/  :<C-u>silent grep!<Space>
+nnoremap [quickfix]a  :<C-u>silent grepadd!<Space>
+nnoremap [quickfix]?
+      \ :<C-u>/j **/* <Bar> botright cwindow<Home>noautocmd
+      \ <C-r>=(v:count == v:count1 ? v:count : '')<CR>vimgrep /<C-f>
+nnoremap [quickfix]A
+      \ :<C-u>/j **/* <Bar> botright cwindow<Home>noautocmd
+      \ <C-r>=(v:count == v:count1 ? v:count : '')<CR>vimgrepadd /<C-f>
+
+Autocmd QuickFixCmdPost [^l]* botright cwindow | redraw!
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
