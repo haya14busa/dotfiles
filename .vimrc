@@ -4163,8 +4163,6 @@ AutocmdFT qf call s:on_FileType_quickfix()
 
 map z/ <Plug>(incsearch-index-/)
 
-nnoremap <C-h> :SidewaysLeft<CR>
-nnoremap <C-l> :SidewaysRight<CR>
 
 nmap <Space>q  [quickfix]
 nnoremap [quickfix]  <Nop>
