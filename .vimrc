@@ -121,6 +121,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'osyo-manga/unite-vimmer'
   NeoBundleLazy 'haya14busa/unite-historia'
   NeoBundleLazy 'lambdalisue/unite-grep-vcs'
+  NeoBundleLazy 'Shougo/neoyank.vim'
   " action
   NeoBundleLazy 'osyo-manga/ref-lynx'
   NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
