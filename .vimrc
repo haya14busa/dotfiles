@@ -16,6 +16,7 @@
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 if !&compatible | set nocompatible | endif
+scriptencoding utf-8
 
 " release autogroup in MyVimrc {{{
 augroup MyVimrc
