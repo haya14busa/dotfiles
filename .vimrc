@@ -108,7 +108,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'Shougo/unite-help'
   NeoBundleLazy 'ujihisa/unite-colorscheme'
   NeoBundleLazy 'Shougo/unite-outline'
-  NeoBundleLazy 'osyo-manga/unite-fold'
   NeoBundleLazy 'kmnk/vim-unite-giti'
   NeoBundleLazy 'thinca/vim-unite-history'
   NeoBundleLazy 'osyo-manga/unite-quickfix'
@@ -1422,18 +1421,6 @@ if neobundle#tap('unite-outline')
   \   'autoload' : {
   \     'unite_sources' : [
   \       'outline'
-  \     ],
-  \   }
-  \ })
-  call neobundle#untap()
-endif
-"}}}
-" osyo-manga/unite-fold {{{
-if neobundle#tap('unite-fold')
-  call neobundle#config({
-  \   'autoload' : {
-  \     'unite_sources' : [
-  \       'fold'
   \     ],
   \   }
   \ })
