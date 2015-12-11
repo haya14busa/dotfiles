@@ -112,7 +112,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'thinca/vim-unite-history'
   NeoBundleLazy 'osyo-manga/unite-quickfix'
   NeoBundleLazy 'moznion/unite-git-conflict.vim'
-  NeoBundleLazy 'Shougo/unite-session'
   NeoBundleLazy 'osyo-manga/unite-vimpatches'
   NeoBundleLazy 'tsukkee/unite-tag'
   NeoBundleLazy 'haya14busa/unite-ghq'
@@ -1481,20 +1480,6 @@ if neobundle#tap('unite-git-conflict')
   endfunction "}}}
   " Setting {{{
   "}}}
-  call neobundle#untap()
-endif
-" }}}
-" Shougo/unite-session {{{
-if neobundle#tap('unite-session')
-  " Config {{{
-  call neobundle#config({
-  \   'autoload' : {
-  \     'unite_sources' : [
-  \       'session',
-  \     ],
-  \   }
-  \ })
-  " }}}
   call neobundle#untap()
 endif
 " }}}
