@@ -115,7 +115,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'osyo-manga/unite-vimpatches'
   NeoBundleLazy 'tsukkee/unite-tag'
   NeoBundleLazy 'haya14busa/unite-ghq'
-  NeoBundleLazy 'rhysd/unite-zsh-cdr.vim'
   NeoBundleLazy 'haya14busa/unite-reading-vimrc'
   NeoBundleLazy 'osyo-manga/unite-vimmer'
   NeoBundleLazy 'haya14busa/unite-historia'
@@ -3383,21 +3382,6 @@ if neobundle#tap('endtagcomment.vim')
     let g:endtagcommentFormat = '<!-- /{%tag_name}{%id}{%class} -->'
   endfunction "}}}
   nmap ,t <Plug>(endtagcomment)
-  call neobundle#untap()
-endif
-" }}}
-
-" rhysd/unite-zsh-cdr.vim {{{
-if neobundle#tap('unite-zsh-cdr.vim')
-  " Config {{{
-  call neobundle#config({
-  \   'autoload' : {
-  \     'unite_sources' : [
-  \       'unite-zsh-cdr.vim',
-  \     ],
-  \   }
-  \ })
-  " }}}
   call neobundle#untap()
 endif
 " }}}
