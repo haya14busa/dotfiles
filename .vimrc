@@ -109,7 +109,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'ujihisa/unite-colorscheme'
   NeoBundleLazy 'Shougo/unite-outline'
   NeoBundleLazy 'kmnk/vim-unite-giti'
-  NeoBundleLazy 'thinca/vim-unite-history'
   NeoBundleLazy 'osyo-manga/unite-quickfix'
   NeoBundleLazy 'moznion/unite-git-conflict.vim'
   NeoBundleLazy 'osyo-manga/unite-vimpatches'
@@ -1438,18 +1437,6 @@ if neobundle#tap('vim-unite-giti')
   call neobundle#untap()
   nnoremap <silent> [unite]gg :<C-u>Unite giti/status -winheight=10
   \   -no-start-insert -no-quit<CR>
-endif
-"}}}
-" thinca/vim-unite-history {{{
-if neobundle#tap('vim-unite-history')
-  call neobundle#config({
-  \   'autoload' : {
-  \     'unite_sources' : [
-  \       'history'
-  \     ],
-  \   }
-  \ })
-  call neobundle#untap()
 endif
 "}}}
 " osyo-manga/unite-quickfix {{{
