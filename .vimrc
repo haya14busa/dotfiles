@@ -115,7 +115,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'tsukkee/unite-tag'
   NeoBundleLazy 'haya14busa/unite-ghq'
   NeoBundleLazy 'haya14busa/unite-reading-vimrc'
-  NeoBundleLazy 'osyo-manga/unite-vimmer'
   NeoBundleLazy 'haya14busa/unite-historia'
   NeoBundleLazy 'lambdalisue/unite-grep-vcs'
   NeoBundleLazy 'Shougo/neoyank.vim'
