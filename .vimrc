@@ -120,7 +120,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'Shougo/neoyank.vim'
   " action
   NeoBundleLazy 'osyo-manga/ref-lynx'
-  NeoBundleLazy 'haya14busa/unite-action-vimfiler_lcd'
   "}}}
   NeoBundleLazy 'Shougo/vimfiler.vim'
   NeoBundleLazy 'Shougo/vimshell.vim'
@@ -1220,10 +1219,6 @@ if neobundle#tap('unite.vim')
   \   }
   \ }) "}}}
 
-  function! neobundle#tapped.hooks.on_post_source(bundle)
-    NeoBundleSource unite-action-vimfiler_lcd
-  endfunction
-
   " Settings"{{{
   function! neobundle#tapped.hooks.on_source(bundle)
     " Disable
@@ -1511,12 +1506,6 @@ if neobundle#tap('ref-lynx')
   " }}}
   " call unite#custom#default_action('uri', 'ref-lynx')
 
-  call neobundle#untap()
-endif
-" }}}
-" haya14busa/unite-action-vimfiler_lcd {{{
-if neobundle#tap('unite-action-vimfiler_lcd')
-  call neobundle#config({'depends' : 'Shougo/unite.vim'})
   call neobundle#untap()
 endif
 " }}}
