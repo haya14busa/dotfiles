@@ -168,7 +168,6 @@ function! s:load_bundles() "{{{
   NeoBundle 'haya14busa/underscore.vim'
   NeoBundle 'haya14busa/vital-vimlcompiler'
   MyNeoBundle 'haya14busa/vital-projectfinder'
-  MyNeoBundleLazy 'haya14busa/vital-exe-assert'
   MyNeoBundle 'haya14busa/vital-string-converter'
   MyNeoBundle 'haya14busa/vital-power-assert'
   MyNeoBundle 'haya14busa/vim-algorithms-and-data-structures'
@@ -3596,24 +3595,6 @@ if neobundle#tap('try-colorscheme')
   \     ],
   \   }
   \ })
-  call neobundle#untap()
-endif
-" }}}
-
-" haya14busa/vital-exe-assert {{{
-if neobundle#tap('vital-exe-assert')
-  call neobundle#config({
-  \   'autoload' : {
-  \     'filetypes' : ['vim']
-  \   }
-  \ })
-  let g:__vital_exe_assert_config = {
-  \ '__debug__': 1,
-  \ '__abort__': 0
-  \ }
-  function! neobundle#tapped.hooks.on_source(bundle)
-    let g:assert = g:Vital().import('ExeAssert').make()
-  endfunction
   call neobundle#untap()
 endif
 " }}}
