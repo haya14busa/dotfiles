@@ -177,7 +177,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'thinca/vim-ref'
   NeoBundle 'mojako/ref-sources.vim'
   NeoBundle 'tokuhirom/jsref'
-  NeoBundle 'mustardamus/jqapi'
   NeoBundle 'soh335/vim-ref-jquery'
 
   "}}}
@@ -1818,7 +1817,6 @@ if neobundle#tap('vim-ref')
   \   }
   \ })
   function! neobundle#tapped.hooks.on_source(bundle)
-    let g:ref_jquery_doc_path = $HOME . '/.vim/.bundle/jqapi'
     let g:ref_javascript_doc_path = $HOME . '/.vim/.bundle/jsref/htdocs'
     let g:ref_wikipedia_lang = ['ja', 'en']
     let g:ref_use_cache = 1
