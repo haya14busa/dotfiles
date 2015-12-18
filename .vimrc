@@ -177,7 +177,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'thinca/vim-ref'
   NeoBundle 'mojako/ref-sources.vim'
   NeoBundle 'tokuhirom/jsref'
-  NeoBundle 'soh335/vim-ref-jquery'
 
   "}}}
 
