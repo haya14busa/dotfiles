@@ -195,7 +195,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 
   NeoBundle 'vim-jp/autofmt'
-  NeoBundle 'osyo-manga/vim-trip'
 
   "}}}
 
@@ -3729,21 +3728,6 @@ endif
 " thinca/partedit.vim {{{
 if neobundle#tap('partedit.vim')
   let g:partedit#opener = 'vsplit'
-  call neobundle#untap()
-endif
-" }}}
-
-" osyo-manga/vim-trip {{{
-if neobundle#tap('vim-trip')
-  call neobundle#config({
-  \   'autoload' : {
-  \     'mappings' : [
-  \       '<Plug>(trip-',
-  \     ],
-  \   }
-  \ })
-  nmap <C-a> <Plug>(trip-increment)
-  nmap <C-x> <Plug>(trip-decrement)
   call neobundle#untap()
 endif
 " }}}
