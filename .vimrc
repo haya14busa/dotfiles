@@ -3188,7 +3188,7 @@ endif
 " vim-jp/autofmt {{{
 if neobundle#tap('autofmt')
   function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    set formatexpr=autofmt#compat#formatexpr()
+    set formatexpr=autofmt#japanese#formatexpr()
   endfunction "}}}
   call neobundle#untap()
 endif
