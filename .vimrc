@@ -204,7 +204,6 @@ function! s:load_bundles() "{{{
   " MyNeoBundleLazy 'vim-easyoperator-phrase'
   " MyNeoBundleLazy 'vim-lazy-lines'
   NeoBundleLazy 'rhysd/clever-f.vim' " Extended f, F, t and T key mappings for Vim.
-  NeoBundleLazy 'rhysd/accelerated-jk'
   NeoBundleLazy 'saihoooooooo/glowshi-ft.vim'
   MyNeoBundle 'haya14busa/incsearch.vim'
   MyNeoBundle 'haya14busa/incsearch-easymotion.vim'
@@ -2473,21 +2472,6 @@ if neobundle#tap('lightline.vim')
   endfunction "}}}
 
   call neobundle#untap()
-endif
-"}}}
-
-" accelerated-jk {{{
-if neobundle#tap('accelerated-jk')
-  call neobundle#config({
-  \   'autoload' : {
-  \     'mappings' : [['sxno','<Plug>(accelerated_jk_']],
-  \   }
-  \ })
-  function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    let g:accelerated_jk_acceleration_table=[7,52,57]
-  endfunction "}}}
-  nmap j <Plug>(accelerated_jk_gj)
-  nmap k <Plug>(accelerated_jk_gk)
 endif
 "}}}
 
