@@ -204,7 +204,6 @@ function! s:load_bundles() "{{{
   " MyNeoBundleLazy 'vim-easyoperator-phrase'
   " MyNeoBundleLazy 'vim-lazy-lines'
   NeoBundleLazy 'rhysd/clever-f.vim' " Extended f, F, t and T key mappings for Vim.
-  NeoBundleLazy 'saihoooooooo/glowshi-ft.vim'
   MyNeoBundle 'haya14busa/incsearch.vim'
   MyNeoBundle 'haya14busa/incsearch-easymotion.vim'
   MyNeoBundle 'haya14busa/incsearch-migemo.vim'
