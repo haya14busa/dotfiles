@@ -190,7 +190,6 @@ function! s:load_bundles() "{{{
   " Visual mode
   NeoBundleLazy 'kana/vim-niceblock'
   " Search
-  NeoBundleLazy 'thinca/vim-visualstar'
   NeoBundleLazy 'osyo-manga/vim-anzu'
   NeoBundleLazy 'osyo-manga/vim-over' " :substitute preview
 
@@ -2551,18 +2550,6 @@ if neobundle#tap('vim-scouter')
   \     ],
   \   }
   \ })
-  call neobundle#untap()
-endif
-"}}}
-
-" thinca/vim-visualstar {{{
-if neobundle#tap('vim-visualstar')
-  call neobundle#config({
-  \   'autoload' : {
-  \     'mappings' : ['<Plug>(visualstar-'],
-  \   }
-  \ })
-  vmap <silent>*  <Plug>(visualstar-*);n
   call neobundle#untap()
 endif
 "}}}
