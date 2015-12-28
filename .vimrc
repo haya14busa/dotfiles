@@ -219,7 +219,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'kana/vim-textobj-indent'           " ai, ii
   NeoBundleLazy 'kana/vim-textobj-line'             " al, il
   NeoBundleLazy 'kana/vim-textobj-syntax'           " ay, iy
-  NeoBundleLazy 'kana/vim-textobj-django-template'  " adb, idb
   NeoBundleLazy 'thinca/vim-textobj-between'        " af{char}, if{char}
   NeoBundleLazy 'mattn/vim-textobj-url'             " au, iu
   NeoBundleLazy 'osyo-manga/vim-textobj-multiblock' " ab, ib
@@ -2156,17 +2155,6 @@ if neobundle#tap('vim-textobj-syntax')
   \ 'depends' : 'kana/vim-textobj-user',
   \ 'autoload' : {
   \       'mappings' : [['xo', 'ay'], ['xo', 'iy']]
-  \   }
-  \ })
-  call neobundle#untap()
-endif
-" }}}
-" vim-textobj-django-template {{{
-if neobundle#tap('vim-textobj-django-template')
-  call neobundle#config({
-  \ 'depends' : 'kana/vim-textobj-user',
-  \ 'autoload' : {
-  \       'mappings' : [['xo', 'adb'], ['xo', 'idb']]
   \   }
   \ })
   call neobundle#untap()
