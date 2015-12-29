@@ -421,7 +421,6 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'basyura/TweetVim' " twitter client for vim
   NeoBundleLazy 'basyura/twibill.vim' " twitter api wrapper like a Rubytter.rb ... maybe
   NeoBundleLazy 'basyura/J6uil.vim'
-  NeoBundleLazy 'dogrover/vim-pentadactyl'
   NeoBundleLazy 'supermomonga/thingspast.vim'
   NeoBundleLazy 'rbtnn/puyo.vim'
   NeoBundleLazy 'thinca/vim-scouter'
