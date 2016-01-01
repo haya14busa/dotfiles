@@ -237,6 +237,7 @@ function! s:load_bundles() "{{{
   " Operator
   NeoBundleLazy 'kana/vim-operator-user'
   NeoBundleLazy 'kana/vim-operator-replace'
+  NeoBundleLazy 'haya14busa/vim-operator-flashy'
   "NeoBundle 'rhysd/vim-operator-surround'
 
   "}}}
@@ -2241,6 +2242,21 @@ if neobundle#tap('vim-operator-replace')
   \ })
   nmap ;R  <Plug>(operator-replace)
   vmap p <Plug>(operator-replace)
+  call neobundle#untap()
+endif
+" }}}
+
+" haya14busa/vim-operator-flashy "{{{
+if neobundle#tap('vim-operator-flashy')
+  call neobundle#config({
+  \ 'depends' : 'kana/vim-operator-user',
+  \   'autoload' : {
+  \     'mappings' : '<Plug>(operator-flashy)'
+  \   }
+  \ })
+  nmap y <Plug>(operator-flashy)
+  omap y <Plug>(operator-flashy)
+  nmap Y <Plug>(operator-flashy)$
   call neobundle#untap()
 endif
 " }}}
