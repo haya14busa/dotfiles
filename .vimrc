@@ -392,7 +392,6 @@ function! s:load_bundles() "{{{
   "}}}
 
   " Vim script {{{
-  NeoBundleLazy 'mattn/learn-vimscript'
   NeoBundleLazy 'thinca/vim-prettyprint'
   NeoBundleLazy 'tyru/capture.vim' " Show Ex command output in buffer
   NeoBundleLazy 'kana/vim-vspec' " Vim plugin: Testing framework for Vim script
