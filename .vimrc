@@ -262,7 +262,6 @@ function! s:load_bundles() "{{{
   NeoBundle 'itchyny/lightline.vim'
   NeoBundle 'Yggdroot/indentLine'
   NeoBundleLazy 'osyo-manga/vim-brightest'
-  NeoBundleLazy 't9md/vim-quickhl' " quickly highlight <cword> or visually selected word
   NeoBundleLazy 'mattn/disableitalic-vim'
   "TODO
   NeoBundleLazy 'osyo-manga/vim-automatic', {
@@ -2828,25 +2827,6 @@ if neobundle#tap('J6uil.vim')
       nmap <buffer> <Leader>s <Plug>(J6uil_open_say_buffer)
     endfunction
   endfunction "}}}
-  call neobundle#untap()
-endif
-" }}}
-
-" t9md/vim-quickhl {{{
-if neobundle#tap('vim-quickhl')
-  " Config {{{
-  call neobundle#config({
-  \   'autoload' : {
-  \     'mappings' : [ '<Plug>(quickhl-manual-' ],
-  \   }
-  \ })
-  " }}}
-  " Setting {{{
-  nmap ;m <Plug>(quickhl-manual-this)
-  vmap ;m <Plug>(quickhl-manual-this)
-  nmap ;M <Plug>(quickhl-manual-reset)
-  vmap ;M <Plug>(quickhl-manual-reset)
-  "}}}
   call neobundle#untap()
 endif
 " }}}
