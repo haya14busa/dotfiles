@@ -811,8 +811,8 @@ function! s:hl_colorscheme_modify_molokai()
   hi! default link MatchParen Title
 endfunction
 
-Autocmd BufWinEnter,ColorScheme * call s:hl_trailing_spaces()
-Autocmd BufWinEnter,ColorScheme * call s:hl_zenkaku()
+Autocmd BufWinEnter,ColorScheme,Syntax * call s:hl_trailing_spaces()
+Autocmd BufWinEnter,ColorScheme,Syntax * call s:hl_zenkaku()
 Autocmd BufWinEnter,ColorScheme * call s:hl_colorscheme_modify_molokai()
 
 function! s:remove_trailing_white_spaces()
