@@ -1944,7 +1944,7 @@ if neobundle#tap('vim-easymotion')
   endfunction "}}}
 
   " EasyMotion Mapping {{{
-  nmap s <Plug>(easymotion-s2)
+  nmap s <Plug>(easymotion-overwin-f2)
   vmap s <Plug>(easymotion-s2)
   omap z <Plug>(easymotion-s2)
 
