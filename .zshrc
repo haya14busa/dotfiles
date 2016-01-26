@@ -287,11 +287,7 @@ export PLAY_HOME=/usr/local/play
 export PATH=$PATH:$PLAY_HOME
 
 # Go environment
-export GOROOT=$HOME/go
-export GOOS=linux
-# export GOARCH=amd64
-# export GOARCH=386
-export GOBIN=$GOROOT/bin
+export GOBIN=$HOME/go/bin
 export GOPATH=$HOME
 export PATH=$PATH:$GOBIN
 
@@ -308,6 +304,13 @@ if [ -d ${HOME}/.anyenv ] ; then
     if exists anyenv; then
         eval "$(anyenv init -)"
     fi
+fi
+
+# export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+if exists pyenv; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
 if exists npm; then
