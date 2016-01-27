@@ -1948,6 +1948,8 @@ if neobundle#tap('vim-easymotion')
   vmap s <Plug>(easymotion-s2)
   omap z <Plug>(easymotion-s2)
 
+  nmap ;L <Plug>(easymotion-overwin-line)
+
   " Replace defaut
   " smart f & F
   omap f <Plug>(easymotion-bd-fl)
