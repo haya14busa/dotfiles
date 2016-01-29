@@ -434,6 +434,7 @@ function! s:load_bundles() "{{{
   MyNeoBundle 'haya14busa/vim-undoreplay'
   NeoBundle 'thinca/vim-ikaring'
   NeoBundle 'chrisbra/Recover.vim'
+  NeoBundle 'Konfekt/FastFold'
   "}}}
 endfunction "}}}
 
