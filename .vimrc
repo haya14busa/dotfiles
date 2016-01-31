@@ -2582,6 +2582,24 @@ if neobundle#tap('caw.vim')
   " Break line and Comment
   nmap <Leader>co <Plug>(caw:jump:comment-next)
   nmap <Leader>cO <Plug>(caw:jump:comment-prev)
+
+  " Use caw.vim as an operator
+  " https://github.com/rhysd/dogfiles/blob/master/vimrc
+  function! s:OperatorCawCommentToggle(motionWise)
+    if a:motionWise ==# 'char'
+      execute "normal `[v`]\<Plug>(caw:wrap:toggle)"
+    else
+      execute "normal `[V`]\<Plug>(caw:i:toggle)"
+    endif
+  endfunction
+
+  function! neobundle#hooks.on_source(bundle)
+    call operator#user#define('caw', s:SID() . 'OperatorCawCommentToggle')
+  endfunction
+
+  map co <Plug>(operator-caw)
+  omap o <Plug>(operator-caw)
+
   call neobundle#untap()
 endif
 "}}}
