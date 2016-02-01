@@ -2744,7 +2744,8 @@ if neobundle#tap('vim-fugitive')
   \   'commands' : [
   \     'Gstatus', 'Gcommit', 'Gwrite', 'Gdiff', 'Gblame', 'Git', 'Ggrep'
   \   ]
-  \   }
+  \ },
+  \ 'augroup': 'fugitive'
   \ })
   " }}}
 
