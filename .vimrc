@@ -2966,7 +2966,7 @@ endif
 
 " vim-jp/vital.vim {{{
 if neobundle#tap('vital.vim')
-  function! g:Vital() abort
+  function! Vital() abort
     if exists('s:Vital')
       return s:Vital
     endif
