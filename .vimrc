@@ -3920,7 +3920,7 @@ function! PluginTest(is_gui, extraCommand)
   let vimrc_path = $HOME . '/.vimrc.min'
   let vimrc = filereadable(vimrc_path) ? vimrc_path : 'NONE'
   let extraCommand = empty(a:extraCommand) ? '' : ' -c "au VimEnter * ' . a:extraCommand . '"'
-  silent! execute printf('!%s -u %s -N --cmd "set rtp+=%s" %s'
+  silent! execute printf('!%s -u %s -N -i NONE --cmd "set rtp+=%s" %s'
   \   , cmd, vimrc, getcwd(), extraCommand)
   redraw!
 endfunction
