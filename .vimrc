@@ -3460,9 +3460,22 @@ if neobundle#tap('incsearch.vim')
   " \       'group' : 'IncSearchUnderline'
   " \   }
   " \ }
-  map / <Plug>(incsearch-forward)
-  map ? <Plug>(incsearch-backward)
-  map g/ <Plug>(incsearch-stay)
+  function! s:incsearch_config(...) abort
+    return incsearch#util#deepextend(deepcopy({
+    \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+    \   'keymap': {
+    \     "\<C-l>": '<Over>(easymotion)'
+    \   },
+    \   'is_expr': 0
+    \ }), get(a:, 1, {}))
+  endfunction
+
+  noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+  noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+  noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+  " map / <Plug>(incsearch-forward)
+  " map ? <Plug>(incsearch-backward)
+  " map g/ <Plug>(incsearch-stay)
   noremap ;/ /
   noremap ;? ?
   highlight IncSearchCursor ctermfg=0 ctermbg=9 guifg=#000000 guibg=#FF0000
