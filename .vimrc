@@ -4013,9 +4013,9 @@ let g:seiya_auto_enable = !has('gui_running')
 " Check Vim version
 function! s:has_patch(major, minor, patch)
   let l:version = (a:major * 100 + a:minor)
-  return has('patch-' . a:major . '.' . a:minor . '.' . a:patch) ||
+  return has(printf('patch-%d.%d.%d', a:major, a:minor, a:patch)) ||
     \ (v:version > l:version) ||
-    \ (v:version == l:version && 'patch' . a:patch)
+    \ (v:version == l:version && has('patch' . a:patch))
 endfunction
 
 command! -bar -nargs=1 TabIndent
