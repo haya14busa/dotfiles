@@ -607,8 +607,9 @@ endif
 command! EVimrc e $MYVIMRC
 command! ETabVimrc tabnew $MYVIMRC
 command! SoVimrc source $MYVIMRC
-Autocmd BufWritePost *vimrc NeoBundleClearCache | source $MYVIMRC
-Autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+" Add nested to fire autocmd event by sourcing vimrc like ColorScheme
+Autocmd BufWritePost *vimrc nested NeoBundleClearCache | source $MYVIMRC
+Autocmd BufWritePost *gvimrc nested if has('gui_running') source $MYGVIMRC
 "}}}
 
 " Close Vim help by q {{{
