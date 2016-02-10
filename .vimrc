@@ -1054,6 +1054,9 @@ function! s:config_in_diff_mode()
   " same bindings for merging diffs as in normal mode
   xnoremap <buffer> dp :diffput<cr>
   xnoremap <buffer> do :diffget<cr>
+
+  " started In Diff-Mode set diffexpr (plugin not loaded yet)
+  let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endfunction
 
 Autocmd FilterWritePre * call s:config_in_diff_mode()
