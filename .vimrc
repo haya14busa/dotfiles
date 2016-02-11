@@ -2566,9 +2566,7 @@ if neobundle#tap('caw.vim')
   \     'mappings' : ['<Plug>(caw:'],
   \   }
   \ })
-  function! neobundle#tapped.hooks.on_source(bundle) "{{{
     let g:caw_no_default_keymappings = 1
-  endfunction "}}}
   " Beggining of Line Comment Toggle
   nmap <Leader>cc <Plug>(caw:i:toggle)
   vmap <Leader>cc <Plug>(caw:i:toggle)
