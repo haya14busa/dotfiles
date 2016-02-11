@@ -1149,6 +1149,8 @@ Autocmd BufRead,BufNewFile *.scala.html setlocal tags+=~/tags/src/playframework/
 Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/slick/.tags
 
 AutocmdFT go setlocal sw=2 sts=2 ts=2 noet
+
+AutocmdFT tex let b:indentLine_enabled = 1 | setlocal conceallevel=0
 "}}}
 
 " end vim setup}}}
