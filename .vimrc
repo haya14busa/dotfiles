@@ -716,7 +716,7 @@ nnoremap Y y$
 
 " Yank with keeping cursor position in visual mode {{{
 function! s:keepcursor_visual_wrapper(command)
-  exec "normal! gv" . a:command
+  exec 'normal! gv' . a:command
   exec "normal! gv\<ESC>"
 endfunction
 xnoremap <silent> y :<C-u>call <SID>keepcursor_visual_wrapper('y')<CR>
