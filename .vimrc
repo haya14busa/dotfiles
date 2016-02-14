@@ -3959,7 +3959,7 @@ let g:vim_indent_cont = 0
 " source: http://qiita.com/kefir_/items/c725731d33de4d8fb096
 " Use vsplit mode
 if has('vim_starting') && !has('gui_running') && has('vertsplit')
-  function! g:EnableVsplitMode()
+  function! EnableVsplitMode()
     " enable origin mode and left/right margins
     let &t_CS = "y"
     let &t_ti = &t_ti . "\e[?6;69h"
@@ -3979,14 +3979,14 @@ endif
 " rps
 let s:root_patterns = ['.git/HEAD', '.git/objects/', '.git/']
 
-function! g:ProjectRoot(...) abort
+function! ProjectRoot(...) abort
   let V = g:Vital()
   call V.load('ProjectFinder')
   let args = [s:root_patterns] + (a:0 > 0 ? [a:1] : [])
   return call(V.ProjectFinder.project_root, args)
 endfunction
 
-function! g:IsGitProject(...) abort
+function! IsGitProject(...) abort
   let V = g:Vital()
   call V.load('ProjectFinder')
   let base = (a:0 > 0 ? [a:1] : [])
