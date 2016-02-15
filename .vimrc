@@ -266,6 +266,7 @@ function! s:load_bundles() "{{{
   "TODO
   NeoBundleLazy 'osyo-manga/vim-automatic', {
   \ 'depends' : [ 'osyo-manga/vim-gift', 'osyo-manga/vim-reunions' ] }
+  NeoBundle 'thinca/vim-zenspace'
   " }}}
 
   " Utility {{{
@@ -795,15 +796,11 @@ nnoremap <silent> <Leader>l :<C-u>set list! list?<CR>
 set listchars=tab:▸\ ,
 set list
 
-" Highlight End-of-Line & Zenkaku Whitespace {{{
+" Highlight End-of-Line Whitespace {{{
 function! s:hl_trailing_spaces() "{{{
   " Test   
   highlight! link TrailingSpaces Error
   syntax match TrailingSpaces containedin=ALL /\s\+$/
-endfunction "}}}
-function! s:hl_zenkaku() "{{{
-  highlight! link ZenkakuSpace Error
-  syntax match ZenkakuSpace containedin=ALL /　/
 endfunction "}}}
 function! s:hl_colorscheme_modify_molokai()
   hi! DiffText term=reverse cterm=bold ctermbg=239 gui=bold,italic guibg=#4C4745
@@ -812,9 +809,7 @@ function! s:hl_colorscheme_modify_molokai()
   hi! Visual ctermfg=236 ctermbg=119 guifg=#353535 guibg=#95e454
   hi! default link MatchParen Title
 endfunction
-
 Autocmd BufWinEnter,ColorScheme,Syntax * call s:hl_trailing_spaces()
-Autocmd BufWinEnter,ColorScheme,Syntax * call s:hl_zenkaku()
 Autocmd BufWinEnter,ColorScheme * call s:hl_colorscheme_modify_molokai()
 
 function! s:remove_trailing_white_spaces()
