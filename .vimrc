@@ -1145,6 +1145,7 @@ Autocmd BufRead,BufNewFile *.scala setlocal tags+=~/tags/src/slick/.tags
 
 AutocmdFT go setlocal sw=2 sts=2 ts=2 noet
 
+let g:tex_conceal = ''
 AutocmdFT tex let b:indentLine_enabled = 1 | setlocal conceallevel=0
 "}}}
 
