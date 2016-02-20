@@ -1351,7 +1351,8 @@ if neobundle#tap('unite.vim')
   " Use outline like explorer
   nnoremap <silent> [unite]o :<C-u>Unite
   \ -no-quit -keep-focus -no-start-insert
-  \ -vertical -direction=botright -winwidth=40 outline<CR>
+  \ -vertical -direction=botright outline<CR>
+  " \ -vertical -direction=botright -winwidth=40 outline<CR>
   " Fold
   nnoremap <silent> [unite]z :<C-u>Unite -silent fold -vertical -winwidth=40 -no-start-insert<CR>
   " Unite Beautiful Atack
