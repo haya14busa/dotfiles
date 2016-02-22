@@ -2,3 +2,4 @@ ignore/
 .tags
 .local.vimrc
 ,/
+.envrc
