@@ -4066,6 +4066,53 @@ nnoremap [quickfix]A
       \ <C-r>=(v:count == v:count1 ? v:count : '')<CR>vimgrepadd /<C-f>
 
 Autocmd QuickFixCmdPost [^l]* botright cwindow | redraw!
+function! s:screenkey(...) abort
+  " interval to erase display key in msec
+  let interval = get(a:, 1, 500)
+  let rt = reltime()
+  let strokes = ''
+  call s:turn_on_cursor()
+  while 1
+    let chr = getchar(0)
+    if s:is_char(chr, "\<C-c>")
+      " break
+      call s:turn_off_cursor()
+      return
+    endif
+    if chr
+      let strokes .= nr2char(chr)
+      let rt = reltime()
+    endif
+    let elapsed = float2nr(str2float(reltimestr(reltime(rt))) * 1000)
+    if strokes !=# '' && interval < elapsed
+      break
+    endif
+    redraw
+    echo strokes
+  endwhile
+  call feedkeys(strokes)
+  call feedkeys("\<Esc>:Screenkey\<CR>", 'n')
+endfunction
+
+function! s:is_char(char, target) abort
+  return a:char is# a:target ? 1 : a:char is# char2nr(a:target)
+endfunction
+
+let s:hiid = 0
+
+function! s:turn_on_cursor() abort
+  call s:turn_off_cursor()
+  " let s:hiid = matchadd('Cursor', '\%#', 100)
+  let s:hiid = matchadd('IncSearchCursor', '\%#', 100)
+endfunction
+
+function! s:turn_off_cursor() abort
+  silent! call matchdelete(s:hiid)
+endfunction
+
+
+" noremap <buffer><silent> <Space> :<C-u>call <SID>screenkey()<CR>
+command! Screenkey call s:screenkey()
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
