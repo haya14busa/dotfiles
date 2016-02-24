@@ -391,6 +391,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'reedes/vim-colors-pencil'
   NeoBundle 'freeo/vim-kalisi'
   NeoBundle 'rhysd/vim-color-splatoon'
+  NeoBundle 'mhinz/vim-janah'
   "}}}
 
   " Vim script {{{
