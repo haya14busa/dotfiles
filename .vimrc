@@ -4113,6 +4113,10 @@ endfunction
 
 " noremap <buffer><silent> <Space> :<C-u>call <SID>screenkey()<CR>
 command! Screenkey call s:screenkey()
+
+function! s:SID()
+  return matchstr(expand('<sfile>'), '<SNR>\d_')
+endfunction
 " NOTE:
 "  nnoremap <buffer><nowait> ; ;
 "
