@@ -205,6 +205,7 @@ alias say="say >& /dev/null"
 alias SayKotoeri2="SayKotoeri2 >& /dev/null"
 alias SayKotoeri="SayKotoeri >& /dev/null"
 alias tmux="tmux -2"
+alias jpm="jpm -b $(which firefox) "
 
 # path to pandoc
 PATH=${HOME}/.cabal/bin:$PATH
