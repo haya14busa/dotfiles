@@ -172,6 +172,7 @@ function! s:load_bundles() "{{{
   MyNeoBundle 'haya14busa/vital-power-assert'
   MyNeoBundle 'haya14busa/vital-design-by-contract'
   MyNeoBundle 'haya14busa/vim-algorithms-and-data-structures'
+  MyNeoBundle 'haya14busa/vital-hit-a-hint'
   "}}}
 
   " Document {{{
