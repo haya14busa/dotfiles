@@ -3132,7 +3132,7 @@ if neobundle#tap('play2vim')
   \   }
   \ })
   " }}}
-  Autocmd BufRead,BufNewFile *.scala.html set filetype=html syntax=play2-html
+  Autocmd BufRead,BufNewFile *.scala.html nested set filetype=html syntax=play2-html | syntax enable
   Autocmd BufRead,BufNewFile */conf/\(*\|\)routes set filetype=play2-routes
   Autocmd BufRead,BufNewFile */conf/*.conf setf play2-conf
   Autocmd BufRead,BufNewFile plugins.sbt set filetype=scala
