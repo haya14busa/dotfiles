@@ -347,6 +347,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'derekwyatt/vim-sbt'
   NeoBundleLazy 'mdreves/vim-scaladoc'
   NeoBundleLazy 'gre/play2vim'
+  NeoBundle 'ensime/ensime-vim'
   "}}}
 
   " Scheme {{{
