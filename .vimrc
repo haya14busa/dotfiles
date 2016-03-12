@@ -270,6 +270,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'osyo-manga/vim-automatic', {
   \ 'depends' : [ 'osyo-manga/vim-gift', 'osyo-manga/vim-reunions' ] }
   NeoBundle 'thinca/vim-zenspace'
+  NeoBundle 'junegunn/goyo.vim'
   " }}}
 
   " Utility {{{
