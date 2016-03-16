@@ -1,0 +1,5 @@
+export VIMINIT="let \$SSHVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$SSHVIMRC"
+
+if type zsh >/dev/null 2>&1; then
+  exec zsh
+fi
