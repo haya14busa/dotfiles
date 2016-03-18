@@ -19,3 +19,9 @@ set listchars=tab:▸\ ,
 set list
 
 cnoreabbrev w!! w !sudo tee > /dev/null %
+
+for s:vimrc in filter(map(['~/.vimrc', '~/.vim/vimrc'], 'expand(v:val)'), 'filereadable(v:val)')
+  execute 'source' s:vimrc
+  break
+endfor
+unlet s:vimrc
