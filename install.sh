@@ -9,3 +9,5 @@ ln -s ~/dotfiles/.vimrc .vimrc
 ln -s ~/dotfiles/.zshrc .zshrc
 ln -s ~/dotfiles/.ctags .ctags
 ln -s ~/dotfiles/.git_commit_msg.txt .git_commit_msg.txt
+ln -s ~/dotfiles/.sshrc .sshrc
+ln -s ~/dotfiles/.sshrc.d/ .sshrc.d
