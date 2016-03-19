@@ -52,6 +52,9 @@
 	cmd = myvimdiff \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 [url "https://"]
 	insteadOf = git://
+[url "git@github.com:"]
+	pushinsteadof = "https://github.com/"
+	pushinsteadof = "git://github.com/"
 [push]
 	default = current
 [ghq]
