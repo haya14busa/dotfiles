@@ -177,6 +177,7 @@ function! s:load_bundles() "{{{
   NeoBundle 'haya14busa/vital-safe-string'
   NeoBundle 'haya14busa/vim-debugger'
   NeoBundle 'haya14busa/vital-vim-syntax-echo'
+  NeoBundle 'haya14busa/vim-signjk-motion'
   "}}}
 
   " Document {{{
