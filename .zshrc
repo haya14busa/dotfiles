@@ -20,6 +20,9 @@ export LC_TELEPHONE="en_US.UTF-8"
 export LC_MEASUREMENT="en_US.UTF-8"
 export LC_IDENTIFICATION="en_US.UTF-8"
 
+# Report execution time more than 1 sec
+export REPORTTIME=1
+
 # Enable colors
 autoload -Uz colors
 colors
