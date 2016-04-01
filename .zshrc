@@ -302,6 +302,8 @@ export PATH=${THEMIS_HOME}/bin/:$PATH
 # activator
 export PATH=${HOME}/Application/activator-1.3.4/:$PATH
 
+export PATH=${HOME}/Application/go_appengine/:$PATH
+
 # Anyenv
 if [ -d ${HOME}/.anyenv ] ; then
     export PATH="$HOME/.anyenv/bin:$PATH"
