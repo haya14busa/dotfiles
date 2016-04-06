@@ -267,7 +267,7 @@ function! s:load_bundles() "{{{
   " UI {{{
   NeoBundle 'itchyny/lightline.vim'
   NeoBundle 'Yggdroot/indentLine'
-  NeoBundleLazy 'osyo-manga/vim-brightest'
+  NeoBundle 'itchyny/vim-cursorword'
   NeoBundleLazy 'mattn/disableitalic-vim'
   "TODO
   NeoBundleLazy 'osyo-manga/vim-automatic', {
@@ -3367,34 +3367,6 @@ if neobundle#tap('unite-historia')
 endif
 " }}}
 
-" osyo-manga/vim-brightest {{{
-if neobundle#tap('vim-brightest')
-  " Config {{{
-  call neobundle#config({
-  \   'autoload' : {
-  \     'commands' : ['BrightestEnable'],
-  \   }
-  \ })
-  " }}}
-
-  augroup load_brightest
-    autocmd!
-    autocmd CursorMoved * NeoBundleSource vim-brightest
-    autocmd CursorMoved * autocmd! load_brightest *
-  augroup END
-
-  function! neobundle#tapped.hooks.on_source(bundle) "{{{
-    let g:brightest#highlight = {
-    \   'group' : 'BrightestUnderline',
-    \   'priority' : -1
-    \}
-    let g:brightest#pattern = '\w\+'
-  endfunction "}}}
-
-  call neobundle#untap()
-endif
-" }}}
-
 " mattn/disableitalic-vim {{{
 if neobundle#tap('disableitalic-vim')
   " Config {{{
@@ -3436,13 +3408,6 @@ endif
 
 " haya14busa/incsearch.vim {{{
 if neobundle#tap('incsearch.vim')
-  function! neobundle#tapped.hooks.on_post_source(bundle) "{{{
-    augroup incsearch
-      autocmd!
-      autocmd User IncSearchEnter BrightestDisable
-      autocmd User IncSearchLeave BrightestEnable
-    augroup END
-  endfunction "}}}
 
   augroup incsearch-easymotion
     autocmd!
