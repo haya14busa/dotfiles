@@ -3666,7 +3666,6 @@ endif
 if neobundle#tap('vital-power-assert')
   let g:__vital_power_assert_config = {
   \   '__debug__': 1,
-  \   '__max_length__': 50
   \ }
   call neobundle#untap()
 endif
