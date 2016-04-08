@@ -319,7 +319,6 @@ function! s:load_bundles() "{{{
   NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'othree/html5.vim'
   NeoBundle 'tpope/vim-markdown'
-  NeoBundle 'rhysd/github-complete.vim'
   NeoBundleLazy 'kannokanno/previm'
   NeoBundle 'groenewege/vim-less'
   NeoBundle 'elzr/vim-json'
@@ -332,6 +331,9 @@ function! s:load_bundles() "{{{
   \   }
   \ }
   NeoBundle 'ToQoz/unite-go-doc'
+
+  NeoBundle 'rhysd/github-complete.vim'
+  MyNeoBundle 'haya14busa/vital-complete'
 
   " Python {{{
   NeoBundleLazy 'davidhalter/jedi-vim'
