@@ -285,6 +285,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'tyru/open-browser.vim'
   NeoBundleLazy 'tyru/open-browser-github.vim'
   NeoBundleLazy 'thinca/vim-qfreplace'
+  NeoBundle 'itchyny/vim-qfedit'
   NeoBundleLazy 'haya14busa/endtagcomment.vim'
   "}}}
 
