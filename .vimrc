@@ -313,6 +313,7 @@ function! s:load_bundles() "{{{
   \  'python',
   \  'vim',
   \]
+  NeoBundle 'vim-jp/syntax-vim-ex'
   NeoBundle 'pangloss/vim-javascript'
   NeoBundle 'mxw/vim-jsx'
   NeoBundle 'wavded/vim-stylus'
