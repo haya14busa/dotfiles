@@ -249,6 +249,9 @@ function! s:load_bundles() "{{{
   "}}}
 
   " Git {{{
+  NeoBundle 'lambdalisue/vital-VCS-Git'
+  NeoBundle 'lambdalisue/vital-ArgumentParser'
+  NeoBundle 'lambdalisue/vim-gita'
   NeoBundle 'tpope/vim-fugitive'
   NeoBundle 'lambdalisue/vim-gita'
   NeoBundleLazy 'cohama/agit.vim'
