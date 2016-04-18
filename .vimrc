@@ -3936,7 +3936,7 @@ let g:vim_indent_cont = 0
 " source: http://qiita.com/kefir_/items/c725731d33de4d8fb096
 " Use vsplit mode
 if has('vim_starting') && !has('gui_running') && has('vertsplit')
-  function! EnableVsplitMode()
+  function! s:enable_vsplit_mode()
     " enable origin mode and left/right margins
     let &t_CS = "y"
     let &t_ti = &t_ti . "\e[?6;69h"
@@ -3947,9 +3947,9 @@ if has('vim_starting') && !has('gui_running') && has('vertsplit')
   " old vim does not ignore CPR
   map <special> <Esc>[3;9R <Nop>
   " new vim can't handle CPR with direct mapping
-  " map <expr> ^[[3;3R g:EnableVsplitMode()
+  " map <expr> ^[[3;3R s:enable_vsplit_mode()
   set t_F9=^[[3;3R
-  map <expr> <t_F9> g:EnableVsplitMode()
+  map <expr> <t_F9> s:enable_vsplit_mode()
   let &t_RV .= "\e[?6;69h\e[1;3s\e[3;9H\e[6n\e[0;0s\e[?6;69l"
 endif
 
