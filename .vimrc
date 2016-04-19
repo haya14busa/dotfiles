@@ -289,6 +289,7 @@ function! s:load_bundles() "{{{
   NeoBundleLazy 'thinca/vim-qfreplace'
   NeoBundle 'itchyny/vim-qfedit'
   NeoBundleLazy 'haya14busa/endtagcomment.vim'
+  NeoBundle 'chrisbra/SudoEdit.vim'
   "}}}
 
   " Application {{{
