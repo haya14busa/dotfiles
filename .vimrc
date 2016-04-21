@@ -1712,7 +1712,6 @@ if neobundle#tap('neocomplete.vim')
     if !exists('g:neocomplete#force_omni_input_patterns')
       let g:neocomplete#force_omni_input_patterns = {}
     endif
-    let g:jedi#auto_vim_configuration = 0
     let g:neocomplete#sources#omni#input_patterns = {
     \ 'ruby' : '[^. *\t]\.\w*\|\h\w*::',
     \ 'go': '\h\w*\.\?'
