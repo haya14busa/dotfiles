@@ -837,7 +837,7 @@ endfunction
 command! RemoveTrailingWhiteSpaces call <SID>remove_trailing_white_spaces()
 command! -range=% TrimSpace  <line1>,<line2>s!\s*$!!g | nohlsearch
 " remove trail ^M
-command! -range=% RemoveTrailM  <line1>,<line2>s!\r$!!g | nohlsearch
+command! -range=% RemoveTrailingM  <line1>,<line2>s!\r$!!g | nohlsearch
 "}}}
 
 "}}}
