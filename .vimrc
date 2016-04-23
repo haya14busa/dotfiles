@@ -552,14 +552,15 @@ set hlsearch | nohlsearch "Highlight search patterns, support reloading
 "}}}
 
 " Backup Settings {{{
-if ! isdirectory($HOME.'/.vim/backup')
-  call mkdir($HOME.'/.vim/backup', 'p')
-endif
-set backup "Make a backup before overwriting a file
-set writebackup "Make a backup before overwriting a file
-set backupdir=~/.vim/backup "List of directories for the backup file
+set nobackup
+" if ! isdirectory($HOME.'/.vim/backup')
+"   call mkdir($HOME.'/.vim/backup', 'p')
+" endif
+" set backup "Make a backup before overwriting a file
+" set writebackup "Make a backup before overwriting a file
+" set backupdir=~/.vim/backup "List of directories for the backup file
 " Make backup files like you are millionaire (in terms disk usage resourses)
-Autocmd BufWritePre * let &backupext = '_' . strftime('%Y%m%d_%X') . '~'
+" Autocmd BufWritePre * let &backupext = '_' . strftime('%Y%m%d_%X') . '~'
 "}}}
 
 " Swap Settings {{{
