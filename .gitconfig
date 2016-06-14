@@ -62,9 +62,14 @@
 # vim: noexpandtab
 [diff]
 	algorithm = patience
+	compactionHeuristic = true
 [github]
 	user = haya14busa
 [commit]
 	template = /home/haya14busa/.git_commit_msg.txt
 [status]
 	showuntrackedfiles = all
+[pager]
+	diff = diff-highlight | less
+	log = diff-highlight | less
+	show = diff-highlight | less
