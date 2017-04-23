@@ -67,3 +67,5 @@
 	user = haya14busa
 [status]
 	showuntrackedfiles = all
+[commit]
+	verbose = true
