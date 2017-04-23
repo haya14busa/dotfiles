@@ -1,5 +1,9 @@
 # haya14busa's zshrc
 
+# zprofile
+if [ -f ~/.zprofile ] ; then
+  source ~/.zprofile
+fi
 
 # Functions
 function exists { which $1 &> /dev/null }
