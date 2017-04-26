@@ -78,7 +78,6 @@
 	showuntrackedfiles = all
 [commit]
 	verbose = true
-	verbose = true
 [status]
 	showuntrackedfiles = all
 [http]
