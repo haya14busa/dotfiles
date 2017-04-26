@@ -1,5 +1,14 @@
 ignore/
 .tags
+tags
 .local.vimrc
 ,/
 .envrc
+*.ipynb
+prof.*
+mem.*
+*.test
+.drone.sec.yaml
+.drone.sec.yml
+mackerel-agent.conf
+vim-go-test-compile

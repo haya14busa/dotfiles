@@ -48,7 +48,8 @@ SAVEHIST=1000000
 # %# "
 # PROMPT="%{${fg[red]}%}[haya14busa@%m]%{${reset_color}%} %~ "$'\n'"%# "
 local p_name="%(!,root,haya14busa)"
-local p_info="%B%F{red}[$p_name@%m]%f%b"
+# local p_info="%B%F{red}[$p_name@%m]%f%b"
+local p_info="%B%F{red}[$p_name]%f%b"
 local p_cdir="%~"$'\n'
 local p_mark="%B%(!,su#,#)%b"
 PROMPT="$p_info $p_cdir$p_mark "
@@ -186,7 +187,7 @@ elif which putclip >/dev/null 2>&1 ; then
 fi
 
 # vimlint
-alias vimlint='$HOME/.vim/bundle/vim-vimlint/bin/vimlint.sh -l $HOME/.vim/bundle/vim-vimlint -p $HOME/.vim/bundle/vim-vimlparser -e EVL103=1 -e EVL102.l:_=1 autoload'
+alias vimlint='$HOME/.vim/bundle/vim-vimlint/bin/vimlint.sh -l $HOME/.vim/bundle/vim-vimlint -p $HOME/.vim/bundle/vim-vimlparser -e EVL103=1 -e EVL102.l:_=1 '
 
 
 
@@ -203,10 +204,9 @@ case ${OSTYPE} in
         ;;
 esac
 
-#alias mvim="mvim --remote-tab-silent"
-alias mvim="mvim"
-alias vims="vim -u ~/.vimrc_simple"
+alias qfvim="vim - -c 'cgetbuffer | bd! | copen | wincmd o'"
 alias VimFiler="vim +VimFiler"
+
 alias note="mvim $HOME/notes/`date +%Y-%m-%d`.md"
 alias say="say >& /dev/null"
 alias SayKotoeri2="SayKotoeri2 >& /dev/null"
@@ -277,7 +277,7 @@ alias g='git'
 stty -ixon
 
 
-export PATH=$HOME/.rbenv/bin:$PATH
+# export PATH=$HOME/.rbenv/bin:$PATH
 # eval "$(rbenv init -)"
 
 # source $HOME/nvm/nvm.sh
@@ -295,12 +295,13 @@ export PLAY_HOME=/usr/local/play
 export PATH=$PATH:$PLAY_HOME
 
 # Go environment
+# export PATH=$HOME/src/go.googlesource.com/go/bin:$PATH
 export GOBIN=$HOME/go/bin
 export GOPATH=$HOME
-export PATH=$PATH:$GOBIN
+export PATH=$GOBIN:$PATH
 
 # themis
-export THEMIS_HOME=${HOME}/.vim/bundle/vim-themis
+export THEMIS_HOME=${HOME}/.vim/.dein/repos/github.com/thinca/vim-themis/
 export PATH=${THEMIS_HOME}/bin/:$PATH
 
 # activator
@@ -316,7 +317,7 @@ if [ -d ${HOME}/.anyenv ] ; then
     fi
 fi
 
-# export PYENV_ROOT=$HOME/.pyenv
+export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 if exists pyenv; then
   eval "$(pyenv init -)"
@@ -369,3 +370,20 @@ fi
 
 # added by travis gem
 [ -f /home/haya14busa/.travis/travis.sh ] && source /home/haya14busa/.travis/travis.sh
+
+function git-root() {
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    cd `git rev-parse --show-toplevel`
+  fi
+}
+
+# http://qiita.com/delphinus/items/b04752bb5b64e6cc4ea9
+export LESS='-i -M -R'
+
+mkdir ~/bin/whalebrewbin
+export WHALEBREW_INSTALL_PATH=~/bin/whalebrewbin
+PATH=${HOME}/bin/whalebrewbin:$PATH
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/.local.zshrc ] && source ~/.local.zshrc

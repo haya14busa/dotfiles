@@ -1,6 +1,7 @@
 [user]
 	name = haya14busa
-	email = hayabusa1419@gmail.com
+	email = haya14busa@gmail.com
+	# email = hayabusa1419@gmail.com
 [color]
 	ui = true
 [core]
@@ -39,6 +40,14 @@
 	pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 	pr-clean = "!git for-each-ref refs/heads/pr/* --format=\"%(refname)\" | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 	reset-to-common-commit = "!git reset $(git merge-base HEAD master)"
+	today = log --since=midnight --author='haya14busa' --oneline
+  # git codereview
+	change = codereview change
+	gofmt = codereview gofmt
+	mail = codereview mail
+	pending = codereview pending
+	submit = codereview submit
+	sync = codereview sync
 [include]
 	path = ~/.gitconfig.local
 [merge]
@@ -69,3 +78,8 @@
 	showuntrackedfiles = all
 [commit]
 	verbose = true
+	verbose = true
+[status]
+	showuntrackedfiles = all
+[http]
+	cookiefile = /home/haya14busa/.gitcookies

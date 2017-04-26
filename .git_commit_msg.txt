@@ -1,5 +1,13 @@
-# If applied, this commit will...
 
-# Explain why this change is being made
 
-# Provide links to any relevant tickets, articles or other resources
+## Commit emoji convention
+#
+# | emoji              | description                             |
+# |--------------------|-----------------------------------------|
+# | :memo:             | Add comment or doc                      |
+# | :gift:             | New feature.                            |
+# | :bug:              | Bug fix                                 |
+# | :bomb:             | Breaking compatibility.                 |
+# | :white_check_mark: | Write test.                             |
+# | :fire:             | Remove something.                       |
+# | :beer:             | I'm happy like reduced code complexity. |

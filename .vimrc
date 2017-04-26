@@ -99,6 +99,7 @@ command! -nargs=1 MyNeoBundleLazy call s:MyNeoBundle(1, <args>)
 function! s:load_bundles() "{{{
   " Let NeoBundle manage NeoBundle
   NeoBundleFetch 'Shougo/neobundle.vim'
+  NeoBundleFetch 'Shougo/dein.vim'
 
   " Synthesis {{{
   " Unite {{{
@@ -488,7 +489,7 @@ set cmdheight=1 "Number of screen lines to use for the command-line
 set cmdwinheight=5 "Number of screen lines to use for the command-line window
 set completeopt-=preview "Do not use preview window
 set display=lastline "Display as much as possible of the last line
-set diffopt+=iwhite
+set diffopt+=iwhite "Ignore changes in amount of white space.
 set formatoptions-=r,o " Turn off Automatically comment out when line break
 " If we have Vim 7.4, add j to the format options to get rid of comment
 " leaders when joining lines
@@ -3750,7 +3751,7 @@ if v:version >= 703
   set colorcolumn=79
 endif
 
-let g:loaded_netrwPlugin=1
+" let g:loaded_netrwPlugin=1
 
 function! s:open_help_en_jp(args)
   let en = a:args . '@en'
