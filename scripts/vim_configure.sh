@@ -10,9 +10,6 @@
 ./configure \
 --enable-fail-if-missing \
 --with-features=huge \
---enable-perlinterp \
---enable-rubyinterp \
---enable-pythoninterp=yes \
 --enable-python3interp=yes \
 --enable-multibyte \
 --enable-fontset \
@@ -23,6 +20,10 @@
 --disable-smack \
 --enable-luainterp=dynamic \
 --with-luajit \
---with-lua-prefix=/usr \
 --enable-cscope \
 --enable-largefile \
+
+# --enable-pythoninterp=yes \
+# --with-lua-prefix=/usr \
+# --enable-perlinterp \
+# --enable-rubyinterp \
