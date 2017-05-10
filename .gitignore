@@ -13,3 +13,4 @@ mem.*
 mackerel-agent.conf
 vim-go-test-compile
 local/bin
+.sshrc.d
