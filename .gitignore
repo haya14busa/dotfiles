@@ -12,3 +12,4 @@ mem.*
 .drone.sec.yml
 mackerel-agent.conf
 vim-go-test-compile
+local/bin
