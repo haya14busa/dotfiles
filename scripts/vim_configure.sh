@@ -1,9 +1,8 @@
 #!/bin/sh
 
 ## Lua ##
-# git clone http://luajit.org/git/luajit-2.0.git
-# cd luajit-2.0
-# make && sudo make install
+# sudo apt install python3 python3-dev
+# sudo apt install luajit libluajit-5.1-dev
 #########
 
 # LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/2.7.10/lib:${HOME}/.pyenv/versions/3.5.0/lib" \
@@ -13,7 +12,7 @@
 --enable-python3interp=yes \
 --enable-multibyte \
 --enable-fontset \
---enable-gui=gtk2 \
+--enable-gui=auto \
 --disable-netbeans \
 --disable-darwin \
 --disable-selinux \
@@ -22,6 +21,7 @@
 --with-luajit \
 --enable-cscope \
 --enable-largefile \
+--with-x \
 
 # --enable-pythoninterp=yes \
 # --with-lua-prefix=/usr \
